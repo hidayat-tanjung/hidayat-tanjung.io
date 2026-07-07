@@ -304,6 +304,18 @@
             transform: translateY(-6px);
             box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
         }
+
+        /* Grid mode 2x3 */
+        .grid-mode-2x3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 768px) {
+            .grid-mode-2x3 {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body class="bg-black text-gray-100 overflow-x-hidden">
@@ -598,28 +610,45 @@
     </section>
 
     <!-- ========================================================= -->
-    <!-- ===== PROJECT EXPLORER - FIXED ===== -->
+    <!-- ===== PROJECT EXPLORER - CAROUSEL + GRID 2x3 ===== -->
     <!-- ========================================================= -->
     <section id="project-explorer" class="py-20 relative z-10">
         <div class="container mx-auto px-6">
             <h2 class="section-title font-bold text-center mb-4">
                 <span class="text-white">🚀 Your Projects</span>
             </h2>
-            <p class="text-center text-gray-400 text-base mb-6">
-                <span id="projectCount">Memuat...</span> • <span id="projectTimer">⏱️ Update: --:--:--</span>
+            <p class="text-center text-gray-400 text-base mb-2">
+                <span id="projectCount">Memuat...</span>
+            </p>
+            <p class="text-center text-gray-500 text-sm mb-6">
+                <span id="projectTimer">⏱️ Update: --:--:--</span> • 
+                <span id="projectRotateInfo">Bergilir setiap 5 detik</span>
             </p>
 
-            <div class="text-center mb-6">
-                <button id="toggleProjectView" class="px-6 py-2 bg-cyan-600 hover:bg-cyan-700 rounded-lg text-sm transition">
-                    <i class="fas fa-th-large mr-2"></i> Tampilkan 9 Project
+            <!-- Carousel Container -->
+            <div class="relative max-w-5xl mx-auto">
+                <!-- Tombol Prev -->
+                <button id="projectPrevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/70 hover:bg-purple-600/70 text-white p-3 rounded-full transition-all duration-300 -ml-4 md:-ml-6">
+                    <i class="fas fa-chevron-left text-xl"></i>
+                </button>
+
+                <!-- Grid Project -->
+                <div id="projectExplorerGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6 min-h-[400px]">
+                    <div class="col-span-full flex justify-center items-center">
+                        <div class="loader"></div>
+                    </div>
+                </div>
+
+                <!-- Tombol Next -->
+                <button id="projectNextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/70 hover:bg-purple-600/70 text-white p-3 rounded-full transition-all duration-300 -mr-4 md:-mr-6">
+                    <i class="fas fa-chevron-right text-xl"></i>
                 </button>
             </div>
 
-            <div id="projectExplorerGrid" class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-                <div class="col-span-full flex justify-center"><div class="loader"></div></div>
-            </div>
+            <!-- Indikator Dot -->
+            <div id="projectDots" class="flex justify-center gap-3 mt-6"></div>
 
-            <div class="text-center text-gray-500 text-sm mt-6">
+            <div class="text-center text-gray-500 text-sm mt-4">
                 <i class="fas fa-sync-alt mr-1"></i> Auto-refresh setiap 20 detik dari GitHub • 
                 <i class="fas fa-code mr-1"></i> Klik icon GitHub untuk source • 
                 <i class="fas fa-eye mr-1"></i> Klik Live untuk preview
@@ -1241,189 +1270,252 @@
         });
 
         // =========================================================
-        // ===== PROJECT EXPLORER - FIXED WITH FALLBACK =====
+        // ===== PROJECT EXPLORER - CAROUSEL + GRID 2x3 =====
         // =========================================================
         let allProjects = [];
         let projectInterval = null;
-        let githubAvatar = '';
-        let showAllProjects = false;
-        let isLoading = true;
+        let carouselInterval = null;
+        let githubAvatar = 'https://avatars.githubusercontent.com/u/48172784?v=4';
+        let currentIndex = 0;
+        let isPlaying = true;
+        let viewMode = 'carousel';
 
-      // DATA STATIS (fallback kalo API error)
-const staticRepos = [
-    { 
-        name: 'hidayat-tanjung.io', 
-        description: 'Portfolio website - Marlin Hidayat Tanjung',
-        html_url: 'https://github.com/hidayat-tanjung/hidayat-tanjung.io',
-        language: 'HTML',
-        owner: { login: 'hidayat-tanjung' },
-        homepage: 'https://hidayat-tanjung.github.io/hidayat-tanjung.io/',
-        has_pages: true
-    },
-    { 
-        name: 'linux-ploiter', 
-        description: 'Linux security tools collection',
-        html_url: 'https://github.com/hidayat-tanjung/linux-ploiter',
-        language: 'Shell',
-        owner: { login: 'hidayat-tanjung' },
-        homepage: null,
-        has_pages: false
-    },
-    { 
-        name: 'project-3', 
-        description: 'Deskripsi project 3',
-        html_url: 'https://github.com/hidayat-tanjung/project-3',
-        language: 'JavaScript',
-        owner: { login: 'hidayat-tanjung' },
-        homepage: 'https://hidayat-tanjung.github.io/project-3/',
-        has_pages: true
-    },
-    { 
-        name: 'project-4', 
-        description: 'Deskripsi project 4',
-        html_url: 'https://github.com/hidayat-tanjung/project-4',
-        language: 'Python',
-        owner: { login: 'hidayat-tanjung' },
-        homepage: null,
-        has_pages: false
-    },
-    { 
-        name: 'project-5', 
-        description: 'Deskripsi project 5',
-        html_url: 'https://github.com/hidayat-tanjung/project-5',
-        language: 'Go',
-        owner: { login: 'hidayat-tanjung' },
-        homepage: 'https://hidayat-tanjung.github.io/project-5/',
-        has_pages: true
-    },
-    { 
-        name: 'project-6', 
-        description: 'Deskripsi project 6',
-        html_url: 'https://github.com/hidayat-tanjung/project-6',
-        language: 'Rust',
-        owner: { login: 'hidayat-tanjung' },
-        homepage: null,
-        has_pages: false
-    }
-];
+        // DATA STATIS (fallback kalo API error)
+        const staticRepos = [
+            { 
+                name: 'hidayat-tanjung.io', 
+                description: 'Portfolio website - Marlin Hidayat Tanjung',
+                html_url: 'https://github.com/hidayat-tanjung/hidayat-tanjung.io',
+                language: 'HTML',
+                owner: { login: 'hidayat-tanjung' },
+                homepage: 'https://hidayat-tanjung.github.io/hidayat-tanjung.io/',
+                has_pages: true
+            },
+            { 
+                name: 'linux-ploiter', 
+                description: 'Linux security tools collection',
+                html_url: 'https://github.com/hidayat-tanjung/linux-ploiter',
+                language: 'Shell',
+                owner: { login: 'hidayat-tanjung' },
+                homepage: null,
+                has_pages: false
+            },
+            { 
+                name: 'project-3', 
+                description: 'Deskripsi project 3',
+                html_url: 'https://github.com/hidayat-tanjung/project-3',
+                language: 'JavaScript',
+                owner: { login: 'hidayat-tanjung' },
+                homepage: 'https://hidayat-tanjung.github.io/project-3/',
+                has_pages: true
+            },
+            { 
+                name: 'project-4', 
+                description: 'Deskripsi project 4',
+                html_url: 'https://github.com/hidayat-tanjung/project-4',
+                language: 'Python',
+                owner: { login: 'hidayat-tanjung' },
+                homepage: null,
+                has_pages: false
+            },
+            { 
+                name: 'project-5', 
+                description: 'Deskripsi project 5',
+                html_url: 'https://github.com/hidayat-tanjung/project-5',
+                language: 'Go',
+                owner: { login: 'hidayat-tanjung' },
+                homepage: 'https://hidayat-tanjung.github.io/project-5/',
+                has_pages: true
+            },
+            { 
+                name: 'project-6', 
+                description: 'Deskripsi project 6',
+                html_url: 'https://github.com/hidayat-tanjung/project-6',
+                language: 'Rust',
+                owner: { login: 'hidayat-tanjung' },
+                homepage: null,
+                has_pages: false
+            }
+        ];
 
         async function fetchProjects() {
             const grid = document.getElementById('projectExplorerGrid');
             if (!grid) return;
             
             try {
-                grid.innerHTML = `<div class="col-span-full flex justify-center"><div class="loader"></div></div>`;
+                grid.innerHTML = `<div class="col-span-full flex justify-center items-center"><div class="loader"></div></div>`;
                 
-                // Coba fetch dari GitHub
                 const res = await fetch('https://api.github.com/users/hidayat-tanjung/repos?sort=updated&per_page=100');
                 
                 if (!res.ok) {
                     console.warn('GitHub API error, using static data');
                     allProjects = staticRepos;
-                    githubAvatar = 'https://avatars.githubusercontent.com/u/123456789?v=4';
-                    isLoading = false;
-                    renderProjectGrid();
+                    renderProjects();
                     return;
                 }
                 
                 const repos = await res.json();
                 allProjects = repos.filter(r => !r.archived);
                 
-                // Fetch avatar
-                try {
-                    const userRes = await fetch('https://api.github.com/users/hidayat-tanjung');
-                    if (userRes.ok) {
-                        const userData = await userRes.json();
-                        githubAvatar = userData.avatar_url || '';
-                    }
-                } catch(e) {}
+                // Kalo kurang dari 6, tambahin data statis
+                if (allProjects.length < 6) {
+                    const existingNames = allProjects.map(p => p.name);
+                    const extra = staticRepos.filter(r => !existingNames.includes(r.name));
+                    allProjects = [...allProjects, ...extra];
+                }
                 
-                isLoading = false;
-                renderProjectGrid();
+                renderProjects();
                 
             } catch(e) {
                 console.error('Error fetch projects:', e);
                 allProjects = staticRepos;
-                githubAvatar = 'https://avatars.githubusercontent.com/u/48172784?s=400&u=72f29a0ecec05d1a4800b544a61884af72be68d1&v=4';
-                isLoading = false;
-                renderProjectGrid();
+                renderProjects();
             }
         }
 
-        function renderProjectGrid() {
+        function renderProjects() {
             const grid = document.getElementById('projectExplorerGrid');
             if (!grid) return;
             
-            if (allProjects.length === 0 && !isLoading) {
-                grid.innerHTML = `<div class="col-span-full text-center text-gray-400 py-8">Tidak ada project ditemukan</div>`;
-                document.getElementById('projectCount').textContent = '0 project';
-                return;
-            }
-            
-            const displayProjects = showAllProjects ? allProjects : allProjects.slice(0, 9);
-            
-            document.getElementById('projectCount').textContent = `Menampilkan ${displayProjects.length} project`;
+            document.getElementById('projectCount').textContent = `Total ${allProjects.length} project • Bergiliran`;
             
             const now = new Date();
             document.getElementById('projectTimer').textContent = `⏱️ Update: ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
             
-            if (displayProjects.length === 0) {
+            if (allProjects.length === 0) {
                 grid.innerHTML = `<div class="col-span-full text-center text-gray-400 py-8">Tidak ada project</div>`;
                 return;
             }
             
+            renderCarouselMode(grid);
+            renderDots();
+        }
+
+        function renderCarouselMode(grid) {
+            const projectsPerSlide = 6; // 2 baris x 3 kolom
+            const totalSlides = Math.ceil(allProjects.length / projectsPerSlide);
+            
+            if (currentIndex >= totalSlides) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = totalSlides - 1;
+            
+            const startIdx = currentIndex * projectsPerSlide;
+            const endIdx = Math.min(startIdx + projectsPerSlide, allProjects.length);
+            const displayProjects = allProjects.slice(startIdx, endIdx);
+            
+            document.getElementById('projectRotateInfo').textContent = `Slide ${currentIndex + 1} dari ${totalSlides} • Bergilir setiap 5 detik`;
+            
             let html = '';
             displayProjects.forEach(repo => {
-                const liveUrl = repo.homepage && repo.homepage.startsWith('http') 
-                    ? repo.homepage 
-                    : (repo.has_pages ? `https://${repo.owner.login}.github.io/${repo.name}` : null);
-                
-                const grad = ['from-purple-600 to-pink-600','from-blue-600 to-cyan-600','from-green-600 to-teal-600','from-red-600 to-orange-600','from-yellow-600 to-red-600','from-indigo-600 to-purple-600','from-pink-600 to-rose-600','from-cyan-600 to-blue-600','from-emerald-600 to-green-600'][Math.floor(Math.random()*9)];
-                
-                html += `
-                    <div class="project-card bg-gray-800 rounded-xl overflow-hidden card-hover border border-gray-700 hover:border-cyan-500 transition-all">
-                        <div class="h-36 bg-gradient-to-br ${grad} flex items-center justify-center text-white font-bold text-base p-3 text-center truncate">${repo.name}</div>
-                        <div class="p-5">
-                            <div class="flex items-center gap-3 mb-3">
-                                ${githubAvatar ? `<img src="${githubAvatar}" alt="GitHub Avatar" class="github-avatar">` : `<div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-400"><i class="fab fa-github"></i></div>`}
-                                <span class="text-gray-400 text-xs">${repo.owner.login}</span>
-                            </div>
-                            <p class="project-desc text-gray-400 line-clamp-2 h-10">${repo.description || 'No description'}</p>
-                            <div class="flex items-center justify-between mt-4">
-                                <span class="project-lang px-3 py-1 bg-cyan-600 bg-opacity-20 text-cyan-400 rounded-full">${repo.language || '?'}</span>
-                                <div class="flex gap-4">
-                                    <a href="${repo.html_url}" target="_blank" class="text-gray-400 hover:text-white transition text-base" title="View source">
-                                        <i class="fab fa-github text-xl"></i>
-                                    </a>
-                                    ${liveUrl ? `
-                                    <button onclick="openProjectPreview('${liveUrl}', '${repo.name}')" class="text-green-400 hover:text-green-300 transition text-base" title="Live preview">
-                                        <i class="fas fa-eye text-xl"></i>
-                                    </button>
-                                    ` : `
-                                    <span class="text-gray-600 text-base cursor-not-allowed" title="No live demo">
-                                        <i class="fas fa-eye text-xl"></i>
-                                    </span>
-                                    `}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
+                html += createProjectCard(repo);
             });
+            
+            // Tambah card kosong untuk menjaga grid 3 kolom
+            const remaining = 6 - displayProjects.length;
+            for (let i = 0; i < remaining; i++) {
+                html += `<div class="bg-gray-800 rounded-xl border border-gray-700 opacity-0"></div>`;
+            }
+            
             grid.innerHTML = html;
         }
 
-        // ===== TOGGLE PROJECT VIEW =====
-        const toggleBtn = document.getElementById('toggleProjectView');
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', function() {
-                showAllProjects = !showAllProjects;
-                this.innerHTML = showAllProjects ? 
-                    '<i class="fas fa-th-large mr-2"></i> Tampilkan 9 Project' : 
-                    '<i class="fas fa-list mr-2"></i> Tampilkan Semua Project';
-                renderProjectGrid();
-            });
+        function createProjectCard(repo) {
+            const liveUrl = repo.homepage && repo.homepage.startsWith('http') 
+                ? repo.homepage 
+                : (repo.has_pages ? `https://${repo.owner.login}.github.io/${repo.name}` : null);
+            
+            const grad = ['from-purple-600 to-pink-600','from-blue-600 to-cyan-600','from-green-600 to-teal-600','from-red-600 to-orange-600','from-yellow-600 to-red-600','from-indigo-600 to-purple-600','from-pink-600 to-rose-600','from-cyan-600 to-blue-600','from-emerald-600 to-green-600'][Math.floor(Math.random()*9)];
+            
+            return `
+                <div class="project-card bg-gray-800 rounded-xl overflow-hidden card-hover border border-gray-700 hover:border-cyan-500 transition-all">
+                    <div class="h-36 bg-gradient-to-br ${grad} flex items-center justify-center text-white font-bold text-base p-3 text-center truncate">${repo.name}</div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-3 mb-3">
+                            ${githubAvatar ? `<img src="${githubAvatar}" alt="GitHub Avatar" class="github-avatar">` : `<div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-400"><i class="fab fa-github"></i></div>`}
+                            <span class="text-gray-400 text-xs">${repo.owner.login}</span>
+                        </div>
+                        <p class="project-desc text-gray-400 line-clamp-2 h-10">${repo.description || 'No description'}</p>
+                        <div class="flex items-center justify-between mt-4">
+                            <span class="project-lang px-3 py-1 bg-cyan-600 bg-opacity-20 text-cyan-400 rounded-full">${repo.language || '?'}</span>
+                            <div class="flex gap-4">
+                                <a href="${repo.html_url}" target="_blank" class="text-gray-400 hover:text-white transition text-base" title="View source">
+                                    <i class="fab fa-github text-xl"></i>
+                                </a>
+                                ${liveUrl ? `
+                                <button onclick="openProjectPreview('${liveUrl}', '${repo.name}')" class="text-green-400 hover:text-green-300 transition text-base" title="Live preview">
+                                    <i class="fas fa-eye text-xl"></i>
+                                </button>
+                                ` : `
+                                <span class="text-gray-600 text-base cursor-not-allowed" title="No live demo">
+                                    <i class="fas fa-eye text-xl"></i>
+                                </span>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
         }
+
+        function renderDots() {
+            const dotsContainer = document.getElementById('projectDots');
+            if (!dotsContainer) return;
+            
+            const projectsPerSlide = 6;
+            const totalSlides = Math.ceil(allProjects.length / projectsPerSlide);
+            
+            if (totalSlides <= 1) {
+                dotsContainer.innerHTML = '';
+                return;
+            }
+            
+            let dotsHtml = '';
+            for (let i = 0; i < totalSlides; i++) {
+                dotsHtml += `
+                    <button onclick="goToSlide(${i})" 
+                            class="w-3 h-3 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-purple-500 w-6' : 'bg-gray-600 hover:bg-gray-400'}">
+                    </button>
+                `;
+            }
+            dotsContainer.innerHTML = dotsHtml;
+        }
+
+        function goToSlide(index) {
+            const projectsPerSlide = 6;
+            const totalSlides = Math.ceil(allProjects.length / projectsPerSlide);
+            if (index < 0) index = totalSlides - 1;
+            if (index >= totalSlides) index = 0;
+            currentIndex = index;
+            renderProjects();
+            resetCarouselTimer();
+        }
+
+        function nextSlide() {
+            const projectsPerSlide = 6;
+            const totalSlides = Math.ceil(allProjects.length / projectsPerSlide);
+            if (totalSlides === 0) return;
+            goToSlide((currentIndex + 1) % totalSlides);
+        }
+
+        function prevSlide() {
+            const projectsPerSlide = 6;
+            const totalSlides = Math.ceil(allProjects.length / projectsPerSlide);
+            if (totalSlides === 0) return;
+            goToSlide((currentIndex - 1 + totalSlides) % totalSlides);
+        }
+
+        function resetCarouselTimer() {
+            if (carouselInterval) {
+                clearInterval(carouselInterval);
+                carouselInterval = null;
+            }
+            if (isPlaying && allProjects.length > 0) {
+                carouselInterval = setInterval(nextSlide, 5000);
+            }
+        }
+
+        // ===== TOMBOL NAVIGASI =====
+        document.getElementById('projectPrevBtn').addEventListener('click', prevSlide);
+        document.getElementById('projectNextBtn').addEventListener('click', nextSlide);
 
         // ===== PROJECT PREVIEW MODAL =====
         function openProjectPreview(url, name) {
