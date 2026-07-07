@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    
+    <!-- ===== GOOGLE SEARCH CONSOLE ===== -->
+    <!-- GANTI content="..." dengan kode verifikasi dari Google Search Console -->
+    <meta name="google-site-verification" content="GANTI_DENGAN_KODE_VERIFIKASI_LO" />
+    
     <title>Portfolio - Marlin Hidayat Tanjung</title>
 
     <!-- Tailwind -->
@@ -96,6 +101,85 @@
             font-weight: 500;
         }
 
+        /* EXPERIENCE CARD HOVER - SEPERTI TECH ICON */
+        .experience-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.08) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        .experience-card:hover::before {
+            opacity: 1;
+        }
+        .experience-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
+        }
+        .experience-card .card-glow {
+            position: absolute;
+            inset: -2px;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2, #667eea);
+            background-size: 300% 300%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: -1;
+            animation: glowMove 3s ease infinite;
+        }
+        .experience-card:hover .card-glow {
+            opacity: 1;
+        }
+        @keyframes glowMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        .experience-card .border-left-glow {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #667eea, #764ba2, #667eea);
+            background-size: 100% 300%;
+            animation: borderGlow 3s ease infinite;
+            border-radius: 4px 0 0 4px;
+        }
+        @keyframes borderGlow {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 0% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        .experience-card .position-title {
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .experience-card:hover .position-title {
+            background: linear-gradient(135deg, #667eea, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .experience-card .company-name {
+            transition: all 0.3s ease;
+        }
+        .experience-card:hover .company-name {
+            color: #a78bfa !important;
+        }
+
         .code-block {
             background: #1a1a1a;
             border-radius: 8px;
@@ -156,10 +240,6 @@
                 font-size: 2rem;
             }
         }
-        .experience-card .position-title {
-            font-size: 1rem;
-            font-weight: 600;
-        }
         .experience-card .description-text {
             font-size: 0.95rem;
             line-height: 1.7;
@@ -188,12 +268,45 @@
             border-color: #667eea;
             transform: scale(1.1);
         }
+
+        /* Profile img expand */
+        .profile-img-wrapper {
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+        .profile-img-wrapper:hover {
+            transform: scale(1.08);
+            filter: drop-shadow(0 0 30px rgba(102, 126, 234, 0.6));
+        }
+
+        /* Article card with image */
+        .article-card .thumb-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px 12px 0 0;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+        }
+        .article-grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 768px) {
+            .article-grid-2col {
+                grid-template-columns: 1fr;
+            }
+        }
+        .article-card {
+            transition: all 0.3s ease;
+        }
+        .article-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
+        }
     </style>
 </head>
 <body class="bg-black text-gray-100 overflow-x-hidden">
-
-    <!-- ===== GOOGLE CONSOLE ===== -->
-    <meta name="google-site-verification" content="GANTI_DENGAN_KODE_VERIFIKASI_LO" />
 
     <!-- ===== PARTICLES BACKGROUND ===== -->
     <div id="particles" class="fixed inset-0 z-0"></div>
@@ -297,9 +410,9 @@
                     <a href="https://drive.google.com/file/d/1YYVUZLSIJ86P3QG02p-RLteOQrYIsFPE/view?usp=sharing" target="_blank" class="inline-block mt-6 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-base transition">Download CV</a>
                 </div>
                 <div class="flex justify-center">
-                    <div class="w-56 h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 p-1">
+                    <div class="profile-img-wrapper w-56 h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 p-1">
                         <div class="w-full h-full rounded-full bg-black p-1">
-                            <img src="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/img/profile.jpg" alt="Profile" class="w-full h-full rounded-full object-cover"/>
+                            <img src="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/img/profile.jpg" alt="Profile" class="w-full h-full rounded-full object-cover transition-transform duration-500 hover:scale-105"/>
                         </div>
                     </div>
                 </div>
@@ -339,99 +452,121 @@
                     <span class="inline-block mt-3 px-3 py-1 bg-red-600 bg-opacity-20 text-red-400 text-sm rounded-full">Security</span>
                     <span class="inline-block mt-3 ml-2 px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 text-sm rounded-full">Click to view</span>
                 </div>
+            </div>
+        </div>
     </section>
 
     <!-- ========================================================= -->
-    <!-- ===== EXPERIENCE ===== -->
+    <!-- ===== EXPERIENCE - URUTAN: NETWORK (PERTAMA) ===== -->
     <!-- ========================================================= -->
     <section id="experience" class="py-20 relative z-10">
         <div class="container mx-auto px-6">
             <h2 class="section-title font-bold text-center mb-12"><span class="gradient-text">Experience</span></h2>
             <div class="max-w-4xl mx-auto space-y-8">
 
-                <div class="experience-card bg-gray-800 p-8 rounded-xl border-l-4 border-cyan-500 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300">
-                    <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
-                        <div>
-                            <span class="position-title text-cyan-400">Teknisi</span>
-                            <span class="text-gray-400 ml-3 text-base">Kecilin · Freelance</span>
+                <!-- 1. Network Technician -->
+                <div class="experience-card bg-gray-800 p-8 rounded-xl relative transition-all duration-300">
+                    <div class="card-glow"></div>
+                    <div class="border-left-glow"></div>
+                    <div class="relative z-10">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+                            <div>
+                                <span class="position-title text-green-400">Network Technician</span>
+                                <span class="company-name text-gray-400 ml-3 text-base">Siga Network JTE · Full-time</span>
+                            </div>
+                            <span class="text-gray-400 text-base whitespace-nowrap">Feb 2026 - Jul 2026 · 6 mos</span>
                         </div>
-                        <span class="text-gray-400 text-base whitespace-nowrap">Sep 2024 - May 2026 · 1 yr 9 mos</span>
-                    </div>
-                    <p class="text-gray-400 text-base mb-4">Gunungsitoli, North Sumatra, Indonesia · Remote</p>
-                    <ul class="text-gray-300 description-text space-y-2 list-disc list-inside">
-                        <li>Instalisasi PC Mini untuk CCTV di Mesin CRM BRI</li>
-                        <li>Melakukan maintenance pertiga bulan</li>
-                        <li>Melakukan repair PC mini yang tidak berfungsi</li>
-                        <li>Pemasangan PC mini baru untuk CCTV CRM BRI</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="tag-text px-3 py-1 bg-cyan-600 bg-opacity-20 text-cyan-400 rounded-full">CCTV</span>
-                        <span class="tag-text px-3 py-1 bg-cyan-600 bg-opacity-20 text-cyan-400 rounded-full">PC Mini</span>
-                        <span class="tag-text px-3 py-1 bg-cyan-600 bg-opacity-20 text-cyan-400 rounded-full">Maintenance</span>
+                        <p class="text-gray-400 text-base mb-4">Sawo, North Sumatra, Indonesia · On-site</p>
+                        <ul class="text-gray-300 description-text space-y-2 list-disc list-inside">
+                            <li>Instalasi jaringan indoor/outdoor</li>
+                            <li>Troubleshooting sinyal lemah</li>
+                            <li>Konfigurasi router & access point</li>
+                            <li>Pemasangan kabel fiber optik di ODC</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="tag-text px-3 py-1 bg-green-600 bg-opacity-20 text-green-400 rounded-full">Jaringan</span>
+                            <span class="tag-text px-3 py-1 bg-green-600 bg-opacity-20 text-green-400 rounded-full">Fiber Optik</span>
+                            <span class="tag-text px-3 py-1 bg-green-600 bg-opacity-20 text-green-400 rounded-full">Router</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="experience-card bg-gray-800 p-8 rounded-xl border-l-4 border-green-500 hover:shadow-lg hover:shadow-green-500/10 transition-all duration-300">
-                    <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
-                        <div>
-                            <span class="position-title text-green-400">Network Technician</span>
-                            <span class="text-gray-400 ml-3 text-base">Siga Network JTE · Full-time</span>
+                <!-- 2. Teknisi - Kecilin -->
+                <div class="experience-card bg-gray-800 p-8 rounded-xl relative transition-all duration-300">
+                    <div class="card-glow"></div>
+                    <div class="border-left-glow"></div>
+                    <div class="relative z-10">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+                            <div>
+                                <span class="position-title text-cyan-400">Teknisi</span>
+                                <span class="company-name text-gray-400 ml-3 text-base">Kecilin · Freelance</span>
+                            </div>
+                            <span class="text-gray-400 text-base whitespace-nowrap">Sep 2024 - May 2026 · 1 yr 9 mos</span>
                         </div>
-                        <span class="text-gray-400 text-base whitespace-nowrap">Feb 2026 - Jul 2026 · 6 mos</span>
-                    </div>
-                    <p class="text-gray-400 text-base mb-4">Sawo, North Sumatra, Indonesia · On-site</p>
-                    <ul class="text-gray-300 description-text space-y-2 list-disc list-inside">
-                        <li>Instalasi jaringan indoor/outdoor</li>
-                        <li>Troubleshooting sinyal lemah</li>
-                        <li>Konfigurasi router & access point</li>
-                        <li>Pemasangan kabel fiber optik di ODC</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="tag-text px-3 py-1 bg-green-600 bg-opacity-20 text-green-400 rounded-full">Jaringan</span>
-                        <span class="tag-text px-3 py-1 bg-green-600 bg-opacity-20 text-green-400 rounded-full">Fiber Optik</span>
-                        <span class="tag-text px-3 py-1 bg-green-600 bg-opacity-20 text-green-400 rounded-full">Router</span>
+                        <p class="text-gray-400 text-base mb-4">Gunungsitoli, North Sumatra, Indonesia · Remote</p>
+                        <ul class="text-gray-300 description-text space-y-2 list-disc list-inside">
+                            <li>Instalisasi PC Mini untuk CCTV di Mesin CRM BRI</li>
+                            <li>Melakukan maintenance pertiga bulan</li>
+                            <li>Melakukan repair PC mini yang tidak berfungsi</li>
+                            <li>Pemasangan PC mini baru untuk CCTV CRM BRI</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="tag-text px-3 py-1 bg-cyan-600 bg-opacity-20 text-cyan-400 rounded-full">CCTV</span>
+                            <span class="tag-text px-3 py-1 bg-cyan-600 bg-opacity-20 text-cyan-400 rounded-full">PC Mini</span>
+                            <span class="tag-text px-3 py-1 bg-cyan-600 bg-opacity-20 text-cyan-400 rounded-full">Maintenance</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="experience-card bg-gray-800 p-8 rounded-xl border-l-4 border-blue-500 hover:shadow-lg hover:shadow-blue-500/10 transition-all duration-300">
-                    <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
-                        <div>
-                            <span class="position-title text-blue-400">EDC Maintenance</span>
-                            <span class="text-gray-400 ml-3 text-base">PT. Bank Negara Indonesia · Contract</span>
+                <!-- 3. EDC Maintenance - BNI -->
+                <div class="experience-card bg-gray-800 p-8 rounded-xl relative transition-all duration-300">
+                    <div class="card-glow"></div>
+                    <div class="border-left-glow"></div>
+                    <div class="relative z-10">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+                            <div>
+                                <span class="position-title text-blue-400">EDC Maintenance</span>
+                                <span class="company-name text-gray-400 ml-3 text-base">PT. Bank Negara Indonesia · Contract</span>
+                            </div>
+                            <span class="text-gray-400 text-base whitespace-nowrap">Nov 2023 - May 2025 · 1 yr 7 mos</span>
                         </div>
-                        <span class="text-gray-400 text-base whitespace-nowrap">Nov 2023 - May 2025 · 1 yr 7 mos</span>
-                    </div>
-                    <p class="text-gray-400 text-base mb-4">Gunungsitoli, North Sumatra, Indonesia · Remote</p>
-                    <ul class="text-gray-300 description-text space-y-2 list-disc list-inside">
-                        <li>Maintenance dan perbaikan mesin EDC</li>
-                        <li>Upgrade software pada mesin EDC</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="tag-text px-3 py-1 bg-blue-600 bg-opacity-20 text-blue-400 rounded-full">EDC</span>
-                        <span class="tag-text px-3 py-1 bg-blue-600 bg-opacity-20 text-blue-400 rounded-full">Maintenance</span>
-                        <span class="tag-text px-3 py-1 bg-blue-600 bg-opacity-20 text-blue-400 rounded-full">BNI</span>
+                        <p class="text-gray-400 text-base mb-4">Gunungsitoli, North Sumatra, Indonesia · Remote</p>
+                        <ul class="text-gray-300 description-text space-y-2 list-disc list-inside">
+                            <li>Maintenance dan perbaikan mesin EDC</li>
+                            <li>Upgrade software pada mesin EDC</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="tag-text px-3 py-1 bg-blue-600 bg-opacity-20 text-blue-400 rounded-full">EDC</span>
+                            <span class="tag-text px-3 py-1 bg-blue-600 bg-opacity-20 text-blue-400 rounded-full">Maintenance</span>
+                            <span class="tag-text px-3 py-1 bg-blue-600 bg-opacity-20 text-blue-400 rounded-full">BNI</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="experience-card bg-gray-800 p-8 rounded-xl border-l-4 border-purple-500 hover:shadow-lg hover:shadow-purple-500/10 transition-all duration-300">
-                    <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
-                        <div>
-                            <span class="position-title text-purple-400">Junior HR Associate</span>
-                            <span class="text-gray-400 ml-3 text-base">Klinik Pusat Bekam dan Ruqyah · Full-time</span>
+                <!-- 4. Junior HR Associate -->
+                <div class="experience-card bg-gray-800 p-8 rounded-xl relative transition-all duration-300">
+                    <div class="card-glow"></div>
+                    <div class="border-left-glow"></div>
+                    <div class="relative z-10">
+                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
+                            <div>
+                                <span class="position-title text-purple-400">Junior HR Associate</span>
+                                <span class="company-name text-gray-400 ml-3 text-base">Klinik Pusat Bekam dan Ruqyah · Full-time</span>
+                            </div>
+                            <span class="text-gray-400 text-base whitespace-nowrap">May 2015 - Apr 2017 · 2 yrs</span>
                         </div>
-                        <span class="text-gray-400 text-base whitespace-nowrap">May 2015 - Apr 2017 · 2 yrs</span>
-                    </div>
-                    <p class="text-gray-400 text-base mb-4">Bekasi, West Java, Indonesia</p>
-                    <ul class="text-gray-300 description-text space-y-2 list-disc list-inside">
-                        <li>Mengelola database karyawan</li>
-                        <li>Menyeleksi kandidat potensial</li>
-                        <li>Menjadwalkan wawancara kerja</li>
-                        <li>Membantu orientasi karyawan baru</li>
-                    </ul>
-                    <div class="flex flex-wrap gap-2 mt-4">
-                        <span class="tag-text px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 rounded-full">HR</span>
-                        <span class="tag-text px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 rounded-full">Database</span>
-                        <span class="tag-text px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 rounded-full">Recruitment</span>
+                        <p class="text-gray-400 text-base mb-4">Bekasi, West Java, Indonesia</p>
+                        <ul class="text-gray-300 description-text space-y-2 list-disc list-inside">
+                            <li>Mengelola database karyawan</li>
+                            <li>Menyeleksi kandidat potensial</li>
+                            <li>Menjadwalkan wawancara kerja</li>
+                            <li>Membantu orientasi karyawan baru</li>
+                        </ul>
+                        <div class="flex flex-wrap gap-2 mt-4">
+                            <span class="tag-text px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 rounded-full">HR</span>
+                            <span class="tag-text px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 rounded-full">Database</span>
+                            <span class="tag-text px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 rounded-full">Recruitment</span>
+                        </div>
                     </div>
                 </div>
 
@@ -440,7 +575,7 @@
     </section>
 
     <!-- ========================================================= -->
-    <!-- ===== ARTICLES SECTION - TANPA "Baca di Medium →" ===== -->
+    <!-- ===== ARTICLES SECTION ===== -->
     <!-- ========================================================= -->
     <section id="articles" class="py-20 bg-gray-900 bg-opacity-30 relative z-10">
         <div class="container mx-auto px-6">
@@ -449,27 +584,36 @@
             </h2>
             <p class="text-center text-gray-400 text-base mb-8">Klik judul untuk baca lengkap</p>
 
-            <div id="articleGrid" class="max-w-5xl mx-auto grid md:grid-cols-2 gap-6"></div>
+            <div id="articleGrid" class="max-w-6xl mx-auto article-grid-2col"></div>
 
-            <div class="text-center mt-10">
-                <button id="addArticleBtn" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-base transition">
-                    <i class="fas fa-plus mr-2"></i> Tambah Artikel Baru
+            <div class="flex flex-wrap justify-center gap-4 mt-10">
+                <button id="addArticleBtn" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-base transition flex items-center gap-2">
+                    <i class="fas fa-plus"></i> Tambah Artikel Baru
+                </button>
+                <button id="viewAllArticlesBtn" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-base transition flex items-center gap-2">
+                    <i class="fas fa-list"></i> Lihat Semua Artikel
                 </button>
             </div>
         </div>
     </section>
 
     <!-- ========================================================= -->
-    <!-- ===== PROJECT EXPLORER - 3x3 DARI GITHUB ===== -->
+    <!-- ===== PROJECT EXPLORER - FIXED ===== -->
     <!-- ========================================================= -->
     <section id="project-explorer" class="py-20 relative z-10">
         <div class="container mx-auto px-6">
             <h2 class="section-title font-bold text-center mb-4">
-                <span class="gradient-text">🚀 Your Projects</span>
+                <span class="text-white">🚀 Your Projects</span>
             </h2>
             <p class="text-center text-gray-400 text-base mb-6">
-                Menampilkan 9 project • <span id="projectTimer">Update setiap 20 detik</span>
+                <span id="projectCount">Memuat...</span> • <span id="projectTimer">⏱️ Update: --:--:--</span>
             </p>
+
+            <div class="text-center mb-6">
+                <button id="toggleProjectView" class="px-6 py-2 bg-cyan-600 hover:bg-cyan-700 rounded-lg text-sm transition">
+                    <i class="fas fa-th-large mr-2"></i> Tampilkan 9 Project
+                </button>
+            </div>
 
             <div id="projectExplorerGrid" class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 <div class="col-span-full flex justify-center"><div class="loader"></div></div>
@@ -548,17 +692,19 @@
     </section>
 
     <!-- ========================================================= -->
-    <!-- ===== CONTACT - LOGO GITHUB DIGANTI LOKASI ===== -->
+    <!-- ===== CONTACT ===== -->
     <!-- ========================================================= -->
     <section id="contact" class="py-20 relative z-10">
         <div class="container mx-auto px-6">
             <h2 class="section-title font-bold text-center mb-12"><span class="gradient-text">Contact</span></h2>
             <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
                 <div class="bg-gray-800 p-8 rounded-xl">
-                    <form id="contact-form">
-                        <input type="text" placeholder="Your Name" class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-red-600 outline-none"/>
-                        <input type="email" placeholder="Your Email" class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-red-600 outline-none"/>
-                        <textarea rows="4" placeholder="Message" class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-red-600 outline-none"></textarea>
+                    <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                        <input type="hidden" name="_subject" value="Pesan Baru dari Portfolio!" />
+                        <input type="hidden" name="_captcha" value="true" />
+                        <input type="text" name="name" placeholder="Your Name" required class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-red-600 outline-none"/>
+                        <input type="email" name="email" placeholder="Your Email" required class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-red-600 outline-none"/>
+                        <textarea name="message" rows="4" placeholder="Message" required class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-red-600 outline-none"></textarea>
                         <button type="submit" class="w-full bg-red-600 hover:bg-red-700 py-3 rounded-lg text-base transition">Send</button>
                     </form>
                 </div>
@@ -574,7 +720,7 @@
         </div>
     </section>
 
-    <!-- ===== FOOTER - HANYA COPYRIGHT ===== -->
+    <!-- ===== FOOTER ===== -->
     <footer class="py-6 bg-black border-t border-gray-800 text-center text-gray-500 text-sm relative z-10">
         © 2025 Hidayat. Made with <i class="fas fa-heart text-red-600"></i> & <i class="fas fa-coffee text-red-600"></i>
     </footer>
@@ -624,17 +770,23 @@
                                placeholder="Masukkan judul artikel...">
                     </div>
                     <div>
-                        <label class="block text-gray-300 text-sm font-medium mb-1">🏷️ Hashtag (pisahkan dengan koma, contoh: security,devops)</label>
+                        <label class="block text-gray-300 text-sm font-medium mb-1">🏷️ Hashtag (pisahkan dengan koma)</label>
                         <input type="text" id="formTags" 
                                class="w-full bg-gray-800 text-white p-3 rounded-lg text-sm focus:ring-2 ring-purple-600 outline-none border border-gray-700"
                                placeholder="#security,#devops,#kubernetes">
-                        <p class="text-gray-500 text-xs mt-1">Kosongkan untuk auto-generate dari judul & konten</p>
                     </div>
                     <div>
                         <label class="block text-gray-300 text-sm font-medium mb-1">⏱️ Waktu Baca</label>
                         <input type="text" id="formReadTime" 
                                class="w-full bg-gray-800 text-white p-3 rounded-lg text-sm focus:ring-2 ring-purple-600 outline-none border border-gray-700"
                                placeholder="5 min read" value="5 min read">
+                    </div>
+                    <div>
+                        <label class="block text-gray-300 text-sm font-medium mb-1">🖼️ URL Gambar (upload ke <span class="text-purple-400">/img</span> di repo)</label>
+                        <input type="text" id="formImage" 
+                               class="w-full bg-gray-800 text-white p-3 rounded-lg text-sm focus:ring-2 ring-purple-600 outline-none border border-gray-700"
+                               placeholder="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/main/img/artikel.jpg">
+                        <p class="text-gray-500 text-xs mt-1">Masukkan URL raw gambar setelah diupload ke repo</p>
                     </div>
                     <div>
                         <label class="block text-gray-300 text-sm font-medium mb-1">✍️ Konten (bisa pake HTML) *</label>
@@ -729,6 +881,7 @@
                 readTime: "15 min read",
                 date: "📅 7 Juli 2026",
                 author: "✍️ Marlin Hidayat",
+                image: "https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/main/img/trojan.jpg",
                 content: `
                     <p><strong>Trojan</strong> atau <span class="text-purple-300">"Trojan Horse"</span> adalah jenis malware yang menyamar sebagai program berguna, tapi diam-diam membuka backdoor, mencuri data, atau menginstall payload berbahaya.</p>
                     <p>Berbeda dengan virus atau worm, trojan <span class="text-yellow-300">tidak bisa mereplikasi diri</span> – ia mengandalkan social engineering untuk menyebar.</p>
@@ -770,6 +923,7 @@
                 readTime: "10 min read",
                 date: "📅 1 Juli 2026",
                 author: "✍️ Marlin Hidayat",
+                image: "https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/main/img/cicd-security.jpg",
                 content: `
                     <p>DevSecOps bukan buzzword. Mulai dari SAST, DAST, dependency scanning, sampai secret detection – semua bisa di-<span class="text-purple-300">automasi</span> di GitHub Actions atau GitLab CI.</p>
                     <p>Contoh tools yang bisa dipake:</p>
@@ -799,6 +953,7 @@
                 readTime: "12 min read",
                 date: "📅 25 Juni 2026",
                 author: "✍️ Marlin Hidayat",
+                image: "https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/main/img/k8s-security.jpg",
                 content: `
                     <p>Kubernetes emang keren, tapi banyak yang lupa sama aspek keamanannya. Ini 5 hal yang sering kelewat:</p>
                     <ol class="list-decimal list-inside space-y-2 text-gray-300">
@@ -854,26 +1009,29 @@
             const grid = document.getElementById('articleGrid');
             if (!grid) return;
             
-            let allArticles = [...articles];
+            let displayArticles = articles.length > 4 ? articles.slice(-4) : articles;
+            displayArticles = displayArticles.sort((a, b) => b.id - a.id);
             
-            if (allArticles.length === 0) {
+            if (displayArticles.length === 0) {
                 grid.innerHTML = `<div class="col-span-full text-center text-gray-400 py-8">Belum ada artikel.</div>`;
                 return;
             }
             
             let html = '';
-            allArticles.forEach(article => {
+            displayArticles.forEach(article => {
                 const previewText = article.content.replace(/<[^>]*>/g, '').substring(0, 120);
+                const imageUrl = article.image || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
                 html += `
-                    <div class="bg-gray-800 rounded-xl overflow-hidden card-hover cursor-pointer" onclick="openArticle(${article.id})">
-                        <div class="p-6">
-                            <div class="flex flex-wrap gap-2 mb-3">
-                                ${article.tags.slice(0, 3).map(tag => `<span class="px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 text-xs rounded-full">${tag}</span>`).join('')}
+                    <div class="article-card bg-gray-800 rounded-xl overflow-hidden cursor-pointer flex flex-col" onclick="openArticle(${article.id})">
+                        <img src="${imageUrl}" alt="${article.title}" class="thumb-img" onerror="this.style.display='none'">
+                        <div class="p-4 flex-1 flex flex-col">
+                            <div class="flex flex-wrap gap-1 mb-2">
+                                ${article.tags.slice(0, 3).map(tag => `<span class="px-2 py-0.5 bg-purple-600 bg-opacity-20 text-purple-400 text-xs rounded-full">${tag}</span>`).join('')}
                                 ${article.tags.length > 3 ? `<span class="text-gray-500 text-xs">+${article.tags.length - 3}</span>` : ''}
                             </div>
-                            <h3 class="text-lg font-bold text-white hover:text-purple-400 transition line-clamp-2">${article.title}</h3>
-                            <p class="text-gray-400 text-sm mt-2 line-clamp-3">${previewText}...</p>
-                            <div class="flex justify-between items-center mt-4 text-xs text-gray-500">
+                            <h3 class="text-base font-bold text-white hover:text-purple-400 transition line-clamp-2">${article.title}</h3>
+                            <p class="text-gray-400 text-xs mt-1 line-clamp-2 flex-1">${previewText}...</p>
+                            <div class="flex justify-between items-center mt-3 text-xs text-gray-500 border-t border-gray-700 pt-2">
                                 <span>${article.date}</span>
                                 <span>${article.readTime}</span>
                             </div>
@@ -922,6 +1080,7 @@
             document.getElementById('articleForm').reset();
             document.getElementById('formTags').value = '';
             document.getElementById('formReadTime').value = '5 min read';
+            document.getElementById('formImage').value = '';
         });
 
         function closeFormModal() {
@@ -941,6 +1100,8 @@
             const content = document.getElementById('formContent').value.trim();
             const tagsInput = document.getElementById('formTags').value.trim();
             const readTime = document.getElementById('formReadTime').value.trim() || '5 min read';
+            const imageUrl = document.getElementById('formImage').value.trim() || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
+            
             if (!title || !content) {
                 alert('⚠️ Judul dan konten wajib diisi!');
                 return;
@@ -959,6 +1120,7 @@
                 readTime: readTime,
                 date: `📅 ${new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}`,
                 author: '✍️ Marlin Hidayat',
+                image: imageUrl,
                 content: content
             };
             articles.push(newArticle);
@@ -968,15 +1130,47 @@
                 const grid = document.getElementById('articleGrid');
                 if (grid) {
                     grid.scrollIntoView({ behavior: 'smooth', block: 'end' });
-                    const lastCard = grid.lastElementChild;
-                    if (lastCard) {
-                        lastCard.style.transition = 'all 0.3s';
-                        lastCard.style.border = '2px solid #667eea';
-                        setTimeout(() => { lastCard.style.border = 'none'; }, 3000);
-                    }
                 }
             }, 300);
             document.getElementById('articleForm').reset();
+        });
+
+        // =========================================================
+        // ===== TOMBOL LIHAT SEMUA ARTIKEL =====
+        // =========================================================
+        document.getElementById('viewAllArticlesBtn').addEventListener('click', function() {
+            const grid = document.getElementById('articleGrid');
+            const btn = this;
+            if (btn.textContent.includes('Semua')) {
+                let allHtml = '';
+                const sortedAll = [...articles].sort((a, b) => b.id - a.id);
+                sortedAll.forEach(article => {
+                    const previewText = article.content.replace(/<[^>]*>/g, '').substring(0, 120);
+                    const imageUrl = article.image || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
+                    allHtml += `
+                        <div class="article-card bg-gray-800 rounded-xl overflow-hidden cursor-pointer flex flex-col" onclick="openArticle(${article.id})">
+                            <img src="${imageUrl}" alt="${article.title}" class="thumb-img" onerror="this.style.display='none'">
+                            <div class="p-4 flex-1 flex flex-col">
+                                <div class="flex flex-wrap gap-1 mb-2">
+                                    ${article.tags.slice(0, 3).map(tag => `<span class="px-2 py-0.5 bg-purple-600 bg-opacity-20 text-purple-400 text-xs rounded-full">${tag}</span>`).join('')}
+                                    ${article.tags.length > 3 ? `<span class="text-gray-500 text-xs">+${article.tags.length - 3}</span>` : ''}
+                                </div>
+                                <h3 class="text-base font-bold text-white hover:text-purple-400 transition line-clamp-2">${article.title}</h3>
+                                <p class="text-gray-400 text-xs mt-1 line-clamp-2 flex-1">${previewText}...</p>
+                                <div class="flex justify-between items-center mt-3 text-xs text-gray-500 border-t border-gray-700 pt-2">
+                                    <span>${article.date}</span>
+                                    <span>${article.readTime}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                grid.innerHTML = allHtml;
+                btn.innerHTML = '<i class="fas fa-compress mr-2"></i> Tampilkan 4 Terbaru';
+            } else {
+                renderArticles();
+                btn.innerHTML = '<i class="fas fa-list mr-2"></i> Lihat Semua Artikel';
+            }
         });
 
         // =========================================================
@@ -1047,39 +1241,131 @@
         });
 
         // =========================================================
-        // ===== PROJECT EXPLORER - 3x3 DARI GITHUB =====
+        // ===== PROJECT EXPLORER - FIXED WITH FALLBACK =====
         // =========================================================
         let allProjects = [];
         let projectInterval = null;
         let githubAvatar = '';
+        let showAllProjects = false;
+        let isLoading = true;
+
+      // DATA STATIS (fallback kalo API error)
+const staticRepos = [
+    { 
+        name: 'hidayat-tanjung.io', 
+        description: 'Portfolio website - Marlin Hidayat Tanjung',
+        html_url: 'https://github.com/hidayat-tanjung/hidayat-tanjung.io',
+        language: 'HTML',
+        owner: { login: 'hidayat-tanjung' },
+        homepage: 'https://hidayat-tanjung.github.io/hidayat-tanjung.io/',
+        has_pages: true
+    },
+    { 
+        name: 'linux-ploiter', 
+        description: 'Linux security tools collection',
+        html_url: 'https://github.com/hidayat-tanjung/linux-ploiter',
+        language: 'Shell',
+        owner: { login: 'hidayat-tanjung' },
+        homepage: null,
+        has_pages: false
+    },
+    { 
+        name: 'project-3', 
+        description: 'Deskripsi project 3',
+        html_url: 'https://github.com/hidayat-tanjung/project-3',
+        language: 'JavaScript',
+        owner: { login: 'hidayat-tanjung' },
+        homepage: 'https://hidayat-tanjung.github.io/project-3/',
+        has_pages: true
+    },
+    { 
+        name: 'project-4', 
+        description: 'Deskripsi project 4',
+        html_url: 'https://github.com/hidayat-tanjung/project-4',
+        language: 'Python',
+        owner: { login: 'hidayat-tanjung' },
+        homepage: null,
+        has_pages: false
+    },
+    { 
+        name: 'project-5', 
+        description: 'Deskripsi project 5',
+        html_url: 'https://github.com/hidayat-tanjung/project-5',
+        language: 'Go',
+        owner: { login: 'hidayat-tanjung' },
+        homepage: 'https://hidayat-tanjung.github.io/project-5/',
+        has_pages: true
+    },
+    { 
+        name: 'project-6', 
+        description: 'Deskripsi project 6',
+        html_url: 'https://github.com/hidayat-tanjung/project-6',
+        language: 'Rust',
+        owner: { login: 'hidayat-tanjung' },
+        homepage: null,
+        has_pages: false
+    }
+];
 
         async function fetchProjects() {
             const grid = document.getElementById('projectExplorerGrid');
+            if (!grid) return;
+            
             try {
-                const userRes = await fetch('https://api.github.com/users/hidayat-tanjung');
-                if (userRes.ok) {
-                    const userData = await userRes.json();
-                    githubAvatar = userData.avatar_url || '';
+                grid.innerHTML = `<div class="col-span-full flex justify-center"><div class="loader"></div></div>`;
+                
+                // Coba fetch dari GitHub
+                const res = await fetch('https://api.github.com/users/hidayat-tanjung/repos?sort=updated&per_page=100');
+                
+                if (!res.ok) {
+                    console.warn('GitHub API error, using static data');
+                    allProjects = staticRepos;
+                    githubAvatar = 'https://avatars.githubusercontent.com/u/123456789?v=4';
+                    isLoading = false;
+                    renderProjectGrid();
+                    return;
                 }
                 
-                const res = await fetch('https://api.github.com/users/hidayat-tanjung/repos?sort=updated&per_page=100');
-                if (!res.ok) throw new Error('Gagal fetch');
                 const repos = await res.json();
                 allProjects = repos.filter(r => !r.archived);
+                
+                // Fetch avatar
+                try {
+                    const userRes = await fetch('https://api.github.com/users/hidayat-tanjung');
+                    if (userRes.ok) {
+                        const userData = await userRes.json();
+                        githubAvatar = userData.avatar_url || '';
+                    }
+                } catch(e) {}
+                
+                isLoading = false;
                 renderProjectGrid();
+                
             } catch(e) {
-                grid.innerHTML = `<div class="col-span-full text-center text-red-400 text-base py-10">❌ Gagal load projects dari GitHub</div>`;
+                console.error('Error fetch projects:', e);
+                allProjects = staticRepos;
+                githubAvatar = 'https://avatars.githubusercontent.com/u/48172784?s=400&u=72f29a0ecec05d1a4800b544a61884af72be68d1&v=4';
+                isLoading = false;
+                renderProjectGrid();
             }
         }
 
         function renderProjectGrid() {
             const grid = document.getElementById('projectExplorerGrid');
+            if (!grid) return;
             
-            const shuffled = [...allProjects].sort(() => Math.random() - 0.5);
-            const displayProjects = shuffled.slice(0, 9);
+            if (allProjects.length === 0 && !isLoading) {
+                grid.innerHTML = `<div class="col-span-full text-center text-gray-400 py-8">Tidak ada project ditemukan</div>`;
+                document.getElementById('projectCount').textContent = '0 project';
+                return;
+            }
+            
+            const displayProjects = showAllProjects ? allProjects : allProjects.slice(0, 9);
+            
+            document.getElementById('projectCount').textContent = `Menampilkan ${displayProjects.length} project`;
             
             const now = new Date();
-            document.getElementById('projectTimer').textContent = `⏱️ Update: ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')} (20 detik)`;
+            document.getElementById('projectTimer').textContent = `⏱️ Update: ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
             
             if (displayProjects.length === 0) {
                 grid.innerHTML = `<div class="col-span-full text-center text-gray-400 py-8">Tidak ada project</div>`;
@@ -1099,7 +1385,7 @@
                         <div class="h-36 bg-gradient-to-br ${grad} flex items-center justify-center text-white font-bold text-base p-3 text-center truncate">${repo.name}</div>
                         <div class="p-5">
                             <div class="flex items-center gap-3 mb-3">
-                                ${githubAvatar ? `<img src="${githubAvatar}" alt="GitHub Avatar" class="github-avatar">` : ''}
+                                ${githubAvatar ? `<img src="${githubAvatar}" alt="GitHub Avatar" class="github-avatar">` : `<div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-400"><i class="fab fa-github"></i></div>`}
                                 <span class="text-gray-400 text-xs">${repo.owner.login}</span>
                             </div>
                             <p class="project-desc text-gray-400 line-clamp-2 h-10">${repo.description || 'No description'}</p>
@@ -1127,6 +1413,18 @@
             grid.innerHTML = html;
         }
 
+        // ===== TOGGLE PROJECT VIEW =====
+        const toggleBtn = document.getElementById('toggleProjectView');
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function() {
+                showAllProjects = !showAllProjects;
+                this.innerHTML = showAllProjects ? 
+                    '<i class="fas fa-th-large mr-2"></i> Tampilkan 9 Project' : 
+                    '<i class="fas fa-list mr-2"></i> Tampilkan Semua Project';
+                renderProjectGrid();
+            });
+        }
+
         // ===== PROJECT PREVIEW MODAL =====
         function openProjectPreview(url, name) {
             if (!url) return alert('Tidak ada website untuk di-preview');
@@ -1152,66 +1450,6 @@
         });
 
         // =========================================================
-        // ===== MEDIUM ARTICLES FETCH - TANPA "Baca di Medium" =====
-        // =========================================================
-        async function fetchMediumArticles() {
-            try {
-                const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@izumy');
-                if (!response.ok) throw new Error('Gagal fetch Medium');
-                const data = await response.json();
-                
-                if (data.items && data.items.length > 0) {
-                    const mediumArticles = data.items.slice(0, 3).map((item, index) => {
-                        const tags = item.categories ? item.categories.map(c => `#${c}`).slice(0, 3) : ['#tech'];
-                        let contentHtml = item.description || 'Konten tidak tersedia';
-                        
-                        const cmdRegex = /\$ (sudo|apt|yum|dnf|systemctl|service|ufw|iptables|curl|wget|git|docker|kubectl|terraform|ansible|python|pip|npm|node|java|javac|gcc|make|\.\/[a-zA-Z0-9_-]+)/g;
-                        if (cmdRegex.test(contentHtml)) {
-                            contentHtml = contentHtml.replace(/\$ (sudo|apt|yum|dnf|systemctl|service|ufw|iptables|curl|wget|git|docker|kubectl|terraform|ansible|python|pip|npm|node|java|javac|gcc|make|\.\/[a-zA-Z0-9_-]+)/g, 
-                                '<span class="cmd">$ $1</span>');
-                        }
-                        
-                        contentHtml = `<div class="code-block">${contentHtml}</div>`;
-                        
-                        return {
-                            id: 1000 + index,
-                            title: item.title || 'Medium Article',
-                            tags: tags,
-                            readTime: `${Math.ceil(item.content?.split(' ').length / 200) || 5} min read`,
-                            date: `📅 ${new Date(item.pubDate).toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}`,
-                            author: '✍️ Medium • @izumy',
-                            content: `
-                                <div class="bg-amber-900 bg-opacity-10 border border-amber-700 p-3 rounded-lg mb-4 text-amber-400 text-xs">
-                                    <i class="fab fa-medium mr-2"></i> Artikel dari Medium
-                                </div>
-                                ${contentHtml}
-                                <div class="mt-4">
-                                    <a href="${item.link}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg text-xs transition">
-                                        <i class="fab fa-medium"></i> Baca selengkapnya di Medium
-                                    </a>
-                                </div>
-                            `,
-                            isMedium: true,
-                            link: item.link
-                        };
-                    });
-                    
-                    const existingIds = articles.map(a => a.id);
-                    mediumArticles.forEach(ma => {
-                        if (!existingIds.includes(ma.id)) {
-                            articles.push(ma);
-                        }
-                    });
-                    
-                    renderArticles();
-                }
-            } catch(e) {
-                console.log('Medium fetch error:', e);
-                renderArticles();
-            }
-        }
-
-        // =========================================================
         // ===== NAVIGASI =====
         // =========================================================
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
@@ -1227,22 +1465,10 @@
             });
         });
 
-        // ===== CONTACT FORM =====
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Pesan terkirim! (simulasi)');
-            this.reset();
-        });
-
         // =========================================================
         // ===== INIT =====
         // =========================================================
         renderArticles();
-        
-        setTimeout(() => {
-            fetchMediumArticles();
-        }, 500);
-        
         fetchProjects();
         if (projectInterval) clearInterval(projectInterval);
         projectInterval = setInterval(() => {
