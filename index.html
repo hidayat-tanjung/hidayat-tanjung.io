@@ -4,9 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
-    <!-- ===== GOOGLE SEARCH CONSOLE ===== -->
-    <!-- GANTI content="..." dengan kode verifikasi dari Google Search Console -->
-    <meta name="google-site-verification" content="GANTI_DENGAN_KODE_VERIFIKASI_LO" />
+    <!-- ===== FAVICON ===== -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
     
     <title>Portfolio - Marlin Hidayat Tanjung</title>
 
@@ -18,118 +17,113 @@
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"/>
+    
+    <!-- ===== PRISM.JS ===== -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-nginx.min.js"></script>
 
     <style>
         * { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
-        .font-code { font-family: 'Fira Code', monospace; }
         body { background-color: #0a0a0a; }
+        
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #1a1a1a; }
         ::-webkit-scrollbar-thumb { background: #4a5568; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #718096; }
+        
         .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .glow { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
         .card-hover { transition: all 0.3s ease; }
         .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(102, 126, 234, 0.25); }
-        .nav-link { 
-            position: relative; 
-            transition: color 0.3s ease;
-            font-weight: 500;
-            font-size: 0.95rem;
-        }
-        .nav-link::after { 
-            content: ''; 
-            position: absolute; 
-            bottom: -5px; 
-            left: 0; 
-            width: 0; 
-            height: 2px; 
-            background: currentColor;
-            transition: width 0.3s ease; 
-        }
+        
+        .nav-link { position: relative; transition: color 0.3s ease; font-weight: 500; font-size: 0.95rem; cursor: pointer; }
+        .nav-link::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: currentColor; transition: width 0.3s ease; }
         .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+        
+        .dropdown { position: relative; }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 8px 0;
+            min-width: 200px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+            z-index: 100;
+            margin-top: 8px;
+        }
+        .dropdown:hover .dropdown-menu { display: block; }
+        .dropdown-menu a {
+            display: block;
+            padding: 8px 20px;
+            color: #9ca3af;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            text-decoration: none;
+        }
+        .dropdown-menu a:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #a78bfa;
+        }
+        .dropdown-arrow {
+            font-size: 0.6rem;
+            margin-left: 4px;
+            transition: transform 0.3s ease;
+        }
+        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        
         .loader { border: 4px solid #1a1a1a; border-top: 4px solid #667eea; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 40px auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        .modal-article, .modal-cert, .modal-project-preview {
-            animation: modalFade 0.3s ease;
-        }
-        @keyframes modalFade {
-            from { opacity: 0; transform: scale(0.95) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
+        .modal-article, .modal-cert, .modal-project-preview { animation: modalFade 0.3s ease; }
+        @keyframes modalFade { from { opacity: 0; transform: scale(0.95) translateY(20px); } to { opacity: 1; transform: scale(1) translateY(0); } }
         .modal-article::-webkit-scrollbar, .modal-cert::-webkit-scrollbar, .modal-project-preview::-webkit-scrollbar { width: 4px; }
         .modal-article::-webkit-scrollbar-thumb, .modal-cert::-webkit-scrollbar-thumb, .modal-project-preview::-webkit-scrollbar-thumb { background: #667eea; border-radius: 4px; }
-        
         .form-modal { animation: modalFade 0.3s ease; }
-
-        .filter-tab {
-            transition: all 0.3s ease;
-            cursor: pointer;
-            padding: 8px 20px;
-            border-radius: 24px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        .filter-tab:hover { color: #a78bfa; background: rgba(167, 139, 250, 0.1); }
-        .filter-tab.active {
-            color: #a78bfa;
-            background: rgba(167, 139, 250, 0.15);
-            border: 1px solid #a78bfa;
-        }
-
-        .tech-icon {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .tech-icon:hover {
-            transform: translateY(-8px) scale(1.05);
-        }
-        .tech-icon .icon-wrapper {
-            transition: all 0.4s ease;
-            width: 80px;
-            height: 80px;
-            position: relative;
-        }
-        .tech-icon:hover .icon-wrapper {
-            box-shadow: 0 0 40px rgba(102, 126, 234, 0.5);
-            transform: scale(1.02);
-        }
-        .tech-icon p {
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* EXPERIENCE CARD HOVER - SEPERTI TECH ICON */
-        .experience-card {
+        
+        .article-card .thumb-img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px 12px 0 0; background: linear-gradient(135deg, #1a1a2e, #16213e); }
+        .article-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        @media (max-width: 768px) { .article-grid-2col { grid-template-columns: 1fr; } }
+        .article-card { transition: all 0.3s ease; }
+        .article-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2); }
+        
+        html, body { height: 100% !important; overflow: auto !important; -webkit-overflow-scrolling: touch !important; overscroll-behavior: contain; }
+        body { min-height: 100vh; min-height: 100dvh; }
+        section, .section, .page, .container { height: auto !important; min-height: auto !important; overflow: visible !important; }
+        section#home { min-height: 100vh; min-height: 100dvh; height: auto !important; }
+        .modal-article, .modal-cert, .modal-project-preview { overflow-y: auto !important; overflow-x: hidden !important; }
+        
+        #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+        .particle { position: absolute; border-radius: 50%; pointer-events: none; animation: particle-float linear infinite; }
+        @keyframes particle-float { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-10vh) scale(1); opacity: 0; } }
+        
+        .exp-card {
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
+            border-radius: 12px;
         }
-        .experience-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.08) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            pointer-events: none;
+        .exp-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.15);
         }
-        .experience-card:hover::before {
-            opacity: 1;
-        }
-        .experience-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
-        }
-        .experience-card .card-glow {
+        .exp-card .exp-glow {
             position: absolute;
             inset: -2px;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 2px;
             background: linear-gradient(135deg, #667eea, #764ba2, #667eea);
             background-size: 300% 300%;
@@ -138,204 +132,142 @@
             z-index: -1;
             animation: glowMove 3s ease infinite;
         }
-        .experience-card:hover .card-glow {
+        .exp-card:hover .exp-glow { opacity: 1; }
+        @keyframes glowMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        
+        .exp-card .exp-title { font-size: 1.1rem; font-weight: 700; transition: all 0.3s ease; }
+        .exp-card:hover .exp-title { background: linear-gradient(135deg, #667eea, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .exp-card .exp-company { transition: all 0.3s ease; }
+        .exp-card:hover .exp-company { color: #a78bfa !important; }
+        
+        .exp-detail {
+            max-height: 800px;
             opacity: 1;
+            overflow: visible;
         }
-        @keyframes glowMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .experience-card .border-left-glow {
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 4px;
-            background: linear-gradient(180deg, #667eea, #764ba2, #667eea);
-            background-size: 100% 300%;
-            animation: borderGlow 3s ease infinite;
-            border-radius: 4px 0 0 4px;
-        }
-        @keyframes borderGlow {
-            0% { background-position: 0% 0%; }
-            50% { background-position: 0% 100%; }
-            100% { background-position: 0% 0%; }
-        }
-        .experience-card .position-title {
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .experience-card:hover .position-title {
-            background: linear-gradient(135deg, #667eea, #a78bfa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .experience-card .company-name {
-            transition: all 0.3s ease;
-        }
-        .experience-card:hover .company-name {
-            color: #a78bfa !important;
-        }
-
-        .code-block {
-            background: #1a1a1a;
-            border-radius: 8px;
-            padding: 16px;
-            border: 1px solid #333;
-            overflow-x: auto;
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
-            line-height: 1.8;
-            color: #e4e4e4;
-        }
-        .code-block .cmd { color: #66d9ef; }
-        .code-block .output { color: #a6e22e; }
-        .code-block .comment { color: #75715e; }
-        .code-block .error { color: #f92672; }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .typing-text {
-            overflow: hidden;
-            border-right: 3px solid #667eea;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-        }
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #667eea; }
-        }
-
-        .particle {
-            position: fixed;
-            pointer-events: none;
-            opacity: 0.5;
-            animation: particle-float 20s infinite linear;
-        }
-        @keyframes particle-float {
-            from { transform: translateY(100vh) translateX(0); }
-            to { transform: translateY(-10vh) translateX(100px); }
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2rem;
-            }
-        }
-        .experience-card .description-text {
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-        .experience-card .tag-text {
-            font-size: 0.8rem;
-            padding: 4px 14px;
-        }
-        .project-card .project-desc {
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-        .project-card .project-lang {
-            font-size: 0.8rem;
-            padding: 4px 12px;
-        }
-
-        .github-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid #4a5568;
-            transition: all 0.3s ease;
-        }
-        .github-avatar:hover {
-            border-color: #667eea;
-            transform: scale(1.1);
-        }
-
-        /* Profile img expand */
-        .profile-img-wrapper {
-            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-        }
-        .profile-img-wrapper:hover {
-            transform: scale(1.08);
-            filter: drop-shadow(0 0 30px rgba(102, 126, 234, 0.6));
-        }
-
-        /* Article card with image */
-        .article-card .thumb-img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 12px 12px 0 0;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-        }
-        .article-grid-2col {
+        .exp-detail .detail-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            gap: 8px 16px;
+            padding-left: 0;
+            margin-top: 12px;
         }
-        @media (max-width: 768px) {
-            .article-grid-2col {
-                grid-template-columns: 1fr;
-            }
-        }
-        .article-card {
+        @media (max-width: 768px) { .exp-detail .detail-list { grid-template-columns: 1fr; } }
+        .exp-detail .detail-list li {
+            list-style: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.03);
+            border-left: 3px solid #667eea;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             transition: all 0.3s ease;
         }
-        .article-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.2);
+        .exp-detail .detail-list li:hover {
+            background: rgba(102, 126, 234, 0.08);
+            border-left-color: #a78bfa;
+        }
+        .exp-detail .detail-list li i { color: #667eea; width: 18px; text-align: center; transition: all 0.3s ease; }
+        .exp-detail .detail-list li:hover i { color: #a78bfa; transform: scale(1.1); }
+        
+        .exp-tag {
+            font-size: 0.75rem;
+            padding: 4px 14px;
+            border-radius: 40px;
+            background: rgba(102, 126, 234, 0.12);
+            color: #a78bfa;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+            transition: all 0.3s ease;
+        }
+        .exp-tag:hover {
+            background: rgba(102, 126, 234, 0.25);
+            transform: scale(1.05);
+        }
+        
+        .tech-icon { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .tech-icon:hover { transform: translateY(-8px) scale(1.05); }
+        .tech-icon .icon-wrapper { transition: all 0.4s ease; width: 80px; height: 80px; position: relative; }
+        .tech-icon:hover .icon-wrapper { box-shadow: 0 0 40px rgba(102, 126, 234, 0.5); transform: scale(1.02); }
+        .tech-icon p { font-size: 0.9rem; font-weight: 500; }
+        
+        .github-avatar { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #4a5568; transition: all 0.3s ease; }
+        .github-avatar:hover { border-color: #667eea; transform: scale(1.1); }
+        .profile-img-wrapper { transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
+        .profile-img-wrapper:hover { transform: scale(1.08); filter: drop-shadow(0 0 30px rgba(102, 126, 234, 0.6)); }
+        
+        .typing-text { overflow: hidden; border-right: 3px solid #667eea; white-space: nowrap; animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite; }
+        @keyframes typing { from { width: 0 } to { width: 100% } }
+        @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #667eea; } }
+        
+        .section-title { font-size: 2.5rem; font-weight: 700; }
+        @media (max-width: 768px) { .section-title { font-size: 2rem; } }
+
+        .modal-article pre[class*="language-"] {
+            border-radius: 8px;
+            margin: 16px 0;
+            padding: 16px;
+            background: #1a1a1a !important;
+            border: 1px solid #2a2a2a;
+            font-size: 0.85rem;
+        }
+        .modal-article code[class*="language-"] {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            background: transparent !important;
+        }
+        
+        @media (max-width: 768px) {
+            .dropdown-menu {
+                position: static;
+                background: transparent;
+                border: none;
+                box-shadow: none;
+                padding-left: 16px;
+                margin-top: 4px;
+            }
+            .dropdown-menu a { padding: 6px 16px; font-size: 0.85rem; }
+            .dropdown-arrow { display: none; }
         }
 
-        /* Grid mode 2x3 */
-        .grid-mode-2x3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-        @media (max-width: 768px) {
-            .grid-mode-2x3 {
-                grid-template-columns: 1fr;
-            }
-        }
+        #formStatus { transition: all 0.3s ease; }
+        #sendBtn:disabled { opacity: 0.6; cursor: not-allowed; }
+        #imagePreview { width: 100%; max-height: 200px; object-fit: cover; border-radius: 8px; margin-top: 8px; display: none; }
     </style>
 </head>
 <body class="bg-black text-gray-100 overflow-x-hidden">
 
-    <!-- ===== PARTICLES BACKGROUND ===== -->
-    <div id="particles" class="fixed inset-0 z-0"></div>
+    <!-- ===== PARTICLES ===== -->
+    <div id="particles"></div>
 
     <!-- ===== NAVIGASI ===== -->
     <nav class="fixed top-0 w-full bg-black bg-opacity-90 backdrop-blur-md z-50 border-b border-gray-800">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <a href="#home" class="text-2xl font-bold gradient-text">Hidayat</a>
-                <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <div class="hidden md:flex space-x-6 text-sm font-medium">
                     <a href="#home" class="nav-link text-green-400 hover:text-green-300">Home</a>
                     <a href="#about" class="nav-link text-blue-400 hover:text-blue-300">About</a>
-                    <a href="#skills" class="nav-link text-yellow-400 hover:text-yellow-300">Skills</a>
-                    <a href="#certifications" class="nav-link text-pink-400 hover:text-pink-300">Cert</a>
-                    <a href="#experience" class="nav-link text-orange-400 hover:text-orange-300">Exp</a>
-                    <a href="#articles" class="nav-link text-purple-400 hover:text-purple-300">Articles</a>
-                    <a href="#project-explorer" class="nav-link text-cyan-400 hover:text-cyan-300">Project Explorer</a>
+                    <div class="dropdown">
+                        <span class="nav-link text-yellow-400 hover:text-yellow-300">
+                            Portfolio <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </span>
+                        <div class="dropdown-menu">
+                            <a href="#skills">⚡ Skills</a>
+                            <a href="#certifications">📜 Certifications</a>
+                            <a href="#experience">💼 Experience</a>
+                            <a href="#project-explorer">🚀 Project Explorer</a>
+                        </div>
+                    </div>
+                    <div class="dropdown">
+                        <span class="nav-link text-purple-400 hover:text-purple-300">
+                            Blog <i class="fas fa-chevron-down dropdown-arrow"></i>
+                        </span>
+                        <div class="dropdown-menu">
+                            <a href="#articles">📰 Articles</a>
+                        </div>
+                    </div>
                     <a href="#contact" class="nav-link text-red-400 hover:text-red-300">Contact</a>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white">
@@ -345,61 +277,52 @@
             <div id="mobile-menu" class="hidden md:hidden mt-3 pb-3 text-sm space-y-2">
                 <a href="#home" class="block py-1 text-green-400 hover:text-green-300">Home</a>
                 <a href="#about" class="block py-1 text-blue-400 hover:text-blue-300">About</a>
-                <a href="#skills" class="block py-1 text-yellow-400 hover:text-yellow-300">Skills</a>
-                <a href="#certifications" class="block py-1 text-pink-400 hover:text-pink-300">Cert</a>
-                <a href="#experience" class="block py-1 text-orange-400 hover:text-orange-300">Exp</a>
-                <a href="#articles" class="block py-1 text-purple-400 hover:text-purple-300">Articles</a>
-                <a href="#project-explorer" class="block py-1 text-cyan-400 hover:text-cyan-300">Project Explorer</a>
+                <details class="block">
+                    <summary class="py-1 text-yellow-400 hover:text-yellow-300 cursor-pointer">Portfolio ▼</summary>
+                    <div class="pl-4 space-y-1">
+                        <a href="#skills" class="block py-1 text-gray-400 hover:text-yellow-300">⚡ Skills</a>
+                        <a href="#certifications" class="block py-1 text-gray-400 hover:text-yellow-300">📜 Certifications</a>
+                        <a href="#experience" class="block py-1 text-gray-400 hover:text-yellow-300">💼 Experience</a>
+                        <a href="#project-explorer" class="block py-1 text-gray-400 hover:text-yellow-300">🚀 Project Explorer</a>
+                    </div>
+                </details>
+                <details class="block">
+                    <summary class="py-1 text-purple-400 hover:text-purple-300 cursor-pointer">Blog ▼</summary>
+                    <div class="pl-4 space-y-1">
+                        <a href="#articles" class="block py-1 text-gray-400 hover:text-purple-300">📰 Articles</a>
+                    </div>
+                </details>
                 <a href="#contact" class="block py-1 text-red-400 hover:text-red-300">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- ========================================================= -->
-    <!-- ===== HERO SECTION ===== -->
-    <!-- ========================================================= -->
+    <!-- ===== HERO ===== -->
     <section id="home" class="min-h-screen flex items-center justify-center relative">
         <div class="container mx-auto px-6 py-20 text-center relative z-10">
             <div class="max-w-4xl mx-auto">
                 <p class="text-purple-400 mb-4 font-code text-base">Hello World! I'm</p>
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    <span class="gradient-text">hidayat</span>
-                </h1>
+                <h1 class="text-5xl md:text-7xl font-bold mb-6"><span class="gradient-text">hidayat</span></h1>
                 <div class="text-2xl md:text-4xl text-gray-300 mb-8">
                     <span class="typing-text inline-block">Devops | Cybertech</span>
                 </div>
-                <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-                    "Clicking UIs is fun. Writing Terraform is forever."
-                </p>
+                <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">"Clicking UIs is fun. Writing Terraform is forever."</p>
                 <div class="flex flex-wrap justify-center gap-4">
                     <a href="#contact" class="px-8 py-3 bg-purple-600 hover:bg-purple-700 rounded-full transition-all duration-300 transform hover:scale-105 glow text-base">
-                        <i class="fas fa-envelope mr-2"></i> Get In Touch
+                        <i class="fas fa-paper-plane mr-2"></i> Get In Touch
                     </a>
                     <a href="#project-explorer" class="px-8 py-3 border border-purple-600 hover:bg-purple-600 hover:bg-opacity-20 rounded-full transition-all duration-300 text-base">
                         <i class="fas fa-folder mr-2"></i> View Projects
                     </a>
                 </div>
-                
                 <div class="mt-12 flex justify-center space-x-6">
-                    <a href="https://github.com/hidayat-tanjung" target="_blank" class="text-gray-400 hover:text-purple-400 transition-colors duration-300 text-2xl">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/marlin-hidayat-tanjung/" target="_blank" class="text-gray-400 hover:text-purple-400 transition-colors duration-300 text-2xl">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@linuxploiter/videos" target="_blank" class="text-gray-400 hover:text-red-500 transition-colors duration-300 text-2xl">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="https://t.me/izumy" target="_blank" class="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-2xl">
-                        <i class="fab fa-telegram"></i>
-                    </a>
-                    <a href="https://medium.com/@izumy" target="_blank" class="text-gray-400 hover:text-green-600 transition-colors duration-300 text-2xl">
-                        <i class="fab fa-medium"></i>
-                    </a>
+                    <a href="https://github.com/hidayat-tanjung" target="_blank" class="text-gray-400 hover:text-purple-400 transition-colors duration-300 text-2xl"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/marlin-hidayat-tanjung/" target="_blank" class="text-gray-400 hover:text-purple-400 transition-colors duration-300 text-2xl"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.youtube.com/@linuxploiter/videos" target="_blank" class="text-gray-400 hover:text-red-500 transition-colors duration-300 text-2xl"><i class="fab fa-youtube"></i></a>
+                    <a href="https://medium.com/@izumy" target="_blank" class="text-gray-400 hover:text-green-600 transition-colors duration-300 text-2xl"><i class="fab fa-medium"></i></a>
                 </div>
             </div>
         </div>
-        
         <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
             <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
         </div>
@@ -424,7 +347,7 @@
                 <div class="flex justify-center">
                     <div class="profile-img-wrapper w-56 h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 p-1">
                         <div class="w-full h-full rounded-full bg-black p-1">
-                            <img src="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/img/profile.jpg" alt="Profile" class="w-full h-full rounded-full object-cover transition-transform duration-500 hover:scale-105"/>
+                            <img src="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/img/profile.jpg" alt="Profile" class="w-full h-full rounded-full object-cover"/>
                         </div>
                     </div>
                 </div>
@@ -468,136 +391,21 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- ===== EXPERIENCE - URUTAN: NETWORK (PERTAMA) ===== -->
-    <!-- ========================================================= -->
+    <!-- ===== EXPERIENCE ===== -->
     <section id="experience" class="py-20 relative z-10">
         <div class="container mx-auto px-6">
-            <h2 class="section-title font-bold text-center mb-12"><span class="gradient-text">Experience</span></h2>
-            <div class="max-w-4xl mx-auto space-y-8">
-
-                <!-- 1. Network Technician -->
-                <div class="experience-card bg-gray-800 p-8 rounded-xl relative transition-all duration-300">
-                    <div class="card-glow"></div>
-                    <div class="border-left-glow"></div>
-                    <div class="relative z-10">
-                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
-                            <div>
-                                <span class="position-title text-green-400">Network Technician</span>
-                                <span class="company-name text-gray-400 ml-3 text-base">Siga Network JTE · Full-time</span>
-                            </div>
-                            <span class="text-gray-400 text-base whitespace-nowrap">Feb 2026 - Jul 2026 · 6 mos</span>
-                        </div>
-                        <p class="text-gray-400 text-base mb-4">Sawo, North Sumatra, Indonesia · On-site</p>
-                        <ul class="text-gray-300 description-text space-y-2 list-disc list-inside">
-                            <li>Instalasi jaringan indoor/outdoor</li>
-                            <li>Troubleshooting sinyal lemah</li>
-                            <li>Konfigurasi router & access point</li>
-                            <li>Pemasangan kabel fiber optik di ODC</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            <span class="tag-text px-3 py-1 bg-green-600 bg-opacity-20 text-green-400 rounded-full">Jaringan</span>
-                            <span class="tag-text px-3 py-1 bg-green-600 bg-opacity-20 text-green-400 rounded-full">Fiber Optik</span>
-                            <span class="tag-text px-3 py-1 bg-green-600 bg-opacity-20 text-green-400 rounded-full">Router</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2. Teknisi - Kecilin -->
-                <div class="experience-card bg-gray-800 p-8 rounded-xl relative transition-all duration-300">
-                    <div class="card-glow"></div>
-                    <div class="border-left-glow"></div>
-                    <div class="relative z-10">
-                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
-                            <div>
-                                <span class="position-title text-cyan-400">Teknisi</span>
-                                <span class="company-name text-gray-400 ml-3 text-base">Kecilin · Freelance</span>
-                            </div>
-                            <span class="text-gray-400 text-base whitespace-nowrap">Sep 2024 - May 2026 · 1 yr 9 mos</span>
-                        </div>
-                        <p class="text-gray-400 text-base mb-4">Gunungsitoli, North Sumatra, Indonesia · Remote</p>
-                        <ul class="text-gray-300 description-text space-y-2 list-disc list-inside">
-                            <li>Instalisasi PC Mini untuk CCTV di Mesin CRM BRI</li>
-                            <li>Melakukan maintenance pertiga bulan</li>
-                            <li>Melakukan repair PC mini yang tidak berfungsi</li>
-                            <li>Pemasangan PC mini baru untuk CCTV CRM BRI</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            <span class="tag-text px-3 py-1 bg-cyan-600 bg-opacity-20 text-cyan-400 rounded-full">CCTV</span>
-                            <span class="tag-text px-3 py-1 bg-cyan-600 bg-opacity-20 text-cyan-400 rounded-full">PC Mini</span>
-                            <span class="tag-text px-3 py-1 bg-cyan-600 bg-opacity-20 text-cyan-400 rounded-full">Maintenance</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3. EDC Maintenance - BNI -->
-                <div class="experience-card bg-gray-800 p-8 rounded-xl relative transition-all duration-300">
-                    <div class="card-glow"></div>
-                    <div class="border-left-glow"></div>
-                    <div class="relative z-10">
-                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
-                            <div>
-                                <span class="position-title text-blue-400">EDC Maintenance</span>
-                                <span class="company-name text-gray-400 ml-3 text-base">PT. Bank Negara Indonesia · Contract</span>
-                            </div>
-                            <span class="text-gray-400 text-base whitespace-nowrap">Nov 2023 - May 2025 · 1 yr 7 mos</span>
-                        </div>
-                        <p class="text-gray-400 text-base mb-4">Gunungsitoli, North Sumatra, Indonesia · Remote</p>
-                        <ul class="text-gray-300 description-text space-y-2 list-disc list-inside">
-                            <li>Maintenance dan perbaikan mesin EDC</li>
-                            <li>Upgrade software pada mesin EDC</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            <span class="tag-text px-3 py-1 bg-blue-600 bg-opacity-20 text-blue-400 rounded-full">EDC</span>
-                            <span class="tag-text px-3 py-1 bg-blue-600 bg-opacity-20 text-blue-400 rounded-full">Maintenance</span>
-                            <span class="tag-text px-3 py-1 bg-blue-600 bg-opacity-20 text-blue-400 rounded-full">BNI</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. Junior HR Associate -->
-                <div class="experience-card bg-gray-800 p-8 rounded-xl relative transition-all duration-300">
-                    <div class="card-glow"></div>
-                    <div class="border-left-glow"></div>
-                    <div class="relative z-10">
-                        <div class="flex flex-wrap justify-between items-start gap-3 mb-3">
-                            <div>
-                                <span class="position-title text-purple-400">Junior HR Associate</span>
-                                <span class="company-name text-gray-400 ml-3 text-base">Klinik Pusat Bekam dan Ruqyah · Full-time</span>
-                            </div>
-                            <span class="text-gray-400 text-base whitespace-nowrap">May 2015 - Apr 2017 · 2 yrs</span>
-                        </div>
-                        <p class="text-gray-400 text-base mb-4">Bekasi, West Java, Indonesia</p>
-                        <ul class="text-gray-300 description-text space-y-2 list-disc list-inside">
-                            <li>Mengelola database karyawan</li>
-                            <li>Menyeleksi kandidat potensial</li>
-                            <li>Menjadwalkan wawancara kerja</li>
-                            <li>Membantu orientasi karyawan baru</li>
-                        </ul>
-                        <div class="flex flex-wrap gap-2 mt-4">
-                            <span class="tag-text px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 rounded-full">HR</span>
-                            <span class="tag-text px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 rounded-full">Database</span>
-                            <span class="tag-text px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 rounded-full">Recruitment</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            <h2 class="section-title font-bold text-center mb-4"><span class="gradient-text">💼 Experience</span></h2>
+            <p class="text-center text-gray-400 text-sm mb-8">Jobdesk lengkap di setiap pengalaman kerja</p>
+            <div class="max-w-4xl mx-auto space-y-6" id="experienceContainer"></div>
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- ===== ARTICLES SECTION ===== -->
-    <!-- ========================================================= -->
+    <!-- ===== ARTICLES ===== -->
     <section id="articles" class="py-20 bg-gray-900 bg-opacity-30 relative z-10">
         <div class="container mx-auto px-6">
-            <h2 class="section-title font-bold text-center mb-4">
-                <span class="gradient-text">📰 Articles</span>
-            </h2>
+            <h2 class="section-title font-bold text-center mb-4"><span class="gradient-text">📰 Articles</span></h2>
             <p class="text-center text-gray-400 text-base mb-8">Klik judul untuk baca lengkap</p>
-
             <div id="articleGrid" class="max-w-6xl mx-auto article-grid-2col"></div>
-
             <div class="flex flex-wrap justify-center gap-4 mt-10">
                 <button id="addArticleBtn" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-base transition flex items-center gap-2">
                     <i class="fas fa-plus"></i> Tambah Artikel Baru
@@ -609,140 +417,100 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- ===== PROJECT EXPLORER - CAROUSEL + GRID 2x3 ===== -->
-    <!-- ========================================================= -->
+    <!-- ===== PROJECT EXPLORER ===== -->
     <section id="project-explorer" class="py-20 relative z-10">
         <div class="container mx-auto px-6">
-            <h2 class="section-title font-bold text-center mb-4">
-                <span class="text-white">🚀 Your Projects</span>
-            </h2>
-            <p class="text-center text-gray-400 text-base mb-2">
-                <span id="projectCount">Memuat...</span>
-            </p>
-            <p class="text-center text-gray-500 text-sm mb-6">
-                <span id="projectTimer">⏱️ Update: --:--:--</span> • 
-                <span id="projectRotateInfo">Bergilir setiap 5 detik</span>
-            </p>
-
-            <!-- Carousel Container -->
+            <h2 class="section-title font-bold text-center mb-4"><span class="text-white">🚀 Your Projects</span></h2>
+            <p class="text-center text-gray-400 text-base mb-2"><span id="projectCount">Memuat...</span></p>
             <div class="relative max-w-5xl mx-auto">
-                <!-- Tombol Prev -->
-                <button id="projectPrevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/70 hover:bg-purple-600/70 text-white p-3 rounded-full transition-all duration-300 -ml-4 md:-ml-6">
-                    <i class="fas fa-chevron-left text-xl"></i>
-                </button>
-
-                <!-- Grid Project -->
+                <button id="projectPrevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/70 hover:bg-purple-600/70 text-white p-3 rounded-full -ml-4 md:-ml-6"><i class="fas fa-chevron-left text-xl"></i></button>
                 <div id="projectExplorerGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6 min-h-[400px]">
-                    <div class="col-span-full flex justify-center items-center">
-                        <div class="loader"></div>
-                    </div>
+                    <div class="col-span-full flex justify-center items-center"><div class="loader"></div></div>
                 </div>
-
-                <!-- Tombol Next -->
-                <button id="projectNextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/70 hover:bg-purple-600/70 text-white p-3 rounded-full transition-all duration-300 -mr-4 md:-mr-6">
-                    <i class="fas fa-chevron-right text-xl"></i>
-                </button>
+                <button id="projectNextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/70 hover:bg-purple-600/70 text-white p-3 rounded-full -mr-4 md:-mr-6"><i class="fas fa-chevron-right text-xl"></i></button>
             </div>
-
-            <!-- Indikator Dot -->
             <div id="projectDots" class="flex justify-center gap-3 mt-6"></div>
-
-            <div class="text-center text-gray-500 text-sm mt-4">
-                <i class="fas fa-sync-alt mr-1"></i> Auto-refresh setiap 20 detik dari GitHub • 
-                <i class="fas fa-code mr-1"></i> Klik icon GitHub untuk source • 
-                <i class="fas fa-eye mr-1"></i> Klik Live untuk preview
-            </div>
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- ===== TECHNOLOGIES I USE ===== -->
-    <!-- ========================================================= -->
+    <!-- ===== TECHNOLOGIES ===== -->
     <section class="py-16 bg-gray-900 bg-opacity-30 relative z-10">
         <div class="container mx-auto px-6">
             <h3 class="text-2xl font-semibold text-center text-purple-400 mb-10">Technologies I Use</h3>
             <div class="flex flex-wrap justify-center gap-8 md:gap-12 max-w-5xl mx-auto">
-                <div class="tech-icon flex flex-col items-center group">
-                    <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-gradient-to-br group-hover:from-purple-600 group-hover:to-pink-600 transition-all duration-300 shadow-lg group-hover:shadow-purple-500/30">
-                        <i class="fas fa-terminal text-4xl text-green-400 group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <p class="text-gray-400 group-hover:text-purple-400 transition-colors">Terminal</p>
-                </div>
-
-                <div class="tech-icon flex flex-col items-center group">
-                    <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-gradient-to-br group-hover:from-blue-500 group-hover:to-cyan-400 transition-all duration-300 shadow-lg group-hover:shadow-blue-500/30">
-                        <i class="fab fa-docker text-4xl text-blue-400 group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <p class="text-gray-400 group-hover:text-blue-400 transition-colors">Docker</p>
-                </div>
-
-                <div class="tech-icon flex flex-col items-center group">
-                    <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-gradient-to-br group-hover:from-red-500 group-hover:to-orange-400 transition-all duration-300 shadow-lg group-hover:shadow-red-500/30">
-                        <i class="fab fa-jenkins text-4xl text-red-400 group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <p class="text-gray-400 group-hover:text-red-400 transition-colors">Jenkins</p>
-                </div>
-
-                <div class="tech-icon flex flex-col items-center group">
-                    <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-gradient-to-br group-hover:from-green-500 group-hover:to-emerald-400 transition-all duration-300 shadow-lg group-hover:shadow-green-500/30">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10 h-10 fill-current text-green-400 group-hover:text-white transition-colors duration-300">
-                            <path d="M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.8L20 9v6l-8 4-8-4V9l8-4.2z"/>
-                            <path d="M12 12l-5-2.5v5L12 17l5-2.5v-5L12 12z"/>
-                        </svg>
-                    </div>
-                    <p class="text-gray-400 group-hover:text-green-400 transition-colors">CVE Research</p>
-                </div>
-
-                <div class="tech-icon flex flex-col items-center group">
-                    <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-gradient-to-br group-hover:from-teal-500 group-hover:to-cyan-400 transition-all duration-300 shadow-lg group-hover:shadow-teal-500/30">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="w-10 h-10 fill-current text-teal-400 group-hover:text-white transition-colors duration-300">
-                            <path fill="currentColor" d="M925.6 405.1c-9.5-40.3-27.2-77.7-51.9-109.5-24.7-31.8-56-57.1-92.1-74.4-36.1-17.3-76.2-26.1-117.3-25.7-41.1.4-81.1 10-116.8 28.7-35.7 18.7-66.4 45.6-90.3 78.9-23.9 33.3-40.4 71.9-48.2 112.5-7.8 40.6-6.7 82.3 3.2 122.5 9.9 40.2 29.1 77.8 56.2 110.3 27.1 32.5 61.6 58.6 101 76.8 39.4 18.2 83 27.9 127 28.4 44 .5 87.8-8.3 127.8-25.8 40-17.5 75.3-44.1 103.3-77.9 28-33.8 48-73.6 58.6-116.1 10.6-42.5 11.6-86.7 2.9-129.2zM512 896c-35.3 0-70.1-6.8-102.6-20-32.5-13.2-61.8-32.1-86.6-55.9-24.8-23.8-44.7-52-58.9-83.3-14.2-31.3-22.3-65.1-23.9-99.5-1.6-34.4 3.4-68.9 14.6-101.9 11.2-33 28-63.8 49.7-91.3 21.7-27.5 48-51.3 78-70.3 30-19 63.2-33 98.1-41.4 34.9-8.4 71.1-11.1 106.8-7.9 35.7 3.2 70.4 12.3 102.8 26.7 32.4 14.4 61.8 33.8 87.1 57.6 25.3 23.8 46.3 51.7 62.1 82.6 15.8 30.9 26.2 64.3 30.7 98.7 4.5 34.4 3.1 69.3-4.1 103.3-7.2 34-19.8 66.7-37.2 96.9-17.4 30.2-39.4 57.5-65.2 80.9-25.8 23.4-55.1 42.6-86.9 56.9-31.8 14.3-65.8 23.5-100.5 27.2-34.7 3.7-69.9 1.9-104.1-5.3-34.2-7.2-67.1-20.1-97.6-38.1-30.5-18-58.3-40.9-82.3-67.9-24-27-43.8-57.8-58.7-91.1-14.9-33.3-24.7-68.7-29-104.6-4.3-35.9-3.1-72.1 3.6-107.6 6.7-35.5 18.9-69.9 36-102.1 17.1-32.2 39-61.8 64.9-87.7 25.9-25.9 55.5-47.8 87.7-64.9 32.2-17.1 66.6-29.3 102.1-36 35.5-6.7 71.7-7.9 107.6-3.6 35.9 4.3 71.3 14.1 104.6 29 33.3 14.9 64.1 34.7 91.1 58.7 27 24 49.9 51.8 67.9 82.3 18 30.5 30.9 63.4 38.1 97.6 7.2 34.2 9 69.4 5.3 104.1-3.7 34.7-12.9 68.7-27.2 100.5-14.3 31.8-33.5 61.1-56.9 86.9-23.4 25.8-50.7 47.8-80.9 65.2-30.2 17.4-62.9 30-96.9 37.2-34 7.2-68.9 8.6-103.3 4.1-34.4-4.5-67.8-14.9-98.7-30.7-30.9-15.8-58.8-36.8-82.6-62.1-23.8-25.3-43.2-54.7-57.6-87.1-14.4-32.4-23.5-67.1-26.7-102.8-3.2-35.7-.5-71.9 7.9-106.8 8.4-34.9 22.4-68.1 41.4-98.1 19-30 42.8-56.3 70.3-78 27.5-21.7 58.3-38.5 91.3-49.7 33-11.2 67.5-16.2 101.9-14.6 34.4 1.6 68.2 9.7 99.5 23.9 31.3 14.2 59.5 34.1 83.3 58.9 23.8 24.8 42.7 54.1 55.9 86.6 13.2 32.5 20 67.3 20 102.6s-6.8 70.1-20 102.6c-13.2 32.5-32.1 61.8-55.9 86.6-24.8 23.8-54.1 42.7-86.6 55.9-32.5 13.2-67.3 20-102.6 20z"/>
-                        </svg>
-                    </div>
-                    <p class="text-gray-400 group-hover:text-teal-400 transition-colors">AI</p>
-                </div>
-
-                <div class="tech-icon flex flex-col items-center group">
-                    <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-gradient-to-br group-hover:from-gray-600 group-hover:to-gray-400 transition-all duration-300 shadow-lg group-hover:shadow-gray-500/30">
-                        <i class="fab fa-github text-4xl text-gray-400 group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <p class="text-gray-400 group-hover:text-gray-300 transition-colors">GitHub</p>
-                </div>
-
-                <div class="tech-icon flex flex-col items-center group">
-                    <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-3 group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-yellow-400 transition-all duration-300 shadow-lg group-hover:shadow-orange-500/30">
-                        <i class="fab fa-linux text-4xl text-orange-400 group-hover:text-white transition-colors duration-300"></i>
-                    </div>
-                    <p class="text-gray-400 group-hover:text-orange-400 transition-colors">Linux</p>
-                </div>
+                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-purple-600 group-hover:to-pink-600"><i class="fas fa-terminal text-3xl text-green-400"></i></div><p class="text-gray-400 text-sm">Terminal</p></div>
+                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-blue-500 group-hover:to-cyan-400"><i class="fab fa-docker text-3xl text-blue-400"></i></div><p class="text-gray-400 text-sm">Docker</p></div>
+                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-red-500 group-hover:to-orange-400"><i class="fab fa-jenkins text-3xl text-red-400"></i></div><p class="text-gray-400 text-sm">Jenkins</p></div>
+                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-green-500 group-hover:to-emerald-400"><i class="fas fa-shield-alt text-3xl text-green-400"></i></div><p class="text-gray-400 text-sm">CVE Research</p></div>
+                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-teal-500 group-hover:to-cyan-400"><i class="fas fa-brain text-3xl text-teal-400"></i></div><p class="text-gray-400 text-sm">AI</p></div>
+                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-gray-600 group-hover:to-gray-400"><i class="fab fa-github text-3xl text-gray-400"></i></div><p class="text-gray-400 text-sm">GitHub</p></div>
+                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-yellow-400"><i class="fab fa-linux text-3xl text-orange-400"></i></div><p class="text-gray-400 text-sm">Linux</p></div>
             </div>
         </div>
     </section>
 
-    <!-- ========================================================= -->
     <!-- ===== CONTACT ===== -->
-    <!-- ========================================================= -->
     <section id="contact" class="py-20 relative z-10">
         <div class="container mx-auto px-6">
             <h2 class="section-title font-bold text-center mb-12"><span class="gradient-text">Contact</span></h2>
             <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
                 <div class="bg-gray-800 p-8 rounded-xl">
-                    <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                        <input type="hidden" name="_subject" value="Pesan Baru dari Portfolio!" />
-                        <input type="hidden" name="_captcha" value="true" />
-                        <input type="text" name="name" placeholder="Your Name" required class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-red-600 outline-none"/>
-                        <input type="email" name="email" placeholder="Your Email" required class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-red-600 outline-none"/>
-                        <textarea name="message" rows="4" placeholder="Message" required class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-red-600 outline-none"></textarea>
-                        <button type="submit" class="w-full bg-red-600 hover:bg-red-700 py-3 rounded-lg text-base transition">Send</button>
+                    <h3 class="text-xl font-semibold text-purple-400 mb-4">
+                        <i class="fab fa-telegram mr-2"></i> Kirim Pesan via Telegram
+                    </h3>
+                    <p class="text-gray-400 text-sm mb-4">Pesan akan langsung masuk ke Telegram saya.</p>
+                    <form id="contact-form" onsubmit="sendToTelegram(event)">
+                        <input type="text" id="name" placeholder="Your Name" required 
+                               class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-purple-600 outline-none"/>
+                        <input type="email" id="email" placeholder="Your Email" required 
+                               class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-purple-600 outline-none"/>
+                        <textarea id="message" rows="4" placeholder="Message" required 
+                                  class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-purple-600 outline-none"></textarea>
+                        <button type="submit" id="sendBtn" 
+                                class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg text-base transition flex items-center justify-center gap-2">
+                            <i class="fab fa-telegram"></i> Send via Telegram
+                        </button>
+                        <div id="formStatus" class="text-sm mt-2"></div>
                     </form>
                 </div>
                 <div class="space-y-4">
-                    <div class="bg-gray-800 p-5 rounded-xl flex items-center gap-4"><span class="bg-red-600 p-3 rounded-full"><i class="fas fa-envelope text-white"></i></span><div><p class="text-red-400 text-base font-semibold">Email</p><p class="text-gray-400 text-base">marlin.hidayat7780@gmail.com</p></div></div>
-                    <div class="bg-gray-800 p-5 rounded-xl flex items-center gap-4"><span class="bg-red-600 p-3 rounded-full"><i class="fas fa-phone text-white"></i></span><div><p class="text-red-400 text-base font-semibold">Phone</p><p class="text-gray-400 text-base">+62 851-1906-2492</p></div></div>
+                    <div class="bg-gray-800 p-5 rounded-xl flex items-center gap-4">
+                        <span class="bg-red-600 p-3 rounded-full"><i class="fas fa-envelope text-white"></i></span>
+                        <div>
+                            <p class="text-red-400 text-base font-semibold">Email</p>
+                            <p class="text-gray-400 text-base">marlin.hidayat7780@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-5 rounded-xl flex items-center gap-4">
+                        <span class="bg-red-600 p-3 rounded-full"><i class="fas fa-phone text-white"></i></span>
+                        <div>
+                            <p class="text-red-400 text-base font-semibold">Phone</p>
+                            <p class="text-gray-400 text-base">+62 851-1906-2492</p>
+                        </div>
+                    </div>
                     <div class="bg-gray-800 p-5 rounded-xl flex items-center gap-4">
                         <span class="bg-red-600 p-3 rounded-full"><i class="fas fa-map-marker-alt text-white"></i></span>
-                        <div><p class="text-red-400 text-base font-semibold">Location</p><p class="text-gray-400 text-base">Gunungsitoli, Indonesia</p></div>
+                        <div>
+                            <p class="text-red-400 text-base font-semibold">Location</p>
+                            <p class="text-gray-400 text-base">Gunungsitoli, Indonesia</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-5 rounded-xl">
+                        <h4 class="text-purple-400 text-base font-semibold mb-4">Connect With Me</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/hidayat-tanjung" target="_blank" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all duration-300 text-gray-400 hover:text-white">
+                                <i class="fab fa-github text-xl"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/marlin-hidayat-tanjung/" target="_blank" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all duration-300 text-gray-400 hover:text-white">
+                                <i class="fab fa-linkedin text-xl"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@linuxploiter/videos" target="_blank" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all duration-300 text-gray-400 hover:text-white">
+                                <i class="fab fa-youtube text-xl"></i>
+                            </a>
+                            <a href="https://medium.com/@izumy" target="_blank" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all duration-300 text-gray-400 hover:text-white">
+                                <i class="fab fa-medium text-xl"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -754,25 +522,17 @@
         © 2025 Hidayat. Made with <i class="fas fa-heart text-red-600"></i> & <i class="fas fa-coffee text-red-600"></i>
     </footer>
 
-    <!-- ========================================================= -->
     <!-- ===== MODALS ===== -->
-    <!-- ========================================================= -->
-
-    <!-- MODAL ARTIKEL -->
     <div id="articleModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 hidden p-4">
         <div class="modal-article bg-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
-            <button id="closeArticleModal" class="sticky top-0 float-right m-4 text-gray-400 hover:text-white z-10 bg-black bg-opacity-50 p-2 rounded-full">
-                <i class="fas fa-times text-2xl"></i>
-            </button>
+            <button id="closeArticleModal" class="sticky top-0 float-right m-4 text-gray-400 hover:text-white z-10 bg-black bg-opacity-50 p-2 rounded-full"><i class="fas fa-times text-2xl"></i></button>
             <div class="p-6 md:p-8 pt-0">
                 <div class="flex items-center gap-3 text-xs text-purple-400 mb-3 flex-wrap">
                     <span id="modalTags" class="bg-purple-600 bg-opacity-20 px-3 py-1 rounded-full">#tag</span>
                     <span id="modalReadTime" class="text-gray-500">5 min read</span>
                 </div>
                 <h2 id="modalTitle" class="text-2xl md:text-4xl font-bold text-white mb-4">Judul Artikel</h2>
-                <div id="modalContent" class="text-gray-300 text-sm leading-relaxed space-y-4">
-                    <p>Konten artikel di sini...</p>
-                </div>
+                <div id="modalContent" class="text-gray-300 text-sm leading-relaxed space-y-4"></div>
                 <div class="mt-6 text-xs text-gray-500 border-t border-gray-700 pt-4 flex justify-between">
                     <span id="modalDate">📅 Tanggal</span>
                     <span id="modalAuthor">✍️ Penulis</span>
@@ -781,16 +541,11 @@
         </div>
     </div>
 
-    <!-- MODAL FORM TAMBAH ARTIKEL -->
     <div id="formModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 hidden p-4">
         <div class="form-modal bg-gray-900 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
-            <button id="closeFormModal" class="sticky top-0 float-right m-4 text-gray-400 hover:text-white z-10 bg-black bg-opacity-50 p-2 rounded-full">
-                <i class="fas fa-times text-2xl"></i>
-            </button>
+            <button id="closeFormModal" class="sticky top-0 float-right m-4 text-gray-400 hover:text-white z-10 bg-black bg-opacity-50 p-2 rounded-full"><i class="fas fa-times text-2xl"></i></button>
             <div class="p-6 md:p-8 pt-0">
-                <h2 class="text-2xl font-bold text-purple-400 mb-6">
-                    <i class="fas fa-pen-fancy mr-2"></i> Tambah Artikel Baru
-                </h2>
+                <h2 class="text-2xl font-bold text-purple-400 mb-6"><i class="fas fa-pen-fancy mr-2"></i> Tambah Artikel Baru</h2>
                 <form id="articleForm" class="space-y-4">
                     <div>
                         <label class="block text-gray-300 text-sm font-medium mb-1">📝 Judul Artikel *</label>
@@ -799,10 +554,16 @@
                                placeholder="Masukkan judul artikel...">
                     </div>
                     <div>
+                        <label class="block text-gray-300 text-sm font-medium mb-1">✍️ Author *</label>
+                        <input type="text" id="formAuthor" required 
+                               class="w-full bg-gray-800 text-white p-3 rounded-lg text-sm focus:ring-2 ring-purple-600 outline-none border border-gray-700"
+                               placeholder="Nama penulis...">
+                    </div>
+                    <div>
                         <label class="block text-gray-300 text-sm font-medium mb-1">🏷️ Hashtag (pisahkan dengan koma)</label>
                         <input type="text" id="formTags" 
                                class="w-full bg-gray-800 text-white p-3 rounded-lg text-sm focus:ring-2 ring-purple-600 outline-none border border-gray-700"
-                               placeholder="#security,#devops,#kubernetes">
+                               placeholder="#security,#devops">
                     </div>
                     <div>
                         <label class="block text-gray-300 text-sm font-medium mb-1">⏱️ Waktu Baca</label>
@@ -811,52 +572,41 @@
                                placeholder="5 min read" value="5 min read">
                     </div>
                     <div>
-                        <label class="block text-gray-300 text-sm font-medium mb-1">🖼️ URL Gambar (upload ke <span class="text-purple-400">/img</span> di repo)</label>
-                        <input type="text" id="formImage" 
-                               class="w-full bg-gray-800 text-white p-3 rounded-lg text-sm focus:ring-2 ring-purple-600 outline-none border border-gray-700"
-                               placeholder="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/main/img/artikel.jpg">
-                        <p class="text-gray-500 text-xs mt-1">Masukkan URL raw gambar setelah diupload ke repo</p>
+                        <label class="block text-gray-300 text-sm font-medium mb-1">🖼️ Upload Gambar (opsional)</label>
+                        <input type="file" id="formImageFile" accept="image/*"
+                               class="w-full bg-gray-800 text-white p-3 rounded-lg text-sm focus:ring-2 ring-purple-600 outline-none border border-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-purple-600 file:text-white hover:file:bg-purple-700">
+                        <img id="imagePreview" alt="Preview gambar">
                     </div>
                     <div>
                         <label class="block text-gray-300 text-sm font-medium mb-1">✍️ Konten (bisa pake HTML) *</label>
                         <textarea id="formContent" rows="8" required
                                class="w-full bg-gray-800 text-white p-3 rounded-lg text-sm focus:ring-2 ring-purple-600 outline-none border border-gray-700 font-code"
-                               placeholder="Tulis konten artikel di sini... bisa pake HTML seperti <p>, <ul>, <div>..."></textarea>
+                               placeholder="Tulis konten artikel... bisa pake HTML seperti &lt;p&gt;, &lt;ul&gt;, &lt;div&gt;..."></textarea>
                     </div>
                     <div class="flex gap-3 pt-2">
                         <button type="submit" class="flex-1 px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-sm transition font-medium">
                             <i class="fas fa-check mr-2"></i> Publikasikan
                         </button>
-                        <button type="button" id="cancelFormBtn" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm transition">
-                            Batal
-                        </button>
+                        <button type="button" id="cancelFormBtn" class="px-6 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg text-sm transition">Batal</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- MODAL CERTIFICATE -->
     <div id="certModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 hidden p-4">
         <div class="modal-cert bg-gray-900 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto relative">
-            <button id="closeCertModal" class="sticky top-0 float-right m-4 text-gray-400 hover:text-white z-10 bg-black bg-opacity-50 p-2 rounded-full">
-                <i class="fas fa-times text-2xl"></i>
-            </button>
-            <div class="p-6 md:p-8 pt-0" id="certModalContent">
-                <!-- Diisi oleh JS -->
-            </div>
+            <button id="closeCertModal" class="sticky top-0 float-right m-4 text-gray-400 hover:text-white z-10 bg-black bg-opacity-50 p-2 rounded-full"><i class="fas fa-times text-2xl"></i></button>
+            <div class="p-6 md:p-8 pt-0" id="certModalContent"></div>
         </div>
     </div>
 
-    <!-- MODAL PROJECT PREVIEW -->
     <div id="projectPreviewModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 hidden p-4">
         <div class="modal-project-preview bg-gray-900 rounded-xl max-w-5xl w-full max-h-[90vh] overflow-hidden relative">
             <div class="flex justify-between items-center p-3 border-b border-gray-700 bg-gray-800">
                 <h3 class="text-lg font-semibold text-cyan-400" id="projectPreviewTitle">Live Preview</h3>
                 <div class="flex gap-3">
-                    <a id="projectPreviewLink" href="#" target="_blank" class="text-blue-400 hover:text-blue-300 transition" title="Buka di tab baru">
-                        <i class="fas fa-external-link-alt"></i>
-                    </a>
+                    <a id="projectPreviewLink" href="#" target="_blank" class="text-blue-400 hover:text-blue-300 transition"><i class="fas fa-external-link-alt"></i></a>
                     <button id="closeProjectPreview" class="text-gray-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
                 </div>
             </div>
@@ -870,27 +620,58 @@
     <!-- ===== JAVASCRIPT ===== -->
     <!-- ========================================================= -->
     <script>
-        // =========================================================
+        // ===== FIX SCROLL MOBILE =====
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.style.overflow = 'auto';
+            document.documentElement.style.overflow = 'auto';
+            document.body.style.height = 'auto';
+            document.documentElement.style.height = 'auto';
+            document.querySelectorAll('*').forEach(function(el) {
+                var style = window.getComputedStyle(el);
+                if (style.overflow === 'hidden' && !el.closest('.modal-article') && !el.closest('.modal-cert') && !el.closest('.modal-project-preview')) {
+                    el.style.overflow = 'visible';
+                }
+            });
+            var home = document.getElementById('home');
+            if (home) { home.style.height = 'auto'; home.style.minHeight = '100dvh'; home.style.overflow = 'visible'; }
+            
+            document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+                document.getElementById('mobile-menu').classList.toggle('hidden');
+            });
+        });
+        window.addEventListener('resize', function() {
+            document.body.style.overflow = 'auto';
+            document.documentElement.style.overflow = 'auto';
+        });
+
         // ===== PARTICLES =====
-        // =========================================================
         function createParticle() {
+            const container = document.getElementById('particles');
+            if (!container) return;
             const particle = document.createElement('div');
             particle.classList.add('particle');
-            particle.style.left = Math.random() * 100 + '%';
             const size = Math.random() * 5 + 2;
             particle.style.width = size + 'px';
             particle.style.height = size + 'px';
-            particle.style.background = 'rgba(102, 126, 234, 0.5)';
-            particle.style.borderRadius = '50%';
-            particle.style.animationDuration = Math.random() * 20 + 10 + 's';
-            document.getElementById('particles').appendChild(particle);
-            setTimeout(() => particle.remove(), 30000);
+            particle.style.left = Math.random() * 100 + '%';
+            const hue = 220 + Math.random() * 40;
+            particle.style.background = `hsla(${hue}, 80%, 70%, ${0.3 + Math.random() * 0.5})`;
+            const duration = 15 + Math.random() * 20;
+            particle.style.animationDuration = duration + 's';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            container.appendChild(particle);
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.remove();
+                }
+            }, (duration + 5) * 1000);
         }
-        setInterval(createParticle, 1000);
+        let particleInterval = setInterval(createParticle, 500);
+        window.addEventListener('beforeunload', function() {
+            clearInterval(particleInterval);
+        });
 
-        // =========================================================
-        // ===== TYPING EFFECT RESET =====
-        // =========================================================
+        // ===== TYPING EFFECT =====
         const typingText = document.querySelector('.typing-text');
         if (typingText) {
             setInterval(() => {
@@ -900,140 +681,185 @@
         }
 
         // =========================================================
-        // ===== DATA ARTIKEL =====
+        // ===== FORM SEND TO TELEGRAM =====
+        // =========================================================
+        async function sendToTelegram(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const status = document.getElementById('formStatus');
+            const btn = document.getElementById('sendBtn');
+            
+            // GANTI DENGAN TOKEN & CHAT ID LO
+            const token = '8871957081:AAGGfPl8obpCDU-vQqbCFO1YGuoIWHIySUA';
+            const chatId = '752995113';
+            
+            if (!name || !email || !message) {
+                status.innerHTML = '⚠️ Semua field wajib diisi!';
+                status.className = 'text-red-400 text-sm mt-2';
+                return;
+            }
+            
+            const text = `📩 <b>Pesan Baru dari Portfolio!</b>\n\n👤 <b>Nama:</b> ${name}\n📧 <b>Email:</b> ${email}\n💬 <b>Pesan:</b>\n${message}`;
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Mengirim...';
+            status.innerHTML = '';
+            
+            try {
+                const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' })
+                });
+                const data = await res.json();
+                
+                if (data.ok) {
+                    status.innerHTML = '✅ Pesan berhasil dikirim! Saya akan segera merespon.';
+                    status.className = 'text-green-400 text-sm mt-2';
+                    document.getElementById('contact-form').reset();
+                } else {
+                    status.innerHTML = '❌ Gagal mengirim. Coba lagi nanti.';
+                    status.className = 'text-red-400 text-sm mt-2';
+                    console.error('Telegram Error:', data);
+                }
+            } catch(e) {
+                status.innerHTML = '❌ Error: ' + e.message;
+                status.className = 'text-red-400 text-sm mt-2';
+                console.error('Fetch Error:', e);
+            }
+            
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fab fa-telegram mr-2"></i> Send via Telegram';
+        }
+
+        // =========================================================
+        // ===== EXPERIENCE DATA =====
+        // =========================================================
+        const experienceData = [
+            {
+                id: 1,
+                title: "Network Technician",
+                company: "Siga Network JTE · Full-time",
+                period: "Feb 2026 - Jul 2026 · 6 mos",
+                location: "Sawo, North Sumatra, Indonesia · On-site",
+                tags: ["Jaringan", "Fiber Optik", "Router"],
+                details: [
+                    "Instalasi jaringan indoor/outdoor",
+                    "Troubleshooting sinyal lemah",
+                    "Konfigurasi router & access point",
+                    "Pemasangan kabel fiber optik di ODC"
+                ],
+                color: "border-green-400",
+                icon: "fa-wifi"
+            },
+            {
+                id: 2,
+                title: "Teknisi",
+                company: "Kecilin · Freelance",
+                period: "Sep 2024 - May 2026 · 1 yr 9 mos",
+                location: "Gunungsitoli, North Sumatra, Indonesia · Remote",
+                tags: ["CCTV", "PC Mini", "Maintenance"],
+                details: [
+                    "Instalisasi PC Mini untuk CCTV di Mesin CRM BRI",
+                    "Melakukan maintenance pertiga bulan",
+                    "Melakukan repair PC mini yang tidak berfungsi",
+                    "Pemasangan PC mini baru untuk CCTV CRM BRI"
+                ],
+                color: "border-cyan-400",
+                icon: "fa-tools"
+            },
+            {
+                id: 3,
+                title: "EDC Maintenance",
+                company: "PT. Bank Negara Indonesia · Contract",
+                period: "Nov 2023 - May 2025 · 1 yr 7 mos",
+                location: "Gunungsitoli, North Sumatra, Indonesia · Remote",
+                tags: ["EDC", "Maintenance", "BNI"],
+                details: [
+                    "Maintenance dan perbaikan mesin EDC",
+                    "Upgrade software pada mesin EDC"
+                ],
+                color: "border-blue-400",
+                icon: "fa-credit-card"
+            },
+            {
+                id: 4,
+                title: "Junior HR Associate",
+                company: "Klinik Pusat Bekam dan Ruqyah · Full-time",
+                period: "May 2015 - Apr 2017 · 2 yrs",
+                location: "Bekasi, West Java, Indonesia",
+                tags: ["HR", "Database", "Recruitment"],
+                details: [
+                    "Mengelola database karyawan",
+                    "Menyeleksi kandidat potensial",
+                    "Menjadwalkan wawancara kerja",
+                    "Membantu orientasi karyawan baru"
+                ],
+                color: "border-purple-400",
+                icon: "fa-users"
+            }
+        ];
+
+        function renderExperience() {
+            const container = document.getElementById('experienceContainer');
+            if (!container) return;
+            let html = '';
+            experienceData.forEach((exp) => {
+                html += `
+                    <div class="exp-card bg-gray-800 p-6 relative transition-all duration-300 border ${exp.color} border-opacity-30 hover:border-opacity-100">
+                        <div class="exp-glow"></div>
+                        <div class="relative z-10">
+                            <div class="flex flex-wrap justify-between items-start gap-3 mb-2">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full ${exp.color.replace('border', 'bg')} bg-opacity-20 flex items-center justify-center flex-shrink-0">
+                                        <i class="fas ${exp.icon} ${exp.color.replace('border', 'text')} text-lg"></i>
+                                    </div>
+                                    <div>
+                                        <span class="exp-title text-white">${exp.title}</span>
+                                        <span class="exp-company text-gray-400 ml-2 text-sm">${exp.company}</span>
+                                    </div>
+                                </div>
+                                <span class="text-gray-500 text-sm whitespace-nowrap bg-gray-900 px-3 py-1 rounded-full">${exp.period}</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mb-3 flex items-center gap-2">
+                                <i class="fas fa-map-marker-alt text-purple-400"></i> ${exp.location}
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                ${exp.tags.map(tag => `<span class="exp-tag">${tag}</span>`).join('')}
+                            </div>
+                            <div class="exp-detail">
+                                <ul class="detail-list">
+                                    ${exp.details.map(detail => `
+                                        <li><i class="fas fa-check-circle"></i> ${detail}</li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // =========================================================
+        // ===== ARTICLES DATA =====
         // =========================================================
         let articles = [
             {
                 id: 1,
-                title: "🐴 Trojan: Kuda Kayu Digital yang Masih Mematikan",
-                tags: ["#malware", "#trojan", "#cybersecurity"],
-                readTime: "15 min read",
-                date: "📅 7 Juli 2026",
+                title: "🚀 Cara Deploy Portfolio ke GitHub Pages",
+                tags: ["#github", "#pages", "#deploy"],
+                readTime: "5 min read",
+                date: "📅 8 Juli 2026",
                 author: "✍️ Marlin Hidayat",
-                image: "https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/main/img/trojan.jpg",
-                content: `
-                    <p><strong>Trojan</strong> atau <span class="text-purple-300">"Trojan Horse"</span> adalah jenis malware yang menyamar sebagai program berguna, tapi diam-diam membuka backdoor, mencuri data, atau menginstall payload berbahaya.</p>
-                    <p>Berbeda dengan virus atau worm, trojan <span class="text-yellow-300">tidak bisa mereplikasi diri</span> – ia mengandalkan social engineering untuk menyebar.</p>
-                    <div class="code-block">
-                        <span class="comment"># Contoh perintah untuk mengizinkan Apache Full di firewall</span>
-                        <span class="cmd">$ sudo ufw allow 'Apache Full'</span>
-                        <span class="output">Rules updated</span>
-                        <span class="output">Rules updated (v6)</span>
-                    </div>
-                    <p>Di era 2025, trojan modern menggunakan <span class="text-blue-300">fileless techniques</span> dan <span class="text-blue-300">living-off-the-land</span> (LOLBins) untuk menghindari deteksi.</p>
-                    <p>Contoh populer: <strong>Emotet</strong>, <strong>TrickBot</strong>, dan <strong>QakBot</strong> – semuanya menggunakan modul modular dan encrypted C2.</p>
-                    <div class="grid md:grid-cols-2 gap-4 my-4">
-                        <div class="bg-gray-900 p-4 rounded-lg border border-red-800">
-                            <span class="text-red-400 font-semibold">⚠️ Ciri-ciri infeksi:</span>
-                            <ul class="text-gray-400 list-disc list-inside mt-2 space-y-1 text-sm">
-                                <li>CPU / RAM melonjak tanpa sebab</li>
-                                <li>Koneksi keluar ke IP mencurigakan</li>
-                                <li>File aneh di direktori temp</li>
-                                <li>Antivirus tiba-tiba mati</li>
-                            </ul>
-                        </div>
-                        <div class="bg-gray-900 p-4 rounded-lg border border-green-800">
-                            <span class="text-green-400 font-semibold">🛡️ Mitigasi:</span>
-                            <ul class="text-gray-400 list-disc list-inside mt-2 space-y-1 text-sm">
-                                <li>Jangan download dari source tidak jelas</li>
-                                <li>Aktifkan firewall & monitoring</li>
-                                <li>Update software rutin</li>
-                                <li>Gunakan EDR / XDR</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <p class="text-purple-300 text-sm italic">"Keamanan bukanlah produk, tapi sebuah proses." – Bruce Schneier</p>
-                `
-            },
-            {
-                id: 2,
-                title: "🔐 Inject Security ke Pipeline CI/CD",
-                tags: ["#devsecops", "#ci/cd", "#security"],
-                readTime: "10 min read",
-                date: "📅 1 Juli 2026",
-                author: "✍️ Marlin Hidayat",
-                image: "https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/main/img/cicd-security.jpg",
-                content: `
-                    <p>DevSecOps bukan buzzword. Mulai dari SAST, DAST, dependency scanning, sampai secret detection – semua bisa di-<span class="text-purple-300">automasi</span> di GitHub Actions atau GitLab CI.</p>
-                    <p>Contoh tools yang bisa dipake:</p>
-                    <ul class="list-disc list-inside space-y-1 text-gray-300">
-                        <li><span class="text-yellow-300">Trivy</span> – scan vulnerability di container image</li>
-                        <li><span class="text-yellow-300">Gitleaks</span> – cek secret/sensitive data di repo</li>
-                        <li><span class="text-yellow-300">Semgrep</span> – SAST dengan rule custom</li>
-                        <li><span class="text-yellow-300">OWASP ZAP</span> – DAST untuk web apps</li>
-                    </ul>
-                    <div class="code-block">
-                        <span class="comment"># GitHub Actions workflow untuk security scanning</span>
-                        <span class="cmd">- name: Trivy scan</span>
-                        <span class="output">  run: trivy image --severity HIGH,CRITICAL myapp:latest</span>
-                        <span class="cmd">- name: Gitleaks</span>
-                        <span class="output">  run: gitleaks detect --source . --verbose</span>
-                    </div>
-                    <p>Dengan integrasi ini, lo bisa <span class="text-green-300">fail the build</span> kalau ada vulnerability kritis – sehingga code yang deploy selalu aman.</p>
-                    <div class="bg-blue-900 bg-opacity-20 border border-blue-700 p-4 rounded-lg my-4">
-                        <p class="text-blue-300 text-sm"><i class="fas fa-lightbulb mr-2"></i> <strong>Tips:</strong> Jangan lupa set threshold severity sesuai risk appetite tim lo. Jangan terlalu strict sampe developernya frustasi, tapi jangan terlalu longgar sampe CVE kritis lolos.</p>
-                    </div>
-                `
-            },
-            {
-                id: 3,
-                title: "☁️ Kubernetes Security: 5 Hal yang Sering Dilupakan",
-                tags: ["#kubernetes", "#security", "#devops"],
-                readTime: "12 min read",
-                date: "📅 25 Juni 2026",
-                author: "✍️ Marlin Hidayat",
-                image: "https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/main/img/k8s-security.jpg",
-                content: `
-                    <p>Kubernetes emang keren, tapi banyak yang lupa sama aspek keamanannya. Ini 5 hal yang sering kelewat:</p>
-                    <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                        <li><strong class="text-purple-400">RBAC yang terlalu longgar</strong> – jangan kasih cluster-admin ke semua orang. <span class="text-yellow-300">Least privilege</span> adalah kunci.</li>
-                        <li><strong class="text-purple-400">Image dari registry ga jelas</strong> – selalu pake trusted registry dan scan image pake Trivy atau Clair.</li>
-                        <li><strong class="text-purple-400">Pod Security Standards (PSS) diabaikan</strong> – enable <span class="text-blue-300">restricted</span> policy di namespace production.</li>
-                        <li><strong class="text-purple-400">NetworkPolicy gak dipake</strong> – default-nya allow all, lo harus restrict traffic antar pod.</li>
-                        <li><strong class="text-purple-400">Secret management asal-asalan</strong> – jangan simpan secret di env atau configmap. Pake <span class="text-green-300">External Secrets Operator</span> atau <span class="text-green-300">Vault</span>.</li>
-                    </ol>
-                    <div class="code-block">
-                        <span class="comment"># Contoh NetworkPolicy yang bener</span>
-                        <span class="cmd">apiVersion: networking.k8s.io/v1</span>
-                        <span class="cmd">kind: NetworkPolicy</span>
-                        <span class="cmd">metadata:</span>
-                        <span class="output">  name: deny-all</span>
-                        <span class="cmd">spec:</span>
-                        <span class="output">  podSelector: {}</span>
-                        <span class="output">  policyTypes:</span>
-                        <span class="output">  - Ingress</span>
-                        <span class="output">  - Egress</span>
-                    </div>
-                `
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23667eea' font-family='sans-serif' font-size='20'%3EGitHub%3C/text%3E%3C/svg%3E",
+                content: "<p><strong>GitHub Pages</strong> adalah cara termudah buat deploy website statis gratis.</p><ol><li>Buat repo dengan nama <code>username.github.io</code></li><li>Push file HTML lo ke repo</li><li>Buka Settings → Pages → pilih branch main</li><li>Website lo langsung online!</li></ol><p>Jangan lupa setting custom domain kalo lo punya.</p>"
             }
         ];
 
-        // =========================================================
-        // ===== AUTO-GENERATE HASHTAG =====
-        // =========================================================
-        function generateTags(title, content) {
-            const stopwords = ['yang', 'dan', 'di', 'ke', 'dari', 'dengan', 'untuk', 'pada', 'adalah', 'ini', 'itu', 'oleh', 'sebagai', 'dalam', 'juga', 'serta', 'atau', 'dari', 'ke', 'dengan', 'tanpa', 'bagi', 'kepada'];
-            const combined = (title + ' ' + content).toLowerCase();
-            const words = combined.match(/[a-z0-9]+/g) || [];
-            const freq = {};
-            words.forEach(w => {
-                if (w.length > 2 && !stopwords.includes(w)) {
-                    freq[w] = (freq[w] || 0) + 1;
-                }
-            });
-            const sorted = Object.entries(freq).sort((a, b) => b[1] - a[1]);
-            let tags = sorted.slice(0, 5).map(([word]) => `#${word}`);
-            while (tags.length < 3) {
-                const defaults = ['#tech', '#cybersecurity', '#devops', '#linux', '#coding'];
-                const defaultTag = defaults[Math.floor(Math.random() * defaults.length)];
-                if (!tags.includes(defaultTag)) tags.push(defaultTag);
-            }
-            return tags;
-        }
-
-        // =========================================================
-        // ===== RENDER ARTIKEL =====
-        // =========================================================
         function renderArticles() {
             const grid = document.getElementById('articleGrid');
             if (!grid) return;
@@ -1071,9 +897,6 @@
             grid.innerHTML = html;
         }
 
-        // =========================================================
-        // ===== BUKA MODAL ARTIKEL =====
-        // =========================================================
         function openArticle(id) {
             const article = articles.find(a => a.id === id);
             if (!article) return;
@@ -1082,7 +905,14 @@
             document.getElementById('modalReadTime').textContent = article.readTime;
             document.getElementById('modalDate').textContent = article.date;
             document.getElementById('modalAuthor').textContent = article.author;
-            document.getElementById('modalContent').innerHTML = article.content;
+            
+            const contentContainer = document.getElementById('modalContent');
+            contentContainer.innerHTML = article.content;
+            
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAllUnder(contentContainer);
+            }
+            
             document.getElementById('articleModal').classList.remove('hidden');
             document.body.classList.add('overflow-hidden');
         }
@@ -1100,16 +930,29 @@
             if (e.key === 'Escape') closeArticleModal();
         });
 
-        // =========================================================
-        // ===== FORM TAMBAH ARTIKEL =====
-        // =========================================================
         document.getElementById('addArticleBtn').addEventListener('click', function() {
             document.getElementById('formModal').classList.remove('hidden');
             document.body.classList.add('overflow-hidden');
             document.getElementById('articleForm').reset();
+            document.getElementById('imagePreview').style.display = 'none';
             document.getElementById('formTags').value = '';
             document.getElementById('formReadTime').value = '5 min read';
-            document.getElementById('formImage').value = '';
+            document.getElementById('formImageFile').value = '';
+        });
+
+        document.getElementById('formImageFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const preview = document.getElementById('imagePreview');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    preview.src = event.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                preview.style.display = 'none';
+            }
         });
 
         function closeFormModal() {
@@ -1125,48 +968,53 @@
 
         document.getElementById('articleForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
             const title = document.getElementById('formTitle').value.trim();
+            const author = document.getElementById('formAuthor').value.trim();
             const content = document.getElementById('formContent').value.trim();
             const tagsInput = document.getElementById('formTags').value.trim();
             const readTime = document.getElementById('formReadTime').value.trim() || '5 min read';
-            const imageUrl = document.getElementById('formImage').value.trim() || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
             
-            if (!title || !content) {
-                alert('⚠️ Judul dan konten wajib diisi!');
+            const imagePreview = document.getElementById('imagePreview');
+            let imageUrl = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
+            if (imagePreview.style.display !== 'none' && imagePreview.src) {
+                imageUrl = imagePreview.src;
+            }
+            
+            if (!title || !author || !content) {
+                alert('⚠️ Judul, Author, dan konten wajib diisi!');
                 return;
             }
+            
             let tags = [];
             if (tagsInput) {
                 tags = tagsInput.split(',').map(t => t.trim()).filter(t => t);
                 tags = tags.map(t => t.startsWith('#') ? t : `#${t}`);
             } else {
-                tags = generateTags(title, content);
+                tags = ['#tech', '#devops'];
             }
+            
             const newArticle = {
                 id: Date.now(),
                 title: title,
+                author: author,
                 tags: tags,
                 readTime: readTime,
                 date: `📅 ${new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}`,
-                author: '✍️ Marlin Hidayat',
                 image: imageUrl,
                 content: content
             };
+            
             articles.push(newArticle);
             renderArticles();
             closeFormModal();
             setTimeout(() => {
-                const grid = document.getElementById('articleGrid');
-                if (grid) {
-                    grid.scrollIntoView({ behavior: 'smooth', block: 'end' });
-                }
+                document.getElementById('articles').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 300);
             document.getElementById('articleForm').reset();
+            document.getElementById('imagePreview').style.display = 'none';
         });
 
-        // =========================================================
-        // ===== TOMBOL LIHAT SEMUA ARTIKEL =====
-        // =========================================================
         document.getElementById('viewAllArticlesBtn').addEventListener('click', function() {
             const grid = document.getElementById('articleGrid');
             const btn = this;
@@ -1202,9 +1050,7 @@
             }
         });
 
-        // =========================================================
         // ===== CERTIFICATE MODAL =====
-        // =========================================================
         const certData = {
             aws: {
                 title: "AWS Cloud & AI Fundamentals",
@@ -1229,7 +1075,6 @@
         function openCertModal(type) {
             const data = certData[type];
             if (!data) return;
-            
             const container = document.getElementById('certModalContent');
             container.innerHTML = `
                 <div class="grid md:grid-cols-2 gap-6">
@@ -1254,7 +1099,6 @@
                     </div>
                 </div>
             `;
-            
             document.getElementById('certModal').classList.remove('hidden');
             document.body.classList.add('overflow-hidden');
         }
@@ -1270,7 +1114,7 @@
         });
 
         // =========================================================
-        // ===== PROJECT EXPLORER - CAROUSEL + GRID 2x3 =====
+        // ===== PROJECT EXPLORER (FIXED) =====
         // =========================================================
         let allProjects = [];
         let projectInterval = null;
@@ -1278,63 +1122,26 @@
         let githubAvatar = 'https://avatars.githubusercontent.com/u/48172784?v=4';
         let currentIndex = 0;
         let isPlaying = true;
-        let viewMode = 'carousel';
 
-        // DATA STATIS (fallback kalo API error)
+        // Data statis fallback
         const staticRepos = [
             { 
                 name: 'hidayat-tanjung.io', 
-                description: 'Portfolio website - Marlin Hidayat Tanjung',
-                html_url: 'https://github.com/hidayat-tanjung/hidayat-tanjung.io',
-                language: 'HTML',
-                owner: { login: 'hidayat-tanjung' },
-                homepage: 'https://hidayat-tanjung.github.io/hidayat-tanjung.io/',
-                has_pages: true
+                description: 'Portfolio website - Marlin Hidayat Tanjung', 
+                html_url: 'https://github.com/hidayat-tanjung/hidayat-tanjung.io', 
+                language: 'HTML', 
+                owner: { login: 'hidayat-tanjung' }, 
+                homepage: 'https://hidayat-tanjung.github.io/hidayat-tanjung.io/', 
+                has_pages: true 
             },
             { 
                 name: 'linux-ploiter', 
-                description: 'Linux security tools collection',
-                html_url: 'https://github.com/hidayat-tanjung/linux-ploiter',
-                language: 'Shell',
-                owner: { login: 'hidayat-tanjung' },
-                homepage: null,
-                has_pages: false
-            },
-            { 
-                name: 'project-3', 
-                description: 'Deskripsi project 3',
-                html_url: 'https://github.com/hidayat-tanjung/project-3',
-                language: 'JavaScript',
-                owner: { login: 'hidayat-tanjung' },
-                homepage: 'https://hidayat-tanjung.github.io/project-3/',
-                has_pages: true
-            },
-            { 
-                name: 'project-4', 
-                description: 'Deskripsi project 4',
-                html_url: 'https://github.com/hidayat-tanjung/project-4',
-                language: 'Python',
-                owner: { login: 'hidayat-tanjung' },
-                homepage: null,
-                has_pages: false
-            },
-            { 
-                name: 'project-5', 
-                description: 'Deskripsi project 5',
-                html_url: 'https://github.com/hidayat-tanjung/project-5',
-                language: 'Go',
-                owner: { login: 'hidayat-tanjung' },
-                homepage: 'https://hidayat-tanjung.github.io/project-5/',
-                has_pages: true
-            },
-            { 
-                name: 'project-6', 
-                description: 'Deskripsi project 6',
-                html_url: 'https://github.com/hidayat-tanjung/project-6',
-                language: 'Rust',
-                owner: { login: 'hidayat-tanjung' },
-                homepage: null,
-                has_pages: false
+                description: 'Linux security tools collection', 
+                html_url: 'https://github.com/hidayat-tanjung/linux-ploiter', 
+                language: 'Shell', 
+                owner: { login: 'hidayat-tanjung' }, 
+                homepage: null, 
+                has_pages: false 
             }
         ];
 
@@ -1344,20 +1151,22 @@
             
             try {
                 grid.innerHTML = `<div class="col-span-full flex justify-center items-center"><div class="loader"></div></div>`;
+                console.log('🔄 Fetching projects from GitHub...');
                 
                 const res = await fetch('https://api.github.com/users/hidayat-tanjung/repos?sort=updated&per_page=100');
                 
                 if (!res.ok) {
-                    console.warn('GitHub API error, using static data');
+                    console.warn(`⚠️ GitHub API error (${res.status}), using static data`);
                     allProjects = staticRepos;
                     renderProjects();
                     return;
                 }
                 
                 const repos = await res.json();
+                console.log(`✅ Fetched ${repos.length} repos from GitHub`);
+                
                 allProjects = repos.filter(r => !r.archived);
                 
-                // Kalo kurang dari 6, tambahin data statis
                 if (allProjects.length < 6) {
                     const existingNames = allProjects.map(p => p.name);
                     const extra = staticRepos.filter(r => !existingNames.includes(r.name));
@@ -1367,7 +1176,7 @@
                 renderProjects();
                 
             } catch(e) {
-                console.error('Error fetch projects:', e);
+                console.error('❌ Error fetch projects:', e);
                 allProjects = staticRepos;
                 renderProjects();
             }
@@ -1377,77 +1186,81 @@
             const grid = document.getElementById('projectExplorerGrid');
             if (!grid) return;
             
-            document.getElementById('projectCount').textContent = `Total ${allProjects.length} project • Bergiliran`;
+            const total = allProjects.length;
+            document.getElementById('projectCount').textContent = `Total ${total} project • Bergiliran`;
             
-            const now = new Date();
-            document.getElementById('projectTimer').textContent = `⏱️ Update: ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`;
-            
-            if (allProjects.length === 0) {
+            if (total === 0) {
                 grid.innerHTML = `<div class="col-span-full text-center text-gray-400 py-8">Tidak ada project</div>`;
                 return;
             }
             
-            renderCarouselMode(grid);
-            renderDots();
-        }
-
-        function renderCarouselMode(grid) {
-            const projectsPerSlide = 6; // 2 baris x 3 kolom
-            const totalSlides = Math.ceil(allProjects.length / projectsPerSlide);
-            
+            const totalSlides = Math.ceil(total / 6);
             if (currentIndex >= totalSlides) currentIndex = 0;
-            if (currentIndex < 0) currentIndex = totalSlides - 1;
+            if (currentIndex < 0) currentIndex = 0;
             
-            const startIdx = currentIndex * projectsPerSlide;
-            const endIdx = Math.min(startIdx + projectsPerSlide, allProjects.length);
-            const displayProjects = allProjects.slice(startIdx, endIdx);
-            
-            document.getElementById('projectRotateInfo').textContent = `Slide ${currentIndex + 1} dari ${totalSlides} • Bergilir setiap 5 detik`;
+            const startIdx = currentIndex * 6;
+            const displayProjects = allProjects.slice(startIdx, startIdx + 6);
             
             let html = '';
             displayProjects.forEach(repo => {
                 html += createProjectCard(repo);
             });
             
-            // Tambah card kosong untuk menjaga grid 3 kolom
             const remaining = 6 - displayProjects.length;
             for (let i = 0; i < remaining; i++) {
-                html += `<div class="bg-gray-800 rounded-xl border border-gray-700 opacity-0"></div>`;
+                html += `<div class="bg-gray-800 rounded-xl border border-gray-700 opacity-0" style="height:280px;"></div>`;
             }
             
             grid.innerHTML = html;
+            renderDots();
         }
 
         function createProjectCard(repo) {
-            const liveUrl = repo.homepage && repo.homepage.startsWith('http') 
-                ? repo.homepage 
-                : (repo.has_pages ? `https://${repo.owner.login}.github.io/${repo.name}` : null);
+            let liveUrl = null;
+            if (repo.homepage && repo.homepage.startsWith('http')) {
+                liveUrl = repo.homepage;
+            } else if (repo.has_pages) {
+                liveUrl = `https://${repo.owner.login}.github.io/${repo.name}`;
+            }
             
-            const grad = ['from-purple-600 to-pink-600','from-blue-600 to-cyan-600','from-green-600 to-teal-600','from-red-600 to-orange-600','from-yellow-600 to-red-600','from-indigo-600 to-purple-600','from-pink-600 to-rose-600','from-cyan-600 to-blue-600','from-emerald-600 to-green-600'][Math.floor(Math.random()*9)];
+            const gradients = [
+                'from-purple-600 to-pink-600','from-blue-600 to-cyan-600',
+                'from-green-600 to-teal-600','from-red-600 to-orange-600',
+                'from-yellow-600 to-red-600','from-indigo-600 to-purple-600',
+                'from-pink-600 to-rose-600','from-cyan-600 to-blue-600',
+                'from-emerald-600 to-green-600'
+            ];
+            const grad = gradients[Math.floor(Math.random() * gradients.length)];
             
             return `
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden card-hover border border-gray-700 hover:border-cyan-500 transition-all">
-                    <div class="h-36 bg-gradient-to-br ${grad} flex items-center justify-center text-white font-bold text-base p-3 text-center truncate">${repo.name}</div>
-                    <div class="p-5">
-                        <div class="flex items-center gap-3 mb-3">
-                            ${githubAvatar ? `<img src="${githubAvatar}" alt="GitHub Avatar" class="github-avatar">` : `<div class="w-10 h-10 rounded-full bg-gray-700 flex items-center justify-center text-gray-400"><i class="fab fa-github"></i></div>`}
+                    <div class="h-36 bg-gradient-to-br ${grad} flex items-center justify-center text-white font-bold text-base p-3 text-center truncate">
+                        ${repo.name}
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center gap-2 mb-2">
+                            ${githubAvatar ? `<img src="${githubAvatar}" class="w-8 h-8 rounded-full border border-gray-600">` : `<div class="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center"><i class="fab fa-github text-gray-400"></i></div>`}
                             <span class="text-gray-400 text-xs">${repo.owner.login}</span>
                         </div>
-                        <p class="project-desc text-gray-400 line-clamp-2 h-10">${repo.description || 'No description'}</p>
-                        <div class="flex items-center justify-between mt-4">
-                            <span class="project-lang px-3 py-1 bg-cyan-600 bg-opacity-20 text-cyan-400 rounded-full">${repo.language || '?'}</span>
-                            <div class="flex gap-4">
-                                <a href="${repo.html_url}" target="_blank" class="text-gray-400 hover:text-white transition text-base" title="View source">
-                                    <i class="fab fa-github text-xl"></i>
+                        <p class="text-gray-400 text-sm line-clamp-2 h-10">${repo.description || 'No description'}</p>
+                        <div class="flex items-center justify-between mt-3">
+                            <span class="text-xs px-3 py-1 bg-cyan-600/20 text-cyan-400 rounded-full">${repo.language || '?'}</span>
+                            <div class="flex gap-3">
+                                <a href="${repo.html_url}" target="_blank" 
+                                   class="text-gray-400 hover:text-white transition text-lg" 
+                                   title="Lihat source code di GitHub">
+                                    <i class="fab fa-github"></i>
                                 </a>
                                 ${liveUrl ? `
-                                <button onclick="openProjectPreview('${liveUrl}', '${repo.name}')" class="text-green-400 hover:text-green-300 transition text-base" title="Live preview">
-                                    <i class="fas fa-eye text-xl"></i>
-                                </button>
+                                    <button onclick="openProjectPreview('${liveUrl}', '${repo.name}')" 
+                                            class="text-green-400 hover:text-green-300 transition text-lg" 
+                                            title="Live preview website">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
                                 ` : `
-                                <span class="text-gray-600 text-base cursor-not-allowed" title="No live demo">
-                                    <i class="fas fa-eye text-xl"></i>
-                                </span>
+                                    <span class="text-gray-600 text-lg cursor-not-allowed" title="Tidak ada website untuk di-preview">
+                                        <i class="fas fa-eye-slash"></i>
+                                    </span>
                                 `}
                             </div>
                         </div>
@@ -1460,9 +1273,7 @@
             const dotsContainer = document.getElementById('projectDots');
             if (!dotsContainer) return;
             
-            const projectsPerSlide = 6;
-            const totalSlides = Math.ceil(allProjects.length / projectsPerSlide);
-            
+            const totalSlides = Math.ceil(allProjects.length / 6);
             if (totalSlides <= 1) {
                 dotsContainer.innerHTML = '';
                 return;
@@ -1480,8 +1291,7 @@
         }
 
         function goToSlide(index) {
-            const projectsPerSlide = 6;
-            const totalSlides = Math.ceil(allProjects.length / projectsPerSlide);
+            const totalSlides = Math.ceil(allProjects.length / 6);
             if (index < 0) index = totalSlides - 1;
             if (index >= totalSlides) index = 0;
             currentIndex = index;
@@ -1490,15 +1300,13 @@
         }
 
         function nextSlide() {
-            const projectsPerSlide = 6;
-            const totalSlides = Math.ceil(allProjects.length / projectsPerSlide);
+            const totalSlides = Math.ceil(allProjects.length / 6);
             if (totalSlides === 0) return;
             goToSlide((currentIndex + 1) % totalSlides);
         }
 
         function prevSlide() {
-            const projectsPerSlide = 6;
-            const totalSlides = Math.ceil(allProjects.length / projectsPerSlide);
+            const totalSlides = Math.ceil(allProjects.length / 6);
             if (totalSlides === 0) return;
             goToSlide((currentIndex - 1 + totalSlides) % totalSlides);
         }
@@ -1513,16 +1321,23 @@
             }
         }
 
-        // ===== TOMBOL NAVIGASI =====
         document.getElementById('projectPrevBtn').addEventListener('click', prevSlide);
         document.getElementById('projectNextBtn').addEventListener('click', nextSlide);
 
-        // ===== PROJECT PREVIEW MODAL =====
         function openProjectPreview(url, name) {
-            if (!url) return alert('Tidak ada website untuk di-preview');
+            if (!url) {
+                alert('⚠️ Tidak ada website untuk di-preview.');
+                return;
+            }
+            
+            console.log(`🔍 Opening preview: ${url}`);
+            
             document.getElementById('projectPreviewTitle').textContent = `🔍 ${name}`;
             document.getElementById('projectPreviewLink').href = url;
-            document.getElementById('projectPreviewIframe').src = url;
+            
+            const iframe = document.getElementById('projectPreviewIframe');
+            iframe.src = url;
+            
             document.getElementById('projectPreviewModal').classList.remove('hidden');
             document.body.classList.add('overflow-hidden');
         }
@@ -1541,31 +1356,29 @@
             if (e.key === 'Escape') closeProjectPreview();
         });
 
-        // =========================================================
-        // ===== NAVIGASI =====
-        // =========================================================
-        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) { target.scrollIntoView({ behavior: 'smooth' }); }
-                document.getElementById('mobile-menu').classList.add('hidden');
+        // ===== NAVIGASI SMOOTH SCROLL =====
+        document.querySelectorAll('a[href^="#"], .nav-link[onclick*="showPage"]').forEach(el => {
+            el.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        document.getElementById('mobile-menu').classList.add('hidden');
+                    }
+                }
             });
         });
 
         // =========================================================
         // ===== INIT =====
         // =========================================================
+        renderExperience();
         renderArticles();
         fetchProjects();
         if (projectInterval) clearInterval(projectInterval);
-        projectInterval = setInterval(() => {
-            fetchProjects();
-        }, 20000);
+        projectInterval = setInterval(fetchProjects, 20000);
     </script>
 </body>
 </html>
