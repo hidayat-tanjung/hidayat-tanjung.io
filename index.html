@@ -534,29 +534,19 @@
         <div class="container mx-auto px-6">
             <h2 class="section-title font-bold text-center mb-4"><span class="text-white">🚀 Your Projects</span></h2>
             <p class="text-center text-gray-400 text-base mb-2"><span id="projectCount">Memuat...</span></p>
-            <div class="relative max-w-5xl mx-auto">
-                <!-- Tombol Prev -->
-                <button id="projectPrevBtn" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-black/70 hover:bg-purple-600/70 text-white p-3 rounded-full -ml-4 md:-ml-6 transition-all duration-300">
-                    <i class="fas fa-chevron-left text-xl"></i>
-                </button>
-                
-                <!-- Grid Project 3x2 -->
-                <div id="projectExplorerGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6 min-h-[400px]">
-                    <div class="col-span-full flex justify-center items-center">
-                        <div class="loader"></div>
-                    </div>
+            <p class="text-center text-gray-500 text-sm mb-4"><span id="projectSlideInfo"></span></p>
+            
+            <!-- Grid Project 3x2 -->
+            <div id="projectExplorerGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto min-h-[400px]">
+                <div class="col-span-full flex justify-center items-center">
+                    <div class="loader"></div>
                 </div>
-                
-                <!-- Tombol Next -->
-                <button id="projectNextBtn" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-black/70 hover:bg-purple-600/70 text-white p-3 rounded-full -mr-4 md:-mr-6 transition-all duration-300">
-                    <i class="fas fa-chevron-right text-xl"></i>
-                </button>
             </div>
             
             <!-- Indikator Dot -->
             <div id="projectDots" class="flex justify-center gap-3 mt-6"></div>
             
-            <!-- Info dengan Preview -->
+            <!-- Info -->
             <div class="text-center text-gray-500 text-sm mt-4">
                 <i class="fas fa-sync-alt mr-1"></i> Auto-refresh setiap 20 detik dari GitHub • 
                 <i class="fas fa-code mr-1"></i> Klik icon GitHub untuk source • 
@@ -1489,7 +1479,7 @@ jobs:
         });
 
         // =========================================================
-        // ===== PROJECT EXPLORER - 3x2 =====
+        // ===== PROJECT EXPLORER - TANPA TOMBOL NAVIGASI =====
         // =========================================================
         let allProjects = [];
         let projectInterval = null;
@@ -1497,7 +1487,7 @@ jobs:
         let githubAvatar = 'https://avatars.githubusercontent.com/u/48172784?v=4';
         let currentIndex = 0;
         let isPlaying = true;
-        const PROJECTS_PER_SLIDE = 6; // 3 kolom x 2 baris
+        const PROJECTS_PER_SLIDE = 6;
 
         // Data statis fallback
         const staticRepos = [
@@ -1579,7 +1569,6 @@ jobs:
                 
                 allProjects = repos.filter(r => !r.archived);
                 
-                // Kalo kurang dari 6, tambahin data statis
                 if (allProjects.length < PROJECTS_PER_SLIDE) {
                     const existingNames = allProjects.map(p => p.name);
                     const extra = staticRepos.filter(r => !existingNames.includes(r.name));
@@ -1619,7 +1608,6 @@ jobs:
                 html += createProjectCard(repo);
             });
             
-            // Tambah card kosong untuk menjaga grid 3 kolom
             const remaining = PROJECTS_PER_SLIDE - displayProjects.length;
             for (let i = 0; i < remaining; i++) {
                 html += `<div class="bg-gray-800 rounded-xl border border-gray-700 opacity-0" style="height:280px;"></div>`;
@@ -1719,12 +1707,6 @@ jobs:
             goToSlide((currentIndex + 1) % totalSlides);
         }
 
-        function prevSlide() {
-            const totalSlides = Math.ceil(allProjects.length / PROJECTS_PER_SLIDE);
-            if (totalSlides === 0) return;
-            goToSlide((currentIndex - 1 + totalSlides) % totalSlides);
-        }
-
         function resetCarouselTimer() {
             if (carouselInterval) {
                 clearInterval(carouselInterval);
@@ -1734,10 +1716,6 @@ jobs:
                 carouselInterval = setInterval(nextSlide, 5000);
             }
         }
-
-        // Event listener tombol navigasi
-        document.getElementById('projectPrevBtn').addEventListener('click', prevSlide);
-        document.getElementById('projectNextBtn').addEventListener('click', nextSlide);
 
         // ===== PROJECT PREVIEW MODAL =====
         function openProjectPreview(url, name) {
