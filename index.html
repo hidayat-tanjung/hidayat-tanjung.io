@@ -36,7 +36,21 @@
         * { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: #0a0a0a; }
         
-        /* ===== CUSTOM SCROLLBAR DIHAPUS (PAKAI DEFAULT BROWSER) ===== */
+        /* ===== SEMBUNYIKAN SCROLLBAR (TAPI TETEP BISA SCROLL) ===== */
+        ::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+            background: transparent;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: transparent;
+        }
+        html {
+            scrollbar-width: none; /* Firefox */
+        }
         
         .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .glow { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
@@ -167,6 +181,32 @@
             box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
         }
 
+        /* ===== ANIMASI SCROLL TECHNOLOGIES ===== */
+        @keyframes scroll-right {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+        }
+        .animate-scroll-right {
+            animation: scroll-right 25s linear infinite;
+        }
+        .animate-scroll-left {
+            animation: scroll-left 25s linear infinite;
+        }
+        .animate-scroll-right:hover,
+        .animate-scroll-left:hover {
+            animation-play-state: paused;
+        }
+
+        .tech-icon { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .tech-icon:hover { transform: translateY(-8px) scale(1.05); }
+        .tech-icon .icon-wrapper { transition: all 0.4s ease; width: 80px; height: 80px; position: relative; }
+        .tech-icon:hover .icon-wrapper { box-shadow: 0 0 40px rgba(102, 126, 234, 0.5); transform: scale(1.02); }
+        .tech-icon p { font-size: 0.9rem; font-weight: 500; }
+
         #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
         .particle { position: absolute; border-radius: 50%; pointer-events: none; animation: particle-float linear infinite; }
         @keyframes particle-float { 0% { transform: translateY(100vh) scale(0); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(-10vh) scale(1); opacity: 0; } }
@@ -247,12 +287,6 @@
             transform: scale(1.05);
         }
         
-        .tech-icon { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .tech-icon:hover { transform: translateY(-8px) scale(1.05); }
-        .tech-icon .icon-wrapper { transition: all 0.4s ease; width: 80px; height: 80px; position: relative; }
-        .tech-icon:hover .icon-wrapper { box-shadow: 0 0 40px rgba(102, 126, 234, 0.5); transform: scale(1.02); }
-        .tech-icon p { font-size: 0.9rem; font-weight: 500; }
-        
         .github-avatar { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #4a5568; transition: all 0.3s ease; }
         .github-avatar:hover { border-color: #667eea; transform: scale(1.1); }
         .profile-img-wrapper { transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; }
@@ -290,6 +324,8 @@
             }
             .dropdown-menu a { padding: 6px 16px; font-size: 0.85rem; }
             .dropdown-arrow { display: none; }
+            .tech-icon .icon-wrapper { width: 60px; height: 60px; }
+            .tech-icon .icon-wrapper i { font-size: 2rem !important; }
         }
 
         #formStatus { transition: all 0.3s ease; }
@@ -302,27 +338,20 @@
     <!-- ===== LOADING SCREEN ===== -->
     <div id="loadingScreen" class="fixed inset-0 flex flex-col items-center justify-center" style="background-color: #000000; opacity: 1; visibility: visible; z-index: 9999;">
         <div class="flex flex-col items-center">
-            <!-- Spinner Double Ring - Warna Cerah -->
             <div class="relative w-20 h-20">
                 <div class="absolute inset-0 border-4 border-purple-500/20 rounded-full"></div>
                 <div class="absolute inset-0 border-4 border-t-purple-500 border-r-purple-500 border-b-transparent border-l-transparent rounded-full animate-spin" style="border-width: 4px;"></div>
                 <div class="absolute inset-2 border-4 border-t-cyan-400 border-l-cyan-400 border-r-transparent border-b-transparent rounded-full animate-spin animation-delay-150" style="border-width: 3px;"></div>
             </div>
-            
-            <!-- Teks Loading - Gradient Cerah -->
             <p class="mt-6 text-gray-300 font-mono text-sm tracking-widest animate-pulse">
                 <span class="gradient-text font-bold text-lg">Loading</span>
                 <span class="inline-block animate-bounce delay-100 text-purple-400">.</span>
                 <span class="inline-block animate-bounce delay-200 text-cyan-400">.</span>
                 <span class="inline-block animate-bounce delay-300 text-purple-400">.</span>
             </p>
-            
-            <!-- Progress Bar - Gradien Cerah -->
             <div class="mt-4 w-56 h-1.5 bg-gray-800 rounded-full overflow-hidden">
                 <div id="loadingProgress" class="h-full bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 rounded-full transition-all duration-300" style="width: 0%;"></div>
             </div>
-            
-            <!-- Persentase Loading -->
             <p id="loadingPercent" class="mt-3 text-gray-400 font-mono text-sm">0%</p>
         </div>
     </div>
@@ -443,7 +472,6 @@
                         <div><span class="text-purple-400 font-semibold">💼</span> 2+ Years</div>
                         <div><span class="text-purple-400 font-semibold">❤️</span> Automation, Security</div>
                     </div>
-                    <!-- ===== TOMBOL DOWNLOAD CV (HANYA DI ABOUT) ===== -->
                     <a href="https://drive.google.com/uc?export=download&id=1YYVUZLSIJ86P3QG02p-RLteOQrYIsFPE" 
                        target="_blank" 
                        class="btn-download inline-block mt-6 px-8 py-3 text-white rounded-lg text-base transition-all duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/25">
@@ -453,7 +481,6 @@
                 <div class="flex justify-center">
                     <div class="profile-img-wrapper w-56 h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 p-1">
                         <div class="w-full h-full rounded-full bg-black p-1">
-                            <!-- ===== GANTI FOTO PROFIL ===== -->
                             <img src="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/main/img/marlina.jpg" 
                                  alt="Profile" 
                                  class="w-full h-full rounded-full object-cover transition-transform duration-500 hover:scale-105"/>
@@ -531,19 +558,11 @@
         <div class="container mx-auto px-6">
             <h2 class="section-title font-bold text-center mb-4"><span class="text-white">🚀 Your Projects</span></h2>
             <p class="text-center text-gray-400 text-base mb-2"><span id="projectCount">Memuat...</span></p>
-            <p class="text-center text-gray-500 text-sm mb-4"><span id="projectSlideInfo"></span></p>
-            
-            <!-- Grid Project 3x2 -->
             <div id="projectExplorerGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto min-h-[400px]">
                 <div class="col-span-full flex justify-center items-center">
                     <div class="loader"></div>
                 </div>
             </div>
-            
-            <!-- Indikator Dot -->
-            <div id="projectDots" class="flex justify-center gap-3 mt-6"></div>
-            
-            <!-- Info -->
             <div class="text-center text-gray-500 text-sm mt-4">
                 <i class="fas fa-sync-alt mr-1"></i> Auto-refresh setiap 20 detik dari GitHub • 
                 <i class="fas fa-code mr-1"></i> Klik icon GitHub untuk source • 
@@ -552,18 +571,317 @@
         </div>
     </section>
 
-    <!-- ===== TECHNOLOGIES ===== -->
-    <section class="py-16 bg-gray-900 bg-opacity-30 relative z-10">
+    <!-- ========================================================= -->
+    <!-- ===== TECHNOLOGIES I USE ===== -->
+    <!-- ========================================================= -->
+    <section class="py-16 bg-gray-900 bg-opacity-30 relative z-10 overflow-hidden">
         <div class="container mx-auto px-6">
             <h3 class="text-2xl font-semibold text-center text-purple-400 mb-10">Technologies I Use</h3>
-            <div class="flex flex-wrap justify-center gap-8 md:gap-12 max-w-5xl mx-auto">
-                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-purple-600 group-hover:to-pink-600"><i class="fas fa-terminal text-3xl text-green-400"></i></div><p class="text-gray-400 text-sm">Terminal</p></div>
-                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-blue-500 group-hover:to-cyan-400"><i class="fab fa-docker text-3xl text-blue-400"></i></div><p class="text-gray-400 text-sm">Docker</p></div>
-                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-red-500 group-hover:to-orange-400"><i class="fab fa-jenkins text-3xl text-red-400"></i></div><p class="text-gray-400 text-sm">Jenkins</p></div>
-                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-green-500 group-hover:to-emerald-400"><i class="fas fa-shield-alt text-3xl text-green-400"></i></div><p class="text-gray-400 text-sm">CVE Research</p></div>
-                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-teal-500 group-hover:to-cyan-400"><i class="fas fa-brain text-3xl text-teal-400"></i></div><p class="text-gray-400 text-sm">AI</p></div>
-                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-gray-600 group-hover:to-gray-400"><i class="fab fa-github text-3xl text-gray-400"></i></div><p class="text-gray-400 text-sm">GitHub</p></div>
-                <div class="tech-icon flex flex-col items-center group"><div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-orange-500 group-hover:to-yellow-400"><i class="fab fa-linux text-3xl text-orange-400"></i></div><p class="text-gray-400 text-sm">Linux</p></div>
+            
+            <!-- BARIS ATAS - BERGERAK KE KANAN -->
+            <div class="flex overflow-hidden mb-6">
+                <div class="flex gap-8 md:gap-12 animate-scroll-right">
+                    <!-- Visual Studio Code -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#007ACC] group-hover:to-[#005a9e] transition-all duration-300 shadow-lg group-hover:shadow-[#007ACC]/30">
+                            <i class="fas fa-code text-3xl text-[#007ACC] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#007ACC] transition-colors">VS Code</p>
+                    </div>
+                    <!-- Burp Suite -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#FF6633] group-hover:to-[#cc5229] transition-all duration-300 shadow-lg group-hover:shadow-[#FF6633]/30">
+                            <i class="fas fa-bug text-3xl text-[#FF6633] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#FF6633] transition-colors">Burp Suite</p>
+                    </div>
+                    <!-- Nmap -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#0E83CD] group-hover:to-[#0a5f96] transition-all duration-300 shadow-lg group-hover:shadow-[#0E83CD]/30">
+                            <i class="fas fa-network-wired text-3xl text-[#0E83CD] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#0E83CD] transition-colors">Nmap</p>
+                    </div>
+                    <!-- Wireshark -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#1679A7] group-hover:to-[#0f5a7a] transition-all duration-300 shadow-lg group-hover:shadow-[#1679A7]/30">
+                            <i class="fas fa-wifi text-3xl text-[#1679A7] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#1679A7] transition-colors">Wireshark</p>
+                    </div>
+                    <!-- Cisco -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#1BA0D7] group-hover:to-[#1478a3] transition-all duration-300 shadow-lg group-hover:shadow-[#1BA0D7]/30">
+                            <i class="fas fa-server text-3xl text-[#1BA0D7] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#1BA0D7] transition-colors">Cisco</p>
+                    </div>
+                    <!-- Metasploit -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#004C97] group-hover:to-[#003366] transition-all duration-300 shadow-lg group-hover:shadow-[#004C97]/30">
+                            <i class="fas fa-skull text-3xl text-[#004C97] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#004C97] transition-colors">Metasploit</p>
+                    </div>
+                    <!-- Nuclei -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#00D4AA] group-hover:to-[#00a888] transition-all duration-300 shadow-lg group-hover:shadow-[#00D4AA]/30">
+                            <i class="fas fa-bolt text-3xl text-[#00D4AA] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#00D4AA] transition-colors">Nuclei</p>
+                    </div>
+                    <!-- Docker -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#2496ED] group-hover:to-[#1a75b8] transition-all duration-300 shadow-lg group-hover:shadow-[#2496ED]/30">
+                            <i class="fab fa-docker text-3xl text-[#2496ED] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#2496ED] transition-colors">Docker</p>
+                    </div>
+                    <!-- Jenkins -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#D24939] group-hover:to-[#a8382a] transition-all duration-300 shadow-lg group-hover:shadow-[#D24939]/30">
+                            <i class="fab fa-jenkins text-3xl text-[#D24939] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#D24939] transition-colors">Jenkins</p>
+                    </div>
+                    <!-- Python -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#3776AB] group-hover:to-[#2a5780] transition-all duration-300 shadow-lg group-hover:shadow-[#3776AB]/30">
+                            <i class="fab fa-python text-3xl text-[#3776AB] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#3776AB] transition-colors">Python</p>
+                    </div>
+                    <!-- Ansible -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#EE0000] group-hover:to-[#bb0000] transition-all duration-300 shadow-lg group-hover:shadow-[#EE0000]/30">
+                            <i class="fas fa-cogs text-3xl text-[#EE0000] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#EE0000] transition-colors">Ansible</p>
+                    </div>
+                    <!-- Git -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#F05032] group-hover:to-[#c04028] transition-all duration-300 shadow-lg group-hover:shadow-[#F05032]/30">
+                            <i class="fab fa-git-alt text-3xl text-[#F05032] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#F05032] transition-colors">Git</p>
+                    </div>
+                    <!-- Kubernetes -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#326CE5] group-hover:to-[#2251b3] transition-all duration-300 shadow-lg group-hover:shadow-[#326CE5]/30">
+                            <i class="fas fa-cubes text-3xl text-[#326CE5] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#326CE5] transition-colors">Kubernetes</p>
+                    </div>
+                    <!-- Bootstrap -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#7952B3] group-hover:to-[#5c3d8a] transition-all duration-300 shadow-lg group-hover:shadow-[#7952B3]/30">
+                            <i class="fab fa-bootstrap text-3xl text-[#7952B3] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#7952B3] transition-colors">Bootstrap</p>
+                    </div>
+                    <!-- Tailwind CSS -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#38B2AC] group-hover:to-[#2a8a85] transition-all duration-300 shadow-lg group-hover:shadow-[#38B2AC]/30">
+                            <i class="fab fa-tailwind text-3xl text-[#38B2AC] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#38B2AC] transition-colors">Tailwind CSS</p>
+                    </div>
+                    <!-- HTML5 -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#E34F26] group-hover:to-[#b33f1e] transition-all duration-300 shadow-lg group-hover:shadow-[#E34F26]/30">
+                            <i class="fab fa-html5 text-3xl text-[#E34F26] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#E34F26] transition-colors">HTML5</p>
+                    </div>
+                    <!-- CSS3 -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#1572B6] group-hover:to-[#105a8a] transition-all duration-300 shadow-lg group-hover:shadow-[#1572B6]/30">
+                            <i class="fab fa-css3-alt text-3xl text-[#1572B6] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#1572B6] transition-colors">CSS3</p>
+                    </div>
+                    <!-- JavaScript -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#F7DF1E] group-hover:to-[#c4b318] transition-all duration-300 shadow-lg group-hover:shadow-[#F7DF1E]/30">
+                            <i class="fab fa-js text-3xl text-[#F7DF1E] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#F7DF1E] transition-colors">JavaScript</p>
+                    </div>
+                    <!-- Grafana -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#F46800] group-hover:to-[#c45300] transition-all duration-300 shadow-lg group-hover:shadow-[#F46800]/30">
+                            <i class="fas fa-chart-line text-3xl text-[#F46800] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#F46800] transition-colors">Grafana</p>
+                    </div>
+                    <!-- Prometheus -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#E6522C] group-hover:to-[#b84222] transition-all duration-300 shadow-lg group-hover:shadow-[#E6522C]/30">
+                            <i class="fas fa-fire text-3xl text-[#E6522C] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#E6522C] transition-colors">Prometheus</p>
+                    </div>
+                    <!-- Zabbix -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#CC0000] group-hover:to-[#990000] transition-all duration-300 shadow-lg group-hover:shadow-[#CC0000]/30">
+                            <i class="fas fa-chart-bar text-3xl text-[#CC0000] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#CC0000] transition-colors">Zabbix</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BARIS BAWAH - BERGERAK KE KIRI -->
+            <div class="flex overflow-hidden">
+                <div class="flex gap-8 md:gap-12 animate-scroll-left">
+                    <!-- Visual Studio Code -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#007ACC] group-hover:to-[#005a9e] transition-all duration-300 shadow-lg group-hover:shadow-[#007ACC]/30">
+                            <i class="fas fa-code text-3xl text-[#007ACC] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#007ACC] transition-colors">VS Code</p>
+                    </div>
+                    <!-- Burp Suite -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#FF6633] group-hover:to-[#cc5229] transition-all duration-300 shadow-lg group-hover:shadow-[#FF6633]/30">
+                            <i class="fas fa-bug text-3xl text-[#FF6633] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#FF6633] transition-colors">Burp Suite</p>
+                    </div>
+                    <!-- Nmap -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#0E83CD] group-hover:to-[#0a5f96] transition-all duration-300 shadow-lg group-hover:shadow-[#0E83CD]/30">
+                            <i class="fas fa-network-wired text-3xl text-[#0E83CD] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#0E83CD] transition-colors">Nmap</p>
+                    </div>
+                    <!-- Wireshark -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#1679A7] group-hover:to-[#0f5a7a] transition-all duration-300 shadow-lg group-hover:shadow-[#1679A7]/30">
+                            <i class="fas fa-wifi text-3xl text-[#1679A7] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#1679A7] transition-colors">Wireshark</p>
+                    </div>
+                    <!-- Cisco -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#1BA0D7] group-hover:to-[#1478a3] transition-all duration-300 shadow-lg group-hover:shadow-[#1BA0D7]/30">
+                            <i class="fas fa-server text-3xl text-[#1BA0D7] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#1BA0D7] transition-colors">Cisco</p>
+                    </div>
+                    <!-- Metasploit -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#004C97] group-hover:to-[#003366] transition-all duration-300 shadow-lg group-hover:shadow-[#004C97]/30">
+                            <i class="fas fa-skull text-3xl text-[#004C97] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#004C97] transition-colors">Metasploit</p>
+                    </div>
+                    <!-- Nuclei -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#00D4AA] group-hover:to-[#00a888] transition-all duration-300 shadow-lg group-hover:shadow-[#00D4AA]/30">
+                            <i class="fas fa-bolt text-3xl text-[#00D4AA] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#00D4AA] transition-colors">Nuclei</p>
+                    </div>
+                    <!-- Docker -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#2496ED] group-hover:to-[#1a75b8] transition-all duration-300 shadow-lg group-hover:shadow-[#2496ED]/30">
+                            <i class="fab fa-docker text-3xl text-[#2496ED] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#2496ED] transition-colors">Docker</p>
+                    </div>
+                    <!-- Jenkins -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#D24939] group-hover:to-[#a8382a] transition-all duration-300 shadow-lg group-hover:shadow-[#D24939]/30">
+                            <i class="fab fa-jenkins text-3xl text-[#D24939] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#D24939] transition-colors">Jenkins</p>
+                    </div>
+                    <!-- Python -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#3776AB] group-hover:to-[#2a5780] transition-all duration-300 shadow-lg group-hover:shadow-[#3776AB]/30">
+                            <i class="fab fa-python text-3xl text-[#3776AB] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#3776AB] transition-colors">Python</p>
+                    </div>
+                    <!-- Ansible -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#EE0000] group-hover:to-[#bb0000] transition-all duration-300 shadow-lg group-hover:shadow-[#EE0000]/30">
+                            <i class="fas fa-cogs text-3xl text-[#EE0000] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#EE0000] transition-colors">Ansible</p>
+                    </div>
+                    <!-- Git -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#F05032] group-hover:to-[#c04028] transition-all duration-300 shadow-lg group-hover:shadow-[#F05032]/30">
+                            <i class="fab fa-git-alt text-3xl text-[#F05032] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#F05032] transition-colors">Git</p>
+                    </div>
+                    <!-- Kubernetes -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#326CE5] group-hover:to-[#2251b3] transition-all duration-300 shadow-lg group-hover:shadow-[#326CE5]/30">
+                            <i class="fas fa-cubes text-3xl text-[#326CE5] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#326CE5] transition-colors">Kubernetes</p>
+                    </div>
+                    <!-- Bootstrap -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#7952B3] group-hover:to-[#5c3d8a] transition-all duration-300 shadow-lg group-hover:shadow-[#7952B3]/30">
+                            <i class="fab fa-bootstrap text-3xl text-[#7952B3] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#7952B3] transition-colors">Bootstrap</p>
+                    </div>
+                    <!-- Tailwind CSS -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#38B2AC] group-hover:to-[#2a8a85] transition-all duration-300 shadow-lg group-hover:shadow-[#38B2AC]/30">
+                            <i class="fab fa-tailwind text-3xl text-[#38B2AC] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#38B2AC] transition-colors">Tailwind CSS</p>
+                    </div>
+                    <!-- HTML5 -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#E34F26] group-hover:to-[#b33f1e] transition-all duration-300 shadow-lg group-hover:shadow-[#E34F26]/30">
+                            <i class="fab fa-html5 text-3xl text-[#E34F26] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#E34F26] transition-colors">HTML5</p>
+                    </div>
+                    <!-- CSS3 -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#1572B6] group-hover:to-[#105a8a] transition-all duration-300 shadow-lg group-hover:shadow-[#1572B6]/30">
+                            <i class="fab fa-css3-alt text-3xl text-[#1572B6] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#1572B6] transition-colors">CSS3</p>
+                    </div>
+                    <!-- JavaScript -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#F7DF1E] group-hover:to-[#c4b318] transition-all duration-300 shadow-lg group-hover:shadow-[#F7DF1E]/30">
+                            <i class="fab fa-js text-3xl text-[#F7DF1E] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#F7DF1E] transition-colors">JavaScript</p>
+                    </div>
+                    <!-- Grafana -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#F46800] group-hover:to-[#c45300] transition-all duration-300 shadow-lg group-hover:shadow-[#F46800]/30">
+                            <i class="fas fa-chart-line text-3xl text-[#F46800] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#F46800] transition-colors">Grafana</p>
+                    </div>
+                    <!-- Prometheus -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#E6522C] group-hover:to-[#b84222] transition-all duration-300 shadow-lg group-hover:shadow-[#E6522C]/30">
+                            <i class="fas fa-fire text-3xl text-[#E6522C] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#E6522C] transition-colors">Prometheus</p>
+                    </div>
+                    <!-- Zabbix -->
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-gradient-to-br group-hover:from-[#CC0000] group-hover:to-[#990000] transition-all duration-300 shadow-lg group-hover:shadow-[#CC0000]/30">
+                            <i class="fas fa-chart-bar text-3xl text-[#CC0000] group-hover:text-white transition-colors duration-300"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[#CC0000] transition-colors">Zabbix</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -720,7 +1038,6 @@
         </div>
     </div>
 
-    <!-- ===== MODAL PROJECT PREVIEW ===== -->
     <div id="projectPreviewModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 hidden p-4">
         <div class="modal-project-preview bg-gray-900 rounded-xl max-w-5xl w-full max-h-[90vh] overflow-hidden relative">
             <div class="flex justify-between items-center p-3 border-b border-gray-700 bg-gray-800">
@@ -740,14 +1057,12 @@
     <!-- ===== JAVASCRIPT ===== -->
     <!-- ========================================================= -->
     <script>
-        // ===== LOADING SCREEN - 3 DETIK + FADE OUT SMOOTH =====
-        // Tahan semua konten sampai loading selesai
+        // ===== LOADING SCREEN =====
         document.addEventListener('DOMContentLoaded', function() {
             const loadingScreen = document.getElementById('loadingScreen');
             const progressBar = document.getElementById('loadingProgress');
             const percentText = document.getElementById('loadingPercent');
             
-            // Pastikan loading screen terlihat dan menutupi semua konten
             loadingScreen.style.display = 'flex';
             loadingScreen.style.backgroundColor = '#000000';
             loadingScreen.style.opacity = '1';
@@ -755,7 +1070,7 @@
             loadingScreen.style.zIndex = '9999';
             
             let progress = 0;
-            const duration = 3000; // 3 detik
+            const duration = 3000;
             const intervalTime = 30;
             const totalSteps = duration / intervalTime;
             let currentStep = 0;
@@ -770,14 +1085,12 @@
                 
                 if (progress >= 100) {
                     clearInterval(interval);
-                    // Tunggu sebentar setelah 100%, lalu fade out
                     setTimeout(() => {
                         loadingScreen.style.transition = 'opacity 0.8s ease';
                         loadingScreen.style.opacity = '0';
                         setTimeout(() => {
                             loadingScreen.style.display = 'none';
                             loadingScreen.style.visibility = 'hidden';
-                            // Aktifkan scroll setelah loading hilang
                             document.body.style.overflow = 'auto';
                             document.documentElement.style.overflow = 'auto';
                         }, 800);
@@ -785,7 +1098,6 @@
                 }
             }, intervalTime);
             
-            // Safety fallback: force close setelah 5 detik
             setTimeout(() => {
                 if (loadingScreen.style.display !== 'none') {
                     loadingScreen.style.transition = 'opacity 0.5s ease';
@@ -800,7 +1112,6 @@
             }, 5000);
         });
 
-        // Sembunyikan scroll dulu sampai loading selesai
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
 
@@ -876,7 +1187,6 @@
             const status = document.getElementById('formStatus');
             const btn = document.getElementById('sendBtn');
             
-            // GANTI DENGAN TOKEN & CHAT ID LO
             const token = '8871957081:AAGGfPl8obpCDU-vQqbCFO1YGuoIWHIySUA';
             const chatId = '752995113';
             
@@ -1476,7 +1786,7 @@ jobs:
         });
 
         // =========================================================
-        // ===== PROJECT EXPLORER - TANPA TOMBOL NAVIGASI =====
+        // ===== PROJECT EXPLORER =====
         // =========================================================
         let allProjects = [];
         let projectInterval = null;
@@ -1486,7 +1796,6 @@ jobs:
         let isPlaying = true;
         const PROJECTS_PER_SLIDE = 6;
 
-        // Data statis fallback
         const staticRepos = [
             { 
                 name: 'hidayat-tanjung.io', 
@@ -1550,20 +1859,16 @@ jobs:
             
             try {
                 grid.innerHTML = `<div class="col-span-full flex justify-center items-center"><div class="loader"></div></div>`;
-                console.log('🔄 Fetching projects from GitHub...');
                 
                 const res = await fetch('https://api.github.com/users/hidayat-tanjung/repos?sort=updated&per_page=100');
                 
                 if (!res.ok) {
-                    console.warn(`⚠️ GitHub API error (${res.status}), using static data`);
                     allProjects = staticRepos;
                     renderProjects();
                     return;
                 }
                 
                 const repos = await res.json();
-                console.log(`✅ Fetched ${repos.length} repos from GitHub`);
-                
                 allProjects = repos.filter(r => !r.archived);
                 
                 if (allProjects.length < PROJECTS_PER_SLIDE) {
@@ -1575,7 +1880,6 @@ jobs:
                 renderProjects();
                 
             } catch(e) {
-                console.error('❌ Error fetch projects:', e);
                 allProjects = staticRepos;
                 renderProjects();
             }
@@ -1611,7 +1915,6 @@ jobs:
             }
             
             grid.innerHTML = html;
-            renderDots();
         }
 
         function createProjectCard(repo) {
@@ -1668,27 +1971,6 @@ jobs:
             `;
         }
 
-        function renderDots() {
-            const dotsContainer = document.getElementById('projectDots');
-            if (!dotsContainer) return;
-            
-            const totalSlides = Math.ceil(allProjects.length / PROJECTS_PER_SLIDE);
-            if (totalSlides <= 1) {
-                dotsContainer.innerHTML = '';
-                return;
-            }
-            
-            let dotsHtml = '';
-            for (let i = 0; i < totalSlides; i++) {
-                dotsHtml += `
-                    <button onclick="goToSlide(${i})" 
-                            class="w-3 h-3 rounded-full transition-all duration-300 ${i === currentIndex ? 'bg-purple-500 w-6' : 'bg-gray-600 hover:bg-gray-400'}">
-                    </button>
-                `;
-            }
-            dotsContainer.innerHTML = dotsHtml;
-        }
-
         function goToSlide(index) {
             const totalSlides = Math.ceil(allProjects.length / PROJECTS_PER_SLIDE);
             if (index < 0) index = totalSlides - 1;
@@ -1721,8 +2003,6 @@ jobs:
                 return;
             }
             
-            console.log(`🔍 Opening preview: ${url}`);
-            
             document.getElementById('projectPreviewTitle').textContent = `🔍 ${name}`;
             document.getElementById('projectPreviewLink').href = url;
             
@@ -1748,13 +2028,13 @@ jobs:
         });
 
         // =========================================================
-        // ===== INIT PROJECT EXPLORER =====
+        // ===== INIT =====
         // =========================================================
         fetchProjects();
         if (projectInterval) clearInterval(projectInterval);
         projectInterval = setInterval(fetchProjects, 20000);
 
-        // ===== NAVIGASI SMOOTH SCROLL =====
+        // ===== NAVIGASI =====
         document.querySelectorAll('a[href^="#"], .nav-link[onclick*="showPage"]').forEach(el => {
             el.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
@@ -1769,11 +2049,8 @@ jobs:
             });
         });
 
-        // =========================================================
-        // ===== INIT =====
-        // =========================================================
         renderExperience();
         renderArticles();
     </script>
 </body>
-    </html>
+</html>
