@@ -862,13 +862,190 @@
         let articles = [
             {
                 id: 1,
-                title: "🚀 Cara Deploy Portfolio ke GitHub Pages",
-                tags: ["#github", "#pages", "#deploy"],
-                readTime: "5 min read",
+                title: "🚀 Memahami DevOps: Filosofi, Budaya, dan Praktik",
+                tags: ["#devops", "#culture", "#automation"],
+                readTime: "8 min read",
                 date: "📅 8 Juli 2026",
                 author: "✍️ Marlin Hidayat",
-                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23667eea' font-family='sans-serif' font-size='20'%3EGitHub%3C/text%3E%3C/svg%3E",
-                content: "<p><strong>GitHub Pages</strong> adalah cara termudah buat deploy website statis gratis.</p><ol><li>Buat repo dengan nama <code>username.github.io</code></li><li>Push file HTML lo ke repo</li><li>Buka Settings → Pages → pilih branch main</li><li>Website lo langsung online!</li></ol><p>Jangan lupa setting custom domain kalo lo punya.</p>"
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23667eea' font-family='sans-serif' font-size='28'%3EDevOps%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23764ba2' font-family='sans-serif' font-size='16'%3ECulture %26 Automation%3C/text%3E%3C/svg%3E",
+                content: `
+                    <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">Apa itu DevOps?</h3>
+                    <p><strong>DevOps</strong> adalah kombinasi dari <span class="text-cyan-400">Development</span> dan <span class="text-cyan-400">Operations</span>. Bukan sekadar tools atau job title, tapi <strong>sebuah filosofi dan budaya</strong> yang bertujuan untuk menjembatani kesenjangan antara tim pengembang dan tim operasi.</p>
+                    
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📌 Prinsip Dasar DevOps:</h4>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li><strong>Culture (Budaya)</strong> — Kolaborasi, komunikasi, dan saling percaya antara tim dev dan ops.</li>
+                        <li><strong>Automation (Otomatisasi)</strong> — Mengotomatiskan proses build, test, dan deployment.</li>
+                        <li><strong>Measurement (Pengukuran)</strong> — Mengumpulkan data dan metrik untuk evaluasi.</li>
+                        <li><strong>Sharing (Berbagi)</strong> — Berbagi pengetahuan dan feedback secara terus-menerus.</li>
+                    </ul>
+
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🛠️ Siklus DevOps (The Three Ways):</h4>
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
+                        <span class="text-green-400">1. Flow (Alur):</span> Mempercepat aliran kerja dari Dev → Ops<br>
+                        <span class="text-green-400">2. Feedback (Umpan Balik):</span> Mendapatkan feedback cepat dari Ops → Dev<br>
+                        <span class="text-green-400">3. Continuous Learning:</span> Belajar dari kesalahan dan melakukan perbaikan
+                    </div>
+
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 Manfaat DevOps:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-gray-300">
+                        <li>🚀 Deployment lebih cepat dan sering</li>
+                        <li>🔧 MTTR (Mean Time To Recovery) lebih rendah</li>
+                        <li>📉 Change Failure Rate turun drastis</li>
+                        <li>🤝 Kolaborasi tim lebih baik</li>
+                    </ul>
+
+                    <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                        <p class="text-purple-300 text-sm"><i class="fas fa-lightbulb mr-2"></i> <strong>Insight:</strong> DevOps bukan tentang tools, tapi tentang <span class="text-yellow-300">mindset</span>. Tools hanya alat bantu untuk mewujudkan filosofi tersebut.</p>
+                    </div>
+                `
+            },
+            {
+                id: 2,
+                title: "🐳 Docker Dasar: Container, Image, dan Docker Compose",
+                tags: ["#docker", "#container", "#devops"],
+                readTime: "10 min read",
+                date: "📅 7 Juli 2026",
+                author: "✍️ Marlin Hidayat",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%232496ed' font-family='sans-serif' font-size='28'%3E🐳 Docker%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EContainer %26 Orchestration%3C/text%3E%3C/svg%3E",
+                content: `
+                    <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">🐳 Apa itu Docker?</h3>
+                    <p><strong>Docker</strong> adalah platform untuk mengembangkan, mengirim, dan menjalankan aplikasi dalam <span class="text-cyan-400">container</span>. Container adalah unit standar yang ringan, portabel, dan mandiri.</p>
+
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📦 Docker Image vs Container:</h4>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li><strong>Image:</strong> Blueprint/template untuk membuat container (read-only).</li>
+                        <li><strong>Container:</strong> Instansi yang berjalan dari image (read-write).</li>
+                        <li><strong>Registry:</strong> Tempat menyimpan image (Docker Hub, ECR, GCR).</li>
+                    </ul>
+
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🔧 Dockerfile Dasar:</h4>
+                    <pre class="bg-gray-900 p-4 rounded-lg border border-gray-700 overflow-x-auto">
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm", "start"]</pre>
+
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 Docker Compose:</h4>
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
+                        <span class="text-green-400">version: '3'</span><br>
+                        services:<br>
+                        &nbsp;&nbsp;web:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;build: .<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;ports: [ "3000:3000" ]<br>
+                        &nbsp;&nbsp;db:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;image: postgres:15<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;environment:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POSTGRES_PASSWORD: secret
+                    </div>
+
+                    <div class="bg-blue-900/20 border border-blue-700 p-4 rounded-lg my-4">
+                        <p class="text-blue-300 text-sm"><i class="fas fa-terminal mr-2"></i> <strong>Command penting:</strong><br>
+                        <code class="text-yellow-300">docker build -t myapp .</code> → Build image<br>
+                        <code class="text-yellow-300">docker run -p 3000:3000 myapp</code> → Run container<br>
+                        <code class="text-yellow-300">docker-compose up -d</code> → Jalankan semua service</p>
+                    </div>
+                `
+            },
+            {
+                id: 3,
+                title: "⚡ CI/CD Pipeline: Dari Push ke Production",
+                tags: ["#cicd", "#jenkins", "#github-actions"],
+                readTime: "12 min read",
+                date: "📅 6 Juli 2026",
+                author: "✍️ Marlin Hidayat",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23f97316' font-family='sans-serif' font-size='28'%3E⚡ CI/CD%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EAutomate Build %26 Deploy%3C/text%3E%3C/svg%3E",
+                content: `
+                    <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">⚡ Apa itu CI/CD?</h3>
+                    <p><strong>CI/CD</strong> adalah praktik untuk mengotomatiskan proses <span class="text-cyan-400">integrasi</span> dan <span class="text-cyan-400">deployment</span> aplikasi. <strong>CI</strong> = Continuous Integration, <strong>CD</strong> = Continuous Delivery/Deployment.</p>
+
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🔄 Alur CI/CD:</h4>
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
+                        <span class="text-green-400">1. Developer Push Code</span> → <span class="text-blue-400">GitHub/GitLab</span><br>
+                        <span class="text-green-400">2. CI Server (Jenkins/GitHub Actions)</span> → <span class="text-blue-400">Build & Test</span><br>
+                        <span class="text-green-400">3. Build Berhasil</span> → <span class="text-blue-400">Create Artifact (Image/DLL)</span><br>
+                        <span class="text-green-400">4. Deploy</span> → <span class="text-blue-400">Staging/Production</span>
+                    </div>
+
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 GitHub Actions Workflow:</h4>
+                    <pre class="bg-gray-900 p-4 rounded-lg border border-gray-700 overflow-x-auto">
+name: Deploy to Production
+on: push to main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker Image
+        run: docker build -t myapp .
+      - name: Push to Registry
+        run: docker push myapp
+      - name: Deploy to Server
+        run: ssh user@server "docker pull myapp && docker-compose up -d"</pre>
+
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🚀 Tools CI/CD Populer:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-gray-300">
+                        <li><span class="text-blue-400">Jenkins</span> — Open source, customizable, banyak plugin</li>
+                        <li><span class="text-blue-400">GitHub Actions</span> — Native di GitHub, mudah untuk repo GitHub</li>
+                        <li><span class="text-blue-400">GitLab CI</span> — All-in-one, integrated dengan GitLab</li>
+                        <li><span class="text-blue-400">ArgoCD</span> — GitOps untuk Kubernetes deployment</li>
+                    </ul>
+
+                    <div class="bg-orange-900/20 border border-orange-700 p-4 rounded-lg my-4">
+                        <p class="text-orange-300 text-sm"><i class="fas fa-rocket mr-2"></i> <strong>Best Practice:</strong> Pipeline harus <span class="text-yellow-300">fail fast</span> — jalankan test cepat di awal, baru lanjut ke proses yang lebih berat.</p>
+                    </div>
+                `
+            },
+            {
+                id: 4,
+                title: "📊 Monitoring & Observability: Prometheus, Grafana, Loki",
+                tags: ["#monitoring", "#prometheus", "#grafana"],
+                readTime: "10 min read",
+                date: "📅 5 Juli 2026",
+                author: "✍️ Marlin Hidayat",
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23e34f26' font-family='sans-serif' font-size='24'%3E📊 Monitoring%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EPrometheus %26 Grafana%3C/text%3E%3C/svg%3E",
+                content: `
+                    <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">📊 Apa itu Monitoring & Observability?</h3>
+                    <p><strong>Monitoring</strong> adalah proses mengumpulkan dan menganalisis data dari sistem. <strong>Observability</strong> adalah kemampuan untuk memahami state internal sistem dari outputnya.</p>
+
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🛠️ Tiga Pilar Observability:</h4>
+                    <ul class="list-disc list-inside space-y-2 text-gray-300">
+                        <li><strong>📈 Metrics:</strong> Data numerik (CPU, RAM, request rate) — <span class="text-blue-400">Prometheus</span></li>
+                        <li><strong>📝 Logs:</strong> Data teks (event, error) — <span class="text-blue-400">Loki / ELK</span></li>
+                        <li><strong>🔍 Traces:</strong> Data request flow — <span class="text-blue-400">Jaeger / Tempo</span></li>
+                    </ul>
+
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 Prometheus & Grafana:</h4>
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
+                        <span class="text-green-400"># prometheus.yml</span><br>
+                        scrape_configs:<br>
+                        &nbsp;&nbsp;- job_name: 'myapp'<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;static_configs:<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- targets: ['localhost:8080']
+                    </div>
+
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 Metric yang Harus Dimonitor:</h4>
+                    <ul class="list-disc list-inside space-y-1 text-gray-300">
+                        <li>📊 <strong>Infrastructure:</strong> CPU, Memory, Disk, Network</li>
+                        <li>📊 <strong>Application:</strong> Request rate, Error rate, Latency (RED method)</li>
+                        <li>📊 <strong>Business:</strong> User signup, Revenue, Conversion</li>
+                    </ul>
+
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🚀 Cara Setup Cepat:</h4>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-300">
+                        <li><span class="text-cyan-400">Install Prometheus</span> — untuk collect metrics</li>
+                        <li><span class="text-cyan-400">Install Grafana</span> — untuk visualisasi dashboard</li>
+                        <li><span class="text-cyan-400">Install Node Exporter</span> — untuk metrics server</li>
+                        <li><span class="text-cyan-400">Buat Dashboard</span> — di Grafana untuk monitoring</li>
+                    </ol>
+
+                    <div class="bg-teal-900/20 border border-teal-700 p-4 rounded-lg my-4">
+                        <p class="text-teal-300 text-sm"><i class="fas fa-bell mr-2"></i> <strong>Alerting:</strong> Jangan lupa setup alert untuk kondisi kritis! Gunakan <span class="text-yellow-300">Alertmanager</span> untuk notifikasi ke Slack/Telegram.</p>
+                    </div>
+                `
             }
         ];
 
