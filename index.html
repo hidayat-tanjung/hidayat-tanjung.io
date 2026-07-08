@@ -104,7 +104,29 @@
         body { min-height: 100vh; min-height: 100dvh; }
         section, .section, .page, .container { height: auto !important; min-height: auto !important; overflow: visible !important; }
         section#home { min-height: 100vh; min-height: 100dvh; height: auto !important; }
-        .modal-article, .modal-cert, .modal-project-preview { overflow-y: auto !important; overflow-x: hidden !important; }
+        
+        /* ===== FIX MODAL SCROLL ===== */
+        .modal-article {
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            max-height: 90vh !important;
+            height: auto !important;
+        }
+        .modal-article .p-6 {
+            overflow: visible !important;
+        }
+        #modalContent {
+            overflow: visible !important;
+        }
+        #modalContent pre,
+        #modalContent .code-block,
+        #modalContent .bg-gray-900 {
+            overflow-x: auto !important;
+            max-width: 100% !important;
+        }
+        body.modal-active {
+            overflow: auto !important;
+        }
         
         #particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
         .particle { position: absolute; border-radius: 50%; pointer-events: none; animation: particle-float linear infinite; }
@@ -770,45 +792,47 @@
             {
                 id: 2,
                 title: "Teknisi",
-                company: "Kecilin · Freelance",
-                period: "Sep 2024 - May 2026 · 1 yr 9 mos",
-                location: "Gunungsitoli, North Sumatra, Indonesia · Remote",
+                company: "PT Bringin Inti Teknologi (BIT)",
+                period: "Sep 2024 - Mei 2025 · 9 mos",
+                location: "Gunungsitoli, North Sumatra, Indonesia · On-site",
                 tags: ["CCTV", "PC Mini", "Maintenance"],
                 details: [
-                    "Instalisasi PC Mini untuk CCTV di Mesin CRM BRI",
-                    "Melakukan maintenance pertiga bulan",
-                    "Melakukan repair PC mini yang tidak berfungsi",
-                    "Pemasangan PC mini baru untuk CCTV CRM BRI"
+                    "Instalasi & Konfigurasi PC Mini untuk sistem CCTV CRM BRI",
+                    "Pemeliharaan rutin triwulanan (verifikasi jaringan, pembersihan hardware, update software)",
+                    "Troubleshooting & perbaikan komponen yang rusak",
+                    "Pengetahuan dasar elektronika untuk troubleshooting"
                 ],
                 color: "border-cyan-400",
                 icon: "fa-tools"
             },
             {
                 id: 3,
-                title: "EDC Maintenance",
-                company: "PT. Bank Negara Indonesia · Contract",
-                period: "Nov 2023 - May 2025 · 1 yr 7 mos",
+                title: "Teknisi EDC",
+                company: "PT Bank Negara Indonesia Tbk",
+                period: "Nov 2023 - Mei 2025 · 1 yr 7 mos",
                 location: "Gunungsitoli, North Sumatra, Indonesia · Remote",
                 tags: ["EDC", "Maintenance", "BNI"],
                 details: [
-                    "Maintenance dan perbaikan mesin EDC",
-                    "Upgrade software pada mesin EDC"
+                    "Perawatan rutin mesin EDC (pengecekan berkala & pembersihan)",
+                    "Troubleshooting hardware/software (gagal baca kartu, error print receipt)",
+                    "Upgrade software/firmware EDC sesuai versi terbaru",
+                    "Memastikan kinerja optimal mesin EDC"
                 ],
                 color: "border-blue-400",
                 icon: "fa-credit-card"
             },
             {
                 id: 4,
-                title: "Junior HR Associate",
-                company: "Klinik Pusat Bekam dan Ruqyah · Full-time",
-                period: "May 2015 - Apr 2017 · 2 yrs",
+                title: "Junior Human Resources Associate",
+                company: "Pusat Bekam",
+                period: "Mei 2015 - Apr 2017 · 2 yrs",
                 location: "Bekasi, West Java, Indonesia",
                 tags: ["HR", "Database", "Recruitment"],
                 details: [
-                    "Mengelola database karyawan",
-                    "Menyeleksi kandidat potensial",
-                    "Menjadwalkan wawancara kerja",
-                    "Membantu orientasi karyawan baru"
+                    "Mengelola database karyawan untuk rekrutmen & evaluasi kinerja",
+                    "Pengumpulan laporan kinerja bulanan/triwulan dari seluruh cabang",
+                    "Koordinasi jadwal antara pelamar, interviewer, dan panel wawancara",
+                    "Menyediakan data yang dibutuhkan untuk proses rekrutmen"
                 ],
                 color: "border-purple-400",
                 icon: "fa-users"
@@ -1089,6 +1113,7 @@ jobs:
         function openArticle(id) {
             const article = articles.find(a => a.id === id);
             if (!article) return;
+            
             document.getElementById('modalTitle').textContent = article.title;
             document.getElementById('modalTags').textContent = article.tags.join(' • ');
             document.getElementById('modalReadTime').textContent = article.readTime;
@@ -1102,13 +1127,12 @@ jobs:
                 Prism.highlightAllUnder(contentContainer);
             }
             
+            // Tampilkan modal - HAPUS overflow-hidden biar scroll tetep jalan
             document.getElementById('articleModal').classList.remove('hidden');
-            document.body.classList.add('overflow-hidden');
         }
 
         function closeArticleModal() {
             document.getElementById('articleModal').classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
         }
 
         document.getElementById('closeArticleModal').addEventListener('click', closeArticleModal);
