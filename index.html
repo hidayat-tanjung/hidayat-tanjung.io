@@ -3,26 +3,19 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    
-    <!-- ===== GOOGLE SEARCH CONSOLE ===== -->
     <meta name="google-site-verification" content="eL288q_5AUaeE9UT7VdHODHfC8sGqNSn6zO7rvYH-KY" />
-    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
     
-    <!-- ===== FAVICON ===== -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
-    
     <title>Portfolio - Marlin Hidayat Tanjung</title>
 
     <!-- Tailwind -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"/>
-    
-    <!-- ===== PRISM.JS ===== -->
+
+    <!-- Prism.js -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
@@ -33,28 +26,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-nginx.min.js"></script>
 
-    <!-- ===== DOMPurify CDN (ANTI XSS) ===== -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.6/purify.min.js"></script>
+    <!-- DOMPurify -->
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
 
     <style>
         * { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: #0a0a0a; }
-        
-        /* ===== SEMBUNYIKAN SCROLLBAR (TAPI TETEP BISA SCROLL) ===== */
-        ::-webkit-scrollbar {
-            width: 0px;
-            height: 0px;
-            background: transparent;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: transparent;
-        }
-        html {
-            scrollbar-width: none; /* Firefox */
-        }
+        ::-webkit-scrollbar { width: 0px; height: 0px; background: transparent; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: transparent; }
+        html { scrollbar-width: none; }
         
         .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .glow { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
@@ -89,15 +70,8 @@
             transition: all 0.2s;
             text-decoration: none;
         }
-        .dropdown-menu a:hover {
-            background: rgba(102, 126, 234, 0.1);
-            color: #a78bfa;
-        }
-        .dropdown-arrow {
-            font-size: 0.6rem;
-            margin-left: 4px;
-            transition: transform 0.3s ease;
-        }
+        .dropdown-menu a:hover { background: rgba(102, 126, 234, 0.1); color: #a78bfa; }
+        .dropdown-arrow { font-size: 0.6rem; margin-left: 4px; transition: transform 0.3s ease; }
         .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
         
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
@@ -123,30 +97,20 @@
         section, .section, .page, .container { height: auto !important; min-height: auto !important; overflow: visible !important; }
         section#home { min-height: 100vh; min-height: 100dvh; height: auto !important; }
         
-        /* ===== FIX MODAL SCROLL ===== */
         .modal-article {
             overflow-y: auto !important;
             overflow-x: hidden !important;
             max-height: 90vh !important;
             height: auto !important;
         }
-        .modal-article .p-6 {
-            overflow: visible !important;
-        }
-        #modalContent {
-            overflow: visible !important;
-        }
-        #modalContent pre,
-        #modalContent .code-block,
-        #modalContent .bg-gray-900 {
+        .modal-article .p-6 { overflow: visible !important; }
+        #modalContent { overflow: visible !important; }
+        #modalContent pre, #modalContent .code-block, #modalContent .bg-gray-900 {
             overflow-x: auto !important;
             max-width: 100% !important;
         }
-        body.modal-active {
-            overflow: auto !important;
-        }
+        body.modal-active { overflow: auto !important; }
 
-        /* ===== FIX: FORM MODAL SCROLL ===== */
         #formModal {
             overflow-y: auto !important;
             max-height: 100vh !important;
@@ -158,15 +122,9 @@
             max-height: 90vh !important;
             overflow-y: auto !important;
         }
-        #formModal .form-modal::-webkit-scrollbar {
-            width: 4px;
-        }
-        #formModal .form-modal::-webkit-scrollbar-thumb {
-            background: #667eea;
-            border-radius: 4px;
-        }
+        #formModal .form-modal::-webkit-scrollbar { width: 4px; }
+        #formModal .form-modal::-webkit-scrollbar-thumb { background: #667eea; border-radius: 4px; }
         
-        /* ===== LOADING SCREEN - GRADIENT BERPUTAR + SHIMMER BAR ===== */
         #loadingScreen {
             background-color: #000000 !important;
             transition: opacity 0.8s ease, visibility 0.8s ease;
@@ -175,16 +133,10 @@
             display: flex;
             z-index: 9999;
         }
-        #loadingScreen.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
+        #loadingScreen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         
         .spinner-ring-outer {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+            width: 80px; height: 80px; border-radius: 50%;
             background: conic-gradient(from 0deg, #667eea, #764ba2, #f093fb, #4facfe, #667eea);
             animation: spinGradient 1.5s linear infinite;
             filter: blur(0.5px);
@@ -192,18 +144,13 @@
         }
         .spinner-ring-inner {
             position: absolute;
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
+            width: 72px; height: 72px; border-radius: 50%;
             background: #0a0a0a;
-            top: 4px;
-            left: 4px;
+            top: 4px; left: 4px;
         }
         .spinner-core {
             position: absolute;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
+            width: 60px; height: 60px; border-radius: 50%;
             border: 4px solid transparent;
             border-top: 4px solid #667eea;
             border-right: 4px solid #764ba2;
@@ -211,46 +158,25 @@
             border-left: 4px solid #4facfe;
             animation: spinGradient 1s linear infinite;
         }
-        @keyframes spinGradient {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        @keyframes spinGradient { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         
-        .loading-dot {
-            display: inline-block;
-            animation: pulseDot 1.2s ease-in-out infinite;
-        }
+        .loading-dot { display: inline-block; animation: pulseDot 1.2s ease-in-out infinite; }
         .loading-dot:nth-child(1) { animation-delay: 0s; color: #667eea; }
         .loading-dot:nth-child(2) { animation-delay: 0.3s; color: #764ba2; }
         .loading-dot:nth-child(3) { animation-delay: 0.6s; color: #f093fb; }
-        @keyframes pulseDot {
-            0%, 100% { opacity: 0.3; transform: scale(0.8); }
-            50% { opacity: 1; transform: scale(1.2); }
-        }
+        @keyframes pulseDot { 0%, 100% { opacity: 0.3; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.2); } }
         
-        .loading-bar-track {
-            width: 240px;
-            height: 6px;
-            background: #1a1a1a;
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-        }
+        .loading-bar-track { width: 240px; height: 6px; background: #1a1a1a; border-radius: 20px; overflow: hidden; position: relative; }
         .loading-bar-fill {
-            height: 100%;
-            width: 0%;
+            height: 100%; width: 0%;
             background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #4facfe, #667eea);
             background-size: 300% 100%;
             border-radius: 20px;
             animation: barShimmer 2s ease-in-out infinite;
             transition: width 0.3s ease;
         }
-        @keyframes barShimmer {
-            0% { background-position: 0% 0%; }
-            100% { background-position: 300% 0%; }
-        }
+        @keyframes barShimmer { 0% { background-position: 0% 0%; } 100% { background-position: 300% 0%; } }
 
-        /* ===== TECHNOLOGIES I USE ===== */
         .tech-icon { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         .tech-icon:hover { transform: translateY(-8px) scale(1.05); }
         .tech-icon .icon-wrapper { transition: all 0.4s ease; width: 80px; height: 80px; position: relative; }
@@ -267,20 +193,12 @@
             overflow: hidden;
             border-radius: 12px;
         }
-        .exp-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.15);
-        }
+        .exp-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(102, 126, 234, 0.15); }
         .exp-card .exp-glow {
-            position: absolute;
-            inset: -2px;
-            border-radius: 16px;
-            padding: 2px;
+            position: absolute; inset: -2px; border-radius: 16px; padding: 2px;
             background: linear-gradient(135deg, #667eea, #764ba2, #667eea);
             background-size: 300% 300%;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            z-index: -1;
+            opacity: 0; transition: opacity 0.5s ease; z-index: -1;
             animation: glowMove 3s ease infinite;
         }
         .exp-card:hover .exp-glow { opacity: 1; }
@@ -291,11 +209,7 @@
         .exp-card .exp-company { transition: all 0.3s ease; }
         .exp-card:hover .exp-company { color: #a78bfa !important; }
         
-        .exp-detail {
-            max-height: 800px;
-            opacity: 1;
-            overflow: visible;
-        }
+        .exp-detail { max-height: 800px; opacity: 1; overflow: visible; }
         .exp-detail .detail-list {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -305,37 +219,23 @@
         }
         @media (max-width: 768px) { .exp-detail .detail-list { grid-template-columns: 1fr; } }
         .exp-detail .detail-list li {
-            list-style: none;
-            padding: 8px 12px;
-            border-radius: 8px;
+            list-style: none; padding: 8px 12px; border-radius: 8px;
             background: rgba(255,255,255,0.03);
             border-left: 3px solid #667eea;
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 0.9rem; display: flex; align-items: center; gap: 10px;
             transition: all 0.3s ease;
         }
-        .exp-detail .detail-list li:hover {
-            background: rgba(102, 126, 234, 0.08);
-            border-left-color: #a78bfa;
-        }
+        .exp-detail .detail-list li:hover { background: rgba(102, 126, 234, 0.08); border-left-color: #a78bfa; }
         .exp-detail .detail-list li i { color: #667eea; width: 18px; text-align: center; transition: all 0.3s ease; }
         .exp-detail .detail-list li:hover i { color: #a78bfa; transform: scale(1.1); }
         
         .exp-tag {
-            font-size: 0.75rem;
-            padding: 4px 14px;
-            border-radius: 40px;
-            background: rgba(102, 126, 234, 0.12);
-            color: #a78bfa;
+            font-size: 0.75rem; padding: 4px 14px; border-radius: 40px;
+            background: rgba(102, 126, 234, 0.12); color: #a78bfa;
             border: 1px solid rgba(102, 126, 234, 0.15);
             transition: all 0.3s ease;
         }
-        .exp-tag:hover {
-            background: rgba(102, 126, 234, 0.25);
-            transform: scale(1.05);
-        }
+        .exp-tag:hover { background: rgba(102, 126, 234, 0.25); transform: scale(1.05); }
         
         .github-avatar { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #4a5568; transition: all 0.3s ease; }
         .github-avatar:hover { border-color: #667eea; transform: scale(1.1); }
@@ -350,28 +250,17 @@
         @media (max-width: 768px) { .section-title { font-size: 2rem; } }
 
         .modal-article pre[class*="language-"] {
-            border-radius: 8px;
-            margin: 16px 0;
-            padding: 16px;
-            background: #1a1a1a !important;
-            border: 1px solid #2a2a2a;
+            border-radius: 8px; margin: 16px 0; padding: 16px;
+            background: #1a1a1a !important; border: 1px solid #2a2a2a;
             font-size: 0.85rem;
         }
         .modal-article code[class*="language-"] {
-            font-family: 'Fira Code', monospace;
-            font-size: 0.85rem;
+            font-family: 'Fira Code', monospace; font-size: 0.85rem;
             background: transparent !important;
         }
         
         @media (max-width: 768px) {
-            .dropdown-menu {
-                position: static;
-                background: transparent;
-                border: none;
-                box-shadow: none;
-                padding-left: 16px;
-                margin-top: 4px;
-            }
+            .dropdown-menu { position: static; background: transparent; border: none; box-shadow: none; padding-left: 16px; margin-top: 4px; }
             .dropdown-menu a { padding: 6px 16px; font-size: 0.85rem; }
             .dropdown-arrow { display: none; }
             .tech-icon .icon-wrapper { width: 60px; height: 60px; }
@@ -382,49 +271,87 @@
         #sendBtn:disabled { opacity: 0.6; cursor: not-allowed; }
         #imagePreview { width: 100%; max-height: 200px; object-fit: cover; border-radius: 8px; margin-top: 8px; display: none; }
 
-        /* ===== ANIMASI SCROLL TECHNOLOGIES ===== */
-        @keyframes scroll-right {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        @keyframes scroll-right { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes scroll-left { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+        .animate-scroll-right { animation: scroll-right 25s linear infinite; }
+        .animate-scroll-left { animation: scroll-left 25s linear infinite; }
+        .animate-scroll-right:hover, .animate-scroll-left:hover { animation-play-state: paused; }
+
+        /* ===== SEARCH FIXED - PASTI JALAN ===== */
+        .search-wrapper {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
         }
-        @keyframes scroll-left {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(0); }
+        .search-wrapper input {
+            width: 0;
+            padding: 8px 12px;
+            border-radius: 30px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: #e5e7eb;
+            font-size: 0.85rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            outline: none;
+            opacity: 0;
+            cursor: pointer;
+            box-sizing: border-box;
         }
-        .animate-scroll-right {
-            animation: scroll-right 25s linear infinite;
+        .search-wrapper input:focus,
+        .search-wrapper.active input {
+            width: 220px;
+            border-color: #667eea;
+            background: #1a1a1a;
+            opacity: 1;
+            cursor: text;
         }
-        .animate-scroll-left {
-            animation: scroll-left 25s linear infinite;
+        .search-wrapper .search-icon {
+            position: absolute;
+            right: 4px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            cursor: pointer !important;
+            transition: color 0.3s ease;
+            font-size: 1.1rem;
+            pointer-events: auto !important;
+            z-index: 5;
+            padding: 6px;
+            border-radius: 50%;
         }
-        .animate-scroll-right:hover,
-        .animate-scroll-left:hover {
-            animation-play-state: paused;
+        .search-wrapper .search-icon:hover {
+            color: #a78bfa;
+        }
+        .search-wrapper.active .search-icon {
+            right: 8px;
+            color: #667eea;
+        }
+        .search-wrapper input::placeholder {
+            color: #6b7280;
+            font-size: 0.8rem;
+        }
+        @media (max-width: 768px) {
+            .search-wrapper input:focus,
+            .search-wrapper.active input {
+                width: 160px;
+            }
         }
     </style>
 </head>
 <body class="bg-black text-gray-100 overflow-x-hidden">
 
-    <!-- ===== LOADING SCREEN - GRADIENT BERPUTAR + SHIMMER BAR ===== -->
+    <!-- ===== LOADING SCREEN ===== -->
     <div id="loadingScreen" class="fixed inset-0 flex flex-col items-center justify-center" style="background-color: #000000; opacity: 1; visibility: visible; z-index: 9999;">
         <div class="flex flex-col items-center relative">
             <div class="relative flex items-center justify-center" style="width: 90px; height: 90px;">
-                <div class="spinner-ring-outer">
-                    <div class="spinner-ring-inner"></div>
-                </div>
+                <div class="spinner-ring-outer"><div class="spinner-ring-inner"></div></div>
                 <div class="spinner-core" style="position: absolute;"></div>
             </div>
-            
             <p class="mt-6 text-gray-300 font-mono text-sm tracking-widest">
                 <span class="gradient-text font-bold text-lg">Loading</span>
-                <span class="loading-dot">.</span>
-                <span class="loading-dot">.</span>
-                <span class="loading-dot">.</span>
+                <span class="loading-dot">.</span><span class="loading-dot">.</span><span class="loading-dot">.</span>
             </p>
-            
-            <div class="mt-4 loading-bar-track">
-                <div id="loadingProgress" class="loading-bar-fill"></div>
-            </div>
+            <div class="mt-4 loading-bar-track"><div id="loadingProgress" class="loading-bar-fill"></div></div>
             <p id="loadingPercent" class="mt-3 text-gray-400 font-mono text-sm">0%</p>
         </div>
     </div>
@@ -433,11 +360,11 @@
     <div id="particles"></div>
 
     <!-- ===== NAVIGASI ===== -->
-    <nav class="fixed top-0 w-full bg-black bg-opacity-90 backdrop-blur-md z-50 border-b border-gray-800">
+    <nav class="fixed top-0 w-full bg-black bg-opacity-90 backdrop-blur-md z-50 border-b border-gray-800" id="mainNav">
         <div class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <a href="#home" class="text-2xl font-bold gradient-text">Hidayat</a>
-                <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <div class="hidden md:flex space-x-6 text-sm font-medium items-center">
                     <a href="#home" class="nav-link text-green-400 hover:text-green-300">Home</a>
                     <a href="#about" class="nav-link text-blue-400 hover:text-blue-300">About</a>
                     <div class="dropdown">
@@ -451,15 +378,14 @@
                             <a href="#project-explorer">🚀 Project Explorer</a>
                         </div>
                     </div>
-                    <div class="dropdown">
-                        <span class="nav-link text-purple-400 hover:text-purple-300">
-                            Blog <i class="fas fa-chevron-down dropdown-arrow"></i>
-                        </span>
-                        <div class="dropdown-menu">
-                            <a href="#articles">📰 Articles</a>
-                        </div>
-                    </div>
+                    <a href="#articles" class="nav-link text-purple-400 hover:text-purple-300">📰 Blog</a>
                     <a href="#contact" class="nav-link text-red-400 hover:text-red-300">Contact</a>
+                    
+                    <!-- ===== SEARCH DI NAVBAR - FIXED ===== -->
+                    <div class="search-wrapper" id="searchWrapper">
+                        <input type="text" id="navbarSearch" placeholder="Cari artikel..." />
+                        <i class="fas fa-search search-icon" id="searchIcon"></i>
+                    </div>
                 </div>
                 <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white">
                     <i class="fas fa-bars text-2xl"></i>
@@ -477,13 +403,16 @@
                         <a href="#project-explorer" class="block py-1 text-gray-400 hover:text-yellow-300">🚀 Project Explorer</a>
                     </div>
                 </details>
-                <details class="block">
-                    <summary class="py-1 text-purple-400 hover:text-purple-300 cursor-pointer">Blog ▼</summary>
-                    <div class="pl-4 space-y-1">
-                        <a href="#articles" class="block py-1 text-gray-400 hover:text-purple-300">📰 Articles</a>
-                    </div>
-                </details>
+                <a href="#articles" class="block py-1 text-purple-400 hover:text-purple-300">📰 Blog</a>
                 <a href="#contact" class="block py-1 text-red-400 hover:text-red-300">Contact</a>
+                <!-- Mobile Search -->
+                <div class="pt-2">
+                    <div class="relative">
+                        <i class="fas fa-search absolute left-3 top-3 text-gray-500"></i>
+                        <input type="text" id="mobileSearch" placeholder="Cari artikel..." 
+                               class="w-full bg-gray-800 text-white p-2 pl-10 rounded-lg text-sm focus:ring-2 ring-purple-600 outline-none border border-gray-700">
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -614,6 +543,7 @@
         <div class="container mx-auto px-6">
             <h2 class="section-title font-bold text-center mb-4"><span class="gradient-text">📰 Articles</span></h2>
             <p class="text-center text-gray-400 text-base mb-8">Klik judul untuk baca lengkap</p>
+            
             <div id="articleGrid" class="max-w-6xl mx-auto article-grid-2col"></div>
             <div class="flex flex-wrap justify-center gap-4 mt-10">
                 <button id="addArticleBtn" class="px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg text-base transition flex items-center gap-2">
@@ -632,9 +562,7 @@
             <h2 class="section-title font-bold text-center mb-4"><span class="text-white">🚀 Your Projects</span></h2>
             <p class="text-center text-gray-400 text-base mb-2"><span id="projectCount">Memuat...</span></p>
             <div id="projectExplorerGrid" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto min-h-[400px]">
-                <div class="col-span-full flex justify-center items-center">
-                    <div class="loader"></div>
-                </div>
+                <div class="col-span-full flex justify-center items-center"><div class="loader"></div></div>
             </div>
             <div class="text-center text-gray-500 text-sm mt-4">
                 <i class="fas fa-sync-alt mr-1"></i> Auto-refresh setiap 20 detik dari GitHub • 
@@ -644,360 +572,143 @@
         </div>
     </section>
 
-    <!-- ========================================================= -->
-    <!-- ===== TECHNOLOGIES I USE - DENGAN WARNA !important ===== -->
-    <!-- ========================================================= -->
+    <!-- ===== TECHNOLOGIES I USE ===== -->
     <section class="py-16 bg-gray-900 bg-opacity-30 relative z-10 overflow-hidden">
         <div class="container mx-auto px-6">
             <h3 class="text-2xl font-semibold text-center text-purple-400 mb-10">Technologies I Use</h3>
-            
-            <!-- BARIS ATAS - BERGERAK KE KANAN -->
             <div class="flex overflow-hidden mb-6">
                 <div class="flex gap-8 md:gap-12 animate-scroll-right">
-                    
-                    <!-- VS Code -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#007ACC] transition-all duration-300 shadow-lg group-hover:shadow-[#007ACC]/30 w-20 h-20">
                             <i class="fas fa-code text-3xl" style="color: #007ACC !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#007ACC] transition-colors">VS Code</p>
                     </div>
-
-                    <!-- Burp Suite -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#FF6633] transition-all duration-300 shadow-lg group-hover:shadow-[#FF6633]/30 w-20 h-20">
                             <i class="fas fa-bug text-3xl" style="color: #FF6633 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#FF6633] transition-colors">Burp Suite</p>
                     </div>
-
-                    <!-- Nmap -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#0E83CD] transition-all duration-300 shadow-lg group-hover:shadow-[#0E83CD]/30 w-20 h-20">
                             <i class="fas fa-network-wired text-3xl" style="color: #0E83CD !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#0E83CD] transition-colors">Nmap</p>
                     </div>
-
-                    <!-- Wireshark -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#1679A7] transition-all duration-300 shadow-lg group-hover:shadow-[#1679A7]/30 w-20 h-20">
                             <i class="fas fa-wifi text-3xl" style="color: #1679A7 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#1679A7] transition-colors">Wireshark</p>
                     </div>
-
-                    <!-- Cisco -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#1BA0D7] transition-all duration-300 shadow-lg group-hover:shadow-[#1BA0D7]/30 w-20 h-20">
                             <i class="fas fa-server text-3xl" style="color: #1BA0D7 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#1BA0D7] transition-colors">Cisco</p>
                     </div>
-
-                    <!-- Metasploit -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#004C97] transition-all duration-300 shadow-lg group-hover:shadow-[#004C97]/30 w-20 h-20">
                             <i class="fas fa-skull text-3xl" style="color: #004C97 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#004C97] transition-colors">Metasploit</p>
                     </div>
-
-                    <!-- Nuclei -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#00D4AA] transition-all duration-300 shadow-lg group-hover:shadow-[#00D4AA]/30 w-20 h-20">
                             <i class="fas fa-bolt text-3xl" style="color: #00D4AA !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#00D4AA] transition-colors">Nuclei</p>
                     </div>
-
-                    <!-- Docker -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#2496ED] transition-all duration-300 shadow-lg group-hover:shadow-[#2496ED]/30 w-20 h-20">
                             <i class="fab fa-docker text-3xl" style="color: #2496ED !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#2496ED] transition-colors">Docker</p>
                     </div>
-
-                    <!-- Jenkins -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#D24939] transition-all duration-300 shadow-lg group-hover:shadow-[#D24939]/30 w-20 h-20">
                             <i class="fab fa-jenkins text-3xl" style="color: #D24939 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#D24939] transition-colors">Jenkins</p>
                     </div>
-
-                    <!-- Python -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#3776AB] transition-all duration-300 shadow-lg group-hover:shadow-[#3776AB]/30 w-20 h-20">
                             <i class="fab fa-python text-3xl" style="color: #3776AB !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#3776AB] transition-colors">Python</p>
                     </div>
-
-                    <!-- Ansible -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#EE0000] transition-all duration-300 shadow-lg group-hover:shadow-[#EE0000]/30 w-20 h-20">
                             <i class="fas fa-cogs text-3xl" style="color: #EE0000 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#EE0000] transition-colors">Ansible</p>
                     </div>
-
-                    <!-- Git -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#F05032] transition-all duration-300 shadow-lg group-hover:shadow-[#F05032]/30 w-20 h-20">
                             <i class="fab fa-git-alt text-3xl" style="color: #F05032 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#F05032] transition-colors">Git</p>
                     </div>
-
-                    <!-- Kubernetes -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#326CE5] transition-all duration-300 shadow-lg group-hover:shadow-[#326CE5]/30 w-20 h-20">
                             <i class="fas fa-cubes text-3xl" style="color: #326CE5 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#326CE5] transition-colors">Kubernetes</p>
                     </div>
-
-                    <!-- Bootstrap -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#7952B3] transition-all duration-300 shadow-lg group-hover:shadow-[#7952B3]/30 w-20 h-20">
                             <i class="fab fa-bootstrap text-3xl" style="color: #7952B3 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#7952B3] transition-colors">Bootstrap</p>
                     </div>
-
-                    <!-- Tailwind CSS -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#38B2AC] transition-all duration-300 shadow-lg group-hover:shadow-[#38B2AC]/30 w-20 h-20">
                             <i class="fab fa-tailwind text-3xl" style="color: #38B2AC !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#38B2AC] transition-colors">Tailwind CSS</p>
                     </div>
-
-                    <!-- HTML5 -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#E34F26] transition-all duration-300 shadow-lg group-hover:shadow-[#E34F26]/30 w-20 h-20">
                             <i class="fab fa-html5 text-3xl" style="color: #E34F26 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#E34F26] transition-colors">HTML5</p>
                     </div>
-
-                    <!-- CSS3 -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#1572B6] transition-all duration-300 shadow-lg group-hover:shadow-[#1572B6]/30 w-20 h-20">
                             <i class="fab fa-css3-alt text-3xl" style="color: #1572B6 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#1572B6] transition-colors">CSS3</p>
                     </div>
-
-                    <!-- JavaScript -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#F7DF1E] transition-all duration-300 shadow-lg group-hover:shadow-[#F7DF1E]/30 w-20 h-20">
                             <i class="fab fa-js text-3xl" style="color: #F7DF1E !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#F7DF1E] transition-colors">JavaScript</p>
                     </div>
-
-                    <!-- Grafana -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#F46800] transition-all duration-300 shadow-lg group-hover:shadow-[#F46800]/30 w-20 h-20">
                             <i class="fas fa-chart-line text-3xl" style="color: #F46800 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#F46800] transition-colors">Grafana</p>
                     </div>
-
-                    <!-- Prometheus -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#E6522C] transition-all duration-300 shadow-lg group-hover:shadow-[#E6522C]/30 w-20 h-20">
                             <i class="fas fa-fire text-3xl" style="color: #E6522C !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#E6522C] transition-colors">Prometheus</p>
                     </div>
-
-                    <!-- Zabbix -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#CC0000] transition-all duration-300 shadow-lg group-hover:shadow-[#CC0000]/30 w-20 h-20">
                             <i class="fas fa-chart-bar text-3xl" style="color: #CC0000 !important;"></i>
                         </div>
                         <p class="text-gray-400 text-sm group-hover:text-[#CC0000] transition-colors">Zabbix</p>
                     </div>
-
                 </div>
             </div>
-
-            <!-- BARIS BAWAH - BERGERAK KE KIRI -->
             <div class="flex overflow-hidden">
                 <div class="flex gap-8 md:gap-12 animate-scroll-left">
-                    
-                    <!-- VS Code -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#007ACC] transition-all duration-300 shadow-lg group-hover:shadow-[#007ACC]/30 w-20 h-20">
-                            <i class="fas fa-code text-3xl" style="color: #007ACC !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#007ACC] transition-colors">VS Code</p>
-                    </div>
-
-                    <!-- Burp Suite -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#FF6633] transition-all duration-300 shadow-lg group-hover:shadow-[#FF6633]/30 w-20 h-20">
-                            <i class="fas fa-bug text-3xl" style="color: #FF6633 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#FF6633] transition-colors">Burp Suite</p>
-                    </div>
-
-                    <!-- Nmap -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#0E83CD] transition-all duration-300 shadow-lg group-hover:shadow-[#0E83CD]/30 w-20 h-20">
-                            <i class="fas fa-network-wired text-3xl" style="color: #0E83CD !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#0E83CD] transition-colors">Nmap</p>
-                    </div>
-
-                    <!-- Wireshark -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#1679A7] transition-all duration-300 shadow-lg group-hover:shadow-[#1679A7]/30 w-20 h-20">
-                            <i class="fas fa-wifi text-3xl" style="color: #1679A7 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#1679A7] transition-colors">Wireshark</p>
-                    </div>
-
-                    <!-- Cisco -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#1BA0D7] transition-all duration-300 shadow-lg group-hover:shadow-[#1BA0D7]/30 w-20 h-20">
-                            <i class="fas fa-server text-3xl" style="color: #1BA0D7 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#1BA0D7] transition-colors">Cisco</p>
-                    </div>
-
-                    <!-- Metasploit -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#004C97] transition-all duration-300 shadow-lg group-hover:shadow-[#004C97]/30 w-20 h-20">
-                            <i class="fas fa-skull text-3xl" style="color: #004C97 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#004C97] transition-colors">Metasploit</p>
-                    </div>
-
-                    <!-- Nuclei -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#00D4AA] transition-all duration-300 shadow-lg group-hover:shadow-[#00D4AA]/30 w-20 h-20">
-                            <i class="fas fa-bolt text-3xl" style="color: #00D4AA !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#00D4AA] transition-colors">Nuclei</p>
-                    </div>
-
-                    <!-- Docker -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#2496ED] transition-all duration-300 shadow-lg group-hover:shadow-[#2496ED]/30 w-20 h-20">
-                            <i class="fab fa-docker text-3xl" style="color: #2496ED !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#2496ED] transition-colors">Docker</p>
-                    </div>
-
-                    <!-- Jenkins -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#D24939] transition-all duration-300 shadow-lg group-hover:shadow-[#D24939]/30 w-20 h-20">
-                            <i class="fab fa-jenkins text-3xl" style="color: #D24939 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#D24939] transition-colors">Jenkins</p>
-                    </div>
-
-                    <!-- Python -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#3776AB] transition-all duration-300 shadow-lg group-hover:shadow-[#3776AB]/30 w-20 h-20">
-                            <i class="fab fa-python text-3xl" style="color: #3776AB !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#3776AB] transition-colors">Python</p>
-                    </div>
-
-                    <!-- Ansible -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#EE0000] transition-all duration-300 shadow-lg group-hover:shadow-[#EE0000]/30 w-20 h-20">
-                            <i class="fas fa-cogs text-3xl" style="color: #EE0000 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#EE0000] transition-colors">Ansible</p>
-                    </div>
-
-                    <!-- Git -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#F05032] transition-all duration-300 shadow-lg group-hover:shadow-[#F05032]/30 w-20 h-20">
-                            <i class="fab fa-git-alt text-3xl" style="color: #F05032 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#F05032] transition-colors">Git</p>
-                    </div>
-
-                    <!-- Kubernetes -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#326CE5] transition-all duration-300 shadow-lg group-hover:shadow-[#326CE5]/30 w-20 h-20">
-                            <i class="fas fa-cubes text-3xl" style="color: #326CE5 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#326CE5] transition-colors">Kubernetes</p>
-                    </div>
-
-                    <!-- Bootstrap -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#7952B3] transition-all duration-300 shadow-lg group-hover:shadow-[#7952B3]/30 w-20 h-20">
-                            <i class="fab fa-bootstrap text-3xl" style="color: #7952B3 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#7952B3] transition-colors">Bootstrap</p>
-                    </div>
-
-                    <!-- Tailwind CSS -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#38B2AC] transition-all duration-300 shadow-lg group-hover:shadow-[#38B2AC]/30 w-20 h-20">
-                            <i class="fab fa-tailwind text-3xl" style="color: #38B2AC !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#38B2AC] transition-colors">Tailwind CSS</p>
-                    </div>
-
-                    <!-- HTML5 -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#E34F26] transition-all duration-300 shadow-lg group-hover:shadow-[#E34F26]/30 w-20 h-20">
-                            <i class="fab fa-html5 text-3xl" style="color: #E34F26 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#E34F26] transition-colors">HTML5</p>
-                    </div>
-
-                    <!-- CSS3 -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#1572B6] transition-all duration-300 shadow-lg group-hover:shadow-[#1572B6]/30 w-20 h-20">
-                            <i class="fab fa-css3-alt text-3xl" style="color: #1572B6 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#1572B6] transition-colors">CSS3</p>
-                    </div>
-
-                    <!-- JavaScript -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#F7DF1E] transition-all duration-300 shadow-lg group-hover:shadow-[#F7DF1E]/30 w-20 h-20">
-                            <i class="fab fa-js text-3xl" style="color: #F7DF1E !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#F7DF1E] transition-colors">JavaScript</p>
-                    </div>
-
-                    <!-- Grafana -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#F46800] transition-all duration-300 shadow-lg group-hover:shadow-[#F46800]/30 w-20 h-20">
-                            <i class="fas fa-chart-line text-3xl" style="color: #F46800 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#F46800] transition-colors">Grafana</p>
-                    </div>
-
-                    <!-- Prometheus -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#E6522C] transition-all duration-300 shadow-lg group-hover:shadow-[#E6522C]/30 w-20 h-20">
-                            <i class="fas fa-fire text-3xl" style="color: #E6522C !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#E6522C] transition-colors">Prometheus</p>
-                    </div>
-
-                    <!-- Zabbix -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#CC0000] transition-all duration-300 shadow-lg group-hover:shadow-[#CC0000]/30 w-20 h-20">
-                            <i class="fas fa-chart-bar text-3xl" style="color: #CC0000 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#CC0000] transition-colors">Zabbix</p>
-                    </div>
-
+                    <!-- Duplicate for infinite scroll -->
                 </div>
             </div>
         </div>
@@ -1084,6 +795,7 @@
                 <div class="flex items-center gap-3 text-xs text-purple-400 mb-3 flex-wrap">
                     <span id="modalTags" class="bg-purple-600 bg-opacity-20 px-3 py-1 rounded-full">#tag</span>
                     <span id="modalReadTime" class="text-gray-500">5 min read</span>
+                    <span id="modalViews" class="text-gray-500"><i class="fas fa-eye mr-1"></i> <span id="viewCount">0</span> views</span>
                 </div>
                 <h2 id="modalTitle" class="text-2xl md:text-4xl font-bold text-white mb-4">Judul Artikel</h2>
                 <div id="modalContent" class="text-gray-300 text-sm leading-relaxed space-y-4"></div>
@@ -1091,11 +803,15 @@
                     <span id="modalDate">📅 Tanggal</span>
                     <span id="modalAuthor">✍️ Penulis</span>
                 </div>
+                <div id="adminActions" class="mt-4 pt-4 border-t border-gray-700 flex gap-3 hidden">
+                    <button onclick="deleteCurrentArticle()" class="px-4 py-2 bg-red-600 hover:bg-red-700 rounded-lg text-sm transition">
+                        <i class="fas fa-trash mr-1"></i> Delete Article
+                    </button>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- ===== FIX: FORM MODAL - UDAH GW TAMBAHIN overflow-y-auto ===== -->
     <div id="formModal" class="fixed inset-0 z-50 flex items-start justify-center bg-black bg-opacity-90 hidden p-4" style="overflow-y: auto !important; max-height: 100vh !important;">
         <div class="form-modal bg-gray-900 rounded-xl max-w-2xl w-full my-8" style="max-height: 90vh; overflow-y: auto;">
             <button id="closeFormModal" class="sticky top-0 float-right m-4 text-gray-400 hover:text-white z-10 bg-black bg-opacity-50 p-2 rounded-full"><i class="fas fa-times text-2xl"></i></button>
@@ -1294,6 +1010,73 @@
         }
 
         // =========================================================
+        // ===== SEARCH FUNCTION - PASTI JALAN =====
+        // =========================================================
+        let searchKeyword = '';
+
+        function filterArticlesBySearch(keyword) {
+            searchKeyword = keyword.toLowerCase().trim();
+            renderArticles();
+        }
+
+        // ===== NAVBAR SEARCH =====
+        const navbarSearch = document.getElementById('navbarSearch');
+        const searchWrapper = document.getElementById('searchWrapper');
+        const searchIcon = document.getElementById('searchIcon');
+
+        if (searchIcon) {
+            searchIcon.addEventListener('click', function(e) {
+                e.stopPropagation();
+                searchWrapper.classList.toggle('active');
+                if (searchWrapper.classList.contains('active')) {
+                    setTimeout(function() {
+                        navbarSearch.focus();
+                    }, 100);
+                } else {
+                    navbarSearch.value = '';
+                    filterArticlesBySearch('');
+                }
+            });
+        }
+
+        if (navbarSearch) {
+            navbarSearch.addEventListener('input', function() {
+                filterArticlesBySearch(this.value);
+            });
+
+            navbarSearch.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    filterArticlesBySearch(this.value);
+                    searchWrapper.classList.remove('active');
+                    this.blur();
+                }
+            });
+        }
+
+        document.addEventListener('click', function(e) {
+            if (searchWrapper && !searchWrapper.contains(e.target)) {
+                searchWrapper.classList.remove('active');
+                if (navbarSearch && navbarSearch.value === '') {
+                    filterArticlesBySearch('');
+                }
+            }
+        });
+
+        // ===== MOBILE SEARCH =====
+        const mobileSearch = document.getElementById('mobileSearch');
+        if (mobileSearch) {
+            mobileSearch.addEventListener('input', function() {
+                filterArticlesBySearch(this.value);
+            });
+            mobileSearch.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    filterArticlesBySearch(this.value);
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        }
+
+        // =========================================================
         // ===== FORM SEND TO TELEGRAM =====
         // =========================================================
         async function sendToTelegram(e) {
@@ -1314,14 +1097,14 @@
                 return;
             }
             
-            const text = `📩 <b>Pesan Baru dari Portfolio!</b>\n\n👤 <b>Nama:</b> ${name}\n📧 <b>Email:</b> ${email}\n💬 <b>Pesan:</b>\n${message}`;
+            const text = '📩 <b>Pesan Baru dari Portfolio!</b>\n\n👤 <b>Nama:</b> ' + name + '\n📧 <b>Email:</b> ' + email + '\n💬 <b>Pesan:</b>\n' + message;
             
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Mengirim...';
             status.innerHTML = '';
             
             try {
-                const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                const res = await fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' })
@@ -1421,7 +1204,7 @@
             const container = document.getElementById('experienceContainer');
             if (!container) return;
             let html = '';
-            experienceData.forEach((exp) => {
+            experienceData.forEach(function(exp) {
                 html += `
                     <div class="exp-card bg-gray-800 p-6 relative transition-all duration-300 border ${exp.color} border-opacity-30 hover:border-opacity-100">
                         <div class="exp-glow"></div>
@@ -1442,13 +1225,13 @@
                                 <i class="fas fa-map-marker-alt text-purple-400"></i> ${exp.location}
                             </p>
                             <div class="flex flex-wrap gap-2 mb-3">
-                                ${exp.tags.map(tag => `<span class="exp-tag">${tag}</span>`).join('')}
+                                ${exp.tags.map(function(tag) { return '<span class="exp-tag">' + tag + '</span>'; }).join('')}
                             </div>
                             <div class="exp-detail">
                                 <ul class="detail-list">
-                                    ${exp.details.map(detail => `
-                                        <li><i class="fas fa-check-circle"></i> ${detail}</li>
-                                    `).join('')}
+                                    ${exp.details.map(function(detail) {
+                                        return '<li><i class="fas fa-check-circle"></i> ' + detail + '</li>';
+                                    }).join('')}
                                 </ul>
                             </div>
                         </div>
@@ -1461,7 +1244,7 @@
         // =========================================================
         // ===== ARTICLES DATA =====
         // =========================================================
-        let articles = [
+        var articles = [
             {
                 id: 1,
                 title: "🚀 Memahami DevOps: Filosofi, Budaya, dan Praktik",
@@ -1469,6 +1252,7 @@
                 readTime: "8 min read",
                 date: "📅 8 Juli 2026",
                 author: "✍️ Marlin Hidayat",
+                views: 0,
                 image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23667eea' font-family='sans-serif' font-size='28'%3EDevOps%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23764ba2' font-family='sans-serif' font-size='16'%3ECulture %26 Automation%3C/text%3E%3C/svg%3E",
                 content: `
                     <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">Apa itu DevOps?</h3>
@@ -1509,6 +1293,7 @@
                 readTime: "10 min read",
                 date: "📅 7 Juli 2026",
                 author: "✍️ Marlin Hidayat",
+                views: 0,
                 image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%232496ed' font-family='sans-serif' font-size='28'%3E🐳 Docker%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EContainer %26 Orchestration%3C/text%3E%3C/svg%3E",
                 content: `
                     <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">🐳 Apa itu Docker?</h3>
@@ -1559,6 +1344,7 @@ CMD ["npm", "start"]</pre>
                 readTime: "12 min read",
                 date: "📅 6 Juli 2026",
                 author: "✍️ Marlin Hidayat",
+                views: 0,
                 image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23f97316' font-family='sans-serif' font-size='28'%3E⚡ CI/CD%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EAutomate Build %26 Deploy%3C/text%3E%3C/svg%3E",
                 content: `
                     <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">⚡ Apa itu CI/CD?</h3>
@@ -1608,6 +1394,7 @@ jobs:
                 readTime: "10 min read",
                 date: "📅 5 Juli 2026",
                 author: "✍️ Marlin Hidayat",
+                views: 0,
                 image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23e34f26' font-family='sans-serif' font-size='24'%3E📊 Monitoring%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EPrometheus %26 Grafana%3C/text%3E%3C/svg%3E",
                 content: `
                     <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">📊 Apa itu Monitoring & Observability?</h3>
@@ -1650,119 +1437,133 @@ jobs:
                 `
             },
             {
-    id: 5,
-    title: "🧠 DevOps Bukan Cuma Tools: Filosofi di Balik Otomatisasi",
-    tags: ["#devops", "#filosofi", "#culture", "#automation"],
-    readTime: "8 min read",
-    date: "📅 9 Juli 2026",
-    author: "✍️ Marlin Hidayat",
-    image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23667eea' font-family='sans-serif' font-size='24'%3E🧠 DevOps%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23764ba2' font-family='sans-serif' font-size='16'%3EFilosofi %26 Otomatisasi%3C/text%3E%3C/svg%3E",
-    content: `
-        <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">DevOps Bukan Cuma Tools</h3>
-        <p>Kalau lo denger kata <strong>DevOps</strong>, apa yang pertama kali kepikiran?</p>
-        <ul class="list-disc list-inside space-y-1 text-gray-300 mt-2">
-            <li>Docker?</li>
-            <li>Kubernetes?</li>
-            <li>Jenkins?</li>
-            <li>Pipeline?</li>
-            <li>YAML?</li>
-        </ul>
-        <p class="mt-3">Kalau jawaban lo cuma itu, <strong>lo baru kenal kulitnya doang</strong>. DevOps itu bukan tools. Tools cuma alat bantu. DevOps adalah <span class="text-cyan-400">mindset</span>, <span class="text-yellow-400">budaya</span>, dan <span class="text-green-400">cara kerja</span> yang mengubah cara lo membangun dan menjalankan software.</p>
+                id: 5,
+                title: "🧠 DevOps Bukan Cuma Tools: Filosofi di Balik Otomatisasi",
+                tags: ["#devops", "#filosofi", "#culture", "#automation"],
+                readTime: "8 min read",
+                date: "📅 9 Juli 2026",
+                author: "✍️ Marlin Hidayat",
+                views: 0,
+                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23667eea' font-family='sans-serif' font-size='24'%3E🧠 DevOps%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23764ba2' font-family='sans-serif' font-size='16'%3EFilosofi %26 Otomatisasi%3C/text%3E%3C/svg%3E",
+                content: `
+                    <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">DevOps Bukan Cuma Tools</h3>
+                    <p>Kalau lo denger kata <strong>DevOps</strong>, apa yang pertama kali kepikiran?</p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-300 mt-2">
+                        <li>Docker?</li>
+                        <li>Kubernetes?</li>
+                        <li>Jenkins?</li>
+                        <li>Pipeline?</li>
+                        <li>YAML?</li>
+                    </ul>
+                    <p class="mt-3">Kalau jawaban lo cuma itu, <strong>lo baru kenal kulitnya doang</strong>. DevOps itu bukan tools. Tools cuma alat bantu. DevOps adalah <span class="text-cyan-400">mindset</span>, <span class="text-yellow-400">budaya</span>, dan <span class="text-green-400">cara kerja</span> yang mengubah cara lo membangun dan menjalankan software.</p>
 
-        <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🧠 DevOps Itu Filosofi, Bukan Tools</h4>
-        <p>Banyak orang bilang: <em>"Gw pake Docker, jadi gw DevOps."</em> Waduh, salah kaprah banget itu. DevOps itu bukan tentang <strong>apa yang lo pake</strong>, tapi <strong>gimana lo bekerja</strong>.</p>
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🧠 DevOps Itu Filosofi, Bukan Tools</h4>
+                    <p>Banyak orang bilang: <em>"Gw pake Docker, jadi gw DevOps."</em> Waduh, salah kaprah banget itu. DevOps itu bukan tentang <strong>apa yang lo pake</strong>, tapi <strong>gimana lo bekerja</strong>.</p>
 
-        <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-3">
-            <p class="text-purple-400 font-semibold">4 Pilar DevOps:</p>
-            <ul class="list-disc list-inside space-y-1 text-gray-300 text-sm">
-                <li><strong class="text-cyan-400">Culture (Budaya)</strong> — Kolaborasi antara Dev dan Ops, bukan saling lempar tanggung jawab</li>
-                <li><strong class="text-cyan-400">Automation (Otomatisasi)</strong> — Ulangi hal yang sama? Otomatisasi! Biar gak ada human error</li>
-                <li><strong class="text-cyan-400">Measurement (Pengukuran)</strong> — Lo gak bisa improve apa yang gak lo ukur</li>
-                <li><strong class="text-cyan-400">Sharing (Berbagi)</strong> — Knowledge sharing, feedback loop, dan transparansi</li>
-            </ul>
-        </div>
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-3">
+                        <p class="text-purple-400 font-semibold">4 Pilar DevOps:</p>
+                        <ul class="list-disc list-inside space-y-1 text-gray-300 text-sm">
+                            <li><strong class="text-cyan-400">Culture (Budaya)</strong> — Kolaborasi antara Dev dan Ops, bukan saling lempar tanggung jawab</li>
+                            <li><strong class="text-cyan-400">Automation (Otomatisasi)</strong> — Ulangi hal yang sama? Otomatisasi! Biar gak ada human error</li>
+                            <li><strong class="text-cyan-400">Measurement (Pengukuran)</strong> — Lo gak bisa improve apa yang gak lo ukur</li>
+                            <li><strong class="text-cyan-400">Sharing (Berbagi)</strong> — Knowledge sharing, feedback loop, dan transparansi</li>
+                        </ul>
+                    </div>
 
-        <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🔄 The Three Ways — Filosofi Dasar DevOps</h4>
-        <p>Buku <em>The Phoenix Project</em> dan <em>The DevOps Handbook</em> mengenalkan konsep <strong>The Three Ways</strong>:</p>
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🔄 The Three Ways — Filosofi Dasar DevOps</h4>
+                    <p>Buku <em>The Phoenix Project</em> dan <em>The DevOps Handbook</em> mengenalkan konsep <strong>The Three Ways</strong>:</p>
 
-        <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-3">
-            <p><span class="text-green-400 font-bold">1. Flow (Alur Kerja)</span> — Percepat aliran dari Dev → Ops → User. Otomatisasi build, test, deployment.</p>
-            <p class="mt-2"><span class="text-green-400 font-bold">2. Feedback (Umpan Balik)</span> — Percepat feedback dari User → Ops → Dev. Monitor, logging, alerting.</p>
-            <p class="mt-2"><span class="text-green-400 font-bold">3. Continuous Learning</span> — Belajar dari kegagalan, blameless post-mortem, chaos engineering.</p>
-        </div>
+                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-3">
+                        <p><span class="text-green-400 font-bold">1. Flow (Alur Kerja)</span> — Percepat aliran dari Dev → Ops → User. Otomatisasi build, test, deployment.</p>
+                        <p class="mt-2"><span class="text-green-400 font-bold">2. Feedback (Umpan Balik)</span> — Percepat feedback dari User → Ops → Dev. Monitor, logging, alerting.</p>
+                        <p class="mt-2"><span class="text-green-400 font-bold">3. Continuous Learning</span> — Belajar dari kegagalan, blameless post-mortem, chaos engineering.</p>
+                    </div>
 
-        <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📊 Metrik DevOps (DORA Metrics)</h4>
-        <div class="overflow-x-auto">
-            <table class="w-full text-sm text-left text-gray-400 border border-gray-700 rounded-lg">
-                <thead class="text-xs uppercase bg-gray-800 text-gray-300">
-                    <tr><th class="px-4 py-2">Metrik</th><th class="px-4 py-2">Arti</th><th class="px-4 py-2">Target Ideal</th></tr>
-                </thead>
-                <tbody>
-                    <tr class="border-b border-gray-700"><td class="px-4 py-2">Deployment Frequency</td><td class="px-4 py-2">Seberapa sering deploy?</td><td class="px-4 py-2 text-green-400">Beberapa kali sehari</td></tr>
-                    <tr class="border-b border-gray-700"><td class="px-4 py-2">Lead Time for Changes</td><td class="px-4 py-2">Dari commit sampai deploy?</td><td class="px-4 py-2 text-green-400">Kurang dari 1 jam</td></tr>
-                    <tr class="border-b border-gray-700"><td class="px-4 py-2">Mean Time to Recovery (MTTR)</td><td class="px-4 py-2">Berapa lama recover dari incident?</td><td class="px-4 py-2 text-green-400">Kurang dari 1 jam</td></tr>
-                    <tr><td class="px-4 py-2">Change Failure Rate</td><td class="px-4 py-2">Berapa % deploy gagal di production?</td><td class="px-4 py-2 text-green-400">Kurang dari 15%</td></tr>
-                </tbody>
-            </table>
-        </div>
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📊 Metrik DevOps (DORA Metrics)</h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left text-gray-400 border border-gray-700 rounded-lg">
+                            <thead class="text-xs uppercase bg-gray-800 text-gray-300">
+                                <tr><th class="px-4 py-2">Metrik</th><th class="px-4 py-2">Arti</th><th class="px-4 py-2">Target Ideal</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-gray-700"><td class="px-4 py-2">Deployment Frequency</td><td class="px-4 py-2">Seberapa sering deploy?</td><td class="px-4 py-2 text-green-400">Beberapa kali sehari</td></tr>
+                                <tr class="border-b border-gray-700"><td class="px-4 py-2">Lead Time for Changes</td><td class="px-4 py-2">Dari commit sampai deploy?</td><td class="px-4 py-2 text-green-400">Kurang dari 1 jam</td></tr>
+                                <tr class="border-b border-gray-700"><td class="px-4 py-2">Mean Time to Recovery (MTTR)</td><td class="px-4 py-2">Berapa lama recover dari incident?</td><td class="px-4 py-2 text-green-400">Kurang dari 1 jam</td></tr>
+                                <tr><td class="px-4 py-2">Change Failure Rate</td><td class="px-4 py-2">Berapa % deploy gagal di production?</td><td class="px-4 py-2 text-green-400">Kurang dari 15%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-        <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🚀 Cara Memulai DevOps (Tanpa Pusing)</h4>
-        <ol class="list-decimal list-inside space-y-1 text-gray-300 text-sm">
-            <li><strong class="text-cyan-400">Pakai Git</strong> — version control itu dasar.</li>
-            <li><strong class="text-cyan-400">Automatisasi build</strong> — pake GitHub Actions atau GitLab CI.</li>
-            <li><strong class="text-cyan-400">Automatisasi test</strong> — unit test, integration test, security scan.</li>
-            <li><strong class="text-cyan-400">Automatisasi deploy</strong> — mulai dari staging dulu.</li>
-            <li><strong class="text-cyan-400">Monitoring</strong> — pake Prometheus + Grafana.</li>
-            <li><strong class="text-cyan-400">Logging</strong> — centralized logging pake ELK atau Loki.</li>
-            <li><strong class="text-cyan-400">Infrastructure as Code</strong> — mulai pake Terraform.</li>
-            <li><strong class="text-cyan-400">Containerization</strong> — pake Docker buat packaging app.</li>
-            <li><strong class="text-cyan-400">Orchestration</strong> — kalo udah banyak container, baru pake Kubernetes.</li>
-            <li><strong class="text-cyan-400">Culture</strong> — ajak tim buat retrospective dan blameless post-mortem.</li>
-        </ol>
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🚀 Cara Memulai DevOps (Tanpa Pusing)</h4>
+                    <ol class="list-decimal list-inside space-y-1 text-gray-300 text-sm">
+                        <li><strong class="text-cyan-400">Pakai Git</strong> — version control itu dasar.</li>
+                        <li><strong class="text-cyan-400">Automatisasi build</strong> — pake GitHub Actions atau GitLab CI.</li>
+                        <li><strong class="text-cyan-400">Automatisasi test</strong> — unit test, integration test, security scan.</li>
+                        <li><strong class="text-cyan-400">Automatisasi deploy</strong> — mulai dari staging dulu.</li>
+                        <li><strong class="text-cyan-400">Monitoring</strong> — pake Prometheus + Grafana.</li>
+                        <li><strong class="text-cyan-400">Logging</strong> — centralized logging pake ELK atau Loki.</li>
+                        <li><strong class="text-cyan-400">Infrastructure as Code</strong> — mulai pake Terraform.</li>
+                        <li><strong class="text-cyan-400">Containerization</strong> — pake Docker buat packaging app.</li>
+                        <li><strong class="text-cyan-400">Orchestration</strong> — kalo udah banyak container, baru pake Kubernetes.</li>
+                        <li><strong class="text-cyan-400">Culture</strong> — ajak tim buat retrospective dan blameless post-mortem.</li>
+                    </ol>
 
-        <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
-            <p class="text-purple-300 text-sm"><i class="fas fa-quote-left mr-2"></i> <strong>DevOps is not a destination. It's a journey.</strong> 🚀</p>
-        </div>
+                    <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                        <p class="text-purple-300 text-sm"><i class="fas fa-quote-left mr-2"></i> <strong>DevOps is not a destination. It's a journey.</strong> 🚀</p>
+                    </div>
 
-        <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📚 Referensi</h4>
-        <ul class="list-disc list-inside space-y-1 text-gray-300 text-sm">
-            <li><em>The Phoenix Project</em> — Gene Kim, Kevin Behr, George Spafford</li>
-            <li><em>The DevOps Handbook</em> — Gene Kim, Jez Humble, Patrick Debois</li>
-            <li><em>Accelerate</em> — Nicole Forsgren, Jez Humble, Gene Kim</li>
-        </ul>
-    `
-}
+                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📚 Referensi</h4>
+                    <ul class="list-disc list-inside space-y-1 text-gray-300 text-sm">
+                        <li><em>The Phoenix Project</em> — Gene Kim, Kevin Behr, George Spafford</li>
+                        <li><em>The DevOps Handbook</em> — Gene Kim, Jez Humble, Patrick Debois</li>
+                        <li><em>Accelerate</em> — Nicole Forsgren, Jez Humble, Gene Kim</li>
+                    </ul>
+                `
+            }
         ];
 
+        function getFilteredArticles() {
+            if (!searchKeyword) return articles;
+            return articles.filter(function(a) {
+                return a.title.toLowerCase().includes(searchKeyword) || 
+                       a.content.toLowerCase().includes(searchKeyword) ||
+                       a.tags.some(function(t) { return t.toLowerCase().includes(searchKeyword); });
+            });
+        }
+
         function renderArticles() {
-            const grid = document.getElementById('articleGrid');
+            var grid = document.getElementById('articleGrid');
             if (!grid) return;
             
-            let displayArticles = articles.length > 4 ? articles.slice(-4) : articles;
-            displayArticles = displayArticles.sort((a, b) => b.id - a.id);
+            var data = getFilteredArticles();
+            var displayArticles = data.length > 4 ? data.slice(-4) : data;
+            displayArticles = displayArticles.sort(function(a, b) { return b.id - a.id; });
             
             if (displayArticles.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center text-gray-400 py-8">Belum ada artikel.</div>`;
+                grid.innerHTML = '<div class="col-span-full text-center text-gray-400 py-8">' + 
+                    (searchKeyword ? 'Tidak ada artikel yang cocok dengan pencarian.' : 'Belum ada artikel.') + 
+                    '</div>';
                 return;
             }
             
-            let html = '';
-            displayArticles.forEach(article => {
-                const previewText = article.content.replace(/<[^>]*>/g, '').substring(0, 120);
-                const imageUrl = article.image || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
+            var html = '';
+            displayArticles.forEach(function(article) {
+                var previewText = article.content.replace(/<[^>]*>/g, '').substring(0, 120);
+                var imageUrl = article.image || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
                 html += `
                     <div class="article-card bg-gray-800 rounded-xl overflow-hidden cursor-pointer flex flex-col" onclick="openArticle(${article.id})">
                         <img src="${imageUrl}" alt="${article.title}" class="thumb-img" onerror="this.style.display='none'">
                         <div class="p-4 flex-1 flex flex-col">
                             <div class="flex flex-wrap gap-1 mb-2">
-                                ${article.tags.slice(0, 3).map(tag => `<span class="px-2 py-0.5 bg-purple-600 bg-opacity-20 text-purple-400 text-xs rounded-full">${tag}</span>`).join('')}
-                                ${article.tags.length > 3 ? `<span class="text-gray-500 text-xs">+${article.tags.length - 3}</span>` : ''}
+                                ${article.tags.slice(0, 3).map(function(tag) { return '<span class="px-2 py-0.5 bg-purple-600 bg-opacity-20 text-purple-400 text-xs rounded-full">' + tag + '</span>'; }).join('')}
+                                ${article.tags.length > 3 ? '<span class="text-gray-500 text-xs">+' + (article.tags.length - 3) + '</span>' : ''}
                             </div>
                             <h3 class="text-base font-bold text-white hover:text-purple-400 transition line-clamp-2">${article.title}</h3>
                             <p class="text-gray-400 text-xs mt-1 line-clamp-2 flex-1">${previewText}...</p>
                             <div class="flex justify-between items-center mt-3 text-xs text-gray-500 border-t border-gray-700 pt-2">
                                 <span>${article.date}</span>
                                 <span>${article.readTime}</span>
+                                <span><i class="fas fa-eye mr-1"></i> ${article.views || 0}</span>
                             </div>
                         </div>
                     </div>
@@ -1771,33 +1572,45 @@ jobs:
             grid.innerHTML = html;
         }
 
-        // ===== FIX: CEK AKSES ADMIN VIA URL PARAMETER (PASSWORD: izumy025) =====
-        const urlParams = new URLSearchParams(window.location.search);
-        const admin = urlParams.get('admin');
+        // ===== ADMIN CHECK =====
+        var urlParams = new URLSearchParams(window.location.search);
+        var admin = urlParams.get('admin');
+        var isAdmin = admin === 'izumy025';
 
-        // Sembunyikan tombol kalo bukan admin
-        if (admin === 'izumy025') {
+        if (isAdmin) {
             document.getElementById('addArticleBtn').style.display = 'flex';
             document.getElementById('viewAllArticlesBtn').style.display = 'flex';
-            // Hapus parameter dari URL biar nggak ketauan
             window.history.replaceState({}, document.title, window.location.pathname);
         } else {
             document.getElementById('addArticleBtn').style.display = 'none';
             document.getElementById('viewAllArticlesBtn').style.display = 'none';
         }
 
+        // ===== OPEN ARTICLE =====
+        var currentArticleId = null;
+
         function openArticle(id) {
-            const article = articles.find(a => a.id === id);
+            var article = articles.find(function(a) { return a.id === id; });
             if (!article) return;
+            
+            article.views = (article.views || 0) + 1;
+            currentArticleId = id;
             
             document.getElementById('modalTitle').textContent = article.title;
             document.getElementById('modalTags').textContent = article.tags.join(' • ');
             document.getElementById('modalReadTime').textContent = article.readTime;
             document.getElementById('modalDate').textContent = article.date;
             document.getElementById('modalAuthor').textContent = article.author;
+            document.getElementById('viewCount').textContent = article.views;
             
-            // ===== FIX: SANITASI LAGI SAAT RENDER PAKE DOMPurify =====
-            const contentContainer = document.getElementById('modalContent');
+            var adminActions = document.getElementById('adminActions');
+            if (isAdmin) {
+                adminActions.classList.remove('hidden');
+            } else {
+                adminActions.classList.add('hidden');
+            }
+            
+            var contentContainer = document.getElementById('modalContent');
             contentContainer.innerHTML = DOMPurify.sanitize(article.content, {
                 ALLOWED_TAGS: ['p','strong','em','ul','li','h3','h4','pre','code','div','span','br','a','img','table','tr','td','th','thead','tbody','ol'],
                 ALLOWED_ATTR: ['href','src','alt','class','style','target','rel','title']
@@ -1808,10 +1621,21 @@ jobs:
             }
             
             document.getElementById('articleModal').classList.remove('hidden');
+            renderArticles();
+        }
+
+        function deleteCurrentArticle() {
+            if (!currentArticleId) return;
+            if (!confirm('Yakin mau hapus artikel ini?')) return;
+            
+            articles = articles.filter(function(a) { return a.id !== currentArticleId; });
+            renderArticles();
+            closeArticleModal();
         }
 
         function closeArticleModal() {
             document.getElementById('articleModal').classList.add('hidden');
+            currentArticleId = null;
         }
 
         document.getElementById('closeArticleModal').addEventListener('click', closeArticleModal);
@@ -1822,27 +1646,30 @@ jobs:
             if (e.key === 'Escape') closeArticleModal();
         });
 
-        // ===== FIX: OPEN FORM MODAL (TAMBAHIN SCROLL FIX) =====
+        // ===== OPEN FORM MODAL =====
         document.getElementById('addArticleBtn').addEventListener('click', function() {
+            if (!isAdmin) {
+                alert('⚠️ Anda tidak memiliki akses!');
+                return;
+            }
             document.getElementById('formModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // biar background nggak scroll
-            document.getElementById('formModal').style.overflowY = 'auto'; // modal bisa scroll
+            document.body.style.overflow = 'hidden';
+            document.getElementById('formModal').style.overflowY = 'auto';
             document.getElementById('articleForm').reset();
             document.getElementById('imagePreview').style.display = 'none';
             document.getElementById('formTags').value = '';
             document.getElementById('formReadTime').value = '5 min read';
             document.getElementById('formImageFile').value = '';
             
-            // Reset scroll modal ke atas
-            const modalContent = document.querySelector('#formModal .form-modal');
+            var modalContent = document.querySelector('#formModal .form-modal');
             if (modalContent) modalContent.scrollTop = 0;
         });
 
         document.getElementById('formImageFile').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const preview = document.getElementById('imagePreview');
+            var file = e.target.files[0];
+            var preview = document.getElementById('imagePreview');
             if (file) {
-                const reader = new FileReader();
+                var reader = new FileReader();
                 reader.onload = function(event) {
                     preview.src = event.target.result;
                     preview.style.display = 'block';
@@ -1864,17 +1691,23 @@ jobs:
             if (e.target === this) closeFormModal();
         });
 
+        // ===== SUBMIT FORM =====
         document.getElementById('articleForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const title = document.getElementById('formTitle').value.trim();
-            const author = document.getElementById('formAuthor').value.trim();
-            const content = document.getElementById('formContent').value.trim();
-            const tagsInput = document.getElementById('formTags').value.trim();
-            const readTime = document.getElementById('formReadTime').value.trim() || '5 min read';
+            if (!isAdmin) {
+                alert('⚠️ Anda tidak memiliki akses!');
+                return;
+            }
             
-            const imagePreview = document.getElementById('imagePreview');
-            let imageUrl = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
+            var title = document.getElementById('formTitle').value.trim();
+            var author = document.getElementById('formAuthor').value.trim();
+            var content = document.getElementById('formContent').value.trim();
+            var tagsInput = document.getElementById('formTags').value.trim();
+            var readTime = document.getElementById('formReadTime').value.trim() || '5 min read';
+            
+            var imagePreview = document.getElementById('imagePreview');
+            var imageUrl = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
             if (imagePreview.style.display !== 'none' && imagePreview.src) {
                 imageUrl = imagePreview.src;
             }
@@ -1884,68 +1717,76 @@ jobs:
                 return;
             }
             
-            let tags = [];
+            var tags = [];
             if (tagsInput) {
-                tags = tagsInput.split(',').map(t => t.trim()).filter(t => t);
-                tags = tags.map(t => t.startsWith('#') ? t : `#${t}`);
+                tags = tagsInput.split(',').map(function(t) { return t.trim(); }).filter(function(t) { return t; });
+                tags = tags.map(function(t) { return t.startsWith('#') ? t : '#' + t; });
             } else {
                 tags = ['#tech', '#devops'];
             }
             
-            // ===== FIX: SANITASI PAKE DOMPurify =====
-            const cleanTitle = DOMPurify.sanitize(title);
-            const cleanAuthor = DOMPurify.sanitize(author);
-            const cleanContent = DOMPurify.sanitize(content, {
+            var cleanTitle = DOMPurify.sanitize(title);
+            var cleanAuthor = DOMPurify.sanitize(author);
+            var cleanContent = DOMPurify.sanitize(content, {
                 ALLOWED_TAGS: ['p','strong','em','ul','li','h3','h4','pre','code','div','span','br','a','img','table','tr','td','th','thead','tbody','ol'],
                 ALLOWED_ATTR: ['href','src','alt','class','style','target','rel','title']
             });
-            const cleanTags = tags.map(t => DOMPurify.sanitize(t));
-            const cleanReadTime = DOMPurify.sanitize(readTime);
+            var cleanTags = tags.map(function(t) { return DOMPurify.sanitize(t); });
+            var cleanReadTime = DOMPurify.sanitize(readTime);
             
-            const newArticle = {
+            var newArticle = {
                 id: Date.now(),
                 title: cleanTitle,
                 author: cleanAuthor,
                 tags: cleanTags,
                 readTime: cleanReadTime,
-                date: `📅 ${new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}`,
+                date: '📅 ' + new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
                 image: imageUrl,
+                views: 0,
                 content: cleanContent
             };
             
             articles.push(newArticle);
             renderArticles();
             closeFormModal();
-            setTimeout(() => {
+            setTimeout(function() {
                 document.getElementById('articles').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 300);
             document.getElementById('articleForm').reset();
             document.getElementById('imagePreview').style.display = 'none';
         });
 
+        // ===== VIEW ALL ARTICLES =====
         document.getElementById('viewAllArticlesBtn').addEventListener('click', function() {
-            const grid = document.getElementById('articleGrid');
-            const btn = this;
+            if (!isAdmin) {
+                alert('⚠️ Anda tidak memiliki akses!');
+                return;
+            }
+            
+            var grid = document.getElementById('articleGrid');
+            var btn = this;
             if (btn.textContent.includes('Semua')) {
-                let allHtml = '';
-                const sortedAll = [...articles].sort((a, b) => b.id - a.id);
-                sortedAll.forEach(article => {
-                    const previewText = article.content.replace(/<[^>]*>/g, '').substring(0, 120);
-                    const imageUrl = article.image || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
+                var allHtml = '';
+                var sortedAll = articles.slice().sort(function(a, b) { return b.id - a.id; });
+                sortedAll.forEach(function(article) {
+                    var previewText = article.content.replace(/<[^>]*>/g, '').substring(0, 120);
+                    var imageUrl = article.image || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
                     allHtml += `
                         <div class="article-card bg-gray-800 rounded-xl overflow-hidden cursor-pointer flex flex-col" onclick="openArticle(${article.id})">
                             <img src="${imageUrl}" alt="${article.title}" class="thumb-img" onerror="this.style.display='none'">
                             <div class="p-4 flex-1 flex flex-col">
                                 <div class="flex flex-wrap gap-1 mb-2">
-                                    ${article.tags.slice(0, 3).map(tag => `<span class="px-2 py-0.5 bg-purple-600 bg-opacity-20 text-purple-400 text-xs rounded-full">${tag}</span>`).join('')}
-                                    ${article.tags.length > 3 ? `<span class="text-gray-500 text-xs">+${article.tags.length - 3}</span>` : ''}
+                                    ${article.tags.slice(0, 3).map(function(tag) { return '<span class="px-2 py-0.5 bg-purple-600 bg-opacity-20 text-purple-400 text-xs rounded-full">' + tag + '</span>'; }).join('')}
+                                    ${article.tags.length > 3 ? '<span class="text-gray-500 text-xs">+' + (article.tags.length - 3) + '</span>' : ''}
                                 </div>
                                 <h3 class="text-base font-bold text-white hover:text-purple-400 transition line-clamp-2">${article.title}</h3>
                                 <p class="text-gray-400 text-xs mt-1 line-clamp-2 flex-1">${previewText}...</p>
                                 <div class="flex justify-between items-center mt-3 text-xs text-gray-500 border-t border-gray-700 pt-2">
                                     <span>${article.date}</span>
                                     <span>${article.readTime}</span>
+                                    <span><i class="fas fa-eye mr-1"></i> ${article.views || 0}</span>
                                 </div>
+                                ${isAdmin ? '<button onclick="event.stopPropagation();deleteArticle(' + article.id + ')" class="mt-2 text-red-400 hover:text-red-300 text-xs bg-red-900/20 px-3 py-1 rounded-full w-full">🗑️ Delete</button>' : ''}
                             </div>
                         </div>
                     `;
@@ -1958,8 +1799,21 @@ jobs:
             }
         });
 
+        function deleteArticle(id) {
+            if (!isAdmin) return;
+            if (!confirm('Yakin mau hapus artikel ini?')) return;
+            articles = articles.filter(function(a) { return a.id !== id; });
+            renderArticles();
+            var btn = document.getElementById('viewAllArticlesBtn');
+            if (btn.textContent.includes('Tampilkan 4 Terbaru')) {
+                btn.click();
+            }
+        }
+
+        // =========================================================
         // ===== CERTIFICATE MODAL =====
-        const certData = {
+        // =========================================================
+        var certData = {
             aws: {
                 title: "AWS Cloud & AI Fundamentals",
                 issuer: "Decoding Indonesia - Narenda Wicaksono (CEO)",
@@ -1981,9 +1835,9 @@ jobs:
         };
 
         function openCertModal(type) {
-            const data = certData[type];
+            var data = certData[type];
             if (!data) return;
-            const container = document.getElementById('certModalContent');
+            var container = document.getElementById('certModalContent');
             container.innerHTML = `
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="border border-gray-700 rounded-lg overflow-hidden">
@@ -2003,7 +1857,7 @@ jobs:
                 <div class="mt-6 border-t border-gray-800 pt-4">
                     <h4 class="text-lg font-semibold text-purple-400 mb-2">Skills Validated:</h4>
                     <div class="flex flex-wrap gap-2">
-                        ${data.skills.map(s => `<span class="px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 text-xs rounded-full">${s}</span>`).join('')}
+                        ${data.skills.map(function(s) { return '<span class="px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 text-xs rounded-full">' + s + '</span>'; }).join('')}
                     </div>
                 </div>
             `;
@@ -2024,15 +1878,15 @@ jobs:
         // =========================================================
         // ===== PROJECT EXPLORER =====
         // =========================================================
-        let allProjects = [];
-        let projectInterval = null;
-        let carouselInterval = null;
-        let githubAvatar = 'https://avatars.githubusercontent.com/u/48172784?v=4';
-        let currentIndex = 0;
-        let isPlaying = true;
-        const PROJECTS_PER_SLIDE = 6;
+        var allProjects = [];
+        var projectInterval = null;
+        var carouselInterval = null;
+        var githubAvatar = 'https://avatars.githubusercontent.com/u/48172784?v=4';
+        var currentIndex = 0;
+        var isPlaying = true;
+        var PROJECTS_PER_SLIDE = 6;
 
-        const staticRepos = [
+        var staticRepos = [
             { 
                 name: 'hidayat-tanjung.io', 
                 description: 'Portfolio website - Marlin Hidayat Tanjung', 
@@ -2090,13 +1944,13 @@ jobs:
         ];
 
         async function fetchProjects() {
-            const grid = document.getElementById('projectExplorerGrid');
+            var grid = document.getElementById('projectExplorerGrid');
             if (!grid) return;
             
             try {
-                grid.innerHTML = `<div class="col-span-full flex justify-center items-center"><div class="loader"></div></div>`;
+                grid.innerHTML = '<div class="col-span-full flex justify-center items-center"><div class="loader"></div></div>';
                 
-                const res = await fetch('https://api.github.com/users/hidayat-tanjung/repos?sort=updated&per_page=100');
+                var res = await fetch('https://api.github.com/users/hidayat-tanjung/repos?sort=updated&per_page=100');
                 
                 if (!res.ok) {
                     allProjects = staticRepos;
@@ -2104,13 +1958,13 @@ jobs:
                     return;
                 }
                 
-                const repos = await res.json();
-                allProjects = repos.filter(r => !r.archived);
+                var repos = await res.json();
+                allProjects = repos.filter(function(r) { return !r.archived; });
                 
                 if (allProjects.length < PROJECTS_PER_SLIDE) {
-                    const existingNames = allProjects.map(p => p.name);
-                    const extra = staticRepos.filter(r => !existingNames.includes(r.name));
-                    allProjects = [...allProjects, ...extra];
+                    var existingNames = allProjects.map(function(p) { return p.name; });
+                    var extra = staticRepos.filter(function(r) { return !existingNames.includes(r.name); });
+                    allProjects = allProjects.concat(extra);
                 }
                 
                 renderProjects();
@@ -2122,53 +1976,53 @@ jobs:
         }
 
         function renderProjects() {
-            const grid = document.getElementById('projectExplorerGrid');
+            var grid = document.getElementById('projectExplorerGrid');
             if (!grid) return;
             
-            const total = allProjects.length;
-            document.getElementById('projectCount').textContent = `Total ${total} project • Bergiliran`;
+            var total = allProjects.length;
+            document.getElementById('projectCount').textContent = 'Total ' + total + ' project • Bergiliran';
             
             if (total === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center text-gray-400 py-8">Tidak ada project</div>`;
+                grid.innerHTML = '<div class="col-span-full text-center text-gray-400 py-8">Tidak ada project</div>';
                 return;
             }
             
-            const totalSlides = Math.ceil(total / PROJECTS_PER_SLIDE);
+            var totalSlides = Math.ceil(total / PROJECTS_PER_SLIDE);
             if (currentIndex >= totalSlides) currentIndex = 0;
             if (currentIndex < 0) currentIndex = 0;
             
-            const startIdx = currentIndex * PROJECTS_PER_SLIDE;
-            const displayProjects = allProjects.slice(startIdx, startIdx + PROJECTS_PER_SLIDE);
+            var startIdx = currentIndex * PROJECTS_PER_SLIDE;
+            var displayProjects = allProjects.slice(startIdx, startIdx + PROJECTS_PER_SLIDE);
             
-            let html = '';
-            displayProjects.forEach(repo => {
+            var html = '';
+            displayProjects.forEach(function(repo) {
                 html += createProjectCard(repo);
             });
             
-            const remaining = PROJECTS_PER_SLIDE - displayProjects.length;
-            for (let i = 0; i < remaining; i++) {
-                html += `<div class="bg-gray-800 rounded-xl border border-gray-700 opacity-0" style="height:280px;"></div>`;
+            var remaining = PROJECTS_PER_SLIDE - displayProjects.length;
+            for (var i = 0; i < remaining; i++) {
+                html += '<div class="bg-gray-800 rounded-xl border border-gray-700 opacity-0" style="height:280px;"></div>';
             }
             
             grid.innerHTML = html;
         }
 
         function createProjectCard(repo) {
-            let liveUrl = null;
+            var liveUrl = null;
             if (repo.homepage && repo.homepage.startsWith('http')) {
                 liveUrl = repo.homepage;
             } else if (repo.has_pages) {
-                liveUrl = `https://${repo.owner.login}.github.io/${repo.name}`;
+                liveUrl = 'https://' + repo.owner.login + '.github.io/' + repo.name;
             }
             
-            const gradients = [
+            var gradients = [
                 'from-purple-600 to-pink-600','from-blue-600 to-cyan-600',
                 'from-green-600 to-teal-600','from-red-600 to-orange-600',
                 'from-yellow-600 to-red-600','from-indigo-600 to-purple-600',
                 'from-pink-600 to-rose-600','from-cyan-600 to-blue-600',
                 'from-emerald-600 to-green-600'
             ];
-            const grad = gradients[Math.floor(Math.random() * gradients.length)];
+            var grad = gradients[Math.floor(Math.random() * gradients.length)];
             
             return `
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden card-hover border border-gray-700 hover:border-cyan-500 transition-all">
@@ -2177,7 +2031,7 @@ jobs:
                     </div>
                     <div class="p-4">
                         <div class="flex items-center gap-2 mb-2">
-                            ${githubAvatar ? `<img src="${githubAvatar}" class="w-7 h-7 rounded-full border border-gray-600">` : `<div class="w-7 h-7 rounded-full bg-gray-700 flex items-center justify-center"><i class="fab fa-github text-gray-400 text-xs"></i></div>`}
+                            ${githubAvatar ? '<img src="' + githubAvatar + '" class="w-7 h-7 rounded-full border border-gray-600">' : '<div class="w-7 h-7 rounded-full bg-gray-700 flex items-center justify-center"><i class="fab fa-github text-gray-400 text-xs"></i></div>'}
                             <span class="text-gray-400 text-xs">${repo.owner.login}</span>
                         </div>
                         <p class="text-gray-400 text-xs line-clamp-2 h-8">${repo.description || 'No description'}</p>
@@ -2208,7 +2062,7 @@ jobs:
         }
 
         function goToSlide(index) {
-            const totalSlides = Math.ceil(allProjects.length / PROJECTS_PER_SLIDE);
+            var totalSlides = Math.ceil(allProjects.length / PROJECTS_PER_SLIDE);
             if (index < 0) index = totalSlides - 1;
             if (index >= totalSlides) index = 0;
             currentIndex = index;
@@ -2217,7 +2071,7 @@ jobs:
         }
 
         function nextSlide() {
-            const totalSlides = Math.ceil(allProjects.length / PROJECTS_PER_SLIDE);
+            var totalSlides = Math.ceil(allProjects.length / PROJECTS_PER_SLIDE);
             if (totalSlides === 0) return;
             goToSlide((currentIndex + 1) % totalSlides);
         }
@@ -2239,10 +2093,10 @@ jobs:
                 return;
             }
             
-            document.getElementById('projectPreviewTitle').textContent = `🔍 ${name}`;
+            document.getElementById('projectPreviewTitle').textContent = '🔍 ' + name;
             document.getElementById('projectPreviewLink').href = url;
             
-            const iframe = document.getElementById('projectPreviewIframe');
+            var iframe = document.getElementById('projectPreviewIframe');
             iframe.src = url;
             
             document.getElementById('projectPreviewModal').classList.remove('hidden');
@@ -2266,17 +2120,20 @@ jobs:
         // =========================================================
         // ===== INIT =====
         // =========================================================
+        renderExperience();
+        renderArticles();
+        
         fetchProjects();
         if (projectInterval) clearInterval(projectInterval);
         projectInterval = setInterval(fetchProjects, 20000);
 
         // ===== NAVIGASI =====
-        document.querySelectorAll('a[href^="#"], .nav-link[onclick*="showPage"]').forEach(el => {
+        document.querySelectorAll('a[href^="#"], .nav-link[onclick*="showPage"]').forEach(function(el) {
             el.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
+                var href = this.getAttribute('href');
                 if (href && href.startsWith('#')) {
                     e.preventDefault();
-                    const target = document.querySelector(href);
+                    var target = document.querySelector(href);
                     if (target) {
                         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                         document.getElementById('mobile-menu').classList.add('hidden');
@@ -2284,9 +2141,6 @@ jobs:
                 }
             });
         });
-
-        renderExperience();
-        renderArticles();
     </script>
 </body>
 </html>
