@@ -1288,92 +1288,551 @@
 
         // ===== ARTICLES DATA =====
         var articles = [
-            {
-                id: 1,
-                title: "🚀 Memahami DevOps: Filosofi, Budaya, dan Praktik",
-                tags: ["#devops", "#culture", "#automation"],
-                readTime: "8 min read",
-                date: "📅 8 Juli 2026",
-                author: "✍️ Marlin Hidayat",
-                views: 0,
-                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23667eea' font-family='sans-serif' font-size='28'%3EDevOps%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23764ba2' font-family='sans-serif' font-size='16'%3ECulture %26 Automation%3C/text%3E%3C/svg%3E",
-                content: `
-                    <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">Apa itu DevOps?</h3>
-                    <p><strong>DevOps</strong> adalah kombinasi dari <span class="text-cyan-400">Development</span> dan <span class="text-cyan-400">Operations</span>. Bukan sekadar tools atau job title, tapi <strong>sebuah filosofi dan budaya</strong> yang bertujuan untuk menjembatani kesenjangan antara tim pengembang dan tim operasi.</p>
-                    
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📌 Prinsip Dasar DevOps:</h4>
-                    <ul class="list-disc list-inside space-y-2 text-gray-300">
-                        <li><strong>Culture (Budaya)</strong> — Kolaborasi, komunikasi, dan saling percaya antara tim dev dan ops.</li>
-                        <li><strong>Automation (Otomatisasi)</strong> — Mengotomatiskan proses build, test, dan deployment.</li>
-                        <li><strong>Measurement (Pengukuran)</strong> — Mengumpulkan data dan metrik untuk evaluasi.</li>
-                        <li><strong>Sharing (Berbagi)</strong> — Berbagi pengetahuan dan feedback secara terus-menerus.</li>
-                    </ul>
+    // =========================================================
+    // ARTIKEL 1: Memahami DevOps: Filosofi, Budaya, dan Praktik
+    // =========================================================
+    {
+        id: 1,
+        title: "🚀 Memahami DevOps: Filosofi, Budaya, dan Praktik",
+        tags: ["#devops", "#culture", "#automation"],
+        readTime: "8 min read",
+        date: "📅 8 Juli 2026",
+        author: "✍️ Marlin Hidayat",
+        views: 0,
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23667eea' font-family='sans-serif' font-size='28'%3EDevOps%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23764ba2' font-family='sans-serif' font-size='16'%3ECulture %26 Automation%3C/text%3E%3C/svg%3E",
+        content: `
+            <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">Apa itu DevOps?</h3>
+            <p><strong>DevOps</strong> adalah kombinasi dari <span class="text-cyan-400">Development</span> dan <span class="text-cyan-400">Operations</span>. Bukan sekadar tools atau job title, tapi <strong>sebuah filosofi dan budaya</strong> yang bertujuan untuk menjembatani kesenjangan antara tim pengembang dan tim operasi.</p>
+            
+            <p>DevOps lahir dari kebutuhan untuk mempercepat delivery software tanpa mengorbankan stabilitas dan keamanan. Di era digital yang bergerak cepat, perusahaan dituntut untuk bisa merilis fitur baru secara terus-menerus, sementara infrastruktur harus tetap stabil dan aman.</p>
+            
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📌 Prinsip Dasar DevOps:</h4>
+            <ul class="list-disc list-inside space-y-2 text-gray-300">
+                <li><strong>Culture (Budaya)</strong> — Kolaborasi, komunikasi, dan saling percaya antara tim dev dan ops.</li>
+                <li><strong>Automation (Otomatisasi)</strong> — Mengotomatiskan proses build, test, dan deployment.</li>
+                <li><strong>Measurement (Pengukuran)</strong> — Mengumpulkan data dan metrik untuk evaluasi.</li>
+                <li><strong>Sharing (Berbagi)</strong> — Berbagi pengetahuan dan feedback secara terus-menerus.</li>
+            </ul>
 
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🛠️ Siklus DevOps (The Three Ways):</h4>
-                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
-                        <span class="text-green-400">1. Flow (Alur):</span> Mempercepat aliran kerja dari Dev → Ops<br>
-                        <span class="text-green-400">2. Feedback (Umpan Balik):</span> Mendapatkan feedback cepat dari Ops → Dev<br>
-                        <span class="text-green-400">3. Continuous Learning:</span> Belajar dari kesalahan dan melakukan perbaikan
-                    </div>
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🛠️ Siklus DevOps (The Three Ways):</h4>
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
+                <span class="text-green-400">1. Flow (Alur):</span> Mempercepat aliran kerja dari Dev → Ops<br>
+                <span class="text-green-400">2. Feedback (Umpan Balik):</span> Mendapatkan feedback cepat dari Ops → Dev<br>
+                <span class="text-green-400">3. Continuous Learning:</span> Belajar dari kesalahan dan melakukan perbaikan
+            </div>
 
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 Manfaat DevOps:</h4>
-                    <ul class="list-disc list-inside space-y-1 text-gray-300">
-                        <li>🚀 Deployment lebih cepat dan sering</li>
-                        <li>🔧 MTTR (Mean Time To Recovery) lebih rendah</li>
-                        <li>📉 Change Failure Rate turun drastis</li>
-                        <li>🤝 Kolaborasi tim lebih baik</li>
-                    </ul>
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 Manfaat DevOps:</h4>
+            <ul class="list-disc list-inside space-y-1 text-gray-300">
+                <li>🚀 Deployment lebih cepat dan sering</li>
+                <li>🔧 MTTR (Mean Time To Recovery) lebih rendah</li>
+                <li>📉 Change Failure Rate turun drastis</li>
+                <li>🤝 Kolaborasi tim lebih baik</li>
+                <li>📈 Produktivitas tim meningkat</li>
+            </ul>
 
-                    <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
-                        <p class="text-purple-300 text-sm"><i class="fas fa-lightbulb mr-2"></i> <strong>Insight:</strong> DevOps bukan tentang tools, tapi tentang <span class="text-yellow-300">mindset</span>. Tools hanya alat bantu untuk mewujudkan filosofi tersebut.</p>
-                    </div>
-                `
-            },
-            {
-                id: 2,
-                title: "🐳 Docker Dasar: Container, Image, dan Docker Compose",
-                tags: ["#docker", "#container", "#devops"],
-                readTime: "10 min read",
-                date: "📅 7 Juli 2026",
-                author: "✍️ Marlin Hidayat",
-                views: 0,
-                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%232496ed' font-family='sans-serif' font-size='28'%3E🐳 Docker%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EContainer %26 Orchestration%3C/text%3E%3C/svg%3E",
-                content: `<h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">🐳 Apa itu Docker?</h3><p>Docker adalah platform untuk container...</p>`
-            },
-            {
-                id: 3,
-                title: "⚡ CI/CD Pipeline: Dari Push ke Production",
-                tags: ["#cicd", "#jenkins", "#github-actions"],
-                readTime: "12 min read",
-                date: "📅 6 Juli 2026",
-                author: "✍️ Marlin Hidayat",
-                views: 0,
-                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23f97316' font-family='sans-serif' font-size='28'%3E⚡ CI/CD%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EAutomate Build %26 Deploy%3C/text%3E%3C/svg%3E",
-                content: `<h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">⚡ CI/CD Pipeline</h3><p>CI/CD adalah praktik otomatisasi...</p>`
-            },
-            {
-                id: 4,
-                title: "📊 Monitoring & Observability: Prometheus, Grafana, Loki",
-                tags: ["#monitoring", "#prometheus", "#grafana"],
-                readTime: "10 min read",
-                date: "📅 5 Juli 2026",
-                author: "✍️ Marlin Hidayat",
-                views: 0,
-                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23e34f26' font-family='sans-serif' font-size='24'%3E📊 Monitoring%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EPrometheus %26 Grafana%3C/text%3E%3C/svg%3E",
-                content: `<h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">📊 Monitoring</h3><p>Monitoring adalah proses mengumpulkan data...</p>`
-            },
-            {
-                id: 5,
-                title: "🧠 DevOps Bukan Cuma Tools: Filosofi di Balik Otomatisasi",
-                tags: ["#devops", "#filosofi", "#culture", "#automation"],
-                readTime: "8 min read",
-                date: "📅 9 Juli 2026",
-                author: "✍️ Marlin Hidayat",
-                views: 0,
-                image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23667eea' font-family='sans-serif' font-size='24'%3E🧠 DevOps%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23764ba2' font-family='sans-serif' font-size='16'%3EFilosofi %26 Otomatisasi%3C/text%3E%3C/svg%3E",
-                content: `<h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">DevOps Bukan Cuma Tools</h3><p>DevOps adalah filosofi...</p>`
-            }
-        ];
+            <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                <p class="text-purple-300 text-sm"><i class="fas fa-lightbulb mr-2"></i> <strong>Insight:</strong> DevOps bukan tentang tools, tapi tentang <span class="text-yellow-300">mindset</span>. Tools hanya alat bantu untuk mewujudkan filosofi tersebut.</p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🏗️ Arsitektur DevOps</h4>
+            <p>Arsitektur DevOps terdiri dari beberapa layer yang saling terintegrasi:</p>
+            <ul class="list-disc list-inside space-y-1 text-gray-300">
+                <li><strong>Planning:</strong> Perencanaan fitur dan backlog</li>
+                <li><strong>Development:</strong> Pengembangan kode dengan version control</li>
+                <li><strong>Build:</strong> Otomatisasi build dan unit testing</li>
+                <li><strong>Testing:</strong> Integration, performance, dan security testing</li>
+                <li><strong>Deployment:</strong> Otomatisasi deploy ke staging/production</li>
+                <li><strong>Monitoring:</strong> Observability dan alerting</li>
+                <li><strong>Feedback:</strong> Loop feedback untuk perbaikan</li>
+            </ul>
+
+            <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                <p class="text-purple-300 text-sm"><i class="fas fa-quote-left mr-2"></i> "DevOps is not a destination. It's a journey of continuous improvement." — Gene Kim</p>
+            </div>
+        `
+    },
+
+    // =========================================================
+    // ARTIKEL 2: Docker Dasar: Container, Image, dan Docker Compose
+    // =========================================================
+    {
+        id: 2,
+        title: "🐳 Docker Dasar: Container, Image, dan Docker Compose",
+        tags: ["#docker", "#container", "#devops"],
+        readTime: "10 min read",
+        date: "📅 7 Juli 2026",
+        author: "✍️ Marlin Hidayat",
+        views: 0,
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%232496ed' font-family='sans-serif' font-size='28'%3E🐳 Docker%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EContainer %26 Orchestration%3C/text%3E%3C/svg%3E",
+        content: `
+            <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">🐳 Apa itu Docker?</h3>
+            <p><strong>Docker</strong> adalah platform open-source yang digunakan untuk mengotomatisasi deployment aplikasi di dalam <span class="text-cyan-400">container</span>. Container adalah lingkungan yang ringan, portabel, dan terisolasi yang memungkinkan aplikasi berjalan dengan konsisten di berbagai environment.</p>
+
+            <p>Docker merevolusi cara kita mengembangkan, mengirim, dan menjalankan aplikasi. Dengan Docker, masalah <em>"works on my machine"</em> menjadi sesuatu yang usang.</p>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📦 Komponen Utama Docker:</h4>
+            <ul class="list-disc list-inside space-y-2 text-gray-300">
+                <li><strong>Docker Engine:</strong> Runtime yang menjalankan container</li>
+                <li><strong>Docker Image:</strong> Template read-only untuk membuat container</li>
+                <li><strong>Docker Container:</strong> Instance dari image yang berjalan</li>
+                <li><strong>Docker Registry:</strong> Tempat menyimpan dan berbagi image (Docker Hub)</li>
+                <li><strong>Docker Compose:</strong> Tool untuk menjalankan multi-container</li>
+            </ul>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📦 Docker Image vs Container</h4>
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
+                <p><span class="text-green-400">Image:</span> Seperti blueprint atau resep. Image berisi semua yang dibutuhkan aplikasi (kode, runtime, library, dependencies).</p>
+                <p class="mt-2"><span class="text-green-400">Container:</span> Seperti rumah jadi yang dibangun dari blueprint. Container adalah instance yang berjalan dari image.</p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📝 Contoh Dockerfile:</h4>
+            <pre class="bg-gray-900 p-4 rounded-lg border border-gray-700 text-sm text-gray-300 overflow-x-auto"><code class="language-docker"># Dockerfile untuk aplikasi Python
+FROM python:3.9-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD ["python", "app.py"]</code></pre>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📝 Contoh docker-compose.yml:</h4>
+            <pre class="bg-gray-900 p-4 rounded-lg border border-gray-700 text-sm text-gray-300 overflow-x-auto"><code class="language-yaml">version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+    volumes:
+      - .:/app
+  
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"</code></pre>
+
+            <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                <p class="text-purple-300 text-sm"><i class="fas fa-lightbulb mr-2"></i> <strong>Tip:</strong> Gunakan <span class="text-yellow-300">.dockerignore</span> untuk mengecualikan file yang tidak perlu seperti node_modules, .env, dan file build lainnya.</p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🔧 Perintah Docker Dasar:</h4>
+            <ul class="list-disc list-inside space-y-1 text-gray-300">
+                <li><code class="text-cyan-400">docker build -t nama-image .</code> — Build image dari Dockerfile</li>
+                <li><code class="text-cyan-400">docker run -d -p 80:80 nama-image</code> — Jalankan container</li>
+                <li><code class="text-cyan-400">docker ps</code> — Lihat container yang berjalan</li>
+                <li><code class="text-cyan-400">docker stop container-id</code> — Stop container</li>
+                <li><code class="text-cyan-400">docker rm container-id</code> — Hapus container</li>
+                <li><code class="text-cyan-400">docker rmi image-id</code> — Hapus image</li>
+                <li><code class="text-cyan-400">docker logs container-id</code> — Lihat log container</li>
+                <li><code class="text-cyan-400">docker exec -it container-id bash</code> — Masuk ke dalam container</li>
+                <li><code class="text-cyan-400">docker-compose up -d</code> — Jalankan semua service di compose</li>
+                <li><code class="text-cyan-400">docker-compose down</code> — Stop dan hapus semua service</li>
+            </ul>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📊 Keuntungan Menggunakan Docker:</h4>
+            <ul class="list-disc list-inside space-y-1 text-gray-300">
+                <li>✅ <strong>Konsistensi:</strong> Aplikasi berjalan sama di semua environment</li>
+                <li>✅ <strong>Portabilitas:</strong> Bisa berjalan di mana saja (local, cloud, on-premise)</li>
+                <li>✅ <strong>Isolasi:</strong> Setiap aplikasi terisolasi dalam containernya sendiri</li>
+                <li>✅ <strong>Efisiensi:</strong> Lebih ringan dibanding virtual machine</li>
+                <li>✅ <strong>Skalabilitas:</strong> Mudah untuk scaling horizontal</li>
+                <li>✅ <strong>Version Control:</strong> Image bisa di-versioning di registry</li>
+            </ul>
+
+            <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                <p class="text-purple-300 text-sm"><i class="fas fa-rocket mr-2"></i> <strong>Best Practice:</strong> Selalu gunakan <span class="text-yellow-300">multi-stage build</span> untuk mengurangi ukuran image produksi.</p>
+            </div>
+        `
+    },
+
+    // =========================================================
+    // ARTIKEL 3: CI/CD Pipeline: Dari Push ke Production
+    // =========================================================
+    {
+        id: 3,
+        title: "⚡ CI/CD Pipeline: Dari Push ke Production",
+        tags: ["#cicd", "#jenkins", "#github-actions"],
+        readTime: "12 min read",
+        date: "📅 6 Juli 2026",
+        author: "✍️ Marlin Hidayat",
+        views: 0,
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23f97316' font-family='sans-serif' font-size='28'%3E⚡ CI/CD%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EAutomate Build %26 Deploy%3C/text%3E%3C/svg%3E",
+        content: `
+            <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">⚡ CI/CD Pipeline</h3>
+            <p><strong>CI/CD</strong> adalah singkatan dari <span class="text-cyan-400">Continuous Integration</span> dan <span class="text-cyan-400">Continuous Delivery/Deployment</span>. Ini adalah praktik otomatisasi dalam siklus pengembangan software yang memungkinkan tim untuk mengirimkan perubahan kode dengan lebih cepat dan aman.</p>
+
+            <p>Bayangkan Anda bisa melakukan deploy ke production kapan saja, dengan satu klik atau bahkan otomatis, tanpa khawatir merusak sistem. Itulah yang ditawarkan oleh CI/CD pipeline yang baik.</p>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🔄 Tahapan CI/CD Pipeline:</h4>
+            <ul class="list-disc list-inside space-y-2 text-gray-300">
+                <li><strong>1. Source (Code Push):</strong> Developer push kode ke repository (Git)</li>
+                <li><strong>2. Build:</strong> Otomatisasi build aplikasi</li>
+                <li><strong>3. Test:</strong> Menjalankan unit test, integration test, dan security test</li>
+                <li><strong>4. Package:</strong> Membuat artifact atau container image</li>
+                <li><strong>5. Deploy to Staging:</strong> Deploy ke environment staging</li>
+                <li><strong>6. Integration Test:</strong> Testing integrasi di staging</li>
+                <li><strong>7. Deploy to Production:</strong> Deploy ke production (manual atau otomatis)</li>
+            </ul>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 Contoh GitHub Actions Workflow:</h4>
+            <pre class="bg-gray-900 p-4 rounded-lg border border-gray-700 text-sm text-gray-300 overflow-x-auto"><code class="language-yaml">name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run tests
+      run: npm test
+    
+    - name: Build application
+      run: npm run build
+    
+    - name: Build Docker image
+      run: docker build -t myapp:${{ github.sha }} .
+    
+    - name: Push to Docker Hub
+      run: |
+        docker tag myapp:${{ github.sha }} username/myapp:latest
+        docker push username/myapp:latest
+    
+    - name: Deploy to Production
+      if: github.ref == 'refs/heads/main'
+      run: |
+        curl -X POST https://api.myapp.com/deploy \
+          -H "Authorization: Bearer ${{ secrets.DEPLOY_TOKEN }}" \
+          -d "image=username/myapp:${{ github.sha }}"</code></pre>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📊 Metrik Penting dalam CI/CD (DORA):</h4>
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
+                <p><span class="text-green-400">Deployment Frequency:</span> Seberapa sering Anda melakukan deploy ke production</p>
+                <p><span class="text-green-400">Lead Time for Changes:</span> Waktu dari commit ke production</p>
+                <p><span class="text-green-400">Time to Restore Service:</span> Waktu recovery dari incident</p>
+                <p><span class="text-green-400">Change Failure Rate:</span> Persentase deploy yang menyebabkan failure</p>
+            </div>
+
+            <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                <p class="text-purple-300 text-sm"><i class="fas fa-lightbulb mr-2"></i> <strong>Insight:</strong> Tim dengan performa CI/CD yang baik bisa melakukan deploy <span class="text-yellow-300">multiple kali sehari</span> dengan failure rate di bawah 15%.</p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🏗️ Tools CI/CD Populer:</h4>
+            <ul class="list-disc list-inside space-y-1 text-gray-300">
+                <li><strong>Jenkins:</strong> Open-source, customizable, banyak plugin</li>
+                <li><strong>GitHub Actions:</strong> Terintegrasi dengan GitHub, native CI/CD</li>
+                <li><strong>GitLab CI:</strong> Terintegrasi dengan GitLab, built-in registry</li>
+                <li><strong>CircleCI:</strong> Cloud-based, cepat dan reliable</li>
+                <li><strong>ArgoCD:</strong> GitOps untuk Kubernetes</li>
+                <li><strong>Spinnaker:</strong> Multi-cloud continuous delivery</li>
+            </ul>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🔐 Keamanan dalam CI/CD (DevSecOps):</h4>
+            <ul class="list-disc list-inside space-y-1 text-gray-300">
+                <li>🔍 <strong>SAST (Static Application Security Testing):</strong> Scan kode untuk vulnerability</li>
+                <li>🔍 <strong>DAST (Dynamic Application Security Testing):</strong> Test aplikasi yang berjalan</li>
+                <li>🔍 <strong>SCA (Software Composition Analysis):</strong> Scan dependency untuk vulnerability</li>
+                <li>🔍 <strong>Container Scanning:</strong> Scan image untuk vulnerability</li>
+                <li>🔍 <strong>Secrets Management:</strong> Kelola secret dengan aman (Vault, AWS Secrets Manager)</li>
+            </ul>
+
+            <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                <p class="text-purple-300 text-sm"><i class="fas fa-shield-alt mr-2"></i> <strong>Best Practice:</strong> Integrasikan <span class="text-yellow-300">security scanning</span> di setiap tahap pipeline untuk mencegah vulnerability masuk ke production.</p>
+            </div>
+        `
+    },
+
+    // =========================================================
+    // ARTIKEL 4: Monitoring & Observability: Prometheus, Grafana, Loki
+    // =========================================================
+    {
+        id: 4,
+        title: "📊 Monitoring & Observability: Prometheus, Grafana, Loki",
+        tags: ["#monitoring", "#prometheus", "#grafana"],
+        readTime: "10 min read",
+        date: "📅 5 Juli 2026",
+        author: "✍️ Marlin Hidayat",
+        views: 0,
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23e34f26' font-family='sans-serif' font-size='24'%3E📊 Monitoring%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EPrometheus %26 Grafana%3C/text%3E%3C/svg%3E",
+        content: `
+            <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">📊 Monitoring & Observability</h3>
+            <p><strong>Monitoring</strong> adalah proses mengumpulkan, menganalisis, dan menggunakan data untuk memahami apa yang terjadi dalam sistem. Sedangkan <span class="text-cyan-400">Observability</span> adalah kemampuan untuk memahami apa yang terjadi di dalam sistem hanya dari output eksternal (logs, metrics, traces).</p>
+
+            <p>Keduanya adalah fondasi penting dalam DevOps dan SRE (Site Reliability Engineering). Tanpa monitoring dan observability, Anda beroperasi dalam kegelapan — tidak tahu apa yang terjadi, tidak bisa mendeteksi masalah sebelum pengguna mengeluh.</p>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 Tiga Pilar Observability:</h4>
+            <ul class="list-disc list-inside space-y-2 text-gray-300">
+                <li><strong>📊 Metrics:</strong> Data numerik yang diukur secara periodik (CPU, memory, request rate, error rate)</li>
+                <li><strong>📝 Logs:</strong> Event diskrit yang direkam dari aplikasi dan infrastruktur</li>
+                <li><strong>🔍 Traces:</strong> Jejak perjalanan request melalui sistem (distributed tracing)</li>
+            </ul>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📊 Prometheus - Metrics Collection</h4>
+            <p><strong>Prometheus</strong> adalah sistem monitoring dan alerting open-source yang dirancang untuk reliability dan scalability. Prometheus mengumpulkan metrics dari target yang dikonfigurasi melalui pull model.</p>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📝 Contoh Konfigurasi Prometheus (prometheus.yml):</h4>
+            <pre class="bg-gray-900 p-4 rounded-lg border border-gray-700 text-sm text-gray-300 overflow-x-auto"><code class="language-yaml">global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+  - job_name: 'myapp'
+    static_configs:
+      - targets: ['myapp:8080']</code></pre>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📊 Grafana - Visualization</h4>
+            <p><strong>Grafana</strong> adalah platform open-source untuk monitoring dan observability. Grafana memungkinkan Anda membuat dashboard yang indah dan informatif dari berbagai data source termasuk Prometheus, Loki, Elasticsearch, dan banyak lagi.</p>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📝 Contoh Query Prometheus di Grafana:</h4>
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2 text-sm">
+                <p><span class="text-green-400">CPU Usage:</span> <code class="text-cyan-400">rate(process_cpu_seconds_total[5m]) * 100</code></p>
+                <p><span class="text-green-400">Memory Usage:</span> <code class="text-cyan-400">process_resident_memory_bytes / 1024 / 1024</code></p>
+                <p><span class="text-green-400">Request Rate:</span> <code class="text-cyan-400">rate(http_requests_total[5m])</code></p>
+                <p><span class="text-green-400">Error Rate:</span> <code class="text-cyan-400">rate(http_requests_total{status=~"5.."}[5m])</code></p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📝 Loki - Log Aggregation</h4>
+            <p><strong>Loki</strong> adalah sistem log aggregation yang terinspirasi oleh Prometheus. Loki adalah komponen Grafana yang dirancang untuk log aggregation dan log query.</p>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📝 Contoh Query Log di Loki:</h4>
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2 text-sm">
+                <p><code class="text-cyan-400">{app="myapp"} |= "error"</code> — Cari log error di aplikasi myapp</p>
+                <p><code class="text-cyan-400">{app="myapp"} |= "timeout"</code> — Cari log timeout</p>
+                <p><code class="text-cyan-400">{app="myapp"} | json | status="500"</code> — Cari log dengan status 500</p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🔔 Alerting dengan Alertmanager</h4>
+            <p><strong>Alertmanager</strong> adalah komponen Prometheus untuk handling alert. Alertmanager mengelola alert yang dikirim dari Prometheus dan mengirimkannya ke channel seperti Email, Slack, PagerDuty, dan Telegram.</p>
+
+            <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                <p class="text-purple-300 text-sm"><i class="fas fa-lightbulb mr-2"></i> <strong>Best Practice:</strong> Kombinasikan <span class="text-yellow-300">Prometheus + Grafana + Loki</span> untuk observability yang lengkap (metrics, logs, dan traces).</p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📊 Metrik Penting yang Harus Dimonitor:</h4>
+            <ul class="list-disc list-inside space-y-1 text-gray-300">
+                <li><strong>🚀 USE Method:</strong> Utilization, Saturation, Errors</li>
+                <li><strong>📈 RED Method:</strong> Rate, Errors, Duration</li>
+                <li><strong>💻 Golden Signals:</strong> Latency, Traffic, Errors, Saturation</li>
+                <li><strong>🔐 Security Metrics:</strong> Failed login attempts, suspicious activities</li>
+            </ul>
+
+            <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                <p class="text-purple-300 text-sm"><i class="fas fa-shield-alt mr-2"></i> <strong>Tip:</strong> Selalu pasang <span class="text-yellow-300">alert yang actionable</span> — jangan terlalu banyak alert sehingga tim menjadi mati rasa (alert fatigue).</p>
+            </div>
+        `
+    },
+
+    // =========================================================
+    // ARTIKEL 5: DevOps Bukan Cuma Tools: Filosofi di Balik Otomatisasi
+    // =========================================================
+    {
+        id: 5,
+        title: "🧠 DevOps Bukan Cuma Tools: Filosofi di Balik Otomatisasi",
+        tags: ["#devops", "#filosofi", "#culture", "#automation"],
+        readTime: "8 min read",
+        date: "📅 9 Juli 2026",
+        author: "✍️ Marlin Hidayat",
+        views: 0,
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23667eea' font-family='sans-serif' font-size='24'%3E🧠 DevOps%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23764ba2' font-family='sans-serif' font-size='16'%3EFilosofi %26 Otomatisasi%3C/text%3E%3C/svg%3E",
+        content: `
+            <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">DevOps Bukan Cuma Tools</h3>
+            <p><strong>DevOps</strong> bukanlah tentang tools yang Anda gunakan. DevOps adalah tentang <span class="text-cyan-400">mindset, budaya, dan filosofi</span> yang mendorong kolaborasi, otomatisasi, dan perbaikan berkelanjutan.</p>
+
+            <p>Tools seperti Docker, Kubernetes, Jenkins, dan Terraform adalah kendaraan untuk mewujudkan DevOps. Tapi tanpa filosofi yang benar, tools hanyalah alat canggih tanpa arah yang jelas.</p>
+
+            <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                <p class="text-purple-300 text-sm"><i class="fas fa-quote-left mr-2"></i> "Tools change, but principles remain. DevOps is a mindset, not a toolbox."</p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🧠 Filosofi DevOps (The Three Ways):</h4>
+            <ul class="list-disc list-inside space-y-2 text-gray-300">
+                <li><strong>1. Flow (Aliran):</strong> Mempercepat aliran kerja dari Dev ke Ops. Otomatisasi adalah kuncinya.</li>
+                <li><strong>2. Feedback (Umpan Balik):</strong> Mendapatkan feedback secepat mungkin. Monitoring dan observability adalah fondasinya.</li>
+                <li><strong>3. Continuous Learning:</strong> Belajar dari kegagalan dan terus memperbaiki diri. Budaya blameless post-mortem sangat penting.</li>
+            </ul>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">💡 Tools vs Filosofi</h4>
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
+                <p><span class="text-green-400">Tools:</span> Docker, Kubernetes, Jenkins, Terraform, Prometheus, Grafana, Ansible, Git</p>
+                <p class="mt-2"><span class="text-green-400">Filosofi:</span> Kolaborasi, Otomatisasi, Continuous Improvement, Observability, Shared Responsibility, Empathy</p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🌍 Budaya DevOps</h4>
+            <ul class="list-disc list-inside space-y-1 text-gray-300">
+                <li><strong>Kolaborasi > Kompetisi:</strong> Dev dan Ops adalah satu tim</li>
+                <li><strong>Blameless Post-Mortem:</strong> Fokus pada sistem, bukan pada siapa yang salah</li>
+                <li><strong>Continuous Improvement:</strong> Selalu ada ruang untuk perbaikan</li>
+                <li><strong>Empathy:</strong> Memahami tantangan tim lain</li>
+                <li><strong>Transparency:</strong> Berbagi informasi secara terbuka</li>
+            </ul>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📊 Dampak DevOps yang Nyata</h4>
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
+                <p>🚀 <span class="text-green-400">200x lebih cepat</span> dalam deployment</p>
+                <p>🐛 <span class="text-green-400">24x lebih cepat</span> dalam recovery dari insiden</p>
+                <p>🔒 <span class="text-green-400">3x lebih sedikit</span> failure rate</p>
+                <p>😊 <span class="text-green-400">2.5x lebih tinggi</span> employee satisfaction</p>
+            </div>
+
+            <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                <p class="text-purple-300 text-sm"><i class="fas fa-quote-left mr-2"></i> "The goal of DevOps is not to use tools. The goal is to create a culture where teams can deliver value faster, safer, and with higher quality. Tools are just the means to that end."</p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🚀 Memulai DevOps: Filosofi Dulu, Tools Kemudian</h4>
+            <ul class="list-disc list-inside space-y-1 text-gray-300">
+                <li><strong>1.</strong> Mulai dengan pola pikir: <em>"Apa yang bisa saya otomatisasi hari ini?"</em></li>
+                <li><strong>2.</strong> Identifikasi bottleneck: mana yang paling lambat?</li>
+                <li><strong>3.</strong> Otomatisasi bertahap: build → test → deploy</li>
+                <li><strong>4.</strong> Bangun monitoring: logs → metrics → alerts</li>
+                <li><strong>5.</strong> Budayakan learning: post-mortem, knowledge sharing</li>
+            </ul>
+
+            <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                <p class="text-purple-300 text-sm"><i class="fas fa-rocket mr-2"></i> <strong>Ingat:</strong> DevOps adalah <span class="text-yellow-300">perjalanan, bukan tujuan</span>. Mulai dari kecil, belajar dari kegagalan, dan terus perbaiki.</p>
+            </div>
+        `
+    },
+
+    // =========================================================
+    // ARTIKEL 6: Panduan Setup Bot Telegram
+    // =========================================================
+    {
+        id: 6,
+        title: "🤖 Panduan Setup Bot Telegram",
+        tags: ["#telegram", "#bot", "#automation"],
+        readTime: "5 min read",
+        date: "📅 10 Juli 2026",
+        author: "✍️ Marlin Hidayat",
+        views: 0,
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%2326a5e4' font-family='sans-serif' font-size='28'%3E🤖 Telegram%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EBot Setup Guide%3C/text%3E%3C/svg%3E",
+        content: `
+            <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">🤖 Apa itu Bot Telegram?</h3>
+            <p><strong>Bot Telegram</strong> adalah akun Telegram otomatis yang dikendalikan oleh program. Bot dapat merespons pesan, mengirim notifikasi, dan melakukan berbagai tugas otomatis melalui <span class="text-cyan-400">Telegram Bot API</span>.</p>
+
+            <p>Bot sangat berguna untuk berbagai keperluan: notifikasi deployment, monitoring, alerting, otomatisasi tugas, hingga integrasi dengan sistem lain.</p>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📌 Langkah 1: Buka @BotFather</h4>
+            <p>Buka aplikasi <strong>Telegram</strong> dan cari akun <span class="tag tag-purple">@BotFather</span>. Ini adalah akun resmi dari Telegram untuk membuat dan mengelola bot.</p>
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2 text-sm">
+                <p><span class="text-gray-500">// Klik Start atau kirim:</span></p>
+                <p><code class="text-cyan-400">/start</code></p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🤖 Langkah 2: Buat Bot Baru</h4>
+            <p>Kirim perintah <span class="tag tag-green">/newbot</span> ke @BotFather, lalu ikuti petunjuk untuk mengisi:</p>
+            <ul class="list-disc list-inside space-y-1 text-gray-300">
+                <li><strong>Nama Bot</strong> — contoh: <span class="tag tag-cyan">MyAwesomeBot</span></li>
+                <li><strong>Username Bot</strong> — harus diakhiri <span class="tag tag-yellow">_bot</span>, contoh: <span class="tag tag-cyan">MyAwesome_bot</span></li>
+            </ul>
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2 text-sm">
+                <p><span class="text-gray-500">// Contoh respons dari @BotFather</span></p>
+                <p>Done! Congratulations on your new bot.</p>
+                <p>Use this token to access the HTTP API:</p>
+                <p><span class="text-yellow-400">1234567890:ABCdefGHIjklMNOpqrsTUVwxyz</span></p>
+                <p><span class="text-gray-500">// ⬆️ INI TOKEN BOT ANDA</span></p>
+            </div>
+
+            <div class="bg-yellow-900/20 border border-yellow-700 p-4 rounded-lg my-4">
+                <p class="text-yellow-300 text-sm"><i class="fas fa-exclamation-triangle mr-2"></i> <strong>Peringatan:</strong> Simpan token dengan aman! Siapa pun yang memiliki token bisa mengontrol bot Anda.</p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🆔 Langkah 3: Dapatkan Chat ID</h4>
+            <p>Kirim <strong>pesan apa saja</strong> ke bot yang baru Anda buat (buka bot di Telegram, ketik "Halo" atau "Test"). Lalu akses URL berikut di browser:</p>
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2 text-sm">
+                <p><code class="text-cyan-400">https://api.telegram.org/bot<span class="text-yellow-400">&lt;TOKEN&gt;</span>/getUpdates</code></p>
+            </div>
+            <p>Cari data <span class="tag tag-yellow">"chat"</span> → <span class="tag tag-green">"id"</span>:</p>
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2 text-sm">
+                <p>{</p>
+                <p>&nbsp;&nbsp;"ok": true,</p>
+                <p>&nbsp;&nbsp;"result": [{</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;"message": {</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"chat": {</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="text-yellow-400">"id": 987654321</span>, <span class="text-gray-500">// ⬅️ INI CHAT ID ANDA</span></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+                <p>&nbsp;&nbsp;}]</p>
+                <p>}</p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">⚙️ Langkah 4: Uji Coba Kirim Pesan</h4>
+            <p>Gunakan API untuk mengirim pesan uji coba:</p>
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2 text-sm">
+                <p><code class="text-cyan-400">curl -X POST "https://api.telegram.org/bot<span class="text-yellow-400">&lt;TOKEN&gt;</span>/sendMessage" -d "chat_id=<span class="text-yellow-400">&lt;CHAT_ID&gt;</span>&text=Hello%20World!"</code></p>
+            </div>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📝 Contoh Integrasi di JavaScript</h4>
+            <pre class="bg-gray-900 p-4 rounded-lg border border-gray-700 text-sm text-gray-300 overflow-x-auto"><code class="language-javascript">async function sendTelegramMessage(message) {
+    const token = 'YOUR_BOT_TOKEN';
+    const chatId = 'YOUR_CHAT_ID';
+    const url = \`https://api.telegram.org/bot\${token}/sendMessage\`;
+    
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            chat_id: chatId,
+            text: message,
+            parse_mode: 'HTML'
+        })
+    });
+    
+    return await response.json();
+}
+
+// Contoh penggunaan
+sendTelegramMessage('🚀 Deployment berhasil!')
+    .then(data => console.log('Pesan terkirim:', data))
+    .catch(err => console.error('Error:', err));</code></pre>
+
+            <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🔧 Fitur Lanjutan Bot Telegram</h4>
+            <ul class="list-disc list-inside space-y-1 text-gray-300">
+                <li><strong>📎 Inline Keyboard:</strong> Buat tombol interaktif di pesan</li>
+                <li><strong>📸 Kirim Gambar:</strong> <code class="text-cyan-400">sendPhoto</code> method</li>
+                <li><strong>📄 Kirim File:</strong> <code class="text-cyan-400">sendDocument</code> method</li>
+                <li><strong>🔔 Webhook:</strong> Terima update secara real-time</li>
+                <li><strong>📊 Polling:</strong> Ambil update secara periodik</li>
+            </ul>
+
+            <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
+                <p class="text-purple-300 text-sm"><i class="fas fa-rocket mr-2"></i> <strong>Best Practice:</strong> Gunakan <span class="text-yellow-300">environment variable</span> untuk menyimpan token dan chat ID, jangan hardcode di kode!</p>
+            </div>
+
+            <div class="bg-yellow-900/20 border border-yellow-700 p-4 rounded-lg my-4">
+                <p class="text-yellow-300 text-sm"><i class="fas fa-shield-alt mr-2"></i> <strong>Peringatan Keamanan:</strong> Jangan pernah bagikan Token Bot atau Chat ID Anda secara publik. Jika token bocor, segera buat bot baru melalui @BotFather.</p>
+            </div>
+        `
+    }
+];
 
         function getFilteredArticles() {
             if (!searchKeyword) return articles;
