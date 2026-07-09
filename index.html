@@ -277,7 +277,7 @@
         .animate-scroll-left { animation: scroll-left 25s linear infinite; }
         .animate-scroll-right:hover, .animate-scroll-left:hover { animation-play-state: paused; }
 
-        /* ===== SEARCH FIXED - PASTI JALAN ===== */
+        /* ===== SEARCH FIXED ===== */
         .search-wrapper {
             position: relative;
             display: inline-block;
@@ -336,6 +336,24 @@
                 width: 160px;
             }
         }
+
+        /* ===== DOWNLOAD CV BUTTON ===== */
+        .btn-download {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .btn-download:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+        }
+        .btn-download-footer {
+            transition: all 0.3s ease;
+        }
+        .btn-download-footer:hover {
+            color: #a78bfa !important;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body class="bg-black text-gray-100 overflow-x-hidden">
@@ -381,7 +399,7 @@
                     <a href="#articles" class="nav-link text-purple-400 hover:text-purple-300">📰 Blog</a>
                     <a href="#contact" class="nav-link text-red-400 hover:text-red-300">Contact</a>
                     
-                    <!-- ===== SEARCH DI NAVBAR - FIXED ===== -->
+                    <!-- ===== SEARCH DI NAVBAR ===== -->
                     <div class="search-wrapper" id="searchWrapper">
                         <input type="text" id="navbarSearch" placeholder="Cari artikel..." />
                         <i class="fas fa-search search-icon" id="searchIcon"></i>
@@ -474,6 +492,7 @@
                         <div><span class="text-purple-400 font-semibold">💼</span> 2+ Years</div>
                         <div><span class="text-purple-400 font-semibold">❤️</span> Automation, Security</div>
                     </div>
+                    <!-- ===== TOMBOL DOWNLOAD CV - STYLE BARU ===== -->
                     <a href="https://drive.google.com/uc?export=download&id=1YYVUZLSIJ86P3QG02p-RLteOQrYIsFPE" 
                        target="_blank" 
                        class="btn-download inline-block mt-6 px-8 py-3 text-white rounded-lg text-base transition-all duration-300 transform hover:scale-105 shadow-lg shadow-purple-500/25">
@@ -578,6 +597,7 @@
             <h3 class="text-2xl font-semibold text-center text-purple-400 mb-10">Technologies I Use</h3>
             <div class="flex overflow-hidden mb-6">
                 <div class="flex gap-8 md:gap-12 animate-scroll-right">
+                    <!-- Technology icons -->
                     <div class="tech-icon flex flex-col items-center group flex-shrink-0">
                         <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#007ACC] transition-all duration-300 shadow-lg group-hover:shadow-[#007ACC]/30 w-20 h-20">
                             <i class="fas fa-code text-3xl" style="color: #007ACC !important;"></i>
@@ -784,7 +804,14 @@
 
     <!-- ===== FOOTER ===== -->
     <footer class="py-6 bg-black border-t border-gray-800 text-center text-gray-500 text-sm relative z-10">
-        © 2025 Hidayat. Made with <i class="fas fa-heart text-red-600"></i> & <i class="fas fa-coffee text-red-600"></i>
+        <div class="container mx-auto px-6">
+            <p>© 2025 Hidayat. Made with <i class="fas fa-heart text-red-600"></i> & <i class="fas fa-coffee text-red-600"></i></p>
+            <a href="https://drive.google.com/uc?export=download&id=1YYVUZLSIJ86P3QG02p-RLteOQrYIsFPE" 
+               target="_blank" 
+               class="btn-download-footer inline-block mt-3 text-purple-400 hover:text-purple-300 transition text-sm flex items-center justify-center gap-2">
+                <i class="fas fa-file-pdf"></i> Download CV
+            </a>
+        </div>
     </footer>
 
     <!-- ===== MODALS ===== -->
@@ -984,35 +1011,35 @@
             particle.style.height = size + 'px';
             particle.style.left = Math.random() * 100 + '%';
             const hue = 220 + Math.random() * 40;
-            particle.style.background = `hsla(${hue}, 80%, 70%, ${0.3 + Math.random() * 0.5})`;
+            particle.style.background = 'hsla(' + hue + ', 80%, 70%, ' + (0.3 + Math.random() * 0.5) + ')';
             const duration = 15 + Math.random() * 20;
             particle.style.animationDuration = duration + 's';
             particle.style.animationDelay = Math.random() * 5 + 's';
             container.appendChild(particle);
-            setTimeout(() => {
+            setTimeout(function() {
                 if (particle.parentNode) {
                     particle.remove();
                 }
             }, (duration + 5) * 1000);
         }
-        let particleInterval = setInterval(createParticle, 500);
+        var particleInterval = setInterval(createParticle, 500);
         window.addEventListener('beforeunload', function() {
             clearInterval(particleInterval);
         });
 
         // ===== TYPING EFFECT =====
-        const typingText = document.querySelector('.typing-text');
+        var typingText = document.querySelector('.typing-text');
         if (typingText) {
-            setInterval(() => {
+            setInterval(function() {
                 typingText.style.animation = 'none';
-                setTimeout(() => { typingText.style.animation = ''; }, 10);
+                setTimeout(function() { typingText.style.animation = ''; }, 10);
             }, 8000);
         }
 
         // =========================================================
-        // ===== SEARCH FUNCTION - PASTI JALAN =====
+        // ===== SEARCH FUNCTION =====
         // =========================================================
-        let searchKeyword = '';
+        var searchKeyword = '';
 
         function filterArticlesBySearch(keyword) {
             searchKeyword = keyword.toLowerCase().trim();
@@ -1020,9 +1047,9 @@
         }
 
         // ===== NAVBAR SEARCH =====
-        const navbarSearch = document.getElementById('navbarSearch');
-        const searchWrapper = document.getElementById('searchWrapper');
-        const searchIcon = document.getElementById('searchIcon');
+        var navbarSearch = document.getElementById('navbarSearch');
+        var searchWrapper = document.getElementById('searchWrapper');
+        var searchIcon = document.getElementById('searchIcon');
 
         if (searchIcon) {
             searchIcon.addEventListener('click', function(e) {
@@ -1042,6 +1069,12 @@
         if (navbarSearch) {
             navbarSearch.addEventListener('input', function() {
                 filterArticlesBySearch(this.value);
+                if (this.value.trim().length > 0) {
+                    var articlesSection = document.getElementById('articles');
+                    if (articlesSection) {
+                        articlesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
             });
 
             navbarSearch.addEventListener('keydown', function(e) {
@@ -1049,6 +1082,10 @@
                     filterArticlesBySearch(this.value);
                     searchWrapper.classList.remove('active');
                     this.blur();
+                    var articlesSection = document.getElementById('articles');
+                    if (articlesSection) {
+                        articlesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }
             });
         }
@@ -1063,15 +1100,25 @@
         });
 
         // ===== MOBILE SEARCH =====
-        const mobileSearch = document.getElementById('mobileSearch');
+        var mobileSearch = document.getElementById('mobileSearch');
         if (mobileSearch) {
             mobileSearch.addEventListener('input', function() {
                 filterArticlesBySearch(this.value);
+                if (this.value.trim().length > 0) {
+                    var articlesSection = document.getElementById('articles');
+                    if (articlesSection) {
+                        articlesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
             });
             mobileSearch.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter') {
                     filterArticlesBySearch(this.value);
                     document.getElementById('mobile-menu').classList.add('hidden');
+                    var articlesSection = document.getElementById('articles');
+                    if (articlesSection) {
+                        articlesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
                 }
             });
         }
@@ -1082,14 +1129,14 @@
         async function sendToTelegram(e) {
             e.preventDefault();
             
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
-            const status = document.getElementById('formStatus');
-            const btn = document.getElementById('sendBtn');
+            var name = document.getElementById('name').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var message = document.getElementById('message').value.trim();
+            var status = document.getElementById('formStatus');
+            var btn = document.getElementById('sendBtn');
             
-            const token = '8871957081:AAGGfPl8obpCDU-vQqbCFO1YGuoIWHIySUA';
-            const chatId = '752995113';
+            var token = '8871957081:AAGGfPl8obpCDU-vQqbCFO1YGuoIWHIySUA';
+            var chatId = '752995113';
             
             if (!name || !email || !message) {
                 status.innerHTML = '⚠️ Semua field wajib diisi!';
@@ -1097,19 +1144,19 @@
                 return;
             }
             
-            const text = '📩 <b>Pesan Baru dari Portfolio!</b>\n\n👤 <b>Nama:</b> ' + name + '\n📧 <b>Email:</b> ' + email + '\n💬 <b>Pesan:</b>\n' + message;
+            var text = '📩 <b>Pesan Baru dari Portfolio!</b>\n\n👤 <b>Nama:</b> ' + name + '\n📧 <b>Email:</b> ' + email + '\n💬 <b>Pesan:</b>\n' + message;
             
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Mengirim...';
             status.innerHTML = '';
             
             try {
-                const res = await fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
+                var res = await fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ chat_id: chatId, text: text, parse_mode: 'HTML' })
                 });
-                const data = await res.json();
+                var data = await res.json();
                 
                 if (data.ok) {
                     status.innerHTML = '✅ Pesan berhasil dikirim! Saya akan segera merespon.';
@@ -1130,10 +1177,8 @@
             btn.innerHTML = '<i class="fab fa-telegram mr-2"></i> Send via Telegram';
         }
 
-        // =========================================================
         // ===== EXPERIENCE DATA =====
-        // =========================================================
-        const experienceData = [
+        var experienceData = [
             {
                 id: 1,
                 title: "Network Technician",
@@ -1201,9 +1246,9 @@
         ];
 
         function renderExperience() {
-            const container = document.getElementById('experienceContainer');
+            var container = document.getElementById('experienceContainer');
             if (!container) return;
-            let html = '';
+            var html = '';
             experienceData.forEach(function(exp) {
                 html += `
                     <div class="exp-card bg-gray-800 p-6 relative transition-all duration-300 border ${exp.color} border-opacity-30 hover:border-opacity-100">
@@ -1241,9 +1286,7 @@
             container.innerHTML = html;
         }
 
-        // =========================================================
         // ===== ARTICLES DATA =====
-        // =========================================================
         var articles = [
             {
                 id: 1,
@@ -1295,47 +1338,7 @@
                 author: "✍️ Marlin Hidayat",
                 views: 0,
                 image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%232496ed' font-family='sans-serif' font-size='28'%3E🐳 Docker%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EContainer %26 Orchestration%3C/text%3E%3C/svg%3E",
-                content: `
-                    <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">🐳 Apa itu Docker?</h3>
-                    <p><strong>Docker</strong> adalah platform untuk mengembangkan, mengirim, dan menjalankan aplikasi dalam <span class="text-cyan-400">container</span>. Container adalah unit standar yang ringan, portabel, dan mandiri.</p>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📦 Docker Image vs Container:</h4>
-                    <ul class="list-disc list-inside space-y-2 text-gray-300">
-                        <li><strong>Image:</strong> Blueprint/template untuk membuat container (read-only).</li>
-                        <li><strong>Container:</strong> Instansi yang berjalan dari image (read-write).</li>
-                        <li><strong>Registry:</strong> Tempat menyimpan image (Docker Hub, ECR, GCR).</li>
-                    </ul>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🔧 Dockerfile Dasar:</h4>
-                    <pre class="bg-gray-900 p-4 rounded-lg border border-gray-700 overflow-x-auto">
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-EXPOSE 3000
-CMD ["npm", "start"]</pre>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 Docker Compose:</h4>
-                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
-                        <span class="text-green-400">version: '3'</span><br>
-                        services:<br>
-                        &nbsp;&nbsp;web:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;build: .<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;ports: [ "3000:3000" ]<br>
-                        &nbsp;&nbsp;db:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;image: postgres:15<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;environment:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;POSTGRES_PASSWORD: secret
-                    </div>
-
-                    <div class="bg-blue-900/20 border border-blue-700 p-4 rounded-lg my-4">
-                        <p class="text-blue-300 text-sm"><i class="fas fa-terminal mr-2"></i> <strong>Command penting:</strong><br>
-                        <code class="text-yellow-300">docker build -t myapp .</code> → Build image<br>
-                        <code class="text-yellow-300">docker run -p 3000:3000 myapp</code> → Run container<br>
-                        <code class="text-yellow-300">docker-compose up -d</code> → Jalankan semua service</p>
-                    </div>
-                `
+                content: `<h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">🐳 Apa itu Docker?</h3><p>Docker adalah platform untuk container...</p>`
             },
             {
                 id: 3,
@@ -1346,46 +1349,7 @@ CMD ["npm", "start"]</pre>
                 author: "✍️ Marlin Hidayat",
                 views: 0,
                 image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23f97316' font-family='sans-serif' font-size='28'%3E⚡ CI/CD%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EAutomate Build %26 Deploy%3C/text%3E%3C/svg%3E",
-                content: `
-                    <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">⚡ Apa itu CI/CD?</h3>
-                    <p><strong>CI/CD</strong> adalah praktik untuk mengotomatiskan proses <span class="text-cyan-400">integrasi</span> dan <span class="text-cyan-400">deployment</span> aplikasi. <strong>CI</strong> = Continuous Integration, <strong>CD</strong> = Continuous Delivery/Deployment.</p>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🔄 Alur CI/CD:</h4>
-                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
-                        <span class="text-green-400">1. Developer Push Code</span> → <span class="text-blue-400">GitHub/GitLab</span><br>
-                        <span class="text-green-400">2. CI Server (Jenkins/GitHub Actions)</span> → <span class="text-blue-400">Build & Test</span><br>
-                        <span class="text-green-400">3. Build Berhasil</span> → <span class="text-blue-400">Create Artifact (Image/DLL)</span><br>
-                        <span class="text-green-400">4. Deploy</span> → <span class="text-blue-400">Staging/Production</span>
-                    </div>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 GitHub Actions Workflow:</h4>
-                    <pre class="bg-gray-900 p-4 rounded-lg border border-gray-700 overflow-x-auto">
-name: Deploy to Production
-on: push to main
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Build Docker Image
-        run: docker build -t myapp .
-      - name: Push to Registry
-        run: docker push myapp
-      - name: Deploy to Server
-        run: ssh user@server "docker pull myapp && docker-compose up -d"</pre>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🚀 Tools CI/CD Populer:</h4>
-                    <ul class="list-disc list-inside space-y-1 text-gray-300">
-                        <li><span class="text-blue-400">Jenkins</span> — Open source, customizable, banyak plugin</li>
-                        <li><span class="text-blue-400">GitHub Actions</span> — Native di GitHub, mudah untuk repo GitHub</li>
-                        <li><span class="text-blue-400">GitLab CI</span> — All-in-one, integrated dengan GitLab</li>
-                        <li><span class="text-blue-400">ArgoCD</span> — GitOps untuk Kubernetes deployment</li>
-                    </ul>
-
-                    <div class="bg-orange-900/20 border border-orange-700 p-4 rounded-lg my-4">
-                        <p class="text-orange-300 text-sm"><i class="fas fa-rocket mr-2"></i> <strong>Best Practice:</strong> Pipeline harus <span class="text-yellow-300">fail fast</span> — jalankan test cepat di awal, baru lanjut ke proses yang lebih berat.</p>
-                    </div>
-                `
+                content: `<h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">⚡ CI/CD Pipeline</h3><p>CI/CD adalah praktik otomatisasi...</p>`
             },
             {
                 id: 4,
@@ -1396,45 +1360,7 @@ jobs:
                 author: "✍️ Marlin Hidayat",
                 views: 0,
                 image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23e34f26' font-family='sans-serif' font-size='24'%3E📊 Monitoring%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23a0aec0' font-family='sans-serif' font-size='16'%3EPrometheus %26 Grafana%3C/text%3E%3C/svg%3E",
-                content: `
-                    <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">📊 Apa itu Monitoring & Observability?</h3>
-                    <p><strong>Monitoring</strong> adalah proses mengumpulkan dan menganalisis data dari sistem. <strong>Observability</strong> adalah kemampuan untuk memahami state internal sistem dari outputnya.</p>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🛠️ Tiga Pilar Observability:</h4>
-                    <ul class="list-disc list-inside space-y-2 text-gray-300">
-                        <li><strong>📈 Metrics:</strong> Data numerik (CPU, RAM, request rate) — <span class="text-blue-400">Prometheus</span></li>
-                        <li><strong>📝 Logs:</strong> Data teks (event, error) — <span class="text-blue-400">Loki / ELK</span></li>
-                        <li><strong>🔍 Traces:</strong> Data request flow — <span class="text-blue-400">Jaeger / Tempo</span></li>
-                    </ul>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 Prometheus & Grafana:</h4>
-                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-2">
-                        <span class="text-green-400"># prometheus.yml</span><br>
-                        scrape_configs:<br>
-                        &nbsp;&nbsp;- job_name: 'myapp'<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;static_configs:<br>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- targets: ['localhost:8080']
-                    </div>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📋 Metric yang Harus Dimonitor:</h4>
-                    <ul class="list-disc list-inside space-y-1 text-gray-300">
-                        <li>📊 <strong>Infrastructure:</strong> CPU, Memory, Disk, Network</li>
-                        <li>📊 <strong>Application:</strong> Request rate, Error rate, Latency (RED method)</li>
-                        <li>📊 <strong>Business:</strong> User signup, Revenue, Conversion</li>
-                    </ul>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🚀 Cara Setup Cepat:</h4>
-                    <ol class="list-decimal list-inside space-y-2 text-gray-300">
-                        <li><span class="text-cyan-400">Install Prometheus</span> — untuk collect metrics</li>
-                        <li><span class="text-cyan-400">Install Grafana</span> — untuk visualisasi dashboard</li>
-                        <li><span class="text-cyan-400">Install Node Exporter</span> — untuk metrics server</li>
-                        <li><span class="text-cyan-400">Buat Dashboard</span> — di Grafana untuk monitoring</li>
-                    </ol>
-
-                    <div class="bg-teal-900/20 border border-teal-700 p-4 rounded-lg my-4">
-                        <p class="text-teal-300 text-sm"><i class="fas fa-bell mr-2"></i> <strong>Alerting:</strong> Jangan lupa setup alert untuk kondisi kritis! Gunakan <span class="text-yellow-300">Alertmanager</span> untuk notifikasi ke Slack/Telegram.</p>
-                    </div>
-                `
+                content: `<h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">📊 Monitoring</h3><p>Monitoring adalah proses mengumpulkan data...</p>`
             },
             {
                 id: 5,
@@ -1445,80 +1371,7 @@ jobs:
                 author: "✍️ Marlin Hidayat",
                 views: 0,
                 image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%231a1a2e'/%3E%3Ctext x='50%25' y='40%25' text-anchor='middle' dy='.3em' fill='%23667eea' font-family='sans-serif' font-size='24'%3E🧠 DevOps%3C/text%3E%3Ctext x='50%25' y='65%25' text-anchor='middle' dy='.3em' fill='%23764ba2' font-family='sans-serif' font-size='16'%3EFilosofi %26 Otomatisasi%3C/text%3E%3C/svg%3E",
-                content: `
-                    <h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">DevOps Bukan Cuma Tools</h3>
-                    <p>Kalau lo denger kata <strong>DevOps</strong>, apa yang pertama kali kepikiran?</p>
-                    <ul class="list-disc list-inside space-y-1 text-gray-300 mt-2">
-                        <li>Docker?</li>
-                        <li>Kubernetes?</li>
-                        <li>Jenkins?</li>
-                        <li>Pipeline?</li>
-                        <li>YAML?</li>
-                    </ul>
-                    <p class="mt-3">Kalau jawaban lo cuma itu, <strong>lo baru kenal kulitnya doang</strong>. DevOps itu bukan tools. Tools cuma alat bantu. DevOps adalah <span class="text-cyan-400">mindset</span>, <span class="text-yellow-400">budaya</span>, dan <span class="text-green-400">cara kerja</span> yang mengubah cara lo membangun dan menjalankan software.</p>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🧠 DevOps Itu Filosofi, Bukan Tools</h4>
-                    <p>Banyak orang bilang: <em>"Gw pake Docker, jadi gw DevOps."</em> Waduh, salah kaprah banget itu. DevOps itu bukan tentang <strong>apa yang lo pake</strong>, tapi <strong>gimana lo bekerja</strong>.</p>
-
-                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-3">
-                        <p class="text-purple-400 font-semibold">4 Pilar DevOps:</p>
-                        <ul class="list-disc list-inside space-y-1 text-gray-300 text-sm">
-                            <li><strong class="text-cyan-400">Culture (Budaya)</strong> — Kolaborasi antara Dev dan Ops, bukan saling lempar tanggung jawab</li>
-                            <li><strong class="text-cyan-400">Automation (Otomatisasi)</strong> — Ulangi hal yang sama? Otomatisasi! Biar gak ada human error</li>
-                            <li><strong class="text-cyan-400">Measurement (Pengukuran)</strong> — Lo gak bisa improve apa yang gak lo ukur</li>
-                            <li><strong class="text-cyan-400">Sharing (Berbagi)</strong> — Knowledge sharing, feedback loop, dan transparansi</li>
-                        </ul>
-                    </div>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🔄 The Three Ways — Filosofi Dasar DevOps</h4>
-                    <p>Buku <em>The Phoenix Project</em> dan <em>The DevOps Handbook</em> mengenalkan konsep <strong>The Three Ways</strong>:</p>
-
-                    <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 my-3">
-                        <p><span class="text-green-400 font-bold">1. Flow (Alur Kerja)</span> — Percepat aliran dari Dev → Ops → User. Otomatisasi build, test, deployment.</p>
-                        <p class="mt-2"><span class="text-green-400 font-bold">2. Feedback (Umpan Balik)</span> — Percepat feedback dari User → Ops → Dev. Monitor, logging, alerting.</p>
-                        <p class="mt-2"><span class="text-green-400 font-bold">3. Continuous Learning</span> — Belajar dari kegagalan, blameless post-mortem, chaos engineering.</p>
-                    </div>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📊 Metrik DevOps (DORA Metrics)</h4>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-sm text-left text-gray-400 border border-gray-700 rounded-lg">
-                            <thead class="text-xs uppercase bg-gray-800 text-gray-300">
-                                <tr><th class="px-4 py-2">Metrik</th><th class="px-4 py-2">Arti</th><th class="px-4 py-2">Target Ideal</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr class="border-b border-gray-700"><td class="px-4 py-2">Deployment Frequency</td><td class="px-4 py-2">Seberapa sering deploy?</td><td class="px-4 py-2 text-green-400">Beberapa kali sehari</td></tr>
-                                <tr class="border-b border-gray-700"><td class="px-4 py-2">Lead Time for Changes</td><td class="px-4 py-2">Dari commit sampai deploy?</td><td class="px-4 py-2 text-green-400">Kurang dari 1 jam</td></tr>
-                                <tr class="border-b border-gray-700"><td class="px-4 py-2">Mean Time to Recovery (MTTR)</td><td class="px-4 py-2">Berapa lama recover dari incident?</td><td class="px-4 py-2 text-green-400">Kurang dari 1 jam</td></tr>
-                                <tr><td class="px-4 py-2">Change Failure Rate</td><td class="px-4 py-2">Berapa % deploy gagal di production?</td><td class="px-4 py-2 text-green-400">Kurang dari 15%</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">🚀 Cara Memulai DevOps (Tanpa Pusing)</h4>
-                    <ol class="list-decimal list-inside space-y-1 text-gray-300 text-sm">
-                        <li><strong class="text-cyan-400">Pakai Git</strong> — version control itu dasar.</li>
-                        <li><strong class="text-cyan-400">Automatisasi build</strong> — pake GitHub Actions atau GitLab CI.</li>
-                        <li><strong class="text-cyan-400">Automatisasi test</strong> — unit test, integration test, security scan.</li>
-                        <li><strong class="text-cyan-400">Automatisasi deploy</strong> — mulai dari staging dulu.</li>
-                        <li><strong class="text-cyan-400">Monitoring</strong> — pake Prometheus + Grafana.</li>
-                        <li><strong class="text-cyan-400">Logging</strong> — centralized logging pake ELK atau Loki.</li>
-                        <li><strong class="text-cyan-400">Infrastructure as Code</strong> — mulai pake Terraform.</li>
-                        <li><strong class="text-cyan-400">Containerization</strong> — pake Docker buat packaging app.</li>
-                        <li><strong class="text-cyan-400">Orchestration</strong> — kalo udah banyak container, baru pake Kubernetes.</li>
-                        <li><strong class="text-cyan-400">Culture</strong> — ajak tim buat retrospective dan blameless post-mortem.</li>
-                    </ol>
-
-                    <div class="bg-purple-900/20 border border-purple-700 p-4 rounded-lg my-4">
-                        <p class="text-purple-300 text-sm"><i class="fas fa-quote-left mr-2"></i> <strong>DevOps is not a destination. It's a journey.</strong> 🚀</p>
-                    </div>
-
-                    <h4 class="text-lg font-semibold text-yellow-400 mt-4 mb-2">📚 Referensi</h4>
-                    <ul class="list-disc list-inside space-y-1 text-gray-300 text-sm">
-                        <li><em>The Phoenix Project</em> — Gene Kim, Kevin Behr, George Spafford</li>
-                        <li><em>The DevOps Handbook</em> — Gene Kim, Jez Humble, Patrick Debois</li>
-                        <li><em>Accelerate</em> — Nicole Forsgren, Jez Humble, Gene Kim</li>
-                    </ul>
-                `
+                content: `<h3 class="text-xl font-bold text-purple-400 mt-4 mb-2">DevOps Bukan Cuma Tools</h3><p>DevOps adalah filosofi...</p>`
             }
         ];
 
@@ -1810,9 +1663,7 @@ jobs:
             }
         }
 
-        // =========================================================
         // ===== CERTIFICATE MODAL =====
-        // =========================================================
         var certData = {
             aws: {
                 title: "AWS Cloud & AI Fundamentals",
@@ -1875,9 +1726,7 @@ jobs:
             if (e.target === this) closeCertModal();
         });
 
-        // =========================================================
         // ===== PROJECT EXPLORER =====
-        // =========================================================
         var allProjects = [];
         var projectInterval = null;
         var carouselInterval = null;
