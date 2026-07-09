@@ -32,6 +32,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-docker.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-nginx.min.js"></script>
 
+    <!-- ===== DOMPurify CDN (ANTI XSS) ===== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.6/purify.min.js"></script>
+
     <style>
         * { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
         body { background-color: #0a0a0a; }
@@ -1767,6 +1770,21 @@ jobs:
             grid.innerHTML = html;
         }
 
+        // ===== FIX: CEK AKSES ADMIN VIA URL PARAMETER (PASSWORD: izumy025) =====
+        const urlParams = new URLSearchParams(window.location.search);
+        const admin = urlParams.get('admin');
+
+        // Sembunyikan tombol kalo bukan admin
+        if (admin === 'izumy025') {
+            document.getElementById('addArticleBtn').style.display = 'flex';
+            document.getElementById('viewAllArticlesBtn').style.display = 'flex';
+            // Hapus parameter dari URL biar nggak ketauan
+            window.history.replaceState({}, document.title, window.location.pathname);
+        } else {
+            document.getElementById('addArticleBtn').style.display = 'none';
+            document.getElementById('viewAllArticlesBtn').style.display = 'none';
+        }
+
         function openArticle(id) {
             const article = articles.find(a => a.id === id);
             if (!article) return;
@@ -1777,8 +1795,12 @@ jobs:
             document.getElementById('modalDate').textContent = article.date;
             document.getElementById('modalAuthor').textContent = article.author;
             
+            // ===== FIX: SANITASI LAGI SAAT RENDER PAKE DOMPurify =====
             const contentContainer = document.getElementById('modalContent');
-            contentContainer.innerHTML = article.content;
+            contentContainer.innerHTML = DOMPurify.sanitize(article.content, {
+                ALLOWED_TAGS: ['p','strong','em','ul','li','h3','h4','pre','code','div','span','br','a','img','table','tr','td','th','thead','tbody','ol'],
+                ALLOWED_ATTR: ['href','src','alt','class','style','target','rel','title']
+            });
             
             if (typeof Prism !== 'undefined') {
                 Prism.highlightAllUnder(contentContainer);
@@ -1869,15 +1891,25 @@ jobs:
                 tags = ['#tech', '#devops'];
             }
             
+            // ===== FIX: SANITASI PAKE DOMPurify =====
+            const cleanTitle = DOMPurify.sanitize(title);
+            const cleanAuthor = DOMPurify.sanitize(author);
+            const cleanContent = DOMPurify.sanitize(content, {
+                ALLOWED_TAGS: ['p','strong','em','ul','li','h3','h4','pre','code','div','span','br','a','img','table','tr','td','th','thead','tbody','ol'],
+                ALLOWED_ATTR: ['href','src','alt','class','style','target','rel','title']
+            });
+            const cleanTags = tags.map(t => DOMPurify.sanitize(t));
+            const cleanReadTime = DOMPurify.sanitize(readTime);
+            
             const newArticle = {
                 id: Date.now(),
-                title: title,
-                author: author,
-                tags: tags,
-                readTime: readTime,
+                title: cleanTitle,
+                author: cleanAuthor,
+                tags: cleanTags,
+                readTime: cleanReadTime,
                 date: `📅 ${new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' })}`,
                 image: imageUrl,
-                content: content
+                content: cleanContent
             };
             
             articles.push(newArticle);
