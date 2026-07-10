@@ -2,7 +2,7 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
     <meta name="google-site-verification" content="eL288q_5AUaeE9UT7VdHODHfC8sGqNSn6zO7rvYH-KY" />
     
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>">
@@ -53,18 +53,21 @@
             z-index: 100;
             margin-top: 8px;
         }
-        .dropdown:hover .dropdown-menu { display: block; }
+        /* Perbaikan untuk dropdown di Android */
+        .dropdown:hover .dropdown-menu, 
+        .dropdown.active .dropdown-menu { display: block; }
         .dropdown-menu a {
             display: block;
-            padding: 8px 20px;
+            padding: 10px 20px;
             color: #9ca3af;
             font-size: 0.9rem;
             transition: all 0.2s;
             text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
         }
         .dropdown-menu a:hover { background: rgba(102, 126, 234, 0.1); color: #a78bfa; }
         .dropdown-arrow { font-size: 0.6rem; margin-left: 4px; transition: transform 0.3s ease; }
-        .dropdown:hover .dropdown-arrow { transform: rotate(180deg); }
+        .dropdown.active .dropdown-arrow { transform: rotate(180deg); }
         
         .line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
@@ -249,12 +252,37 @@
             background: transparent !important;
         }
         
+        /* Perbaikan untuk dropdown di Android */
         @media (max-width: 768px) {
-            .dropdown-menu { position: static; background: transparent; border: none; box-shadow: none; padding-left: 16px; margin-top: 4px; }
-            .dropdown-menu a { padding: 6px 16px; font-size: 0.85rem; }
+            .dropdown-menu { 
+                position: static; 
+                background: #1a1a1a; 
+                border: 1px solid #2a2a2a; 
+                box-shadow: none; 
+                padding-left: 16px; 
+                margin-top: 4px;
+                border-radius: 8px;
+                width: 100%;
+            }
+            .dropdown-menu a { 
+                padding: 10px 16px; 
+                font-size: 0.9rem;
+                border-bottom: 1px solid #1a1a1a;
+            }
+            .dropdown-menu a:last-child { border-bottom: none; }
             .dropdown-arrow { display: none; }
             .tech-icon .icon-wrapper { width: 60px; height: 60px; }
             .tech-icon .icon-wrapper i { font-size: 2rem !important; }
+            
+            /* Perbaikan touch untuk dropdown */
+            .dropdown {
+                display: block;
+                width: 100%;
+            }
+            .dropdown .nav-link {
+                display: block;
+                padding: 10px 0;
+            }
         }
 
         #formStatus { transition: all 0.3s ease; }
@@ -301,12 +329,14 @@
             left: -280px;
             width: 280px;
             height: 100vh;
+            height: 100dvh;
             background: #0a0a0a;
             border-right: 1px solid #1a1a1a;
             z-index: 60;
             transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             padding-top: 80px;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
         }
         #mobileDrawer.open {
             left: 0;
@@ -319,6 +349,7 @@
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.35s ease;
+            -webkit-tap-highlight-color: transparent;
         }
         #drawerOverlay.show {
             opacity: 1;
@@ -332,11 +363,11 @@
             border-bottom: 1px solid #1a1a1a;
             transition: all 0.2s;
             text-decoration: none;
+            -webkit-tap-highlight-color: transparent;
         }
-        #mobileDrawer a:hover {
-            background: rgba(102, 126, 234, 0.1);
+        #mobileDrawer a:active {
+            background: rgba(102, 126, 234, 0.15);
             color: #a78bfa;
-            padding-left: 32px;
         }
         #mobileDrawer .drawer-header {
             position: absolute;
@@ -358,10 +389,9 @@
             cursor: pointer;
             background: none;
             border: none;
+            padding: 8px;
         }
-        #mobileDrawer .drawer-close:hover {
-            color: white;
-        }
+        #mobileDrawer .drawer-close:active { color: white; }
 
         /* ===== BOTTOM NAV (MOBILE) ===== */
         #bottomNav {
@@ -386,6 +416,7 @@
             text-decoration: none;
             padding: 4px 8px;
             min-width: 56px;
+            -webkit-tap-highlight-color: transparent;
         }
         #bottomNav a i {
             font-size: 1.3rem;
@@ -394,7 +425,7 @@
         #bottomNav a.active {
             color: #a78bfa;
         }
-        #bottomNav a:hover {
+        #bottomNav a:active {
             color: #a78bfa;
         }
         @media (max-width: 768px) {
@@ -409,12 +440,13 @@
             color: #e5e7eb;
             font-size: 1.6rem;
             cursor: pointer;
-            padding: 4px 8px;
+            padding: 8px 12px;
             display: flex;
             align-items: center;
             gap: 8px;
+            -webkit-tap-highlight-color: transparent;
         }
-        .hamburger-btn:hover {
+        .hamburger-btn:active {
             color: #a78bfa;
         }
         .hamburger-btn .hamburger-text {
@@ -424,6 +456,57 @@
         }
         @media (min-width: 769px) {
             .hamburger-btn { display: none; }
+        }
+
+        /* Perbaikan untuk modal di Android */
+        .modal-article,
+        .modal-cert,
+        .modal-project-preview,
+        .form-modal {
+            margin: 16px;
+            max-width: 100%;
+        }
+
+        /* Perbaikan untuk touch */
+        .btn-download,
+        .nav-link,
+        .hamburger-btn,
+        #bottomNav a,
+        #mobileDrawer a,
+        .dropdown-menu a,
+        .exp-card,
+        .article-card,
+        .project-card {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Perbaikan untuk gambar profil di Android */
+        .profile-img-wrapper {
+            width: 180px;
+            height: 180px;
+        }
+        @media (min-width: 768px) {
+            .profile-img-wrapper {
+                width: 240px;
+                height: 240px;
+            }
+        }
+
+        /* Perbaikan untuk form di Android */
+        input, textarea, select, button {
+            -webkit-appearance: none;
+            appearance: none;
+            font-size: 16px !important; /* Mencegah zoom di iOS */
+        }
+        input, textarea {
+            border-radius: 8px;
+        }
+
+        /* Perbaikan untuk project cards di Android */
+        .project-card .h-32 {
+            min-height: 80px;
+            height: auto;
+            padding: 16px;
         }
     </style>
 </head>
@@ -460,8 +543,8 @@
             <div class="hidden md:flex space-x-6 text-sm font-medium items-center">
                 <a href="#home" class="nav-link text-green-400 hover:text-green-300">Home</a>
                 <a href="#about" class="nav-link text-blue-400 hover:text-blue-300">About</a>
-                <div class="dropdown">
-                    <span class="nav-link text-yellow-400 hover:text-yellow-300 cursor-pointer">
+                <div class="dropdown" id="desktopDropdown">
+                    <span class="nav-link text-yellow-400 hover:text-yellow-300 cursor-pointer" id="desktopDropdownToggle">
                         Portfolio <i class="fas fa-chevron-down dropdown-arrow"></i>
                     </span>
                     <div class="dropdown-menu">
@@ -585,11 +668,13 @@
                     </a>
                 </div>
                 <div class="flex justify-center">
-                    <div class="profile-img-wrapper w-56 h-56 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 p-1">
+                    <div class="profile-img-wrapper rounded-full bg-gradient-to-br from-purple-600 to-pink-600 p-1">
                         <div class="w-full h-full rounded-full bg-black p-1">
                             <img src="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/main/img/marlina.jpg" 
                                  alt="Profile" 
-                                 class="w-full h-full rounded-full object-cover transition-transform duration-500 hover:scale-105"/>
+                                 class="w-full h-full rounded-full object-cover transition-transform duration-500 hover:scale-105"
+                                 width="240" height="240"
+                                 loading="lazy"/>
                         </div>
                     </div>
                 </div>
@@ -665,7 +750,7 @@
         <div class="w-full px-6 md:px-12 lg:px-20">
             <h2 class="section-title font-bold text-center mb-4"><span class="text-white">🚀 Your Projects</span></h2>
             <p class="text-center text-gray-400 text-base mb-2"><span id="projectCount">Memuat...</span></p>
-            <div id="projectExplorerGrid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto min-h-[400px]">
+            <div id="projectExplorerGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-7xl mx-auto min-h-[400px]">
                 <div class="col-span-full flex justify-center items-center"><div class="loader"></div></div>
             </div>
             <div class="text-center text-gray-500 text-sm mt-4">
@@ -997,7 +1082,7 @@
     </div>
 
     <!-- ========================================================= -->
-    <!-- ===== JAVASCRIPT (Sama seperti sebelumnya) ===== -->
+    <!-- ===== JAVASCRIPT ===== -->
     <!-- ========================================================= -->
     <script>
         // ===== LOADING SCREEN =====
@@ -1210,6 +1295,32 @@
                     if (link.getAttribute('href') === '#' + current) {
                         link.classList.add('active');
                     }
+                });
+            });
+
+            // ===== DROPDOWN TOGGLE FOR ANDROID =====
+            const dropdownToggle = document.getElementById('desktopDropdownToggle');
+            const dropdown = document.getElementById('desktopDropdown');
+            
+            if (dropdownToggle && dropdown) {
+                dropdownToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dropdown.classList.toggle('active');
+                });
+
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!dropdown.contains(e.target)) {
+                        dropdown.classList.remove('active');
+                    }
+                });
+            }
+
+            // ===== CLOSE DROPDOWN ON NAVIGATION =====
+            dropdown.querySelectorAll('.dropdown-menu a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    dropdown.classList.remove('active');
                 });
             });
         });
@@ -1519,7 +1630,7 @@ CMD ["python", "app.py"]</code></pre>
                 var imageUrl = article.image || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
                 html += `
                     <div class="article-card bg-gray-800 rounded-xl overflow-hidden cursor-pointer flex flex-col" onclick="openArticle(${article.id})">
-                        <img src="${imageUrl}" alt="${article.title}" class="thumb-img" onerror="this.style.display='none'">
+                        <img src="${imageUrl}" alt="${article.title}" class="thumb-img" onerror="this.style.display='none'" loading="lazy">
                         <div class="p-4 flex-1 flex flex-col">
                             <div class="flex flex-wrap gap-1 mb-2">
                                 ${article.tags.slice(0, 3).map(function(tag) { return '<span class="px-2 py-0.5 bg-purple-600 bg-opacity-20 text-purple-400 text-xs rounded-full">' + tag + '</span>'; }).join('')}
@@ -1722,7 +1833,7 @@ CMD ["python", "app.py"]</code></pre>
                         var imageUrl = article.image || 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200"%3E%3Crect width="400" height="200" fill="%231a1a2e"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%23667eea" font-family="sans-serif" font-size="20"%3ENo Image%3C/text%3E%3C/svg%3E';
                         allHtml += `
                             <div class="article-card bg-gray-800 rounded-xl overflow-hidden cursor-pointer flex flex-col" onclick="openArticle(${article.id})">
-                                <img src="${imageUrl}" alt="${article.title}" class="thumb-img" onerror="this.style.display='none'">
+                                <img src="${imageUrl}" alt="${article.title}" class="thumb-img" onerror="this.style.display='none'" loading="lazy">
                                 <div class="p-4 flex-1 flex flex-col">
                                     <div class="flex flex-wrap gap-1 mb-2">
                                         ${article.tags.slice(0, 3).map(function(tag) { return '<span class="px-2 py-0.5 bg-purple-600 bg-opacity-20 text-purple-400 text-xs rounded-full">' + tag + '</span>'; }).join('')}
@@ -1789,7 +1900,7 @@ CMD ["python", "app.py"]</code></pre>
             container.innerHTML = `
                 <div class="grid md:grid-cols-2 gap-6">
                     <div class="border border-gray-700 rounded-lg overflow-hidden">
-                        <img src="${data.image}" class="w-full h-auto object-contain" alt="${data.title}">
+                        <img src="${data.image}" class="w-full h-auto object-contain" alt="${data.title}" loading="lazy">
                     </div>
                     <div>
                         <h3 class="text-2xl font-bold text-purple-400 mb-2">${data.title}</h3>
@@ -1891,6 +2002,11 @@ CMD ["python", "app.py"]</code></pre>
             }
         ];
 
+        // Perbaikan: Gunakan 2 kolom di mobile
+        if (window.innerWidth < 768) {
+            PROJECTS_PER_SLIDE = 4;
+        }
+
         async function fetchProjects() {
             var grid = document.getElementById('projectExplorerGrid');
             if (!grid) return;
@@ -1986,18 +2102,18 @@ CMD ["python", "app.py"]</code></pre>
             
             return `
                 <div class="project-card bg-gray-800 rounded-xl overflow-hidden card-hover border border-gray-700 hover:border-cyan-500 transition-all">
-                    <div class="h-32 bg-gradient-to-br ${grad} flex items-center justify-center text-white font-bold text-sm p-3 text-center truncate">
+                    <div class="h-28 md:h-32 bg-gradient-to-br ${grad} flex items-center justify-center text-white font-bold text-sm p-3 text-center truncate">
                         ${repo.name}
                     </div>
-                    <div class="p-4">
+                    <div class="p-3 md:p-4">
                         <div class="flex items-center gap-2 mb-2">
-                            ${githubAvatar ? '<img src="' + githubAvatar + '" class="w-7 h-7 rounded-full border border-gray-600">' : '<div class="w-7 h-7 rounded-full bg-gray-700 flex items-center justify-center"><i class="fab fa-github text-gray-400 text-xs"></i></div>'}
-                            <span class="text-gray-400 text-xs">${repo.owner.login}</span>
+                            ${githubAvatar ? '<img src="' + githubAvatar + '" class="w-6 h-6 md:w-7 md:h-7 rounded-full border border-gray-600" loading="lazy">' : '<div class="w-6 h-6 md:w-7 md:h-7 rounded-full bg-gray-700 flex items-center justify-center"><i class="fab fa-github text-gray-400 text-xs"></i></div>'}
+                            <span class="text-gray-400 text-xs truncate">${repo.owner.login}</span>
                         </div>
                         <p class="text-gray-400 text-xs line-clamp-2 h-8">${repo.description || 'No description'}</p>
                         <div class="flex items-center justify-between mt-3">
-                            <span class="text-xs px-2 py-0.5 bg-cyan-600/20 text-cyan-400 rounded-full">${repo.language || '?'}</span>
-                            <div class="flex gap-3">
+                            <span class="text-xs px-2 py-0.5 bg-cyan-600/20 text-cyan-400 rounded-full truncate max-w-[80px]">${repo.language || '?'}</span>
+                            <div class="flex gap-2 md:gap-3">
                                 <a href="${repo.html_url}" target="_blank" 
                                    class="text-gray-400 hover:text-white transition text-base" 
                                    title="Lihat source code di GitHub">
@@ -2108,6 +2224,42 @@ CMD ["python", "app.py"]</code></pre>
                     }
                 });
             });
+
+            // ===== SWIPE UNTUK PROJECT CAROUSEL =====
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const grid = document.getElementById('projectExplorerGrid');
+            
+            if (grid) {
+                grid.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, { passive: true });
+                
+                grid.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, { passive: true });
+            }
+            
+            function handleSwipe() {
+                const threshold = 50;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > threshold) {
+                    if (diff > 0) {
+                        nextSlide();
+                    } else {
+                        const totalSlides = Math.ceil(allProjects.length / PROJECTS_PER_SLIDE);
+                        goToSlide((currentIndex - 1 + totalSlides) % totalSlides);
+                    }
+                }
+            }
+        });
+
+        // ===== HANDLE WINDOW RESIZE =====
+        window.addEventListener('resize', function() {
+            const isMobile = window.innerWidth < 768;
+            PROJECTS_PER_SLIDE = isMobile ? 4 : 4;
+            renderProjects();
         });
     </script>
 </body>
