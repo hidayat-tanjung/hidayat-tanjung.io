@@ -53,7 +53,6 @@
             z-index: 100;
             margin-top: 8px;
         }
-        /* Perbaikan untuk dropdown di Android */
         .dropdown:hover .dropdown-menu, 
         .dropdown.active .dropdown-menu { display: block; }
         .dropdown-menu a {
@@ -172,12 +171,6 @@
         }
         @keyframes barShimmer { 0% { background-position: 0% 0%; } 100% { background-position: 300% 0%; } }
 
-        .tech-icon { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .tech-icon:hover { transform: translateY(-8px) scale(1.05); }
-        .tech-icon .icon-wrapper { transition: all 0.4s ease; width: 80px; height: 80px; position: relative; }
-        .tech-icon:hover .icon-wrapper { transform: scale(1.02); }
-        .tech-icon p { font-size: 0.9rem; font-weight: 500; }
-        
         #particlesCanvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
         
         .exp-card {
@@ -252,7 +245,6 @@
             background: transparent !important;
         }
         
-        /* Perbaikan untuk dropdown di Android */
         @media (max-width: 768px) {
             .dropdown-menu { 
                 position: static; 
@@ -271,10 +263,7 @@
             }
             .dropdown-menu a:last-child { border-bottom: none; }
             .dropdown-arrow { display: none; }
-            .tech-icon .icon-wrapper { width: 60px; height: 60px; }
-            .tech-icon .icon-wrapper i { font-size: 2rem !important; }
             
-            /* Perbaikan touch untuk dropdown */
             .dropdown {
                 display: block;
                 width: 100%;
@@ -288,12 +277,6 @@
         #formStatus { transition: all 0.3s ease; }
         #sendBtn:disabled { opacity: 0.6; cursor: not-allowed; }
         #imagePreview { width: 100%; max-height: 200px; object-fit: cover; border-radius: 8px; margin-top: 8px; display: none; }
-
-        @keyframes scroll-right { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        @keyframes scroll-left { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
-        .animate-scroll-right { animation: scroll-right 25s linear infinite; }
-        .animate-scroll-left { animation: scroll-left 25s linear infinite; }
-        .animate-scroll-right:hover, .animate-scroll-left:hover { animation-play-state: paused; }
 
         .btn-download {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -312,7 +295,6 @@
             transform: scale(1.05);
         }
 
-        /* ===== NAVBAR HIDE/SHOW ON SCROLL ===== */
         .navbar-hidden {
             transform: translateY(-100%);
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -322,7 +304,6 @@
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* ===== MOBILE DRAWER ===== */
         #mobileDrawer {
             position: fixed;
             top: 0;
@@ -393,7 +374,6 @@
         }
         #mobileDrawer .drawer-close:active { color: white; }
 
-        /* ===== BOTTOM NAV (MOBILE) ===== */
         #bottomNav {
             display: none;
             position: fixed;
@@ -433,7 +413,6 @@
             body { padding-bottom: 70px; }
         }
 
-        /* ===== HAMBURGER BUTTON ===== */
         .hamburger-btn {
             background: none;
             border: none;
@@ -458,7 +437,6 @@
             .hamburger-btn { display: none; }
         }
 
-        /* Perbaikan untuk modal di Android */
         .modal-article,
         .modal-cert,
         .modal-project-preview,
@@ -467,7 +445,6 @@
             max-width: 100%;
         }
 
-        /* Perbaikan untuk touch */
         .btn-download,
         .nav-link,
         .hamburger-btn,
@@ -480,7 +457,6 @@
             -webkit-tap-highlight-color: transparent;
         }
 
-        /* Perbaikan untuk gambar profil di Android */
         .profile-img-wrapper {
             width: 180px;
             height: 180px;
@@ -492,21 +468,95 @@
             }
         }
 
-        /* Perbaikan untuk form di Android */
         input, textarea, select, button {
             -webkit-appearance: none;
             appearance: none;
-            font-size: 16px !important; /* Mencegah zoom di iOS */
+            font-size: 16px !important;
         }
         input, textarea {
             border-radius: 8px;
         }
 
-        /* Perbaikan untuk project cards di Android */
         .project-card .h-32 {
             min-height: 80px;
             height: auto;
             padding: 16px;
+        }
+
+        /* ===== PERBAIKAN TECHNOLOGIES I USE ===== */
+        .tech-scroll-wrapper {
+            overflow: visible !important;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .tech-scroll-track {
+            display: flex;
+            gap: 24px;
+            width: max-content;
+            animation: scrollRight 30s linear infinite;
+        }
+
+        .tech-scroll-track-left {
+            display: flex;
+            gap: 24px;
+            width: max-content;
+            animation: scrollLeft 30s linear infinite;
+        }
+
+        .tech-scroll-track:hover,
+        .tech-scroll-track-left:hover {
+            animation-play-state: paused;
+        }
+
+        .tech-scroll-container {
+            overflow: hidden;
+            position: relative;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .tech-icon {
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+            overflow: visible !important;
+        }
+
+        .tech-icon .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            z-index: 2;
+            overflow: visible !important;
+        }
+
+        .tech-icon:hover .icon-wrapper {
+            transform: translateY(-12px) scale(1.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        @media (max-width: 768px) {
+            .tech-icon .icon-wrapper {
+                width: 60px;
+                height: 60px;
+            }
+            .tech-scroll-track,
+            .tech-scroll-track-left {
+                gap: 16px;
+            }
+        }
+
+        @keyframes scrollRight {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes scrollLeft {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
         }
     </style>
 </head>
@@ -536,10 +586,8 @@
     <!-- ========================================================= -->
     <nav id="mainNav" class="fixed top-0 w-full bg-black bg-opacity-95 backdrop-blur-md z-50 border-b border-gray-800 navbar-visible">
         <div class="w-full px-4 md:px-8 lg:px-16 py-3 flex justify-between items-center">
-            <!-- Logo -->
             <a href="#home" class="text-2xl font-bold gradient-text" id="logoText">Hidayat</a>
 
-            <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-6 text-sm font-medium items-center">
                 <a href="#home" class="nav-link text-green-400 hover:text-green-300">Home</a>
                 <a href="#about" class="nav-link text-blue-400 hover:text-blue-300">About</a>
@@ -558,7 +606,6 @@
                 <a href="#contact" class="nav-link text-red-400 hover:text-red-300">Contact</a>
             </div>
 
-            <!-- Mobile Hamburger -->
             <div class="flex items-center gap-3 md:hidden">
                 <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
@@ -585,12 +632,14 @@
         <a href="#project-explorer"><i class="fas fa-rocket w-6"></i> Projects</a>
         <a href="#articles"><i class="fas fa-newspaper w-6"></i> Blog</a>
         <a href="#contact"><i class="fas fa-envelope w-6"></i> Contact</a>
+        <a href="#"><i class="fab fa-instagram w-6"></i> Instagram</a>
         <div class="border-t border-gray-800 mt-4 pt-4 px-6 text-gray-500 text-xs">
-            <p>© 2025 Hidayat</p>
+            <p>© <span id="footerYear">2025</span> Hidayat</p>
             <div class="flex gap-4 mt-2">
                 <a href="https://github.com/hidayat-tanjung" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-github"></i></a>
                 <a href="https://www.linkedin.com/in/marlin-hidayat-tanjung/" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
                 <a href="https://www.youtube.com/@linuxploiter/videos" target="_blank" class="text-gray-400 hover:text-white"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank" class="text-gray-400 hover:text-pink-400"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
     </div>
@@ -627,6 +676,7 @@
                     <a href="https://www.linkedin.com/in/marlin-hidayat-tanjung/" target="_blank" class="text-gray-400 hover:text-purple-400 transition-colors duration-300 text-2xl"><i class="fab fa-linkedin"></i></a>
                     <a href="https://www.youtube.com/@linuxploiter/videos" target="_blank" class="text-gray-400 hover:text-red-500 transition-colors duration-300 text-2xl"><i class="fab fa-youtube"></i></a>
                     <a href="https://medium.com/@izumy" target="_blank" class="text-gray-400 hover:text-green-600 transition-colors duration-300 text-2xl"><i class="fab fa-medium"></i></a>
+                    <a href="#" target="_blank" class="text-gray-400 hover:text-pink-500 transition-colors duration-300 text-2xl"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -761,145 +811,17 @@
         </div>
     </section>
 
-    <!-- ===== TECHNOLOGIES I USE ===== -->
-    <section class="py-16 bg-gray-900 bg-opacity-30 relative z-10 overflow-hidden">
+    <!-- ===== TECHNOLOGIES I USE (PERBAIKAN) ===== -->
+    <section class="py-16 bg-gray-900 bg-opacity-30 relative z-10 overflow-visible">
         <div class="w-full px-6 md:px-12 lg:px-20">
             <h3 class="text-2xl font-semibold text-center text-purple-400 mb-10">Technologies I Use</h3>
-            <div class="flex overflow-hidden mb-6">
-                <div class="flex gap-8 md:gap-12 animate-scroll-right">
-                    <!-- Technology icons -->
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#007ACC] transition-all duration-300 shadow-lg group-hover:shadow-[#007ACC]/30 w-20 h-20">
-                            <i class="fas fa-code text-3xl" style="color: #007ACC !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#007ACC] transition-colors">VS Code</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#FF6633] transition-all duration-300 shadow-lg group-hover:shadow-[#FF6633]/30 w-20 h-20">
-                            <i class="fas fa-bug text-3xl" style="color: #FF6633 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#FF6633] transition-colors">Burp Suite</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#0E83CD] transition-all duration-300 shadow-lg group-hover:shadow-[#0E83CD]/30 w-20 h-20">
-                            <i class="fas fa-network-wired text-3xl" style="color: #0E83CD !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#0E83CD] transition-colors">Nmap</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#1679A7] transition-all duration-300 shadow-lg group-hover:shadow-[#1679A7]/30 w-20 h-20">
-                            <i class="fas fa-wifi text-3xl" style="color: #1679A7 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#1679A7] transition-colors">Wireshark</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#1BA0D7] transition-all duration-300 shadow-lg group-hover:shadow-[#1BA0D7]/30 w-20 h-20">
-                            <i class="fas fa-server text-3xl" style="color: #1BA0D7 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#1BA0D7] transition-colors">Cisco</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#004C97] transition-all duration-300 shadow-lg group-hover:shadow-[#004C97]/30 w-20 h-20">
-                            <i class="fas fa-skull text-3xl" style="color: #004C97 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#004C97] transition-colors">Metasploit</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#00D4AA] transition-all duration-300 shadow-lg group-hover:shadow-[#00D4AA]/30 w-20 h-20">
-                            <i class="fas fa-bolt text-3xl" style="color: #00D4AA !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#00D4AA] transition-colors">Nuclei</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#2496ED] transition-all duration-300 shadow-lg group-hover:shadow-[#2496ED]/30 w-20 h-20">
-                            <i class="fab fa-docker text-3xl" style="color: #2496ED !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#2496ED] transition-colors">Docker</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#D24939] transition-all duration-300 shadow-lg group-hover:shadow-[#D24939]/30 w-20 h-20">
-                            <i class="fab fa-jenkins text-3xl" style="color: #D24939 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#D24939] transition-colors">Jenkins</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#3776AB] transition-all duration-300 shadow-lg group-hover:shadow-[#3776AB]/30 w-20 h-20">
-                            <i class="fab fa-python text-3xl" style="color: #3776AB !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#3776AB] transition-colors">Python</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#EE0000] transition-all duration-300 shadow-lg group-hover:shadow-[#EE0000]/30 w-20 h-20">
-                            <i class="fas fa-cogs text-3xl" style="color: #EE0000 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#EE0000] transition-colors">Ansible</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#F05032] transition-all duration-300 shadow-lg group-hover:shadow-[#F05032]/30 w-20 h-20">
-                            <i class="fab fa-git-alt text-3xl" style="color: #F05032 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#F05032] transition-colors">Git</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#326CE5] transition-all duration-300 shadow-lg group-hover:shadow-[#326CE5]/30 w-20 h-20">
-                            <i class="fas fa-cubes text-3xl" style="color: #326CE5 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#326CE5] transition-colors">Kubernetes</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#7952B3] transition-all duration-300 shadow-lg group-hover:shadow-[#7952B3]/30 w-20 h-20">
-                            <i class="fab fa-bootstrap text-3xl" style="color: #7952B3 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#7952B3] transition-colors">Bootstrap</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#38B2AC] transition-all duration-300 shadow-lg group-hover:shadow-[#38B2AC]/30 w-20 h-20">
-                            <i class="fab fa-tailwind text-3xl" style="color: #38B2AC !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#38B2AC] transition-colors">Tailwind CSS</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#E34F26] transition-all duration-300 shadow-lg group-hover:shadow-[#E34F26]/30 w-20 h-20">
-                            <i class="fab fa-html5 text-3xl" style="color: #E34F26 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#E34F26] transition-colors">HTML5</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#1572B6] transition-all duration-300 shadow-lg group-hover:shadow-[#1572B6]/30 w-20 h-20">
-                            <i class="fab fa-css3-alt text-3xl" style="color: #1572B6 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#1572B6] transition-colors">CSS3</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#F7DF1E] transition-all duration-300 shadow-lg group-hover:shadow-[#F7DF1E]/30 w-20 h-20">
-                            <i class="fab fa-js text-3xl" style="color: #F7DF1E !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#F7DF1E] transition-colors">JavaScript</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#F46800] transition-all duration-300 shadow-lg group-hover:shadow-[#F46800]/30 w-20 h-20">
-                            <i class="fas fa-chart-line text-3xl" style="color: #F46800 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#F46800] transition-colors">Grafana</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#E6522C] transition-all duration-300 shadow-lg group-hover:shadow-[#E6522C]/30 w-20 h-20">
-                            <i class="fas fa-fire text-3xl" style="color: #E6522C !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#E6522C] transition-colors">Prometheus</p>
-                    </div>
-                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
-                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 group-hover:bg-[#CC0000] transition-all duration-300 shadow-lg group-hover:shadow-[#CC0000]/30 w-20 h-20">
-                            <i class="fas fa-chart-bar text-3xl" style="color: #CC0000 !important;"></i>
-                        </div>
-                        <p class="text-gray-400 text-sm group-hover:text-[#CC0000] transition-colors">Zabbix</p>
-                    </div>
-                </div>
+            
+            <div class="tech-scroll-container mb-6">
+                <div class="tech-scroll-track" id="techTrack1"></div>
             </div>
-            <div class="flex overflow-hidden">
-                <div class="flex gap-8 md:gap-12 animate-scroll-left">
-                    <!-- Duplicate for infinite scroll -->
-                </div>
+            
+            <div class="tech-scroll-container">
+                <div class="tech-scroll-track-left" id="techTrack2"></div>
             </div>
         </div>
     </section>
@@ -911,15 +833,15 @@
             <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
                 <div class="bg-gray-800 p-8 rounded-xl">
                     <h3 class="text-xl font-semibold text-purple-400 mb-4">
-                        <i class="fab fa-telegram mr-2"></i> Kirim Pesan via Telegram
+                        <i class="fab fa-telegram mr-2"></i> Send Message via Telegram
                     </h3>
-                    <p class="text-gray-400 text-sm mb-4">Pesan akan langsung masuk ke Telegram saya.</p>
+                    <p class="text-gray-400 text-sm mb-4">Your message will be sent directly to my Telegram.</p>
                     <form id="contact-form" onsubmit="sendToTelegram(event)">
                         <input type="text" id="name" placeholder="Your Name" required 
                                class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-purple-600 outline-none"/>
                         <input type="email" id="email" placeholder="Your Email" required 
                                class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-purple-600 outline-none"/>
-                        <textarea id="message" rows="4" placeholder="Message" required 
+                        <textarea id="message" rows="4" placeholder="Your Message" required 
                                   class="w-full bg-gray-700 text-white p-4 rounded-lg mb-4 text-base focus:ring-2 ring-purple-600 outline-none"></textarea>
                         <button type="submit" id="sendBtn" 
                                 class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-lg text-base transition flex items-center justify-center gap-2">
@@ -965,6 +887,9 @@
                             <a href="https://medium.com/@izumy" target="_blank" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all duration-300 text-gray-400 hover:text-white">
                                 <i class="fab fa-medium text-xl"></i>
                             </a>
+                            <a href="#" target="_blank" class="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-pink-600 transition-all duration-300 text-gray-400 hover:text-white">
+                                <i class="fab fa-instagram text-xl"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -975,7 +900,7 @@
     <!-- ===== FOOTER ===== -->
     <footer class="py-6 bg-black border-t border-gray-800 text-center text-gray-500 text-sm relative z-10">
         <div class="w-full px-6 md:px-12 lg:px-20">
-            <p>© 2025 Hidayat. Made with <i class="fas fa-heart text-red-600"></i> & <i class="fas fa-coffee text-red-600"></i></p>
+            <p>© <span id="currentYear">2025</span> Hidayat. Made with <i class="fas fa-heart text-red-600"></i> & <i class="fas fa-coffee text-red-600"></i></p>
         </div>
     </footer>
 
@@ -1085,6 +1010,42 @@
     <!-- ===== JAVASCRIPT ===== -->
     <!-- ========================================================= -->
     <script>
+        // ===== DISABLE INSPECT ELEMENT =====
+        document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.ctrlKey && (e.key === 'u' || e.key === 'U')) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            document.addEventListener('dragstart', function(e) {
+                e.preventDefault();
+                return false;
+            });
+        });
+
         // ===== LOADING SCREEN =====
         document.addEventListener('DOMContentLoaded', function() {
             const loadingScreen = document.getElementById('loadingScreen');
@@ -1225,7 +1186,6 @@
                 }
             });
 
-            // ===== HAMBURGER MENU =====
             const hamburgerBtn = document.getElementById('hamburgerBtn');
             const drawer = document.getElementById('mobileDrawer');
             const overlay = document.getElementById('drawerOverlay');
@@ -1272,7 +1232,6 @@
                 });
             });
 
-            // ===== BOTTOM NAV ACTIVE =====
             const bottomNavLinks = document.querySelectorAll('#bottomNav a');
             bottomNavLinks.forEach(function(link) {
                 link.addEventListener('click', function(e) {
@@ -1298,7 +1257,6 @@
                 });
             });
 
-            // ===== DROPDOWN TOGGLE FOR ANDROID =====
             const dropdownToggle = document.getElementById('desktopDropdownToggle');
             const dropdown = document.getElementById('desktopDropdown');
             
@@ -1309,7 +1267,6 @@
                     dropdown.classList.toggle('active');
                 });
 
-                // Close dropdown when clicking outside
                 document.addEventListener('click', function(e) {
                     if (!dropdown.contains(e.target)) {
                         dropdown.classList.remove('active');
@@ -1317,7 +1274,6 @@
                 });
             }
 
-            // ===== CLOSE DROPDOWN ON NAVIGATION =====
             dropdown.querySelectorAll('.dropdown-menu a').forEach(function(link) {
                 link.addEventListener('click', function() {
                     dropdown.classList.remove('active');
@@ -1339,15 +1295,15 @@
             var chatId = '752995113';
             
             if (!name || !email || !message) {
-                status.innerHTML = '⚠️ Semua field wajib diisi!';
+                status.innerHTML = '⚠️ All fields are required!';
                 status.className = 'text-red-400 text-sm mt-2';
                 return;
             }
             
-            var text = '📩 <b>Pesan Baru dari Portfolio!</b>\n\n👤 <b>Nama:</b> ' + name + '\n📧 <b>Email:</b> ' + email + '\n💬 <b>Pesan:</b>\n' + message;
+            var text = '📩 <b>New Message from Portfolio!</b>\n\n👤 <b>Name:</b> ' + name + '\n📧 <b>Email:</b> ' + email + '\n💬 <b>Message:</b>\n' + message;
             
             btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Mengirim...';
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Sending...';
             status.innerHTML = '';
             
             try {
@@ -1359,11 +1315,11 @@
                 var data = await res.json();
                 
                 if (data.ok) {
-                    status.innerHTML = '✅ Pesan berhasil dikirim! Saya akan segera merespon.';
+                    status.innerHTML = '✅ Message sent successfully! I will respond soon.';
                     status.className = 'text-green-400 text-sm mt-2';
                     document.getElementById('contact-form').reset();
                 } else {
-                    status.innerHTML = '❌ Gagal mengirim. Coba lagi nanti.';
+                    status.innerHTML = '❌ Failed to send. Please try again later.';
                     status.className = 'text-red-400 text-sm mt-2';
                 }
             } catch(e) {
@@ -2002,7 +1958,6 @@ CMD ["python", "app.py"]</code></pre>
             }
         ];
 
-        // Perbaikan: Gunakan 2 kolom di mobile
         if (window.innerWidth < 768) {
             PROJECTS_PER_SLIDE = 4;
         }
@@ -2192,6 +2147,79 @@ CMD ["python", "app.py"]</code></pre>
             });
         });
 
+        // ===== TECHNOLOGIES I USE - GENERATE ICONS =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const techs = [
+                { name: 'VS Code', icon: 'fas fa-code', color: '#007ACC' },
+                { name: 'Burp Suite', icon: 'fas fa-bug', color: '#FF6633' },
+                { name: 'Nmap', icon: 'fas fa-network-wired', color: '#0E83CD' },
+                { name: 'Wireshark', icon: 'fas fa-wifi', color: '#1679A7' },
+                { name: 'Cisco', icon: 'fas fa-server', color: '#1BA0D7' },
+                { name: 'Metasploit', icon: 'fas fa-skull', color: '#004C97' },
+                { name: 'Nuclei', icon: 'fas fa-bolt', color: '#00D4AA' },
+                { name: 'Docker', icon: 'fab fa-docker', color: '#2496ED' },
+                { name: 'Jenkins', icon: 'fab fa-jenkins', color: '#D24939' },
+                { name: 'Python', icon: 'fab fa-python', color: '#3776AB' },
+                { name: 'Ansible', icon: 'fas fa-cogs', color: '#EE0000' },
+                { name: 'Git', icon: 'fab fa-git-alt', color: '#F05032' },
+                { name: 'Kubernetes', icon: 'fas fa-cubes', color: '#326CE5' },
+                { name: 'Bootstrap', icon: 'fab fa-bootstrap', color: '#7952B3' },
+                { name: 'Tailwind CSS', icon: 'fab fa-tailwind', color: '#38B2AC' },
+                { name: 'HTML5', icon: 'fab fa-html5', color: '#E34F26' },
+                { name: 'CSS3', icon: 'fab fa-css3-alt', color: '#1572B6' },
+                { name: 'JavaScript', icon: 'fab fa-js', color: '#F7DF1E' },
+                { name: 'Grafana', icon: 'fas fa-chart-line', color: '#F46800' },
+                { name: 'Prometheus', icon: 'fas fa-fire', color: '#E6522C' },
+                { name: 'Zabbix', icon: 'fas fa-chart-bar', color: '#CC0000' },
+                { name: 'Postman', icon: 'fas fa-paper-plane', color: '#FF6C37' }
+            ];
+
+            const techsDouble = [...techs, ...techs, ...techs];
+
+            function createTechHTML(items) {
+                return items.map(t => `
+                    <div class="tech-icon flex flex-col items-center group flex-shrink-0">
+                        <div class="icon-wrapper bg-gray-800 rounded-2xl flex items-center justify-center mb-2 transition-all duration-300 shadow-lg group-hover:shadow-[${t.color}]/30" 
+                             style="width:80px;height:80px;overflow:visible !important;">
+                            <i class="${t.icon} text-3xl" style="color: ${t.color} !important;"></i>
+                        </div>
+                        <p class="text-gray-400 text-sm group-hover:text-[${t.color}] transition-colors" style="font-weight:500;">${t.name}</p>
+                    </div>
+                `).join('');
+            }
+
+            const track1 = document.getElementById('techTrack1');
+            const track2 = document.getElementById('techTrack2');
+
+            if (track1) {
+                track1.innerHTML = createTechHTML(techsDouble);
+            }
+            if (track2) {
+                const shuffled = [...techs].sort(() => Math.random() - 0.5);
+                const shuffledDouble = [...shuffled, ...shuffled, ...shuffled];
+                track2.innerHTML = createTechHTML(shuffledDouble);
+            }
+
+            function updateScrollSpeed() {
+                const isMobile = window.innerWidth < 768;
+                const duration = isMobile ? 20 : 30;
+                document.querySelectorAll('.tech-scroll-track, .tech-scroll-track-left').forEach(el => {
+                    el.style.animationDuration = duration + 's';
+                });
+            }
+            updateScrollSpeed();
+            window.addEventListener('resize', updateScrollSpeed);
+        });
+
+        // ===== AUTO UPDATE YEAR =====
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearSpans = document.querySelectorAll('#currentYear, #footerYear');
+            const currentYear = new Date().getFullYear();
+            yearSpans.forEach(function(span) {
+                if (span) span.textContent = currentYear;
+            });
+        });
+
         // =========================================================
         // ===== INIT =====
         // =========================================================
@@ -2225,7 +2253,6 @@ CMD ["python", "app.py"]</code></pre>
                 });
             });
 
-            // ===== SWIPE UNTUK PROJECT CAROUSEL =====
             let touchStartX = 0;
             let touchEndX = 0;
             const grid = document.getElementById('projectExplorerGrid');
@@ -2237,25 +2264,20 @@ CMD ["python", "app.py"]</code></pre>
                 
                 grid.addEventListener('touchend', function(e) {
                     touchEndX = e.changedTouches[0].screenX;
-                    handleSwipe();
-                }, { passive: true });
-            }
-            
-            function handleSwipe() {
-                const threshold = 50;
-                const diff = touchStartX - touchEndX;
-                if (Math.abs(diff) > threshold) {
-                    if (diff > 0) {
-                        nextSlide();
-                    } else {
-                        const totalSlides = Math.ceil(allProjects.length / PROJECTS_PER_SLIDE);
-                        goToSlide((currentIndex - 1 + totalSlides) % totalSlides);
+                    const threshold = 50;
+                    const diff = touchStartX - touchEndX;
+                    if (Math.abs(diff) > threshold) {
+                        if (diff > 0) {
+                            nextSlide();
+                        } else {
+                            const totalSlides = Math.ceil(allProjects.length / PROJECTS_PER_SLIDE);
+                            goToSlide((currentIndex - 1 + totalSlides) % totalSlides);
+                        }
                     }
-                }
+                }, { passive: true });
             }
         });
 
-        // ===== HANDLE WINDOW RESIZE =====
         window.addEventListener('resize', function() {
             const isMobile = window.innerWidth < 768;
             PROJECTS_PER_SLIDE = isMobile ? 4 : 4;
