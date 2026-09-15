@@ -1,1041 +1,372 @@
-<!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Randiansyah</title>
-    
-    <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        * {
-            font-family: 'Inter', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        .font-code {
-            font-family: 'Fira Code', monospace;
-        }
-        
-        body {
-            background-color: #0a0a0a;
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: #1a1a1a;
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: #4a5568;
-            border-radius: 4px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: #718096;
-        }
-        
-        /* Gradient Text */
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Typing Animation */
-        .typing-text {
-            overflow: hidden;
-            border-right: 3px solid #667eea;
-            white-space: nowrap;
-            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #667eea; }
-        }
-        
-        /* Floating Animation */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        .float-animation {
-            animation: float 3s ease-in-out infinite;
-        }
-        
-        /* Glow Effect */
-        .glow {
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
-        }
-        
-        /* Card Hover Effect */
-        .card-hover {
-            transition: all 0.3s ease;
-        }
-        
-        .card-hover:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
-        }
-        
-        /* Skill Bar Animation */
-        @keyframes skillBar {
-            0% { width: 0; }
-            100% { width: var(--skill-width); }
-        }
-        
-        .skill-bar {
-            animation: skillBar 2s ease-out forwards;
-        }
-        
-        /* Navigation Active */
-        .nav-link {
-            position: relative;
-            transition: color 0.3s ease;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #667eea;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-        
-        /* Particle Background */
-        .particle {
-            position: fixed;
-            pointer-events: none;
-            opacity: 0.5;
-            animation: particle-float 20s infinite linear;
-        }
-        
-        @keyframes particle-float {
-            from {
-                transform: translateY(100vh) translateX(0);
-            }
-            to {
-                transform: translateY(-10vh) translateX(100px);
-            }
-        }
-    </style>
-</head>
-<body class="bg-black text-gray-100 overflow-x-hidden">
-    
-    <!-- Particles Background -->
-    <div id="particles" class="fixed inset-0 z-0"></div>
-    
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-black bg-opacity-90 backdrop-blur-md z-50 border-b border-gray-800">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <a href="#home" class="text-2xl font-bold gradient-text">Portfolio</a>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8">
-                    <a href="#" class="nav-link text-gray-300 hover:text-white">Home</a>
-                    <a href="#about" class="nav-link text-gray-300 hover:text-white">About</a>
-                    <a href="#skills" class="nav-link text-gray-300 hover:text-white">Skills</a>
-                    <a href="#projects" class="nav-link text-gray-300 hover:text-white">Projects</a>
-                    <a href="/link" class="nav-link text-gray-300 hover:text-white">Link</a>
-                    <a href="#contact" class="nav-link text-gray-300 hover:text-white">Contact</a>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Halo Dunia | Randiansyah</title>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="img/logo.jpeg" alt="internet abis" width="30" height="30" class="d-inline-block align-text-top">
+                Randiansyah
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto fw-bold">
+                    <a class="nav-link btn btn-outline-dark" aria-current="page" href="#home">Home</a>
+                    <a class="nav-link btn btn-outline-dark" href="#about">About</a>
+                    <a class="nav-link btn btn-outlinVicky Sahputrae-dark" href="#sertifikasi">Sertifikasi</a>
+                    <a class="nav-link btn btn-outline-dark" href="#contact">Contact</a>
                 </div>
-                
-                <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
-                <a href="#" class="block py-2 text-gray-300 hover:text-white">Home</a>
-                <a href="#about" class="block py-2 text-gray-300 hover:text-white">About</a>
-                <a href="#skills" class="block py-2 text-gray-300 hover:text-white">Skills</a>
-                <a href="#projects" class="block py-2 text-gray-300 hover:text-white">Projects</a>
-                <a href="/link" class="block py-2 text-gray-300 hover:text-white">Link</a>
-                <a href="#contact" class="block py-2 text-gray-300 hover:text-white">Contact</a>
             </div>
         </div>
     </nav>
-    
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center relative">
-        <div class="container mx-auto px-6 py-20 text-center">
-            <div class="max-w-4xl mx-auto">
-                <p class="text-purple-400 mb-4 font-code">Hello World! I'm</p>
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">
-                    <span class="gradient-text">Randiansyah</span>
-                </h1>
-                <div class="text-2xl md:text-4xl text-gray-300 mb-8">
-                    <span class="typing-text inline-block">Pentester | Anti Hero</span>
-                </div>
-                <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-                    I was just looking for bugs in the app for fun
-                </p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="#contact" class="px-8 py-3 bg-purple-600 hover:bg-purple-700 rounded-full transition-all duration-300 transform hover:scale-5 glow">
-                        <i class="fas fa-envelope mr-2"></i> Get In Touch
-                    </a>
-                    <a href="#projects" class="px-8 py-3 border border-purple-600 hover:bg-purple-600 hover:bg-opacity-20 rounded-full transition-all duration-300">
-                        <i class="fas fa-folder mr-2"></i> View Projects
-                    </a>
-                </div>
-                
-                <!-- Social Links -->
-                <div class="mt-12 flex justify-center space-x-6">
-                    <a href="//github.com/randixploit" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">
-                        <i class="fab fa-github text-2xl"></i>
-                    </a>
-                    <a href="//www.linkedin.com/in/randiansyah" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">
-                        <i class="fab fa-linkedin text-2xl"></i>
-                    </a>
-                    <a href="//tiktok.com/@randixploit.shtml" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">
-                        <i class="fab fa-tiktok text-2xl"></i>
-                    </a>
-                    <a href="//instagram.com/randixploit.shtml" class="text-gray-400 hover:text-purple-400 transition-colors duration-300">
-                        <i class="fab fa-instagram text-2xl"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
-        </div>
+    <section class="text-center text-light jumbotron" id="home">
+        <img src="img/anime.jpeg" width="250" class="rounded-circle img-thumbnail">
+        <h1 class="display-4 fw-bold fst-italic">Randiansyah</h1>
+        <h3 class="display-10">Penetration Tester | Anti Hero</h1>
+        <a href="randiansyah.cv" class="btn btn-secondary w-80">Download CV</a> 
+        <ul>
+            <a href="https://tiktok.com/@randixploit.shtml" target="_blank"><i class="fa-brands fa-tiktok fa-2x mt-2 m-1"></i></a>
+            <a href="https://youtube.com/@randixploit" target="_blank"><i class="fa-brands fa-youtube fa-2x mt-2 m-1"></i></a>
+            <a href="https://randixploit1337.t.me" target="_blank"><i class="fa-brands fa-telegram fa-2x mt-2 m-1"></i></a>
+            <a href="https://www.linkedin.com/in/randiansyah" target="_blank"><i class="fa-brands fa-linkedin fa-2x mt-2 m-1"></i></a>
+        </ul>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="10" d="M0,160L60,144C120,128,240,96,360,106.7C480,117,600,171,720,165.3C840,160,960,96,1080,69.3C1200,43,1320,53,1380,58.7L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
     </section>
-    
-    <!-- About Section -->
-    <section id="about" class="py-20 relative">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
-                <span class="gradient-text">About Me</span>
-            </h2>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-                <div class="order-2 md:order-1">
-                    <h3 class="text-2xl font-semibold mb-4 text-purple-400">Who am I?</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        I enjoy finding bugs in applications; sometimes I report them, and sometimes I don’t. I am neither a good person nor a bad one. I’m a mix of both.
-                    </p>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        My motivation towards cybersecurity is unclear, sometimes it’s just for fun, sometimes I get serious. Well… it’s mostly just for fun, haha.
-                    </p>
-                    
-                    <div class="grid grid-cols-2 gap-4 mb-8">
-                        <div>
-                            <p class="text-purple-400 font-semibold mb-2">
-                                <i class="fas fa-map-marker-alt mr-2"></i> Location
-                            </p>
-                            <p class="text-gray-300">Central Kalimantan, Indonesia</p>
-                        </div>
-                        <div>
-                            <p class="text-purple-400 font-semibold mb-2">
-                                <i class="fas fa-graduation-cap mr-2"></i> Education
-                            </p>
-                            <p class="text-gray-300">Penetration Testing</p>
-                        </div>
-                        <div>
-                            <p class="text-purple-400 font-semibold mb-2">
-                                <i class="fas fa-briefcase mr-2"></i> Experience
-                            </p>
-                            <p class="text-gray-300">1337 Years</p>
-                        </div>
-                        <div>
-                            <p class="text-purple-400 font-semibold mb-2">
-                                <i class="fas fa-heart mr-2"></i> Interests
-                            </p>
-                            <p class="text-gray-300">Tech, Anime, Isekai</p>
-                        </div>
+    <section class="text-light" id="about">
+        <div class="container">
+            <div class="terminal max-w-4xl mx-auto mb-8">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <div class="terminal-dot red"></div>
+                        <div class="terminal-dot yellow"></div>
+                        <div class="terminal-dot green"></div>
                     </div>
-                    
-                    <a href="/randiansyah.pdf" class="inline-flex items-center px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-all duration-300">
-                        <i class="fas fa-download mr-2"></i> Download CV
-                    </a>
                 </div>
-                
-                <div class="order-1 md:order-2 flex justify-center">
-                    <div class="relative">
-                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 p-1 float-animation">
-                            <div class="w-full h-full rounded-full bg-black p-2">
-                                <img src="https://randixploit.github.io/img/anime.jpeg" alt="Profile" class="w-full h-full rounded-full object-cover">
-                            </div>
-                        </div>
-                    </div>
+                <div class="terminal-body">
+                    <span class="text-neon-green">randixploit@root:~# whoami</span><br>
+                    <span class="text-white mt-2">Name: Randiansyah</span><br>
+                    <span class="text-white">Age: 19</span><br>
+                    <span class="text-white">Location: Unknown</span><br>
+                    <span class="text-white">Specialty: Bug Hunting</span><br>
+                    <span class="text-white">Current Status: Anti Hero</span><br>
+                    <span class="text-white">Twitter/X: https://x.com/randixploit</span><br>
+                    <span class="text-white">Telegram Channel: https://justrchannel.t.me</span><br>
+                    <span class="text-white">Github: https://github.com/randixploit</span><br>
+                    <span class="text-white">E-Book: https://lynk.id/randiansyah</span><br>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-900 bg-opacity-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
-                <span class="gradient-text">Skills & Technologies</span>
-            </h2>
-            
-            <div class="max-w-6xl mx-auto">
-                <!-- Technical Skills -->
-                <div class="mb-12">
-                    <h3 class="text-2xl font-semibold mb-8 text-center text-purple-400">Technical Skills</h3>
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <div class="mb-6">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Linux</span>
-                                    <span class="text-purple-400">40%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-purple-600 to-pink-600 h-3 rounded-full" style="--skill-width: 40%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">JavaScript</span>
-                                    <span class="text-purple-400">20%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-purple-600 to-pink-600 h-3 rounded-full" style="--skill-width: 20%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Broken Access Control</span>
-                                    <span class="text-purple-400">10%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-purple-600 to-pink-600 h-3 rounded-full" style="--skill-width: 10%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="mb-6">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">XSS</span>
-                                    <span class="text-purple-400">60%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-purple-600 to-pink-600 h-3 rounded-full" style="--skill-width: 60%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Watching Anime</span>
-                                    <span class="text-purple-400">100%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-purple-600 to-pink-600 h-3 rounded-full" style="--skill-width: 100%"></div>
-                                </div>
-                            </div>
-                        </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#a2d9ff" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,101.3C672,107,768,149,864,144C960,139,1056,85,1152,58.7C1248,32,1344,32,1392,32L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+    <section id="sertifikasi">
+        <div class="text3">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col mt-4">
+                    <div class="text3">
+                    <h2>Sertifikasi</h2>
                     </div>
                 </div>
-                
-                <!-- Technology Icons -->
-                <div>
-                    <h3 class="text-2xl font-semibold mb-8 text-center text-purple-400">Technologies I Use</h3>
-                    <div class="grid grid-cols-3 md:grid-cols-6 gap-8">
-                        <div class="text-center group">
-                            <div class="w-20 h-20 mx-auto bg-gray-800 rounded-lg flex items-center justify-center mb-2 group-hover:bg-purple-600 transition-all duration-300 transform group-hover:scale-110">
-                                <i class="fab fa-linux text-3xl text-orange-500"></i>
-                            </div>
-                            <p class="text-sm text-gray-400">Terminal</p>
-                        </div>
-                        
-                        <div class="text-center group">
-                            <div class="w-20 h-20 mx-auto bg-gray-800 rounded-lg flex items-center justify-center mb-2 group-hover:bg-purple-600 transition-all duration-300 transform group-hover:scale-110">
-                                <i class="fab fa-firefox text-3xl text-blue-500"></i>
-                            </div>
-                            <p class="text-sm text-gray-400">Firefox</p>
-                        </div>
-                        
-                        <div class="text-center group">
-                            <div class="w-20 h-20 mx-auto bg-gray-800 rounded-lg flex items-center justify-center mb-2 group-hover:bg-purple-600 transition-all duration-300 transform group-hover:scale-110">
-                                <i class="fab fa-tools text-3xl text-yellow-400"></i>
-                            </div>
-                            <p class="text-sm text-gray-400">Burp Suite</p>
-                        </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mt-4">
+                    <div class="card">
+                    <img src="https://github.com/randixploit/Certificate/blob/main/SERTIFIKAT%20APRESIASI%20LEMBAGA_page-0001.jpg?raw=true" class="card-img-top">
+                    <div class="card-body">
+                        <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;"><br>Lembaga Kursus dan Pendidikan Nusantara<br><br></p>
                     </div>
+                    </div>
+                </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://github.com/randixploit/Certificate/blob/main/20241224100427RANDIANSYAH_page-0001.jpg?raw=true" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;"><br>Kabupaten Klaten<br><br></p>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://github.com/randixploit/Certificate/raw/main/sertifikat-apresiasi-mas-randiansyah_signed_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Seruyan</p>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Certificate/refs/heads/main/sertifikat%20Randiansyah_sign.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;"><br>Kota Magelang<br></p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Certificate/refs/heads/main/Sertifikat%20Apresiasi%20Dinas%20Kominfo%20a.n.%20Randiansyah_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Jombang</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Certificate/refs/heads/main/Sertifikat%20CSIRT%20%20Radiansyah_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Banyuwangi</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Certificate/refs/heads/main/169.%20Randiansyah__sign_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Provinsi DKI Jakarta</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Certificate/refs/heads/main/20250204_151329.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Provinsi Yogyakarta</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://github.com/randixploit/Sertifikat/blob/main/20250227%20Randiansyah_sign_page-0001.jpg?raw=true" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kota Yogyakarta</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://github.com/randixploit/Certificate/blob/main/20250210134024_Randiansyah_page-0001.jpg?raw=true" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;"><br><br>Provinsi Sulawesi Tengah</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20Apresiasi%20-%20Bug_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Blitar</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20celah%20kerentanan%20Randiansyah_sign.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Provinsi Riau</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20Bug%20Hunter%20RANDIANSYAH%202025_sign_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Madiun</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/signed_16-199208092022031001-1740713088_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Kuansing</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/qyRqvCiXyyw1r13f1740638262eb2959f9ad2196b742439cf5df7cfa68_signed_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Sidoarjo</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/IMG_20250228_141431_879.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Sukoharjo</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Randiansyah_signed_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Pesawaran</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Appreciation%20Certificate%20Bappenas-CSIRT_Randiansyah_ttds_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Badan Perencanaan Pembangunan Nasional</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/SERTIFIKAT_Randiansyah_sign_1740986722850_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kementerian Kesehatan Republik Indonesia</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Randiansyah_signed_signed_signed_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Provinsi Jambi</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20Apresiasi%20%5B912%5D%20RANDIANSYAH_sign_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kota Bekasi</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20Apresiasi%20Bug%20Hunter%20Randiansyah_sign_sign_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Bangkalan</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://github.com/randixploit/Sertifikat/blob/main/Randiansyah-1_sign_1741760385115_page-0001.jpg?raw=true" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Purbalingga</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/20250228130446Randiansyah_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kota Pekalongan</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/049%20Sertifikat%20Apresiasi_Randiansyah_1741835838853_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Badan Meteorologi, Klimatologi, dan Geofisika</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20an.%20Randiansyah_1742440878824.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Energi dan Sumber Daya Mineral</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20Apresiasi%20an.%20Randiansyah_sign_1742894474178_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Provinsi Kalimantan Tengah</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Randiansyah_1744101971960_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Mabes TNI</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20Apresiasi%20CSIRT%20KPK%20Randiansyah%20(1)_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Komisi Pemberantasan Korupsi</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/004%20SERTIFIKAT%20APRESIASI_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Gresik</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Apresiasi%20Randiansyah%20-%20IDOR%20(1)_1745567722933_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kementerian Komunikasi dan Digital</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Jo27UQnDnX3MWyP9nJXj54Yfq1jLb6OXnYA4HhahyttJ231pGN_1746615963454_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Dari BBP/VDP Bali Prov</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Certificate%20of%20APPRECIATION%20-%20Randiansyah_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Dari Organisasi X-Code</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Randiansyah_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Bantul</p>
+                </div> 
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- 
-    <section id="projects" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
-                <span class="gradient-text">Featured Projects</span>
-            </h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-
-                <div class="bg-gray-900 rounded-lg overflow-hidden card-hover group">
-                    <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 relative overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/randixploit/crlfuzzer/refs/heads/main/images/Screenshot_20250127-183928.jpg" alt="Project 1" class="w-full h-full object-cover opacity-50 group-hover:opacity-30 transition-opacity duration-300">
-                        
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <a href="#" class="text-white text-2xl mx-2 hover:text-purple-300">
-                                <i class="fas fa-link"></i>
-                            </a>
-                            <a href="#" class="text-white text-2xl mx-2 hover:text-purple-300">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <p class="text-gray-300 mb-6 leading-relaxed">
-                                My motivation towards cybersecurity is unclear, sometimes it’s just for fun, sometimes I get serious. Well… it’s mostly just for fun, haha.
-                            </p>
-                    
-                            <div class="grid grid-cols-2 gap-4 mb-8">
-                                <div>
-                                    <p class="text-purple-400 font-semibold mb-2">
-                                        <i class="fas fa-map-marker-alt mr-2"></i> Location
-                                    </p>
-                                    <p class="text-gray-300">Central Kalimantan, Indonesia</p>
-                                </div>
-                                <div>
-                                    <p class="text-purple-400 font-semibold mb-2">
-                                        <i class="fas fa-graduation-cap mr-2"></i> Education
-                                    </p>
-                                    <p class="text-gray-300">Penetration Testing</p>
-                                </div>
-                                <div>
-                                    <p class="text-purple-400 font-semibold mb-2">
-                                        <i class="fas fa-briefcase mr-2"></i> Experience
-                                    </p>
-                                    <p class="text-gray-300">1337 Years</p>
-                                </div>
-                                <div>
-                                    <p class="text-purple-400 font-semibold mb-2">
-                                        <i class="fas fa-heart mr-2"></i> Interests
-                                    </p>
-                                    <p class="text-gray-300">Tech, Anime, Isekai</p>
-                                </div>
-                            </div>
-                    
-                            <a href="#" class="inline-flex items-center px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-all duration-300">
-                                <i class="fas fa-download mr-2"></i> Download CV
-                            </a>
-                        </div>
-                    </div>
-                    -->
-                </div>
-                
-                <!--
-                <div class="order-1 md:order-2 flex justify-center">
-                    <div class="relative">
-                        <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-purple-600 to-pink-600 p-1 float-animation">
-                            <div class="w-full h-full rounded-full bg-black p-2">
-                                <img src="https://randixploit.github.io/img/anime.jpeg" alt="Profile" class="w-full h-full rounded-full object-cover">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#a2d9ff" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,101.3C672,107,768,149,864,144C960,139,1056,85,1152,58.7C1248,32,1344,32,1392,32L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+    <section class="text-center text-light jumbotron" id="contact">
+        <img src="img/sadvibes.jpeg" width="250" class="rounded-circle img-thumbnail">
+        <h1 class="display-4 fw-bold fst-italic">Contact Me</h1>
+        <h3 class="display-10">You can contact via Telegram or Email</h1>
+        <ul>
+            <a href="https://randixploit1337.t.me" target="_blank"><i class="fa-brands fa-telegram fa-2x mt-2 m-1"></i></a>
+            <a href="mailto:randixploit@proton.me" target="_blank"><i class="fa-solid fa-envelope fa-2x mt-2 m-1"></i></a>
+        </ul>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="10" d="M0,160L60,144C120,128,240,96,360,106.7C480,117,600,171,720,165.3C840,160,960,96,1080,69.3C1200,43,1320,53,1380,58.7L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </section>
+    <section>
+        <div class="container footer text-center">
+            <p>Copyright © 2025 by <b>Randiansyah</b></p>
         </div>
     </section>
-    
-    <section id="skills" class="py-20 bg-gray-900 bg-opacity-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
-                <span class="gradient-text">Skills & Technologies</span>
-            </h2>
-            
-            <div class="max-w-6xl mx-auto">
-                
-                <div class="mb-12">
-                    <h3 class="text-2xl font-semibold mb-8 text-center text-purple-400">Technical Skills</h3>
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <div class="mb-6">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Linux</span>
-                                    <span class="text-purple-400">40%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-purple-600 to-pink-600 h-3 rounded-full" style="--skill-width: 40%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">JavaScript</span>
-                                    <span class="text-purple-400">20%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-purple-600 to-pink-600 h-3 rounded-full" style="--skill-width: 20%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Broken Access Control</span>
-                                    <span class="text-purple-400">10%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-purple-600 to-pink-600 h-3 rounded-full" style="--skill-width: 10%"></div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div>
-                            <div class="mb-6">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">XSS</span>
-                                    <span class="text-purple-400">60%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-purple-600 to-pink-600 h-3 rounded-full" style="--skill-width: 60%"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Watching Anime</span>
-                                    <span class="text-purple-400">100%</span>
-                                </div>
-                                <div class="w-full bg-gray-700 rounded-full h-3">
-                                    <div class="skill-bar bg-gradient-to-r from-purple-600 to-pink-600 h-3 rounded-full" style="--skill-width: 100%"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                
-                <div>
-                    <h3 class="text-2xl font-semibold mb-8 text-center text-purple-400">Technologies I Use</h3>
-                    <div class="grid grid-cols-3 md:grid-cols-6 gap-8">
-                        <div class="text-center group">
-                            <div class="w-20 h-20 mx-auto bg-gray-800 rounded-lg flex items-center justify-center mb-2 group-hover:bg-purple-600 transition-all duration-300 transform group-hover:scale-110">
-                                <i class="fab fa-linux text-3xl text-orange-500"></i>
-                            </div>
-                            <p class="text-sm text-gray-400">Terminal</p>
-                        </div>
-                        
-                        <div class="text-center group">
-                            <div class="w-20 h-20 mx-auto bg-gray-800 rounded-lg flex items-center justify-center mb-2 group-hover:bg-purple-600 transition-all duration-300 transform group-hover:scale-110">
-                                <i class="fab fa-firefox text-3xl text-blue-500"></i>
-                            </div>
-                            <p class="text-sm text-gray-400">Firefox</p>
-                        </div>
-                        
-                        <div class="text-center group">
-                            <div class="w-20 h-20 mx-auto bg-gray-800 rounded-lg flex items-center justify-center mb-2 group-hover:bg-purple-600 transition-all duration-300 transform group-hover:scale-110">
-                                <i class="fab fa-tools text-3xl text-yellow-400"></i>
-                            </div>
-                            <p class="text-sm text-gray-400">Burp Suite</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>-->
-    
-    
-    <section id="projects" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
-                <span class="gradient-text">Featured Projects</span>
-            </h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                <div class="bg-gray-900 rounded-lg overflow-hidden card-hover group">
-                    <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 relative overflow-hidden">
-                        <img src="https://raw.githubusercontent.com/randixploit/crlfuzzer/refs/heads/main/images/Screenshot_20250127-183928.jpg" alt="Project 1" class="w-full h-full object-cover opacity-50 group-hover:opacity-30 transition-opacity duration-300">
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <a href="#" class="text-white text-2xl mx-2 hover:text-purple-300">
-                                <i class="fas fa-link"></i>
-                            </a>
-                            <a href="#" class="text-white text-2xl mx-2 hover:text-purple-300">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-purple-400">CRLFuzzer</h3>
-                        <p class="text-gray-400 mb-4">A fast tool for scanning CRLF vulnerabilities</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 text-sm rounded-full">Python</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!--
-                <div class="bg-gray-900 rounded-lg overflow-hidden card-hover group">
-                    <div class="h-48 bg-gradient-to-br from-blue-600 to-cyan-600 relative overflow-hidden">
-                        <img src="https://via.placeholder.com/400x300" alt="Project 2" class="w-full h-full object-cover opacity-50 group-hover:opacity-30 transition-opacity duration-300">
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <a href="#" class="text-white text-2xl mx-2 hover:text-purple-300">
-                                <i class="fas fa-link"></i>
-                            </a>
-                            <a href="#" class="text-white text-2xl mx-2 hover:text-purple-300">
-                                
-                            </a>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-purple-400">Task Management App</h3>
-                        <p class="text-gray-400 mb-4">Collaborative task management tool with real-time updates and team features.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 text-sm rounded-full">Vue.js</span>
-                            <span class="px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 text-sm rounded-full">Firebase</span>
-                            <span class="px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 text-sm rounded-full">Tailwind</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-gray-900 rounded-lg overflow-hidden card-hover group">
-                    <div class="h-48 bg-gradient-to-br from-green-600 to-teal-600 relative overflow-hidden">
-                        <img src="https://via.placeholder.com/400x300" alt="Project 3" class="w-full h-full object-cover opacity-50 group-hover:opacity-30 transition-opacity duration-300">
-                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <a href="#" class="text-white text-2xl mx-2 hover:text-purple-300">
-                                <i class="fas fa-link"></i>
-                            </a>
-                            <a href="#" class="text-white text-2xl mx-2 hover:text-purple-300">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-purple-400">Weather Dashboard</h3>
-                        <p class="text-gray-400 mb-4">Real-time weather application with location tracking and forecast features.</p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 text-sm rounded-full">JavaScript</span>
-                            <span class="px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 text-sm rounded-full">API</span>
-                            <span class="px-3 py-1 bg-purple-600 bg-opacity-20 text-purple-400 text-sm rounded-full">Chart.js</span>
-                        </div>
-                    </div>
-                </div>
-                -->
-            </div>
-            
-            <div class="text-center mt-12">
-                <a href="#" class="inline-flex items-center px-6 py-3 border border-purple-600 hover:bg-purple-600 hover:bg-opacity-20 rounded-lg transition-all duration-300">
-                    <i class="fas fa-folder-open mr-2"></i> View All Projects
-                </a>
-            </div>
-        </div>
-    </section>
-    
-    
-    <section id="experience" class="py-20 bg-gray-900 bg-opacity-50">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
-                <span class="gradient-text">Experience & Process</span>
-            </h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-12">
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-8 text-purple-400">
-                            <i class="fas fa-briefcase mr-2"></i> My Process
-                        </h3>
-                        
-                        <div class="relative">
-                            <div class="absolute left-0 top-0 h-full w-0.5 bg-purple-600"></div>
-                            
-                            <div class="mb-8 pl-8 relative">
-                                <div class="absolute left-0 top-2 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2"></div>
-                                <div class="bg-gray-800 p-6 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-purple-400">The beginning</h4>
-                                    <p class="text-gray-400 mb-2">Script Kiddie • 2018</p>
-                                    <p class="text-gray-300">In 2018, I was just a school kid, drawn to the word “hacker” out of pure curiosity, starting with something as simple as breaking into Wi-Fi using a smartphone. Termux was my favorite app at the time. My very first favorite script was an SMS spammer that exploited OTP APIs with no rate limiting. Three months later, I stopped pursuing my interest in the world of “hackers."</p>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-8 pl-8 relative">
-                                <div class="absolute left-0 top-2 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2"></div>
-                                <div class="bg-gray-800 p-6 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-purple-400">Three months later</h4>
-                                    <p class="text-gray-400 mb-2">Just a skid • 2019 - 2020</p>
-                                    <p class="text-gray-300">By the end of 2019 into 2020, I returned to my old curiosity, but everything remained the same. It was still just SMS spam, call spam, and pointless virtex wars on WhatsApp. More absurdly, I even found myself hating K-pop fans and TikTok users. I was still very much a kid back then. There was no real improvement, no meaningful progress, because it was all just play, never serious. Yet in that chaos, something quietly began: I started learning to write simple scripts in Bash. It was the first programming language I ever learned, and the first step I didn’t realize mattered.</p>
-                                </div>
-                              </div>
-                            <div class="pl-8 mt-8 relative">
-                                <div class="absolute left-0 top-2 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2"></div>
-                                <div class="bg-gray-800 p-6 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-purple-400">Lammer</h4>
-                                    <p class="text-gray-400 mb-2">Digital Agency • 2020</p>
-                                    <p class="text-gray-300">In July 2020, I gathered the courage to create my first YouTube channel, <a href="//youtube.com/@randinoober8817">Randi Noober</a>, with a profile picture inspired by the COVID era. something I can only laugh at now. My first content was Minecraft, but as time passed, those videos were set to private, and my focus shifted toward coding and simple technical tips. At that time, all I cared about was sharing my knowledge with others as quickly as possible, even if it was something I had only just learned myself.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="pl-8 mt-8 relative">
-                                <div class="absolute left-0 top-2 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2"></div>
-                                <div class="bg-gray-800 p-6 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-purple-400">Enter the Defacer era</h4>
-                                    <p class="text-gray-400 mb-2">Still Lammer • 2020 - 2021</p>
-                                    <p class="text-gray-300">By the end of 2020, I graduated from school but was forced to stop my education due to economic hardship. While my friends moved on, I was left behind, slowly losing motivation. With only a low-end smartphone, 1 GB RAM and 16 GB storage, I found an escape in the defacer scene. I knew it was wrong, but as a kid, it felt “cool” to break into systems others didn’t understand. There were no clear paths to bug bounty or responsible disclosure back then—only defacement mirrors, simple exploits, and the pursuit of a shell backdoor that offered the illusion of control.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="pl-8 mt-8 relative">
-                                <div class="absolute left-0 top-2 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2"></div>
-                                <div class="bg-gray-800 p-6 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-purple-400">I Started to  My Way.</h4>
-                                    <p class="text-gray-400 mb-2">Pure Defacer • 2021</p>
-                                    <p class="text-gray-300">I began to lose my way. Economic hardship limited my access to the internet, and every day I scraped together just Rp.3,000 for Wi-Fi, to escape, to distract myself, and to keep learning about defacing. As the year neared its end, I drifted further off course. With money running out, I misused my skills, selling collected shell backdoors to online gambling SEO operators, fully aware of how they would be used. Targeting servers with multiple domains, I sold each shell for $1-$2, and eventually, that was how I bought my first smartphone with my own money.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="pl-8 mt-8 relative">
-                                <div class="absolute left-0 top-2 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2"></div>
-                                <div class="bg-gray-800 p-6 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-purple-400">I Started to  Leave a Bad Life.</h4>
-                                    <p class="text-gray-400 mb-2">Still Defacer • 2022 - 2023</p>
-                                    <p class="text-gray-300">By the end of 2021, I began to see things more clearly. I was trapped in constant overthinking, haunted by a single thought, ongoing sin. Fortunately, my uncle invited me to work with him, accompanying his mobile health checkups while he also sold herbal medicine. At first, it felt completely out of place, nothing like me, but over time I grew used to it. Around that period, I lost my phone and spent a long while disconnected from the digital world. Eventually, I saved enough to buy a second-hand phone, using it only for defacing, no longer for selling, just a lingering habit I hadn’t fully let go of.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="pl-8 mt-8 relative">
-                                <div class="absolute left-0 top-2 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2"></div>
-                                <div class="bg-gray-800 p-6 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-purple-400">Try to be Better.</h4>
-                                    <p class="text-gray-400 mb-2">Beginner • 2023 - 2024</p>
-                                    <p class="text-gray-300">In 2023, I left defacing, briefly returned, and finally quit again by the end of 2024, even selling shell backdoors for a short time due to limited internet access and unemployment. I eventually moved away from those habits, focusing on gaming, until a video about a bug bounty course appeared on my feed in late 2024. Seeing members receive certificates of appreciation from CSIRT teams across Indonesia was eye-opening, realizing that even a simple bug like XSS could earn official recognition.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="pl-8 mt-8 relative">
-                                <div class="absolute left-0 top-2 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2"></div>
-                                <div class="bg-gray-800 p-6 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-purple-400">Try to be Better part 2.</h4>
-                                    <p class="text-gray-400 mb-2">Beginner • 2024 - 2025</p>
-                                    <p class="text-gray-300">In 2024, I joined the course, and from that point my mindset toward bug hunting began to change. It was no longer about shell backdoors or defending them from others. Since the material didn’t fully resonate with me, I continued learning through YouTube, starting with terminal-based recon and scanning—subdomain enumeration, live host filtering, URL harvesting, and XSS scanning, while also studying manual techniques like Broken Access Control, improper authorization, server misconfigurations, and other real-world vulnerabilities.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="pl-8 mt-8 relative">
-                                <div class="absolute left-0 top-2 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2"></div>
-                                <div class="bg-gray-800 p-6 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-purple-400">Mentor & Bug Bounty Hunter.</h4>
-                                    <p class="text-gray-400 mb-2">Beginner • 2025</p>
-                                    <p class="text-gray-300">By the end of 2024, I earned my first certificate and my first bounty from BINUS, while also collecting multiple certificates of appreciation from CSIRT teams across Indonesia. The more I progressed, the more I regretted not discovering bug bounty earlier, realizing how much better this path was compared to defacing. In 2025, I launched an eBook on bug hunting fundamentals along with a private group, which later evolved into a more structured learning space. As I continued, bug bounty rewards came more frequently, strengthening my portfolio—and this is the path I continue to walk today.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    
-                    <div>
-                        <h3 class="text-2xl font-semibold mb-8 text-purple-400">
-                            <i class="fas fa-graduation-cap mr-2"></i>My Achievements
-                        </h3>
-                        
-                        <div class="relative">
-                            <div class="absolute left-0 top-0 h-full w-0.5 bg-purple-600"></div>
-                            
-                            <div class="mb-8 pl-8 relative">
-                                <div class="absolute left-0 top-2 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2"></div>
-                                <div class="bg-gray-800 p-6 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-purple-400">Certificate of Appreciation</h4>
-                                    <p class="text-gray-400 mb-2">Bug Hunter - 2024 - 2025 </p>
-                                    <p class="text-gray-300">I began searching for vulnerabilities to report, with my main goal being to earn certificates of appreciation. After collecting around 30+ certificates, I slowly started trying bug bounty, even though many of my reports were rejected. My first report was a self-XSS via cookie on HackerOne.</p>
-                                </div>
-                            </div>
-                            
-                            <div class="pl-8 relative">
-                                <div class="absolute left-0 top-2 w-4 h-4 bg-purple-600 rounded-full -translate-x-1/2"></div>
-                                <div class="bg-gray-800 p-6 rounded-lg">
-                                    <h4 class="text-lg font-semibold text-purple-400">Bug Bounty Hunter</h4>
-                                    <p class="text-gray-400 mb-2">Bug Hunter • 2025</p>
-                                    <p class="text-gray-300">I began to focus fully on bug bounty, prioritizing rewards over certificates alone. My first bounty came from BINUS, small by bug bounty standards, but it marked the beginning. From there, I concentrated on hunting through self-hosted bug bounty programs, and that persistence paid off, leading to successful bounties with platforms like Floq, well-known hosting services, and self-hosted programs such as Samsung and Proton, as well as through Bugcrowd and Intigrity.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section id="contact" class="py-20">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
-                <span class="gradient-text">Get In Touch</span>
-            </h2>
-            
-            <div class="max-w-4xl mx-auto">
-                <p class="text-center text-gray-300 mb-12 text-lg">
-                    I'm always open to discussing new opportunities, creative ideas, or potential collaborations.
-                    Feel free to reach out!
-                </p>
-                
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Contact Form -->
-                    <div class="bg-gray-900 p-8 rounded-lg">
-                        <form id="contact-form">
-                            <div class="mb-6">
-                                <label class="block text-gray-300 mb-2" for="name">
-                                    <i class="fas fa-user mr-2"></i>Your Name
-                                </label>
-                                <input type="text" id="name" name="name" class="w-full px-4 py-3 bg-gray-800 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 transition-all duration-300" required>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label class="block text-gray-300 mb-2" for="email">
-                                    <i class="fas fa-envelope mr-2"></i>Your Email
-                                </label>
-                                <input type="email" id="email" name="email" class="w-full px-4 py-3 bg-gray-800 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 transition-all duration-300" required>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label class="block text-gray-300 mb-2" for="message">
-                                    <i class="fas fa-comment mr-2"></i>Message
-                                </label>
-                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-3 bg-gray-800 text-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 transition-all duration-300" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="w-full px-6 py-3 bg-purple-600 hover:bg-purple-700 rounded-lg transition-all duration-300 transform hover:scale-105">
-                                <i class="fas fa-paper-plane mr-2"></i>Send Message
-                            </button>
-                        </form>
-                    </div>
-                    
-                    <!-- Contact Info -->
-                    <div class="space-y-6">
-                        <div class="bg-gray-900 p-6 rounded-lg flex items-center space-x-4 hover:bg-gray-800 transition-colors duration-300">
-                            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-envelope text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-purple-400 font-semibold">Email</h4>
-                                <p class="text-gray-300">randixploit@proton.me</p>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-gray-900 p-6 rounded-lg flex items-center space-x-4 hover:bg-gray-800 transition-colors duration-300">
-                            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-phone text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-purple-400 font-semibold">Phone</h4>
-                                <p class="text-gray-300">+62 858 0000 0000</p>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-gray-900 p-6 rounded-lg flex items-center space-x-4 hover:bg-gray-800 transition-colors duration-300">
-                            <div class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center">
-                                <i class="fas fa-map-marker-alt text-white"></i>
-                            </div>
-                            <div>
-                                <h4 class="text-purple-400 font-semibold">Location</h4>
-                                <p class="text-gray-300">Central Kalimantan, Indonesia</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Social Links -->
-                        <div class="bg-gray-900 p-6 rounded-lg">
-                            <h4 class="text-purple-400 font-semibold mb-4">Connect With Me</h4>
-                            <div class="flex space-x-4">
-                                <a href="//github.com/randixploit" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all duration-300">
-                                    <i class="fab fa-github"></i>
-                                </a>
-                                <a href="//www.linkedin.com/in/randiansyah" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all duration-300">
-                                    <i class="fab fa-linkedin"></i>
-                                </a>
-                                <a href="//tiktok.com/@randixploit.shtml" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all duration-300">
-                                    <i class="fab fa-tiktok"></i>
-                                </a>
-                                <a href="//instagram.com/randixploit.shtml" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-purple-600 transition-all duration-300">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="py-8 bg-black border-t border-gray-800">
-        <div class="container mx-auto px-6">
-            <div class="text-center">
-                <p class="text-gray-400">
-                    © 2025 Randiansyah. All rights reserved. Made with 
-                    <i class="fas fa-heart text-purple-600"></i> and 
-                    <i class="fas fa-coffee text-purple-600"></i>
-                </p>
-            </div>
-        </div>
-    </footer>
-    
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-8 right-8 w-12 h-12 bg-purple-600 hover:bg-purple-700 rounded-full flex items-center justify-center opacity-0 invisible transition-all duration-300 transform hover:scale-110">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-    <iframe id="iframe"></iframe>
-    
-    <!-- JavaScript -->
-    <script>
-    // Mobile Menu Toggle
-    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-    
-    // Smooth Scrolling for Navigation Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                // Close mobile menu if open
-                mobileMenu.classList.add('hidden');
-            }
-        });
-    });
-    
-    // Active Navigation Link
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (scrollY >= (sectionTop - 200)) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').slice(1) === current) {
-                link.classList.add('active');
-            }
-        });
-    });
-    
-    // Back to Top Button
-    const backToTopBtn = document.getElementById('back-to-top');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopBtn.classList.remove('opacity-0', 'invisible');
-            backToTopBtn.classList.add('opacity-100', 'visible');
-        } else {
-            backToTopBtn.classList.add('opacity-0', 'invisible');
-            backToTopBtn.classList.remove('opacity-100', 'visible');
-        }
-    });
-    
-    backToTopBtn.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    
-    // Form Submission
-    const contactForm = document.getElementById('contact-form');
-    
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        // Add your form submission logic here
-        alert('Thank you for your message! I will get back to you soon.');
-        contactForm.reset();
-    });
-    
-    // Particle Background
-    function createParticle() {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.width = Math.random() * 5 + 'px';
-        particle.style.height = particle.style.width;
-        particle.style.background = 'rgba(102, 126, 234, 0.5)';
-        particle.style.borderRadius = '50%';
-        particle.style.animationDuration = Math.random() * 20 + 10 + 's';
-        
-        document.getElementById('particles').appendChild(particle);
-        
-        setTimeout(() => {
-            particle.remove();
-        }, 30000);
-    }
-    
-    // Create particles periodically
-    setInterval(createParticle, 1000);
-    
-    // Typing Effect Reset
-    const typingText = document.querySelector('.typing-text');
-    if (typingText) {
-        setInterval(() => {
-            typingText.style.animation = 'none';
-            setTimeout(() => {
-                typingText.style.animation = '';
-            }, 10);
-        }, 8000);
-    }
-    
-    // Intersection Observer for Animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Observe all sections
-    document.querySelectorAll('section').forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(50px)';
-        section.style.transition = 'all 0.8s ease-out';
-        observer.observe(section);
-    });
-    </script>
-</body>
+  </body>
 </html>
