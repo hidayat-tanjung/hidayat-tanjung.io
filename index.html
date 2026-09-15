@@ -1,2213 +1,372 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Marlin Hidayat Tanjung | DevOps Engineer</title>
-<meta name="description" content="Marlin Hidayat Tanjung — DevOps & Cybertech. Turning infrastructure into code, chaos into order." />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-/* ============================================================
-   THEME VARIABLES
-============================================================ */
-:root {
-  --bg: #0b1020;
-  --bg-alt: #10162b;
-  --bg-card: rgba(16, 22, 43, 0.7);
-  --border: rgba(88, 166, 255, 0.18);
-  --border-hover: rgba(88, 166, 255, 0.6);
-  --text: #e6edf3;
-  --text-dim: #8b98b8;
-  --text-mute: #5a6784;
-
-  --primary: #326ce5;
-  --primary-2: #58a6ff;
-  --cyan: #00d4ff;
-  --accent: #00e5a0;
-  --orange: #ff8c42;
-  --yellow: #ffd43b;
-  --purple: #a78bfa;
-  --danger: #ff3b6b;
-  --wa: #25d366;
-
-  --glow: rgba(50, 108, 229, 0.35);
-  --glow-cyan: rgba(0, 212, 255, 0.35);
-  --glow-purple: rgba(167, 139, 250, 0.35);
-  --glow-wa: rgba(37, 211, 102, 0.4);
-
-  --font-mono: 'JetBrains Mono', monospace;
-  --font-sans: 'Inter', sans-serif;
-  --radius: 12px;
-  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-
-body {
-  font-family: var(--font-sans);
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.6;
-  overflow-x: hidden;
-  min-height: 100vh;
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(88, 166, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(88, 166, 255, 0.04) 1px, transparent 1px);
-  background-size: 48px 48px;
-  z-index: -2;
-  pointer-events: none;
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 15% 15%, rgba(50, 108, 229, 0.12), transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(0, 212, 255, 0.08), transparent 45%),
-    radial-gradient(circle at 50% 100%, rgba(167, 139, 250, 0.06), transparent 50%);
-  z-index: -1;
-  pointer-events: none;
-}
-
-a { color: var(--cyan); text-decoration: none; transition: var(--transition); }
-a:hover { color: var(--primary-2); }
-img { max-width: 100%; display: block; }
-
-/* ============================================================
-   NAVBAR
-============================================================ */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 14px 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(11, 16, 32, 0.8);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
-}
-
-.logo {
-  font-family: var(--font-mono);
-  font-weight: 800;
-  font-size: 0.95rem;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.logo .dot {
-  width: 8px; height: 8px;
-  background: var(--accent);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--accent);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%,100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.4); }
-}
-.logo .user { color: var(--primary-2); }
-
-.nav-links { display: flex; gap: 20px; list-style: none; }
-.nav-links a {
-  color: var(--text-dim);
-  font-size: 0.8rem;
-  font-family: var(--font-mono);
-  position: relative;
-  font-weight: 500;
-}
-.nav-links a::before {
-  content: '';
-  position: absolute;
-  bottom: -4px; left: 0;
-  width: 0; height: 1.5px;
-  background: linear-gradient(90deg, var(--cyan), var(--primary-2));
-  transition: width var(--transition);
-}
-.nav-links a:hover, .nav-links a.active { color: var(--cyan); }
-.nav-links a:hover::before, .nav-links a.active::before { width: 100%; }
-
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 6px;
-}
-.hamburger span {
-  width: 24px; height: 2px;
-  background: var(--cyan);
-  transition: var(--transition);
-  border-radius: 2px;
-}
-.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-.hamburger.active span:nth-child(2) { opacity: 0; }
-.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-/* ============================================================
-   HERO
-============================================================ */
-#hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  padding: 110px 5% 60px;
-  position: relative;
-  overflow: hidden;
-}
-#matrix-canvas {
-  position: absolute;
-  inset: 0;
-  opacity: 0.12;
-  z-index: 0;
-}
-.hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 1000px;
-  width: 100%;
-}
-
-.terminal-window {
-  background: rgba(10, 14, 25, 0.85);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 32px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px var(--glow);
-  backdrop-filter: blur(10px);
-  opacity: 0;
-  animation: fadeUp 0.6s 0.1s forwards;
-  max-width: 720px;
-}
-.term-bar {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  background: rgba(20, 27, 48, 0.9);
-  border-bottom: 1px solid var(--border);
-}
-.term-bar .ctrl { width: 12px; height: 12px; border-radius: 50%; }
-.term-bar .ctrl.r { background: #ff5f56; }
-.term-bar .ctrl.y { background: #ffbd2e; }
-.term-bar .ctrl.g { background: #27c93f; }
-.term-bar .title {
-  margin-left: 12px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-mute);
-}
-.term-body {
-  padding: 18px 20px;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--text-dim);
-  line-height: 1.7;
-}
-.term-body .cmd { color: var(--accent); }
-.term-body .ok  { color: var(--cyan); }
-.term-body .warn { color: var(--yellow); }
-
-.hero-greet {
-  font-family: var(--font-mono);
-  color: var(--cyan);
-  font-size: 0.95rem;
-  margin-bottom: 12px;
-  opacity: 0;
-  animation: fadeUp 0.6s 0.3s forwards;
-}
-.hero-name {
-  font-family: var(--font-mono);
-  font-size: clamp(1.8rem, 5vw, 3.5rem);
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 12px;
-  opacity: 0;
-  animation: fadeUp 0.6s 0.4s forwards;
-}
-.hero-name .accent { color: var(--primary-2); }
-
-.hero-role {
-  font-family: var(--font-mono);
-  font-size: clamp(1rem, 2.6vw, 1.5rem);
-  color: var(--text-dim);
-  margin-bottom: 16px;
-  min-height: 2rem;
-  opacity: 0;
-  animation: fadeUp 0.6s 0.5s forwards;
-}
-.typed-text { color: var(--cyan); font-weight: 600; }
-.cursor {
-  display: inline-block;
-  width: 9px;
-  background: var(--cyan);
-  animation: blink 1s infinite;
-  margin-left: 4px;
-}
-@keyframes blink { 50% { opacity: 0; } }
-
-.hero-quote {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--purple);
-  font-style: italic;
-  margin-bottom: 20px;
-  opacity: 0;
-  animation: fadeUp 0.6s 0.6s forwards;
-}
-
-.hero-desc {
-  color: var(--text-dim);
-  font-size: 1.02rem;
-  max-width: 640px;
-  margin-bottom: 30px;
-  opacity: 0;
-  animation: fadeUp 0.6s 0.7s forwards;
-}
-.stack-strip {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 32px;
-  opacity: 0;
-  animation: fadeUp 0.6s 0.85s forwards;
-}
-.stack-strip span {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 5px 12px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  background: rgba(88,166,255,0.05);
-  color: var(--text-dim);
-  transition: var(--transition);
-}
-.stack-strip span:hover {
-  color: var(--cyan);
-  border-color: var(--cyan);
-  box-shadow: 0 0 12px var(--glow-cyan);
-}
-.hero-cta {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-bottom: 32px;
-  opacity: 0;
-  animation: fadeUp 0.6s 1s forwards;
-}
-.btn {
-  font-family: var(--font-mono);
-  font-size: 0.86rem;
-  padding: 11px 22px;
-  border-radius: 8px;
-  border: 1px solid var(--border-hover);
-  background: transparent;
-  color: var(--primary-2);
-  cursor: pointer;
-  transition: var(--transition);
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.btn:hover {
-  background: rgba(88,166,255,0.1);
-  box-shadow: 0 0 20px var(--glow);
-  transform: translateY(-2px);
-  color: var(--primary-2);
-}
-.btn-primary {
-  background: linear-gradient(135deg, var(--primary), var(--cyan));
-  color: #fff;
-  border: none;
-}
-.btn-primary:hover {
-  box-shadow: 0 0 30px var(--glow-cyan);
-  color: #fff;
-}
-.btn-wa {
-  background: linear-gradient(135deg, #128C7E, var(--wa));
-  color: #fff;
-  border: none;
-}
-.btn-wa:hover {
-  box-shadow: 0 0 30px var(--glow-wa);
-  color: #fff;
-  transform: translateY(-2px);
-}
-
-.hero-socials {
-  display: flex;
-  gap: 10px;
-  opacity: 0;
-  animation: fadeUp 0.6s 1.15s forwards;
-  flex-wrap: wrap;
-}
-.hero-socials a {
-  color: var(--text-dim);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: 1px solid var(--border);
-  background: rgba(16,22,43,0.5);
-}
-.hero-socials a:hover {
-  color: var(--cyan);
-  border-color: var(--cyan);
-  transform: translateY(-2px);
-}
-.hero-socials a.wa:hover {
-  color: var(--wa);
-  border-color: var(--wa);
-  box-shadow: 0 0 15px var(--glow-wa);
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ============================================================
-   SECTIONS
-============================================================ */
-section {
-  padding: 100px 5%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.section-title {
-  font-family: var(--font-mono);
-  font-size: clamp(1.4rem, 2.8vw, 1.9rem);
-  font-weight: 800;
-  margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.section-title .num { color: var(--primary-2); font-size: 0.85rem; }
-.section-title::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--border-hover), transparent);
-  margin-left: 12px;
-}
-.section-sub {
-  color: var(--text-dim);
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  margin-bottom: 46px;
-}
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ============================================================
-   PIPELINE DIAGRAM
-============================================================ */
-.pipeline {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  padding: 24px 12px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  margin-bottom: 48px;
-  overflow-x: auto;
-  backdrop-filter: blur(10px);
-}
-.pipe-stage {
-  flex: 1;
-  min-width: 90px;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-dim);
-}
-.pipe-stage .icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px; height: 42px;
-  margin: 0 auto 8px;
-  border-radius: 50%;
-  background: rgba(88,166,255,0.08);
-  border: 1px solid var(--border);
-  font-size: 1.1rem;
-  transition: var(--transition);
-}
-.pipe-stage:hover .icon {
-  border-color: var(--cyan);
-  box-shadow: 0 0 15px var(--glow-cyan);
-  transform: scale(1.1);
-}
-.pipe-arrow {
-  color: var(--cyan);
-  font-size: 1.1rem;
-  animation: slideArrow 2s infinite;
-}
-@keyframes slideArrow {
-  0%,100% { transform: translateX(0); opacity: 0.5; }
-  50% { transform: translateX(4px); opacity: 1; }
-}
-
-/* ============================================================
-   ABOUT
-============================================================ */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 56px;
-  align-items: start;
-}
-.about-text p {
-  color: var(--text-dim);
-  margin-bottom: 16px;
-  font-size: 0.98rem;
-}
-.about-text strong { color: var(--cyan); font-weight: 600; }
-.skills {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.skill-group h4 {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  margin-bottom: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.skill-group.c1 h4 { color: var(--primary-2); }
-.skill-group.c2 h4 { color: var(--danger); }
-.skill-group.c3 h4 { color: var(--purple); }
-.skill-group.c4 h4 { color: var(--orange); }
-.skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.skill-tags span {
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  padding: 4px 10px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text-dim);
-  transition: var(--transition);
-  background: rgba(88,166,255,0.03);
-}
-.skill-tags span:hover {
-  border-color: var(--cyan);
-  color: var(--cyan);
-  box-shadow: 0 0 12px var(--glow-cyan);
-  transform: translateY(-2px);
-}
-.profile-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 22px;
-  backdrop-filter: blur(10px);
-  position: sticky;
-  top: 100px;
-}
-.profile-avatar {
-  width: 100%;
-  aspect-ratio: 1;
-  border-radius: var(--radius);
-  background: linear-gradient(135deg, rgba(50,108,229,0.25), rgba(0,212,255,0.2));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-mono);
-  font-size: 3.6rem;
-  font-weight: 800;
-  color: var(--cyan);
-  margin-bottom: 18px;
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-.profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
-.profile-info {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.profile-info div {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 8px;
-  border-bottom: 1px dashed var(--border);
-}
-.profile-info span:last-child { color: var(--accent); }
-.status-up { color: var(--accent) !important; }
-.status-up::before { content: '● '; animation: pulse 2s infinite; }
-
-/* ============================================================
-   EXPERIENCE
-============================================================ */
-.exp-list {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-.exp-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 24px;
-  transition: var(--transition);
-  backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
-}
-.exp-card::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, var(--primary), var(--cyan));
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform var(--transition);
-}
-.exp-card:hover {
-  border-color: var(--border-hover);
-  transform: translateX(6px);
-  box-shadow: 0 0 25px var(--glow);
-}
-.exp-card:hover::before { transform: scaleY(1); }
-.exp-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-}
-.exp-role {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  color: var(--text);
-  font-size: 1.05rem;
-}
-.exp-role .at { color: var(--text-mute); font-weight: 400; }
-.exp-role .company { color: var(--cyan); }
-.exp-period {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--cyan);
-  white-space: nowrap;
-  padding: 4px 12px;
-  background: rgba(0,212,255,0.08);
-  border-radius: 20px;
-  border: 1px solid rgba(0,212,255,0.25);
-}
-.exp-type {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-mute);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 4px;
-}
-.exp-location {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-mute);
-  margin-bottom: 10px;
-}
-.exp-desc {
-  color: var(--text-dim);
-  font-size: 0.9rem;
-  margin-bottom: 12px;
-}
-.exp-points {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.exp-points li {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--text-dim);
-  padding-left: 18px;
-  position: relative;
-}
-.exp-points li::before {
-  content: '▸';
-  position: absolute;
-  left: 0;
-  color: var(--cyan);
-}
-
-/* ============================================================
-   PROJECTS
-============================================================ */
-.filter-bar {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 30px;
-}
-.filter-btn {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  padding: 8px 16px;
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  background: transparent;
-  color: var(--text-dim);
-  cursor: pointer;
-  transition: var(--transition);
-}
-.filter-btn:hover, .filter-btn.active {
-  border-color: var(--cyan);
-  color: var(--cyan);
-  background: rgba(0,212,255,0.08);
-}
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 22px;
-}
-.project-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 22px;
-  transition: var(--transition);
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  position: relative;
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-}
-.project-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--primary), var(--cyan));
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--transition);
-}
-.project-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--border-hover);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px var(--glow);
-}
-.project-card:hover::before { transform: scaleX(1); }
-.project-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.project-icon {
-  font-size: 1.5rem;
-  width: 46px; height: 46px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: rgba(88,166,255,0.08);
-  border: 1px solid var(--border);
-}
-.project-badge {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  padding: 3px 8px;
-  border-radius: 4px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.badge-devops  { background: rgba(50,108,229,0.15); color: var(--primary-2); border: 1px solid rgba(88,166,255,0.3); }
-.badge-security{ background: rgba(255,59,107,0.12); color: var(--danger); border: 1px solid rgba(255,59,107,0.3); }
-.badge-web     { background: rgba(167,139,250,0.15); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
-.badge-python  { background: rgba(255,212,59,0.12); color: var(--yellow); border: 1px solid rgba(255,212,59,0.3); }
-.project-title {
-  font-family: var(--font-mono);
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text);
-}
-.project-desc {
-  color: var(--text-dim);
-  font-size: 0.88rem;
-  flex: 1;
-}
-.project-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.project-tags span {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  padding: 3px 8px;
-  border-radius: 4px;
-  background: rgba(0,212,255,0.08);
-  color: var(--cyan);
-  border: 1px solid rgba(0,212,255,0.2);
-}
-.project-metrics {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 8px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-mute);
-  padding: 10px 0;
-  border-top: 1px dashed var(--border);
-  border-bottom: 1px dashed var(--border);
-}
-.project-metrics span::before { content: '▸ '; color: var(--cyan); }
-.project-links {
-  display: flex;
-  gap: 16px;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-}
-
-/* ============================================================
-   TIMELINE (CTF)
-============================================================ */
-.timeline {
-  position: relative;
-  padding-left: 32px;
-}
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 8px;
-  top: 8px; bottom: 8px;
-  width: 2px;
-  background: linear-gradient(180deg, var(--primary), var(--cyan), transparent);
-}
-.tl-item {
-  position: relative;
-  padding: 18px 22px;
-  margin-bottom: 20px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  transition: var(--transition);
-  backdrop-filter: blur(10px);
-}
-.tl-item::before {
-  content: '';
-  position: absolute;
-  left: -31px;
-  top: 24px;
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  background: var(--bg);
-  border: 2px solid var(--cyan);
-  box-shadow: 0 0 12px var(--glow-cyan);
-}
-.tl-item:hover {
-  border-color: var(--border-hover);
-  transform: translateX(6px);
-  box-shadow: 0 0 25px var(--glow);
-}
-.tl-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
-}
-.tl-title {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  color: var(--text);
-  font-size: 1rem;
-}
-.tl-year {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--cyan);
-  white-space: nowrap;
-  padding: 3px 10px;
-  background: rgba(0,212,255,0.08);
-  border-radius: 20px;
-  border: 1px solid rgba(0,212,255,0.25);
-}
-.tl-meta {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  color: var(--text-mute);
-  margin-bottom: 8px;
-}
-.tl-desc { color: var(--text-dim); font-size: 0.88rem; }
-.tl-badge {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  padding: 3px 10px;
-  border-radius: 20px;
-  margin-top: 8px;
-  margin-right: 6px;
-  background: rgba(255,184,0,0.1);
-  color: var(--yellow);
-  border: 1px solid rgba(255,184,0,0.3);
-}
-.tl-badge.win {
-  background: rgba(0,229,160,0.1);
-  color: var(--accent);
-  border-color: rgba(0,229,160,0.3);
-}
-.tl-badge.progress {
-  background: rgba(167,139,250,0.12);
-  color: var(--purple);
-  border-color: rgba(167,139,250,0.3);
-}
-
-/* ============================================================
-   TECH STACK
-============================================================ */
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 16px;
-}
-.tech-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  text-align: center;
-  transition: var(--transition);
-  backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
-}
-.tech-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at center, rgba(88,166,255,0.1), transparent 70%);
-  opacity: 0;
-  transition: opacity var(--transition);
-}
-.tech-card:hover {
-  transform: translateY(-6px) scale(1.03);
-  border-color: var(--border-hover);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.4), 0 0 25px var(--glow);
-}
-.tech-card:hover::after { opacity: 1; }
-.tech-icon {
-  font-size: 2.2rem;
-  margin-bottom: 10px;
-  display: inline-block;
-  filter: drop-shadow(0 0 10px var(--glow-cyan));
-}
-.tech-name {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 0.9rem;
-  margin-bottom: 4px;
-  color: var(--text);
-}
-.tech-level {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-mute);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.tech-bar {
-  height: 4px;
-  background: rgba(88,166,255,0.1);
-  border-radius: 2px;
-  margin-top: 12px;
-  overflow: hidden;
-}
-.tech-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--cyan));
-  border-radius: 2px;
-  transition: width 1.2s ease;
-  box-shadow: 0 0 8px var(--glow-cyan);
-}
-.tech-bar-fill.security {
-  background: linear-gradient(90deg, var(--danger), var(--orange));
-  box-shadow: 0 0 8px rgba(255,59,107,0.35);
-}
-.tech-bar-fill.web {
-  background: linear-gradient(90deg, var(--purple), var(--primary-2));
-  box-shadow: 0 0 8px var(--glow-purple);
-}
-.learning-note {
-  margin-top: 32px;
-  padding: 20px 24px;
-  background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(0,212,255,0.06));
-  border: 1px solid rgba(167,139,250,0.3);
-  border-radius: var(--radius);
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  color: var(--text-dim);
-}
-.learning-note strong { color: var(--purple); }
-.learning-note .label {
-  display: inline-block;
-  color: var(--purple);
-  margin-right: 8px;
-}
-
-/* ============================================================
-   COMING SOON
-============================================================ */
-.coming-soon-wrap {
-  background: linear-gradient(135deg, rgba(50,108,229,0.06), rgba(0,212,255,0.04));
-  border: 1px dashed var(--border-hover);
-  border-radius: var(--radius);
-  padding: 48px 32px;
-  text-align: center;
-  backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
-}
-.coming-soon-wrap::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(0,212,255,0.08), transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(167,139,250,0.06), transparent 50%);
-  pointer-events: none;
-}
-.cs-icon {
-  font-size: 3.5rem;
-  margin-bottom: 16px;
-  display: inline-block;
-  filter: drop-shadow(0 0 20px var(--glow-cyan));
-  animation: floatIcon 3s ease-in-out infinite;
-}
-@keyframes floatIcon {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-.cs-title {
-  font-family: var(--font-mono);
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: 12px;
-}
-.cs-title .hl { color: var(--cyan); }
-.cs-desc {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  color: var(--text-dim);
-  max-width: 560px;
-  margin: 0 auto 24px;
-  line-height: 1.8;
-}
-.cs-badges {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 24px;
-  position: relative;
-  z-index: 1;
-}
-.cs-badge {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  padding: 6px 14px;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  color: var(--text-dim);
-  background: rgba(11,16,32,0.5);
-  transition: var(--transition);
-}
-.cs-badge:hover {
-  color: var(--cyan);
-  border-color: var(--cyan);
-  box-shadow: 0 0 12px var(--glow-cyan);
-}
-.cs-status {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--yellow);
-  position: relative;
-  z-index: 1;
-}
-.cs-status .blink {
-  display: inline-block;
-  width: 8px; height: 14px;
-  background: var(--yellow);
-  margin-left: 6px;
-  vertical-align: middle;
-  animation: blink 1s infinite;
-}
-.cs-progress {
-  margin-top: 20px;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  z-index: 1;
-}
-.cs-progress-label {
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-mute);
-  margin-bottom: 8px;
-}
-.cs-progress-bar {
-  height: 6px;
-  background: rgba(88,166,255,0.1);
-  border-radius: 3px;
-  overflow: hidden;
-}
-.cs-progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--cyan));
-  border-radius: 3px;
-  box-shadow: 0 0 10px var(--glow-cyan);
-  animation: shimmer 2s infinite;
-}
-@keyframes shimmer {
-  0% { filter: brightness(1); }
-  50% { filter: brightness(1.4); }
-  100% { filter: brightness(1); }
-}
-
-/* ============================================================
-   CONTACT + FORM WA
-============================================================ */
-.contact-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 44px;
-}
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-.contact-info h3 {
-  font-family: var(--font-mono);
-  color: var(--cyan);
-  font-size: 1.05rem;
-}
-.contact-info p { color: var(--text-dim); font-size: 0.94rem; }
-.contact-item {
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-  padding: 14px;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  transition: var(--transition);
-  backdrop-filter: blur(10px);
-}
-.contact-item:hover {
-  border-color: var(--cyan);
-  transform: translateX(4px);
-}
-.contact-icon { font-size: 1.15rem; }
-.contact-label {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--text-mute);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.contact-val {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--text);
-  word-break: break-all;
-  cursor: pointer;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  background: var(--bg-card);
-  padding: 26px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(10px);
-}
-.form-group { display: flex; flex-direction: column; gap: 6px; }
-.form-group label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.form-group input,
-.form-group textarea,
-.form-group select {
-  background: rgba(11,16,32,0.6);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 11px 14px;
-  color: var(--text);
-  font-family: var(--font-sans);
-  font-size: 0.94rem;
-  transition: var(--transition);
-  resize: vertical;
-}
-.form-group select {
-  cursor: pointer;
-}
-.form-group select option {
-  background: #10162b;
-  color: var(--text);
-}
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-  outline: none;
-  border-color: var(--wa);
-  box-shadow: 0 0 0 3px rgba(37,211,102,0.12);
-}
-.form-status {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  padding: 10px;
-  border-radius: 6px;
-  display: none;
-}
-.form-status.success {
-  display: block;
-  background: rgba(37,211,102,0.1);
-  color: var(--wa);
-  border: 1px solid var(--wa);
-}
-.form-hint {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--text-mute);
-  text-align: center;
-  margin-top: 4px;
-}
-
-/* ============================================================
-   FLOATING WHATSAPP BUTTON
-============================================================ */
-.wa-float {
-  position: fixed;
-  bottom: 90px;
-  right: 28px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: var(--wa);
-  color: #fff;
-  font-size: 1.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.5);
-  z-index: 98;
-  transition: var(--transition);
-  animation: waPulse 2s infinite;
-  border: none;
-}
-.wa-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 30px var(--glow-wa);
-}
-@keyframes waPulse {
-  0%,100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
-  50% { box-shadow: 0 4px 30px rgba(37,211,102,0.8), 0 0 0 8px rgba(37,211,102,0.1); }
-}
-
-/* ============================================================
-   FOOTER
-============================================================ */
-footer {
-  padding: 40px 5% 30px;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-mute);
-  position: relative;
-}
-footer .heart { color: var(--danger); }
-footer .green { color: var(--accent); }
-.back-top {
-  position: fixed;
-  bottom: 28px;
-  right: 28px;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: var(--bg-card);
-  border: 1px solid var(--cyan);
-  color: var(--cyan);
-  font-size: 1.15rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: var(--transition);
-  backdrop-filter: blur(10px);
-  z-index: 99;
-}
-.back-top.show { opacity: 1; visibility: visible; }
-.back-top:hover {
-  background: var(--cyan);
-  color: var(--bg);
-  box-shadow: 0 0 20px var(--glow-cyan);
-}
-
-/* ============================================================
-   RESPONSIVE
-============================================================ */
-@media (max-width: 900px) {
-  .about-grid, .contact-wrap { grid-template-columns: 1fr; gap: 32px; }
-  .profile-card { position: static; max-width: 380px; margin: 0 auto; }
-}
-@media (max-width: 720px) {
-  .nav-links {
-    position: fixed;
-    top: 60px;
-    right: -100%;
-    flex-direction: column;
-    background: rgba(11,16,32,0.98);
-    backdrop-filter: blur(20px);
-    padding: 28px;
-    width: 72%;
-    height: calc(100vh - 60px);
-    border-left: 1px solid var(--border);
-    transition: right var(--transition);
-    gap: 22px;
-  }
-  .nav-links.open { right: 0; }
-  .hamburger { display: flex; }
-  section { padding: 70px 5%; }
-  #hero { padding: 90px 5% 40px; }
-  .hero-cta { flex-direction: column; align-items: stretch; }
-  .btn { justify-content: center; }
-  .pipeline { font-size: 0.65rem; }
-  .pipe-stage { min-width: 70px; }
-  .back-top { bottom: 20px; right: 20px; }
-  .coming-soon-wrap { padding: 36px 20px; }
-  .wa-float { bottom: 80px; right: 20px; width: 50px; height: 50px; font-size: 1.4rem; }
-}
-@media (max-width: 480px) {
-  .section-title { font-size: 1.2rem; }
-  .project-card, .exp-card, .tech-card, .tl-item, form { padding: 18px; }
-  .tl-item { padding-left: 16px; }
-  .timeline { padding-left: 24px; }
-  .tl-item::before { left: -25px; width: 12px; height: 12px; }
-  .terminal-window { max-width: 100%; }
-}
-
-::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--primary), var(--cyan));
-  border-radius: 5px;
-}
-::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
-::selection { background: var(--cyan); color: var(--bg); }
-</style>
-</head>
-<body>
-
-<!-- ===================== NAVBAR ===================== -->
-<nav id="navbar">
-  <a href="#hero" class="logo">
-    <span class="dot"></span>
-    <span class="user">hidayat</span>@portfolio:~$
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about">about</a></li>
-    <li><a href="#experience">experience</a></li>
-    <li><a href="#projects">projects</a></li>
-    <li><a href="#ctf">ctf</a></li>
-    <li><a href="#stack">stack</a></li>
-    <li><a href="#certs">certs</a></li>
-    <li><a href="#hof">hof</a></li>
-    <li><a href="#contact">contact</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<!-- ===================== HERO ===================== -->
-<section id="hero">
-  <canvas id="matrix-canvas"></canvas>
-  <div class="hero-content">
-
-    <div class="terminal-window">
-      <div class="term-bar">
-        <span class="ctrl r"></span>
-        <span class="ctrl y"></span>
-        <span class="ctrl g"></span>
-        <span class="title">~/hidayat/portfolio — zsh</span>
-      </div>
-      <div class="term-body">
-        <div><span class="cmd">$</span> kubectl get pods -n portfolio</div>
-        <div><span class="ok">NAME</span>                    <span class="ok">READY</span>   <span class="ok">STATUS</span></div>
-        <div>devops-engineer-0       <span class="ok">1/1</span>     <span class="ok">Running</span></div>
-        <div>sysadmin-engineer-0     <span class="ok">1/1</span>     <span class="ok">Running</span></div>
-        <div>security-analyst-0      <span class="ok">1/1</span>     <span class="ok">Running</span></div>
-        <div style="margin-top:8px"><span class="cmd">$</span> ./deploy.sh --env=production</div>
-        <div><span class="ok">✓</span> pipeline: build → test → scan → deploy</div>
-        <div><span class="warn">!</span> status: <span class="ok">all systems operational</span></div>
-      </div>
-    </div>
-
-    <p class="hero-greet">$ whoami</p>
-    <h1 class="hero-name"><span class="accent">Marlin Hidayat Tanjung</span></h1>
-    <h2 class="hero-role">
-      <span class="typed-text" id="typed"></span><span class="cursor">&nbsp;</span>
-    </h2>
-    <p class="hero-quote">"Clicking UIs is fun. Writing Terraform is forever."</p>
-    <p class="hero-desc">
-      Turning infrastructure into code, chaos into order, and manual work into automation.
-      DevOps isn't just my job — it's my engineering philosophy.
-      Passionate about building resilient systems, automating workflows,
-      and securing infrastructure from the ground up.
-    </p>
-
-    <div class="stack-strip">
-      <span>🐧 Linux</span>
-      <span>🐳 Docker</span>
-      <span>🔧 Ansible</span>
-      <span>🚀 Jenkins</span>
-      <span>📊 Prometheus</span>
-      <span>📈 Grafana</span>
-      <span>🐍 Python</span>
-      <span>🔒 Burp Suite</span>
-      <span>🧪 Nuclei</span>
-    </div>
-
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">→ view_projects</a>
-      <a href="https://wa.me/6285119062492?text=Halo%20Hidayat!%20Saya%20lihat%20portfolio%20Anda." 
-         target="_blank" rel="noopener" class="btn btn-wa">📱 chat_whatsapp</a>
-    </div>
-
-    <div class="hero-socials">
-      <a href="https://github.com/hidayat-tanjung" target="_blank" rel="noopener">⌥ github</a>
-      <a href="https://www.linkedin.com/in/hidayat-tanjung/" target="_blank" rel="noopener">⌥ linkedin</a>
-      <a href="https://hub.docker.com/u/hidayattanjung" target="_blank" rel="noopener">⌥ dockerhub</a>
-      <a href="https://medium.com/@hidayat-tanjung" target="_blank" rel="noopener">⌥ medium</a>
-      <a href="https://youtube.com/@hidayat-tanjung" target="_blank" rel="noopener">⌥ youtube</a>
-      <a href="https://wa.me/6285119062492" target="_blank" rel="noopener" class="wa">⌥ whatsapp</a>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== ABOUT ===================== -->
-<section id="about">
-  <h2 class="section-title reveal"><span class="num">01.</span> about_me</h2>
-  <p class="section-sub reveal">// cat ~/about.md</p>
-
-  <div class="pipeline reveal">
-    <div class="pipe-stage"><span class="icon">📝</span>code</div>
-    <div class="pipe-arrow">→</div>
-    <div class="pipe-stage"><span class="icon">🔨</span>build</div>
-    <div class="pipe-arrow">→</div>
-    <div class="pipe-stage"><span class="icon">🧪</span>test</div>
-    <div class="pipe-arrow">→</div>
-    <div class="pipe-stage"><span class="icon">🔒</span>scan</div>
-    <div class="pipe-arrow">→</div>
-    <div class="pipe-stage"><span class="icon">📦</span>package</div>
-    <div class="pipe-arrow">→</div>
-    <div class="pipe-stage"><span class="icon">🚀</span>deploy</div>
-    <div class="pipe-arrow">→</div>
-    <div class="pipe-stage"><span class="icon">📊</span>monitor</div>
-  </div>
-
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p>
-        Saya <strong>Marlin Hidayat Tanjung</strong> — turning infrastructure into code,
-        chaos into order, and manual work into automation. DevOps bukan cuma pekerjaan,
-        tapi filosofi engineering saya.
-      </p>
-      <p>
-        Saya passionate dalam membangun sistem yang <strong>resilient</strong>,
-        mengotomasi workflow, dan mengamankan infrastruktur dari dasar.
-        Open untuk kolaborasi dan peluang remote — let's build something great together.
-      </p>
-      <p>
-        Background saya sebagai <strong>IT Support & Sysadmin Engineer</strong> membuat saya
-        paham betul realita di lapangan — dari fiber optic, CCTV, EDC, sampai
-        networking. Sekarang saya fokus mendalami <strong>DevOps, Cloud, dan Security Automation</strong>.
-      </p>
-
-      <div class="skills">
-        <div class="skill-group c1">
-          <h4>▸ DevOps & Infrastructure</h4>
-          <div class="skill-tags">
-            <span>Linux</span><span>Docker</span><span>Ansible</span>
-            <span>Jenkins</span><span>Git</span><span>CI/CD</span>
-            <span>Prometheus</span><span>Grafana</span><span>Zabbix</span>
-            <span>Nginx</span><span>Bash</span><span>Python</span>
-          </div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <title>Halo Dunia | Hidayat</title>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" href="#">
+                <img src="img/logo.jpeg" alt="internet abis" width="30" height="30" class="d-inline-block align-text-top">
+                Hidayat
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav ms-auto fw-bold">
+                    <a class="nav-link btn btn-outline-dark" aria-current="page" href="#home">Home</a>
+                    <a class="nav-link btn btn-outline-dark" href="#about">About</a>
+                    <a class="nav-link btn btn-outlinVicky Sahputrae-dark" href="#sertifikasi">Sertifikasi</a>
+                    <a class="nav-link btn btn-outline-dark" href="#contact">Contact</a>
+                </div>
+            </div>
         </div>
-        <div class="skill-group c2">
-          <h4>▸ Cyber Security & Pentesting</h4>
-          <div class="skill-tags">
-            <span>Burp Suite</span><span>Nmap</span><span>Metasploit</span>
-            <span>Wireshark</span><span>Nuclei</span><span>SQL Injection</span>
-            <span>CVE Research</span><span>OWASP</span><span>Pentest</span>
-          </div>
+    </nav>
+    <section class="text-center text-light jumbotron" id="home">
+        <img src="img/anime.jpeg" width="250" class="rounded-circle img-thumbnail">
+        <h1 class="display-4 fw-bold fst-italic">Randiansyah</h1>
+        <h3 class="display-10">Penetration Tester | Anti Hero</h1>
+        <a href="randiansyah.cv" class="btn btn-secondary w-80">Download CV</a> 
+        <ul>
+            <a href="https://tiktok.com/@randixploit.shtml" target="_blank"><i class="fa-brands fa-tiktok fa-2x mt-2 m-1"></i></a>
+            <a href="https://youtube.com/@randixploit" target="_blank"><i class="fa-brands fa-youtube fa-2x mt-2 m-1"></i></a>
+            <a href="https://randixploit1337.t.me" target="_blank"><i class="fa-brands fa-telegram fa-2x mt-2 m-1"></i></a>
+            <a href="https://www.linkedin.com/in/randiansyah" target="_blank"><i class="fa-brands fa-linkedin fa-2x mt-2 m-1"></i></a>
+        </ul>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="10" d="M0,160L60,144C120,128,240,96,360,106.7C480,117,600,171,720,165.3C840,160,960,96,1080,69.3C1200,43,1320,53,1380,58.7L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </section>
+    <section class="text-light" id="about">
+        <div class="container">
+            <div class="terminal max-w-4xl mx-auto mb-8">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <div class="terminal-dot red"></div>
+                        <div class="terminal-dot yellow"></div>
+                        <div class="terminal-dot green"></div>
+                    </div>
+                </div>
+                <div class="terminal-body">
+                    <span class="text-neon-green">randixploit@root:~# whoami</span><br>
+                    <span class="text-white mt-2">Name: Randiansyah</span><br>
+                    <span class="text-white">Age: 19</span><br>
+                    <span class="text-white">Location: Unknown</span><br>
+                    <span class="text-white">Specialty: Bug Hunting</span><br>
+                    <span class="text-white">Current Status: Anti Hero</span><br>
+                    <span class="text-white">Twitter/X: https://x.com/randixploit</span><br>
+                    <span class="text-white">Telegram Channel: https://justrchannel.t.me</span><br>
+                    <span class="text-white">Github: https://github.com/randixploit</span><br>
+                    <span class="text-white">E-Book: https://lynk.id/randiansyah</span><br>
+                </div>
+            </div>
         </div>
-        <div class="skill-group c3">
-          <h4>▸ Networking & Sysadmin</h4>
-          <div class="skill-tags">
-            <span>Fiber Optic</span><span>Router</span><span>Access Point</span>
-            <span>Cisco</span><span>Troubleshooting</span><span>CCTV</span>
-            <span>EDC</span><span>Hardware</span>
-          </div>
+    </section>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#a2d9ff" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,101.3C672,107,768,149,864,144C960,139,1056,85,1152,58.7C1248,32,1344,32,1392,32L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+    <section id="sertifikasi">
+        <div class="text3">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col mt-4">
+                    <div class="text3">
+                    <h2>Sertifikasi</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mt-4">
+                    <div class="card">
+                    <img src="https://github.com/randixploit/Certificate/blob/main/SERTIFIKAT%20APRESIASI%20LEMBAGA_page-0001.jpg?raw=true" class="card-img-top">
+                    <div class="card-body">
+                        <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;"><br>Lembaga Kursus dan Pendidikan Nusantara<br><br></p>
+                    </div>
+                    </div>
+                </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://github.com/randixploit/Certificate/blob/main/20241224100427RANDIANSYAH_page-0001.jpg?raw=true" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;"><br>Kabupaten Klaten<br><br></p>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://github.com/randixploit/Certificate/raw/main/sertifikat-apresiasi-mas-randiansyah_signed_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Seruyan</p>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Certificate/refs/heads/main/sertifikat%20Randiansyah_sign.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;"><br>Kota Magelang<br></p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Certificate/refs/heads/main/Sertifikat%20Apresiasi%20Dinas%20Kominfo%20a.n.%20Randiansyah_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Jombang</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Certificate/refs/heads/main/Sertifikat%20CSIRT%20%20Radiansyah_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Banyuwangi</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Certificate/refs/heads/main/169.%20Randiansyah__sign_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Provinsi DKI Jakarta</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Certificate/refs/heads/main/20250204_151329.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Provinsi Yogyakarta</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://github.com/randixploit/Sertifikat/blob/main/20250227%20Randiansyah_sign_page-0001.jpg?raw=true" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kota Yogyakarta</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://github.com/randixploit/Certificate/blob/main/20250210134024_Randiansyah_page-0001.jpg?raw=true" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;"><br><br>Provinsi Sulawesi Tengah</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20Apresiasi%20-%20Bug_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Blitar</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20celah%20kerentanan%20Randiansyah_sign.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Provinsi Riau</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20Bug%20Hunter%20RANDIANSYAH%202025_sign_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Madiun</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/signed_16-199208092022031001-1740713088_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Kuansing</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/qyRqvCiXyyw1r13f1740638262eb2959f9ad2196b742439cf5df7cfa68_signed_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Sidoarjo</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/IMG_20250228_141431_879.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Sukoharjo</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Randiansyah_signed_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Pesawaran</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Appreciation%20Certificate%20Bappenas-CSIRT_Randiansyah_ttds_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Badan Perencanaan Pembangunan Nasional</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/SERTIFIKAT_Randiansyah_sign_1740986722850_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kementerian Kesehatan Republik Indonesia</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Randiansyah_signed_signed_signed_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Provinsi Jambi</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20Apresiasi%20%5B912%5D%20RANDIANSYAH_sign_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kota Bekasi</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20Apresiasi%20Bug%20Hunter%20Randiansyah_sign_sign_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Bangkalan</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://github.com/randixploit/Sertifikat/blob/main/Randiansyah-1_sign_1741760385115_page-0001.jpg?raw=true" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Purbalingga</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/20250228130446Randiansyah_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kota Pekalongan</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/049%20Sertifikat%20Apresiasi_Randiansyah_1741835838853_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Badan Meteorologi, Klimatologi, dan Geofisika</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20an.%20Randiansyah_1742440878824.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Energi dan Sumber Daya Mineral</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20Apresiasi%20an.%20Randiansyah_sign_1742894474178_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Provinsi Kalimantan Tengah</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Randiansyah_1744101971960_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Mabes TNI</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Sertifikat%20Apresiasi%20CSIRT%20KPK%20Randiansyah%20(1)_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Komisi Pemberantasan Korupsi</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/004%20SERTIFIKAT%20APRESIASI_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Gresik</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Apresiasi%20Randiansyah%20-%20IDOR%20(1)_1745567722933_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kementerian Komunikasi dan Digital</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Jo27UQnDnX3MWyP9nJXj54Yfq1jLb6OXnYA4HhahyttJ231pGN_1746615963454_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Dari BBP/VDP Bali Prov</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Certificate%20of%20APPRECIATION%20-%20Randiansyah_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Dari Organisasi X-Code</p>
+                </div> 
+                </div>
+            </div>
+            <div class="col-md-4 mt-4">
+                <div class="card">
+                <img src="https://raw.githubusercontent.com/randixploit/Sertifikat/refs/heads/main/Randiansyah_page-0001.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center fw-bold" style="font-size: 20px; font-family: monospace, sans-serif;">Kabupaten Bantul</p>
+                </div> 
+                </div>
+            </div>
         </div>
-        <div class="skill-group c4">
-          <h4>▸ Web & Fullstack</h4>
-          <div class="skill-tags">
-            <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
-            <span>Bootstrap</span><span>Tailwind CSS</span><span>Postman</span>
-          </div>
+    </section>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#a2d9ff" fill-opacity="1" d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,101.3C672,107,768,149,864,144C960,139,1056,85,1152,58.7C1248,32,1344,32,1392,32L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
+    <section class="text-center text-light jumbotron" id="contact">
+        <img src="img/sadvibes.jpeg" width="250" class="rounded-circle img-thumbnail">
+        <h1 class="display-4 fw-bold fst-italic">Contact Me</h1>
+        <h3 class="display-10">You can contact via Telegram or Email</h1>
+        <ul>
+            <a href="https://randixploit1337.t.me" target="_blank"><i class="fa-brands fa-telegram fa-2x mt-2 m-1"></i></a>
+            <a href="mailto:randixploit@proton.me" target="_blank"><i class="fa-solid fa-envelope fa-2x mt-2 m-1"></i></a>
+        </ul>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="10" d="M0,160L60,144C120,128,240,96,360,106.7C480,117,600,171,720,165.3C840,160,960,96,1080,69.3C1200,43,1320,53,1380,58.7L1440,64L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </section>
+    <section>
+        <div class="container footer text-center">
+            <p>Copyright © 2025 by <b>Randiansyah</b></p>
         </div>
-      </div>
-    </div>
-
-    <aside class="profile-card reveal">
-      <div class="profile-avatar">MH</div>
-      <div class="profile-info">
-        <div><span>name</span><span>Marlin Hidayat</span></div>
-        <div><span>role</span><span>DevOps | Cybertech</span></div>
-        <div><span>location</span><span>Gunungsitoli, ID</span></div>
-        <div><span>experience</span><span>2+ Years</span></div>
-        <div><span>focus</span><span>Automation, Security</span></div>
-        <div><span>status</span><span class="status-up">available</span></div>
-      </div>
-    </aside>
-  </div>
-</section>
-
-<!-- ===================== EXPERIENCE ===================== -->
-<section id="experience">
-  <h2 class="section-title reveal"><span class="num">02.</span> experience</h2>
-  <p class="section-sub reveal">// git log --author="hidayat" --oneline</p>
-  <div class="exp-list" id="expList"></div>
-</section>
-
-<!-- ===================== PROJECTS ===================== -->
-<section id="projects">
-  <h2 class="section-title reveal"><span class="num">03.</span> projects</h2>
-  <p class="section-sub reveal">// ls -la ~/projects</p>
-
-  <div class="filter-bar reveal">
-    <button class="filter-btn active" data-filter="all">all</button>
-    <button class="filter-btn" data-filter="security">security</button>
-    <button class="filter-btn" data-filter="python">python</button>
-    <button class="filter-btn" data-filter="web">web</button>
-  </div>
-
-  <div class="projects-grid" id="projectsGrid"></div>
-</section>
-
-<!-- ===================== CTF ===================== -->
-<section id="ctf">
-  <h2 class="section-title reveal"><span class="num">04.</span> ctf_experience</h2>
-  <p class="section-sub reveal">// capture_the_flag --status=in_progress</p>
-  <div class="timeline" id="ctfTimeline"></div>
-</section>
-
-<!-- ===================== TECH STACK ===================== -->
-<section id="stack">
-  <h2 class="section-title reveal"><span class="num">05.</span> tech_stack</h2>
-  <p class="section-sub reveal">// cat ~/.tools/installed.txt</p>
-  <div class="tech-grid" id="techGrid"></div>
-
-  <div class="learning-note reveal">
-    <span class="label">📚 currently_learning:</span>
-    <strong>PicoCTF</strong> (Web Exploitation, Forensic, Reverse Engineering),
-    <strong>Kubernetes Advanced</strong>, dan <strong>Terraform IaC</strong> untuk cloud provisioning.
-  </div>
-</section>
-
-<!-- ===================== CERTIFICATIONS ===================== -->
-<section id="certs">
-  <h2 class="section-title reveal"><span class="num">06.</span> certifications</h2>
-  <p class="section-sub reveal">// aws --list-certifications</p>
-
-  <div class="coming-soon-wrap reveal">
-    <div class="cs-icon">🎓</div>
-    <h3 class="cs-title">Certifications — <span class="hl">Coming Soon</span></h3>
-    <p class="cs-desc">
-      Sudah punya <strong style="color:var(--cyan)">AWS Cloud & AI Fundamentals</strong>
-      dan <strong style="color:var(--cyan)">Penetration Testing</strong>.
-      Sedang mempersiapkan sertifikasi lanjutan sambil membangun pengalaman hands-on.
-    </p>
-    <div class="cs-badges">
-      <span class="cs-badge">☁ AWS Cloud & AI — ✓ earned</span>
-      <span class="cs-badge">🔒 Penetration Testing — ✓ earned</span>
-      <span class="cs-badge">☸ CKA — in progress</span>
-      <span class="cs-badge">🎯 CKAD — planned</span>
-    </div>
-    <div class="cs-progress">
-      <div class="cs-progress-label">
-        <span>certification_roadmap</span>
-        <span>rolling</span>
-      </div>
-      <div class="cs-progress-bar">
-        <div class="cs-progress-fill" style="width: 40%"></div>
-      </div>
-    </div>
-    <p class="cs-status" style="margin-top:20px;">
-      $ watch -n 1 certification.status<span class="blink"></span>
-    </p>
-  </div>
-</section>
-
-<!-- ===================== HALL OF FAME ===================== -->
-<section id="hof">
-  <h2 class="section-title reveal"><span class="num">07.</span> hall_of_fame</h2>
-  <p class="section-sub reveal">// responsible_disclosure_&_recognition</p>
-
-  <div class="coming-soon-wrap reveal">
-    <div class="cs-icon">🏛</div>
-    <h3 class="cs-title">Hall of Fame — <span class="hl">Coming Soon</span></h3>
-    <p class="cs-desc">
-      Ruang ini disiapkan untuk CVE disclosures, bug bounty acknowledgments,
-      dan responsible disclosure credits. Sedang aktif melakukan riset keamanan
-      di sela-sela pekerjaan.
-    </p>
-    <div class="cs-badges">
-      <span class="cs-badge">🔍 recon — ongoing</span>
-      <span class="cs-badge">🐛 bug bounty — hunting</span>
-      <span class="cs-badge">📄 CVE research — in progress</span>
-      <span class="cs-badge">🛡 responsible disclosure — active</span>
-    </div>
-    <div class="cs-progress">
-      <div class="cs-progress-label">
-        <span>research_progress</span>
-        <span>rolling — no deadline</span>
-      </div>
-      <div class="cs-progress-bar">
-        <div class="cs-progress-fill" style="width: 20%"></div>
-      </div>
-    </div>
-    <p class="cs-status" style="margin-top:20px;">
-      $ tail -f /var/log/research.log<span class="blink"></span>
-    </p>
-  </div>
-</section>
-
-<!-- ===================== CONTACT + FORM WA ===================== -->
-<section id="contact">
-  <h2 class="section-title reveal"><span class="num">08.</span> contact</h2>
-  <p class="section-sub reveal">// ssh contact@hidayat</p>
-
-  <div class="contact-wrap">
-    <!-- Info kontak -->
-    <div class="contact-info reveal">
-      <h3>&gt; get_in_touch</h3>
-      <p>Terbuka untuk kolaborasi, freelance, atau peluang full-time di bidang DevOps, Sysadmin, dan Security Automation.</p>
-
-      <div class="contact-item">
-        <span class="contact-icon">📱</span>
-        <div>
-          <div class="contact-label">whatsapp</div>
-          <div class="contact-val" id="waNumberDisplay">+62 851-1906-2492</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">✉</span>
-        <div>
-          <div class="contact-label">email</div>
-          <div class="contact-val">izumy300@proton.me</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">📍</span>
-        <div>
-          <div class="contact-label">location</div>
-          <div class="contact-val">Gunungsitoli, North Sumatra, Indonesia</div>
-        </div>
-      </div>
-      <div class="contact-item">
-        <span class="contact-icon">🎯</span>
-        <div>
-          <div class="contact-label">status</div>
-          <div class="contact-val">Open to opportunities</div>
-        </div>
-      </div>
-
-      <a href="https://wa.me/6285119062492?text=Halo%20Hidayat!%20Saya%20mau%20ngobrol." 
-         target="_blank" rel="noopener"
-         class="btn btn-wa" 
-         style="justify-content: center; margin-top: 8px;">
-        📱 chat_langsung_whatsapp
-      </a>
-    </div>
-
-    <!-- Form WhatsApp -->
-    <form id="contactForm" class="reveal" novalidate>
-      <div class="form-group">
-        <label for="wa-name">nama</label>
-        <input type="text" id="wa-name" required placeholder="Nama Anda" autocomplete="name">
-      </div>
-      <div class="form-group">
-        <label for="wa-topic">topik</label>
-        <select id="wa-topic" required>
-          <option value="Kerja Sama Project">Kerja Sama Project</option>
-          <option value="Freelance">Freelance</option>
-          <option value="Full-time Opportunity">Full-time Opportunity</option>
-          <option value="Konsultasi DevOps">Konsultasi DevOps</option>
-          <option value="Konsultasi Security">Konsultasi Security</option>
-          <option value="Lainnya">Lainnya</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="wa-message">pesan</label>
-        <textarea id="wa-message" rows="5" required placeholder="Tulis pesan Anda..."></textarea>
-      </div>
-      <button type="submit" class="btn btn-wa" style="justify-content: center;">
-        <span>→ kirim_via_whatsapp</span>
-      </button>
-      <div class="form-status" id="formStatus"></div>
-      <p class="form-hint">ⓘ Klik tombol → WhatsApp terbuka → tinggal tekan Send</p>
-    </form>
-  </div>
-</section>
-
-<!-- ===================== FOOTER ===================== -->
-<footer>
-  <p>© <span id="year"></span> Marlin Hidayat Tanjung — Built with <span class="heart">♥</span> using HTML, CSS & JS</p>
-  <p style="margin-top:6px; opacity:0.6;">
-    <span class="green">●</span> all systems operational — deploy: <span class="green">success</span> — uptime: 99.99%
-  </p>
-</footer>
-
-<!-- Floating WhatsApp Button -->
-<a href="https://wa.me/6285119062492?text=Halo%20Hidayat!%20Saya%20lihat%20portfolio%20Anda." 
-   target="_blank" rel="noopener" 
-   class="wa-float" 
-   aria-label="Chat WhatsApp">💬</a>
-
-<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
-
-<script>
-/* ============================================================
-   DATA
-============================================================ */
-
-/* --- EXPERIENCE --- */
-const EXPERIENCE = [
-  {
-    role: 'Network Technician',
-    company: 'Siga Network JTE',
-    type: 'Full-time',
-    location: 'Sawo, North Sumatra, Indonesia · On-site',
-    period: '2024 — Present',
-    desc: 'Instalasi dan troubleshooting jaringan fiber optic untuk pelanggan.',
-    points: [
-      'Instalasi jaringan indoor/outdoor.',
-      'Troubleshooting sinyal lemah.',
-      'Konfigurasi router & access point.',
-      'Pemasangan kabel fiber optik di ODC.'
-    ]
-  },
-  {
-    role: 'Teknisi',
-    company: 'PT Bringin Inti Teknologi (BIT)',
-    type: 'Full-time',
-    location: 'Gunungsitoli, North Sumatra, Indonesia · On-site',
-    period: '2023 — 2024',
-    desc: 'Instalasi & maintenance sistem CCTV CRM BRI di wilayah Gunungsitoli.',
-    points: [
-      'Instalasi & Konfigurasi PC Mini untuk sistem CCTV CRM BRI.',
-      'Pemeliharaan rutin triwulanan (verifikasi jaringan, pembersihan hardware, update software).',
-      'Troubleshooting & perbaikan komponen yang rusak.',
-      'Pengetahuan dasar elektronika untuk troubleshooting.'
-    ]
-  },
-  {
-    role: 'Teknisi EDC',
-    company: 'PT Bank Negara Indonesia Tbk',
-    type: 'Remote',
-    location: 'Gunungsitoli, North Sumatra, Indonesia',
-    period: '2022 — 2023',
-    desc: 'Perawatan dan troubleshooting mesin EDC BNI.',
-    points: [
-      'Perawatan rutin mesin EDC (pengecekan berkala & pembersihan).',
-      'Troubleshooting hardware/software (gagal baca kartu, error print receipt).',
-      'Upgrade software/firmware EDC sesuai versi terbaru.',
-      'Memastikan kinerja optimal mesin EDC.'
-    ]
-  },
-  {
-    role: 'Junior Human Resources Associate',
-    company: 'Pusat Bekam',
-    type: 'Full-time',
-    location: 'Bekasi, West Java, Indonesia',
-    period: '2021 — 2022',
-    desc: 'Mengelola database karyawan dan koordinasi rekrutmen.',
-    points: [
-      'Mengelola database karyawan untuk rekrutmen & evaluasi kinerja.',
-      'Pengumpulan laporan kinerja bulanan/triwulan dari seluruh cabang.',
-      'Koordinasi jadwal antara pelamar, interviewer, dan panel wawancara.',
-      'Menyediakan data yang dibutuhkan untuk proses rekrutmen.'
-    ]
-  }
-];
-
-/* --- PROJECTS --- */
-const PROJECTS = [
-  {
-    icon: '🕵',
-    title: 'omnispy',
-    badge: 'security',
-    desc: 'OMNISPY adalah spyware all-in-one yang bisa dikontrol lewat Telegram dan dashboard web. Dilengkapi dengan 20 fitur canggih.',
-    tags: ['Python', 'Telegram Bot', 'Web Dashboard', 'Security'],
-    metrics: { features: '20+', control: 'Telegram+Web', lang: 'Python' },
-    github: 'https://github.com/hidayat-tanjung/omnispy',
-    demo: '#'
-  },
-  {
-    icon: '💰',
-    title: 'gaji',
-    badge: 'python',
-    desc: 'Script Python sederhana untuk menghitung gaji bersih setelah potongan pajak. Cocok untuk belajar dasar pemrograman Python.',
-    tags: ['Python', 'CLI', 'Utility'],
-    metrics: { type: 'calculator', lang: 'Python', level: 'beginner' },
-    github: 'https://github.com/hidayat-tanjung/gaji',
-    demo: '#'
-  },
-  {
-    icon: '✨',
-    title: 'glowing-loader',
-    badge: 'web',
-    desc: 'Glowing Loader adalah animasi loading dengan efek neon/glowing yang dibuat menggunakan HTML dan CSS murni. Cocok untuk preloader website.',
-    tags: ['HTML', 'CSS', 'Animation', 'Neon'],
-    metrics: { deps: 'zero', lang: 'CSS', type: 'UI' },
-    github: 'https://github.com/hidayat-tanjung/glowing-loader-',
-    demo: '#'
-  },
-  {
-    icon: '🔐',
-    title: 'bootsrap-login',
-    badge: 'web',
-    desc: 'Template halaman login siap pakai dengan tampilan modern menggunakan Bootstrap 5. Cocok untuk proyek web yang butuh halaman autentikasi.',
-    tags: ['HTML', 'Bootstrap 5', 'Template', 'Auth'],
-    metrics: { framework: 'Bootstrap', type: 'template', ready: 'yes' },
-    github: 'https://github.com/hidayat-tanjung/bootsrap-login',
-    demo: '#'
-  },
-  {
-    icon: '📥',
-    title: 'youtube-dwonload',
-    badge: 'python',
-    desc: 'Tool Python untuk mengunduh video YouTube dengan antarmuka CLI sederhana. Mendukung berbagai format dan resolusi.',
-    tags: ['Python', 'CLI', 'YouTube', 'Downloader'],
-    metrics: { lang: 'Python', type: 'CLI tool', format: 'multi' },
-    github: 'https://github.com/hidayat-tanjung/youtube-dwonload',
-    demo: '#'
-  },
-  {
-    icon: '📸',
-    title: 'screnshoot',
-    badge: 'python',
-    desc: 'Script Python sederhana untuk mengambil screenshot layar dengan cepat dan mudah. Hasil screenshot otomatis tersimpan di folder tools.',
-    tags: ['Python', 'Screenshot', 'Utility', 'Automation'],
-    metrics: { lang: 'Python', type: 'utility', auto: 'save' },
-    github: 'https://github.com/hidayat-tanjung/screnshoot',
-    demo: '#'
-  }
-];
-
-/* --- CTF --- */
-const CTF_DATA = [
-  {
-    title: 'PicoCTF',
-    year: '2025 — present',
-    team: 'Solo',
-    desc: 'Sedang mengerjakan challenge PicoCTF di sela-sela pekerjaan. Fokus awal di kategori Web Exploitation, Forensic, dan Reverse Engineering. Progress akan di-update begitu ada challenge yang selesai.',
-    badges: [
-      { text: '🚧 in progress', type: 'progress' },
-      { text: 'Web · Forensic · Reverse', type: 'progress' }
-    ]
-  }
-];
-
-/* --- TECH STACK --- */
-const TECH_STACK = [
-  // DevOps / Infra
-  { icon: '🐧', name: 'Linux',       level: 100, label: 'Advanced',     cat: '' },
-  { icon: '🐳', name: 'Docker',      level: 70,  label: 'Proficient',   cat: '' },
-  { icon: '⚙',  name: 'Ansible',     level: 60,  label: 'Intermediate', cat: '' },
-  { icon: '🚀', name: 'Jenkins',     level: 55,  label: 'Intermediate', cat: '' },
-  { icon: '🐙', name: 'Git',         level: 75,  label: 'Proficient',   cat: '' },
-  { icon: '📊', name: 'Prometheus',  level: 60,  label: 'Intermediate', cat: '' },
-  { icon: '📈', name: 'Grafana',     level: 65,  label: 'Intermediate', cat: '' },
-  { icon: '📉', name: 'Zabbix',      level: 55,  label: 'Intermediate', cat: '' },
-  { icon: '🐍', name: 'Python',      level: 70,  label: 'Proficient',   cat: '' },
-  // Security
-  { icon: '🕷',  name: 'Burp Suite',  level: 70,  label: 'Proficient',   cat: 'security' },
-  { icon: '📡', name: 'Nmap',        level: 75,  label: 'Proficient',   cat: 'security' },
-  { icon: '💥', name: 'Metasploit',  level: 60,  label: 'Intermediate', cat: 'security' },
-  { icon: '🦈', name: 'Wireshark',   level: 65,  label: 'Intermediate', cat: 'security' },
-  { icon: '🧪', name: 'Nuclei',      level: 65,  label: 'Intermediate', cat: 'security' },
-  { icon: '💉', name: 'SQL Injection', level: 60, label: 'Intermediate', cat: 'security' },
-  { icon: '📋', name: 'CVE Research', level: 50, label: 'Learning',     cat: 'security' },
-  // Networking
-  { icon: '🌐', name: 'Cisco',       level: 60,  label: 'Intermediate', cat: '' },
-  { icon: '🔌', name: 'Fiber Optic', level: 75,  label: 'Proficient',   cat: '' },
-  // Web
-  { icon: '🌐', name: 'HTML5',       level: 70,  label: 'Proficient',   cat: 'web' },
-  { icon: '🎨', name: 'CSS3',        level: 65,  label: 'Intermediate', cat: 'web' },
-  { icon: '⚡', name: 'JavaScript',  level: 60,  label: 'Intermediate', cat: 'web' },
-  { icon: '🅱',  name: 'Bootstrap',   level: 65,  label: 'Intermediate', cat: 'web' },
-  { icon: '🌊', name: 'Tailwind CSS', level: 60, label: 'Intermediate', cat: 'web' },
-  { icon: '📮', name: 'Postman',     level: 60,  label: 'Intermediate', cat: 'web' },
-  { icon: '💻', name: 'VS Code',     level: 90,  label: 'Advanced',     cat: '' }
-];
-
-/* ============================================================
-   RENDER
-============================================================ */
-function renderExperience() {
-  const list = document.getElementById('expList');
-  list.innerHTML = EXPERIENCE.map(e => `
-    <div class="exp-card reveal">
-      <div class="exp-head">
-        <div>
-          <div class="exp-role">
-            ${e.role} <span class="at">@</span> <span class="company">${e.company}</span>
-          </div>
-          <div class="exp-type">${e.type}</div>
-          <div class="exp-location">${e.location}</div>
-        </div>
-        <div class="exp-period">${e.period}</div>
-      </div>
-      <p class="exp-desc">${e.desc}</p>
-      <ul class="exp-points">
-        ${e.points.map(p => `<li>${p}</li>`).join('')}
-      </ul>
-    </div>
-  `).join('');
-  observeReveal();
-}
-
-function renderProjects(filter = 'all') {
-  const grid = document.getElementById('projectsGrid');
-  const list = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.badge === filter);
-  grid.innerHTML = list.map(p => `
-    <article class="project-card reveal">
-      <div class="project-head">
-        <div class="project-icon">${p.icon}</div>
-        <span class="project-badge badge-${p.badge}">${p.badge}</span>
-      </div>
-      <h3 class="project-title">${p.title}</h3>
-      <p class="project-desc">${p.desc}</p>
-      <div class="project-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
-      <div class="project-metrics">
-        ${Object.entries(p.metrics).map(([k,v]) => `<span>${k}: ${v}</span>`).join('')}
-      </div>
-      <div class="project-links">
-        <a href="${p.github}" target="_blank" rel="noopener">↗ source</a>
-        ${p.demo !== '#' ? `<a href="${p.demo}" target="_blank" rel="noopener">↗ demo</a>` : ''}
-      </div>
-    </article>
-  `).join('');
-  observeReveal();
-}
-
-function renderCTF() {
-  const tl = document.getElementById('ctfTimeline');
-  if (!CTF_DATA.length) {
-    tl.innerHTML = `<div class="tl-item reveal">
-      <div class="tl-desc">Belum ada pengalaman CTF — sedang fokus membangun skill DevOps & security fundamentals.</div>
-    </div>`;
-    observeReveal();
-    return;
-  }
-  tl.innerHTML = CTF_DATA.map(c => `
-    <div class="tl-item reveal">
-      <div class="tl-head">
-        <div class="tl-title">${c.title}</div>
-        <div class="tl-year">${c.year}</div>
-      </div>
-      <div class="tl-meta">team: ${c.team}</div>
-      <div class="tl-desc">${c.desc}</div>
-      <div>${c.badges.map(b => `<span class="tl-badge ${b.type}">${b.text}</span>`).join('')}</div>
-    </div>
-  `).join('');
-  observeReveal();
-}
-
-function renderTechStack() {
-  const grid = document.getElementById('techGrid');
-  grid.innerHTML = TECH_STACK.map(t => `
-    <div class="tech-card reveal">
-      <div class="tech-icon">${t.icon}</div>
-      <div class="tech-name">${t.name}</div>
-      <div class="tech-level">${t.label} · ${t.level}%</div>
-      <div class="tech-bar"><div class="tech-bar-fill ${t.cat}" data-level="${t.level}"></div></div>
-    </div>
-  `).join('');
-  observeReveal();
-
-  const bars = grid.querySelectorAll('.tech-bar-fill');
-  const barObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.width = e.target.dataset.level + '%';
-        barObserver.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  bars.forEach(b => {
-    b.style.width = '0%';
-    barObserver.observe(b);
-  });
-}
-
-/* ============================================================
-   TYPING EFFECT
-============================================================ */
-const ROLES = [
-  'DevOps Engineer',
-  'Sysadmin Engineer',
-  'IT Support Specialist',
-  'Security & Automation Enthusiast',
-  'Cybertech'
-];
-let roleIdx = 0, charIdx = 0, deleting = false;
-const typedEl = document.getElementById('typed');
-
-function typeLoop() {
-  const current = ROLES[roleIdx];
-  if (!deleting) {
-    typedEl.textContent = current.slice(0, ++charIdx);
-    if (charIdx === current.length) {
-      deleting = true;
-      setTimeout(typeLoop, 1600);
-      return;
-    }
-  } else {
-    typedEl.textContent = current.slice(0, --charIdx);
-    if (charIdx === 0) {
-      deleting = false;
-      roleIdx = (roleIdx + 1) % ROLES.length;
-    }
-  }
-  setTimeout(typeLoop, deleting ? 40 : 90);
-}
-typeLoop();
-
-/* ============================================================
-   MATRIX RAIN
-============================================================ */
-const canvas = document.getElementById('matrix-canvas');
-const ctx = canvas.getContext('2d');
-let cols, drops;
-const chars = 'アイウエオカキクケコ01{}[]<>/\\$#@!*+=:;';
-
-function initMatrix() {
-  const hero = document.getElementById('hero');
-  canvas.width = hero.offsetWidth;
-  canvas.height = hero.offsetHeight;
-  cols = Math.floor(canvas.width / 14);
-  drops = Array(cols).fill(1);
-}
-function drawMatrix() {
-  ctx.fillStyle = 'rgba(11, 16, 32, 0.08)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#00d4ff';
-  ctx.font = '14px JetBrains Mono, monospace';
-  for (let i = 0; i < drops.length; i++) {
-    const text = chars[Math.floor(Math.random() * chars.length)];
-    ctx.fillText(text, i * 14, drops[i] * 14);
-    if (drops[i] * 14 > canvas.height && Math.random() > 0.975) drops[i] = 0;
-    drops[i]++;
-  }
-}
-initMatrix();
-setInterval(drawMatrix, 65);
-window.addEventListener('resize', initMatrix);
-
-/* ============================================================
-   REVEAL ON SCROLL
-============================================================ */
-let observer;
-function observeReveal() {
-  if (!observer) {
-    observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12 });
-  }
-  document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
-}
-
-/* ============================================================
-   NAVBAR
-============================================================ */
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navLinks.classList.toggle('open');
-});
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navLinks.classList.remove('open');
-  });
-});
-
-const sections = document.querySelectorAll('section[id]');
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY + 120;
-  sections.forEach(sec => {
-    const top = sec.offsetTop;
-    const h = sec.offsetHeight;
-    const id = sec.getAttribute('id');
-    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
-    if (link) {
-      if (scrollY >= top && scrollY < top + h) link.classList.add('active');
-      else link.classList.remove('active');
-    }
-  });
-});
-
-/* ============================================================
-   PROJECT FILTER
-============================================================ */
-document.querySelectorAll('.filter-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderProjects(btn.dataset.filter);
-  });
-});
-
-/* ============================================================
-   CONTACT FORM → WHATSAPP
-============================================================ */
-const WA_NUMBER = '6285119062492';
-
-document.getElementById('contactForm').addEventListener('submit', function (e) {
-  e.preventDefault();
-
-  const name    = document.getElementById('wa-name').value.trim();
-  const topic   = document.getElementById('wa-topic').value;
-  const message = document.getElementById('wa-message').value.trim();
-  const status  = document.getElementById('formStatus');
-
-  // Validasi
-  if (!name || !message) {
-    status.textContent = '> error: nama & pesan wajib diisi.';
-    status.classList.remove('success');
-    return;
-  }
-
-  // Susun pesan WhatsApp
-  const waText =
-`Halo Hidayat! 👋
-
-*Nama:* ${name}
-*Topik:* ${topic}
-
-*Pesan:*
-${message}
-
----
-Sent from portfolio website`;
-
-  // Buka WhatsApp dengan pesan ter-prefill
-  const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waText)}`;
-  window.open(waUrl, '_blank', 'noopener,noreferrer');
-
-  // Feedback visual
-  status.textContent = '> whatsapp dibuka — tinggal tekan Send ✓';
-  status.classList.add('success');
-
-  // Reset form & sembunyikan status setelah 5 detik
-  setTimeout(() => {
-    this.reset();
-    status.classList.remove('success');
-  }, 5000);
-});
-
-/* ============================================================
-   BACK TO TOP
-============================================================ */
-const backTop = document.getElementById('backTop');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 400) backTop.classList.add('show');
-  else backTop.classList.remove('show');
-});
-backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-/* ============================================================
-   COPY TO CLIPBOARD
-============================================================ */
-document.querySelectorAll('.contact-val').forEach(el => {
-  el.addEventListener('click', () => {
-    navigator.clipboard.writeText(el.textContent.trim());
-    const orig = el.textContent;
-    el.textContent = '✓ copied!';
-    setTimeout(() => el.textContent = orig, 1200);
-  });
-});
-
-/* ============================================================
-   INIT
-============================================================ */
-document.getElementById('year').textContent = new Date().getFullYear();
-renderExperience();
-renderProjects();
-renderCTF();
-renderTechStack();
-observeReveal();
-</script>
-</body>
+    </section>
+  </body>
 </html>
