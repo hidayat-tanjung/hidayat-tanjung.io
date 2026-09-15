@@ -1,0 +1,66 @@
+console.log('🚀 Form handler loaded');
+
+const formEl = document.getElementById('contactForm');
+console.log('📝 Form element:', formEl);
+
+if (!formEl) {
+  console.error('❌ Form #contactForm NOT FOUND!');
+} else {
+  formEl.addEventListener('submit', function (e) {
+    e.preventDefault();
+    console.log('✅ Form submitted!');
+
+    const name    = document.getElementById('wa-name')?.value.trim() || '';
+    const topic   = document.getElementById('wa-topic')?.value || '';
+    const message = document.getElementById('wa-message')?.value.trim() || '';
+    const status  = document.getElementById('formStatus');
+
+    console.log('📦 Data:', { name, topic, message });
+
+    if (!name || !message) {
+      console.warn('⚠️ Nama atau pesan kosong');
+      if (status) {
+        status.textContent = '> error: nama & pesan wajib diisi.';
+        status.classList.remove('success');
+      }
+      return;
+    }
+
+    const WA_NUMBER = '6285119062492';
+    const waText =
+`Halo Hidayat! 👋
+
+*Nama:* ${name}
+*Topik:* ${topic}
+
+*Pesan:*
+${message}
+
+---
+Sent from portfolio website`;
+
+    const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(waText)}`;
+    console.log('🔗 WA URL:', waUrl);
+
+    // Pakai anchor tag biar tidak diblok popup blocker
+    const a = document.createElement('a');
+    a.href = waUrl;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    console.log('✅ Link clicked');
+
+    if (status) {
+      status.textContent = '> whatsapp dibuka — tinggal tekan Send ✓';
+      status.classList.add('success');
+    }
+
+    setTimeout(() => {
+      formEl.reset();
+      if (status) status.classList.remove('success');
+    }, 5000);
+  });
+}
