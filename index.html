@@ -13,12 +13,10 @@
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
 
-    <!-- Fonts: JetBrains Mono & Share Tech Mono & Orbitron -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Orbitron:wght@600;800;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
@@ -34,17 +32,17 @@
             --border-subtle: rgba(0, 240, 255, 0.18);
             --border-bright: rgba(0, 240, 255, 0.55);
             --border-green: rgba(0, 255, 102, 0.4);
-            
+
             --neon-cyan: #00f0ff;
             --neon-green: #00ff66;
             --neon-purple: #a855f7;
             --neon-amber: #f59e0b;
             --neon-red: #ff3366;
-            
+
             --text-primary: #e2e8f0;
             --text-secondary: #94a3b8;
             --text-muted: #64748b;
-            
+
             --glow-cyan: 0 0 18px rgba(0, 240, 255, 0.45);
             --glow-green: 0 0 18px rgba(0, 255, 102, 0.45);
             --glow-text-cyan: 0 0 8px rgba(0, 240, 255, 0.7);
@@ -55,7 +53,6 @@
             --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Reset & Global */
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -82,10 +79,7 @@
             overflow-x: hidden;
         }
 
-        /* Custom Cyber Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
+        ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track {
             background: #020408;
             border-left: 1px solid rgba(0, 240, 255, 0.1);
@@ -95,11 +89,8 @@
             border-radius: 4px;
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--neon-cyan);
-        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--neon-cyan); }
 
-        /* Canvas Matrix Rain */
         #matrix-canvas {
             position: fixed;
             top: 0;
@@ -111,7 +102,6 @@
             pointer-events: none;
         }
 
-        /* Subtle CRT Scanlines & Grid Texture */
         .scanlines {
             position: fixed;
             top: 0;
@@ -121,7 +111,7 @@
             pointer-events: none;
             z-index: 998;
             background: linear-gradient(
-                rgba(18, 16, 16, 0) 50%, 
+                rgba(18, 16, 16, 0) 50%,
                 rgba(0, 0, 0, 0.35) 50%
             ), linear-gradient(
                 90deg,
@@ -133,7 +123,6 @@
             opacity: 0.6;
         }
 
-        /* Layout Container */
         .container {
             max-width: 1240px;
             margin: 0 auto;
@@ -142,7 +131,6 @@
             z-index: 10;
         }
 
-        /* Section Global Typography & Styling */
         section {
             padding: 6.5rem 0;
             position: relative;
@@ -227,9 +215,7 @@
             transform: translateY(-4px);
         }
 
-        .cyber-card:hover::before {
-            opacity: 1;
-        }
+        .cyber-card:hover::before { opacity: 1; }
 
         /* Cyber Button Elements */
         .cyber-btn {
@@ -272,9 +258,7 @@
             box-shadow: var(--glow-cyan);
         }
 
-        .cyber-btn:hover::before {
-            opacity: 1;
-        }
+        .cyber-btn:hover::before { opacity: 1; }
 
         .cyber-btn.btn-green {
             border-color: var(--neon-green);
@@ -282,10 +266,7 @@
             box-shadow: 0 0 10px rgba(0, 255, 102, 0.15);
         }
 
-        .cyber-btn.btn-green::before {
-            background: var(--neon-green);
-        }
-
+        .cyber-btn.btn-green::before { background: var(--neon-green); }
         .cyber-btn.btn-green:hover {
             color: #020617;
             box-shadow: var(--glow-green);
@@ -304,7 +285,7 @@
         }
 
         /* ============================================================
-           NAVBAR / HEADER
+           NAVBAR / HEADER - DIPERBAIKI & DIRAPIKAN
            ============================================================ */
         .cyber-nav {
             position: fixed;
@@ -312,7 +293,7 @@
             left: 0;
             width: 100%;
             height: 72px;
-            background: rgba(4, 7, 13, 0.88);
+            background: rgba(4, 7, 13, 0.92);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-bottom: 1px solid rgba(0, 240, 255, 0.15);
@@ -326,18 +307,21 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
+            gap: 0.75rem;
         }
 
         .nav-logo {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.5rem;
             text-decoration: none;
             font-family: var(--font-heading);
-            font-size: 1.15rem;
+            font-size: 1rem;
             font-weight: 800;
             color: #fff;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         .nav-logo .prompt-symbol {
@@ -352,22 +336,25 @@
         .nav-status {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.72rem;
+            gap: 0.4rem;
+            font-size: 0.68rem;
             color: var(--text-secondary);
             border: 1px solid rgba(0, 255, 102, 0.3);
             background: rgba(0, 255, 102, 0.05);
-            padding: 0.25rem 0.65rem;
+            padding: 0.22rem 0.6rem;
             border-radius: 999px;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
 
         .status-dot {
-            width: 7px;
-            height: 7px;
+            width: 6px;
+            height: 6px;
             background-color: var(--neon-green);
             border-radius: 50%;
             box-shadow: 0 0 8px var(--neon-green);
             animation: blink 1.8s infinite;
+            flex-shrink: 0;
         }
 
         @keyframes blink {
@@ -378,35 +365,44 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 1.5rem;
+            gap: 0.15rem;
             list-style: none;
+            flex-wrap: nowrap;
+            flex-grow: 1;
+            justify-content: center;
         }
 
         .nav-link {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.82rem;
+            font-size: 0.72rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
             transition: var(--transition-smooth);
             position: relative;
-            padding: 0.3rem 0;
+            padding: 0.42rem 0.55rem;
+            white-space: nowrap;
+            border-radius: 3px;
         }
 
         .nav-link span {
             color: var(--neon-cyan);
             margin-right: 0.2rem;
+            font-size: 0.65rem;
+            font-weight: 700;
         }
 
         .nav-link:hover, .nav-link.active {
             color: #fff;
+            background: rgba(0, 240, 255, 0.07);
         }
 
         .nav-link::after {
             content: '';
             position: absolute;
             bottom: 0;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 0%;
             height: 2px;
             background: var(--neon-green);
@@ -415,27 +411,29 @@
         }
 
         .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
+            width: 75%;
         }
 
         .nav-actions {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.6rem;
+            flex-shrink: 0;
         }
 
         .audio-toggle-btn {
             background: rgba(0, 240, 255, 0.08);
             border: 1px solid rgba(0, 240, 255, 0.3);
             color: var(--neon-cyan);
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             border-radius: 4px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: var(--transition-smooth);
+            font-size: 0.85rem;
         }
 
         .audio-toggle-btn:hover {
@@ -537,9 +535,9 @@
         .hero-cta {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
+            gap: 1rem;
             flex-wrap: wrap;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .hero-stats-row {
@@ -595,17 +593,8 @@
             border-bottom: 1px solid rgba(0, 240, 255, 0.15);
         }
 
-        .terminal-dots {
-            display: flex;
-            gap: 6px;
-        }
-
-        .terminal-dot {
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-        }
-
+        .terminal-dots { display: flex; gap: 6px; }
+        .terminal-dot { width: 11px; height: 11px; border-radius: 50%; }
         .dot-red { background: #ff5f56; }
         .dot-yellow { background: #ffbd2e; }
         .dot-green { background: #27c93f; }
@@ -624,18 +613,9 @@
             line-height: 1.6;
         }
 
-        .term-line {
-            margin-bottom: 0.6rem;
-        }
-
-        .term-prompt {
-            color: var(--neon-green);
-        }
-
-        .term-cmd {
-            color: #fff;
-            font-weight: 600;
-        }
+        .term-line { margin-bottom: 0.6rem; }
+        .term-prompt { color: var(--neon-green); }
+        .term-cmd { color: #fff; font-weight: 600; }
 
         .term-output {
             color: var(--text-secondary);
@@ -644,17 +624,6 @@
             margin: 0.4rem 0 0.8rem 0;
         }
 
-        .term-badge {
-            display: inline-block;
-            padding: 0.15rem 0.4rem;
-            background: rgba(0, 240, 255, 0.1);
-            color: var(--neon-cyan);
-            border-radius: 3px;
-            font-size: 0.75rem;
-            margin: 0.15rem 0.2rem;
-        }
-
-        /* Interactive Terminal input */
         .term-interactive {
             display: flex;
             align-items: center;
@@ -682,9 +651,7 @@
             align-items: start;
         }
 
-        .about-bio-card {
-            padding: 2.2rem;
-        }
+        .about-bio-card { padding: 2.2rem; }
 
         .about-bio-card h3 {
             font-family: var(--font-heading);
@@ -735,16 +702,13 @@
             margin-bottom: 0;
         }
 
-        /* Skill Pillars */
         .skill-pillars {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }
 
-        .pillar-card {
-            padding: 1.6rem;
-        }
+        .pillar-card { padding: 1.6rem; }
 
         .pillar-header {
             display: flex;
@@ -762,17 +726,9 @@
             color: #fff;
         }
 
-        .pillar-title i {
-            color: var(--neon-cyan);
-        }
-
-        .pillar-card:nth-child(2) .pillar-title i {
-            color: var(--neon-green);
-        }
-
-        .pillar-card:nth-child(3) .pillar-title i {
-            color: var(--neon-purple);
-        }
+        .pillar-title i { color: var(--neon-cyan); }
+        .pillar-card:nth-child(2) .pillar-title i { color: var(--neon-green); }
+        .pillar-card:nth-child(3) .pillar-title i { color: var(--neon-purple); }
 
         .pillar-tags {
             display: flex;
@@ -798,9 +754,7 @@
             transform: translateY(-2px);
         }
 
-        .skill-bar-wrap {
-            margin-bottom: 0.75rem;
-        }
+        .skill-bar-wrap { margin-bottom: 0.75rem; }
 
         .skill-bar-info {
             display: flex;
@@ -828,41 +782,8 @@
         }
 
         /* ============================================================
-           PROJECTS SECTION (FILTERABLE + GITHUB LIVE)
+           PROJECTS SECTION (LIVE GITHUB)
            ============================================================ */
-        .project-filters {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-            margin-bottom: 2.5rem;
-        }
-
-        .filter-btn {
-            background: rgba(0, 240, 255, 0.03);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            color: var(--text-secondary);
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            padding: 0.55rem 1.2rem;
-            border-radius: 3px;
-            cursor: pointer;
-            transition: var(--transition-smooth);
-        }
-
-        .filter-btn:hover {
-            color: #fff;
-            border-color: var(--neon-cyan);
-        }
-
-        .filter-btn.active {
-            background: var(--neon-cyan);
-            color: #020617;
-            border-color: var(--neon-cyan);
-            font-weight: 700;
-            box-shadow: var(--glow-cyan);
-        }
-
         .github-status-bar {
             display: flex;
             justify-content: space-between;
@@ -935,10 +856,6 @@
             transition: var(--transition-smooth);
         }
 
-        .project-card.hide {
-            display: none;
-        }
-
         .project-top-meta {
             display: flex;
             align-items: center;
@@ -967,17 +884,6 @@
             border: 1px solid rgba(0, 240, 255, 0.3);
         }
 
-        .status-dev {
-            background: rgba(245, 158, 11, 0.1);
-            color: var(--neon-amber);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-        }
-
-        .project-icon {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-        }
-
         .project-title {
             font-family: var(--font-heading);
             font-size: 1.3rem;
@@ -1003,25 +909,6 @@
             margin-bottom: 1.4rem;
         }
 
-        .project-metric strong {
-            color: var(--neon-green);
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.45rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-tech span {
-            font-size: 0.72rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-muted);
-            padding: 0.2rem 0.5rem;
-            border-radius: 2px;
-        }
-
         .project-links {
             display: flex;
             align-items: center;
@@ -1040,9 +927,7 @@
             transition: var(--transition-smooth);
         }
 
-        .project-link:hover {
-            color: var(--neon-cyan);
-        }
+        .project-link:hover { color: var(--neon-cyan); }
 
         .loading-projects {
             grid-column: 1 / -1;
@@ -1130,7 +1015,7 @@
         }
 
         /* ============================================================
-           CTF SECTION (CAPTURE THE FLAG)
+           CTF SECTION
            ============================================================ */
         .ctf-stats-grid {
             display: grid;
@@ -1279,231 +1164,153 @@
         }
 
         /* ============================================================
-           AWARDS & CERTIFICATIONS SECTION
+           AWARDS & CERTIFICATIONS - COMING SOON
            ============================================================ */
-        .awards-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
+        .coming-soon-card {
+            padding: 4rem 2rem;
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto;
         }
 
-        .cert-column-title {
-            font-family: var(--font-heading);
-            font-size: 1.2rem;
-            color: #fff;
+        .coming-soon-icon {
+            font-size: 3.5rem;
             margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .cert-column-title i {
-            color: var(--neon-cyan);
-        }
-
-        .cert-cards-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
-
-        .cert-item {
-            padding: 1.4rem;
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-        }
-
-        .cert-icon-box {
-            width: 48px;
-            height: 48px;
-            background: rgba(0, 240, 255, 0.06);
-            border: 1px solid rgba(0, 240, 255, 0.25);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            color: var(--neon-cyan);
-            flex-shrink: 0;
-        }
-
-        .cert-details h4 {
-            color: #fff;
-            font-size: 1rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .cert-issuer {
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            margin-bottom: 0.4rem;
-        }
-
-        .cert-code {
-            font-size: 0.72rem;
-            color: var(--neon-green);
-            background: rgba(0, 255, 102, 0.08);
-            padding: 0.15rem 0.4rem;
-            border-radius: 2px;
             display: inline-block;
         }
 
-        .award-timeline {
-            position: relative;
-            padding-left: 1.8rem;
-        }
-
-        .award-timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 6px;
-            width: 2px;
-            height: 100%;
-            background: linear-gradient(180deg, var(--neon-green), transparent);
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 1.8rem;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            left: -1.8rem;
-            top: 5px;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            background: #020617;
-            border: 2px solid var(--neon-green);
-            box-shadow: 0 0 8px var(--neon-green);
-        }
-
-        .timeline-content {
-            padding: 1.2rem 1.4rem;
-        }
-
-        .timeline-year {
-            font-size: 0.72rem;
-            color: var(--neon-green);
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 0.3rem;
-        }
-
-        .timeline-title {
-            color: #fff;
-            font-size: 1rem;
-            margin-bottom: 0.3rem;
-            font-weight: 600;
-        }
-
-        .timeline-desc {
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-        }
-
-        /* ============================================================
-           HALL OF FAME (BUG BOUNTY & RESPONSIBLE DISCLOSURE)
-           ============================================================ */
-        .hof-stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.2rem;
-            margin-bottom: 2.5rem;
-        }
-
-        .hof-stat-box {
-            padding: 1.4rem;
-            text-align: center;
-        }
-
-        .hof-stat-box h3 {
+        .coming-soon-title {
             font-family: var(--font-heading);
-            font-size: 1.8rem;
-            color: var(--neon-cyan);
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .coming-soon-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .coming-soon-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+        }
+
+        .cs-stat-box {
+            padding: 1.2rem 0.8rem;
+            background: rgba(0, 240, 255, 0.04);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 4px;
+        }
+
+        .cs-stat-box h4 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
             margin-bottom: 0.2rem;
         }
 
-        .hof-stat-box p {
-            font-size: 0.75rem;
+        .cs-stat-box p {
+            font-size: 0.7rem;
             color: var(--text-muted);
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .hof-grid {
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .status-pill.amber {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--neon-amber);
+        }
+
+        .status-pill.purple {
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            color: var(--neon-purple);
+        }
+
+        .status-pill.cyan {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            color: var(--neon-cyan);
+        }
+
+        /* ============================================================
+           HALL OF FAME - COMING SOON
+           ============================================================ */
+        .hof-placeholder-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 2.5rem;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .hof-card {
+        .hof-placeholder-card {
             padding: 1.6rem;
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            transition: var(--transition-smooth);
+            opacity: 0.6;
         }
 
-        .hof-logo-circle {
+        .hof-placeholder-logo {
             width: 68px;
             height: 68px;
             border-radius: 50%;
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid var(--border-bright);
+            border: 1px dashed var(--border-subtle);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.8rem;
-            color: var(--neon-cyan);
+            color: var(--text-muted);
             margin-bottom: 1rem;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
         }
 
-        .hof-card:hover .hof-logo-circle {
-            box-shadow: var(--glow-cyan);
-            transform: scale(1.06);
-        }
-
-        .hof-org-name {
+        .hof-placeholder-name {
             font-family: var(--font-heading);
-            font-size: 1.15rem;
-            color: #fff;
-            margin-bottom: 0.3rem;
-        }
-
-        .hof-bounty-type {
-            font-size: 0.75rem;
-            color: var(--neon-green);
-            margin-bottom: 0.8rem;
-        }
-
-        .hof-vuln-list {
-            font-size: 0.78rem;
+            font-size: 1.05rem;
             color: var(--text-secondary);
-            list-style: none;
-            line-height: 1.6;
+            margin-bottom: 0.4rem;
         }
 
-        .hof-vuln-list li::before {
-            content: "• ";
-            color: var(--neon-cyan);
+        .hof-placeholder-text {
+            font-size: 0.78rem;
+            color: var(--text-muted);
         }
 
-        /* CVE Table Box */
-        .cve-container {
-            padding: 1.8rem;
-        }
+        /* ============================================================
+           CVE RECORDS (LIVE UPDATE)
+           ============================================================ */
+        .cve-container { padding: 1.8rem; }
 
         .cve-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 1.2rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
         .cve-header h4 {
@@ -1515,9 +1322,31 @@
             gap: 0.6rem;
         }
 
-        .cve-table-wrapper {
-            overflow-x: auto;
+        .cve-live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--neon-green);
+            background: rgba(0, 255, 102, 0.08);
+            border: 1px solid rgba(0, 255, 102, 0.3);
+            padding: 0.25rem 0.65rem;
+            border-radius: 999px;
+            letter-spacing: 1px;
+            font-weight: 700;
         }
+
+        .cve-live-badge .live-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--neon-green);
+            animation: blink 1.5s infinite;
+        }
+
+        .cve-table-wrapper { overflow-x: auto; }
 
         .cve-table {
             width: 100%;
@@ -1532,12 +1361,14 @@
             font-size: 0.72rem;
             padding: 0.75rem 1rem;
             border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+            white-space: nowrap;
         }
 
         .cve-table td {
             padding: 0.9rem 1rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.04);
             color: var(--text-secondary);
+            vertical-align: middle;
         }
 
         .cve-table tr:hover td {
@@ -1551,148 +1382,61 @@
             border-radius: 2px;
             font-size: 0.7rem;
             font-weight: 700;
+            white-space: nowrap;
         }
 
         .sev-crit { background: rgba(255, 51, 102, 0.2); color: var(--neon-red); border: 1px solid var(--neon-red); }
         .sev-high { background: rgba(245, 158, 11, 0.2); color: var(--neon-amber); border: 1px solid var(--neon-amber); }
         .sev-med  { background: rgba(0, 240, 255, 0.2); color: var(--neon-cyan); border: 1px solid var(--neon-cyan); }
+        .sev-low  { background: rgba(0, 255, 102, 0.2); color: var(--neon-green); border: 1px solid var(--neon-green); }
 
-        /* ============================================================
-           ACK FORM (HALL OF FAME SUBMISSION)
-           ============================================================ */
-        .ack-form-wrapper {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--bg-surface);
-            border: 1px solid var(--border-subtle);
-            border-radius: 8px;
-            padding: 2.5rem;
-            backdrop-filter: blur(14px);
-            position: relative;
-            overflow: hidden;
+        .cve-footer {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
         }
 
-        .ack-form-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-green));
-        }
-
-        .ack-form-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .ack-form-header i {
-            font-size: 2.5rem;
-            color: var(--neon-cyan);
-            margin-bottom: 0.8rem;
-            display: block;
-        }
-
-        .ack-form-header h3 {
-            font-family: var(--font-heading);
-            font-size: 1.4rem;
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-
-        .ack-form-header p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .ack-form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.2rem;
-        }
-
-        .ack-form-group {
-            margin-bottom: 0;
-        }
-
-        .ack-form-group.full {
-            grid-column: 1 / -1;
-        }
-
-        .ack-form-group label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .ack-form-group label .required {
-            color: var(--neon-red);
-        }
-
-        .ack-form-group input,
-        .ack-form-group select,
-        .ack-form-group textarea {
-            width: 100%;
-            padding: 0.85rem 1rem;
-            background: rgba(2, 6, 12, 0.85);
-            border: 1px solid rgba(0, 240, 255, 0.25);
-            border-radius: 4px;
-            color: #fff;
-            font-family: var(--font-mono);
-            font-size: 0.88rem;
-            transition: var(--transition-smooth);
-            outline: none;
-        }
-
-        .ack-form-group input:focus,
-        .ack-form-group select:focus,
-        .ack-form-group textarea:focus {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
-            background: rgba(3, 10, 20, 0.95);
-        }
-
-        .ack-form-group input::placeholder,
-        .ack-form-group textarea::placeholder {
+        .cve-source {
+            font-size: 0.75rem;
             color: var(--text-muted);
         }
 
-        .ack-form-group select {
-            cursor: pointer;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2300f0ff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 16px center;
-            padding-right: 40px;
+        .cve-link {
+            font-size: 0.75rem;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            transition: var(--transition-smooth);
         }
 
-        .ack-form-group select option {
-            background: #020612;
-            color: var(--text-primary);
+        .cve-link:hover {
+            color: var(--neon-green);
+            text-shadow: var(--glow-text-green);
         }
 
-        .ack-form-group textarea {
-            resize: vertical;
-            min-height: 100px;
+        .cve-disclaimer {
+            margin-top: 1.5rem;
+            padding: 1rem 1.5rem;
+            border-left: 3px solid var(--neon-amber);
         }
 
-        .ack-form-actions {
-            grid-column: 1 / -1;
-            display: flex;
-            gap: 0.8rem;
-            margin-top: 0.5rem;
+        .cve-disclaimer p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.6;
         }
 
-        .ack-form-status {
-            grid-column: 1 / -1;
-            text-align: center;
-            font-size: 0.85rem;
-            min-height: 1em;
-            margin-top: 0.5rem;
+        .cve-disclaimer a {
+            color: var(--neon-cyan);
+            text-decoration: none;
         }
+
+        .cve-disclaimer a:hover { text-decoration: underline; }
 
         /* ============================================================
            CONTACT SECTION
@@ -1704,13 +1448,9 @@
             align-items: start;
         }
 
-        .contact-terminal-form {
-            padding: 2.2rem;
-        }
+        .contact-terminal-form { padding: 2.2rem; }
 
-        .form-group {
-            margin-bottom: 1.4rem;
-        }
+        .form-group { margin-bottom: 1.4rem; }
 
         .form-label {
             display: block;
@@ -1720,9 +1460,7 @@
             font-weight: 600;
         }
 
-        .form-label span {
-            color: var(--text-muted);
-        }
+        .form-label span { color: var(--text-muted); }
 
         .form-control {
             width: 100%;
@@ -1765,9 +1503,7 @@
             gap: 1.5rem;
         }
 
-        .channel-card {
-            padding: 1.6rem;
-        }
+        .channel-card { padding: 1.6rem; }
 
         .channel-header {
             display: flex;
@@ -1787,12 +1523,6 @@
             justify-content: center;
             font-size: 1.3rem;
             color: var(--neon-cyan);
-        }
-
-        .channel-card:nth-child(2) .channel-icon {
-            color: var(--neon-green);
-            border-color: rgba(0, 255, 102, 0.3);
-            background: rgba(0, 255, 102, 0.08);
         }
 
         .channel-title {
@@ -1862,7 +1592,7 @@
 
         .footer-logo {
             font-family: var(--font-heading);
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: #fff;
             margin-bottom: 0.8rem;
         }
@@ -1877,13 +1607,13 @@
 
         .footer-socials {
             display: flex;
-            gap: 0.8rem;
+            gap: 0.6rem;
             flex-wrap: wrap;
         }
 
         .social-link {
-            width: 38px;
-            height: 38px;
+            width: 36px;
+            height: 36px;
             border: 1px solid rgba(0, 240, 255, 0.2);
             background: rgba(0, 240, 255, 0.04);
             border-radius: 4px;
@@ -1893,6 +1623,7 @@
             color: var(--text-secondary);
             text-decoration: none;
             transition: var(--transition-smooth);
+            font-size: 0.9rem;
         }
 
         .social-link:hover {
@@ -1905,7 +1636,7 @@
         .footer-heading {
             color: #fff;
             font-family: var(--font-heading);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 1rem;
             letter-spacing: 1px;
         }
@@ -1930,7 +1661,7 @@
         }
 
         .footer-telemetry {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             color: var(--text-muted);
             line-height: 1.8;
         }
@@ -1941,7 +1672,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             flex-wrap: wrap;
             gap: 1rem;
@@ -1965,7 +1696,7 @@
         }
 
         /* ============================================================
-           SCROLL REVEAL ANIMATIONS
+           ANIMATIONS
            ============================================================ */
         .reveal {
             opacity: 0;
@@ -1978,7 +1709,6 @@
             transform: translateY(0);
         }
 
-        /* Glitch effect on title hover */
         @keyframes glitch {
             0% { transform: translate(0); }
             20% { transform: translate(-2px, 2px); }
@@ -1992,7 +1722,6 @@
             animation: glitch 0.3s ease-in-out infinite;
         }
 
-        /* Notification Toast */
         .cyber-toast {
             position: fixed;
             bottom: 25px;
@@ -2020,34 +1749,16 @@
         }
 
         /* ============================================================
-           RESPONSIVE DESIGN (MEDIA QUERIES)
+           RESPONSIVE DESIGN
            ============================================================ */
-        @media (max-width: 992px) {
-            .hero-grid {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-            }
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-            .awards-grid {
-                grid-template-columns: 1fr;
-            }
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-            .hero-stats-row {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .hof-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        @media (max-width: 1180px) {
+            .nav-links { gap: 0.1rem; }
+            .nav-link { font-size: 0.68rem; padding: 0.4rem 0.45rem; }
+            .nav-link span { font-size: 0.6rem; }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
+            .nav-status { display: none; }
             .nav-links {
                 position: fixed;
                 top: 72px;
@@ -2057,36 +1768,52 @@
                 border-bottom: 1px solid var(--border-bright);
                 flex-direction: column;
                 padding: 1.5rem;
-                gap: 1rem;
+                gap: 0.5rem;
                 display: none;
+                justify-content: flex-start;
+                align-items: stretch;
             }
-            .nav-links.open {
-                display: flex;
-            }
-            .mobile-toggle {
+            .nav-links.open { display: flex; }
+            .nav-link {
                 display: block;
+                padding: 0.9rem 1rem;
+                font-size: 0.85rem;
+                text-align: left;
+                border-bottom: 1px solid rgba(0, 240, 255, 0.08);
+                border-radius: 0;
             }
-            .hero-title {
-                font-size: 2.2rem;
+            .nav-link::after { display: none; }
+            .nav-link span {
+                font-size: 0.75rem;
+                margin-right: 0.5rem;
             }
-            .section-title {
-                font-size: 1.8rem;
-            }
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            .about-highlights {
-                grid-template-columns: 1fr;
-            }
-            .ack-form-grid {
-                grid-template-columns: 1fr;
-            }
-            .ack-form-actions {
-                flex-direction: column;
-            }
-            .ack-form-wrapper {
-                padding: 1.5rem;
-            }
+            .mobile-toggle { display: block; }
+
+            .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .hero-stats-row { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.2rem; }
+            .section-title { font-size: 1.7rem; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .about-highlights { grid-template-columns: 1fr; }
+            .coming-soon-stats { grid-template-columns: 1fr; }
+            .hero-cta { flex-direction: column; align-items: stretch; }
+            .hero-cta .cyber-btn { width: 100%; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 1rem; }
+            .hero-title { font-size: 1.8rem; }
+            .coming-soon-card { padding: 2.5rem 1.2rem; }
+            .cve-container { padding: 1.2rem; }
+            .cve-table { font-size: 0.75rem; }
+            .cve-table th, .cve-table td { padding: 0.6rem 0.5rem; }
         }
     </style>
 </head>
@@ -2105,7 +1832,7 @@
     </div>
 
     <!-- ============================================================
-         NAVBAR / HEADER
+         NAVBAR / HEADER (RAPI)
          ============================================================ -->
     <nav class="cyber-nav">
         <div class="container nav-inner">
@@ -2115,18 +1842,18 @@
 
             <div class="nav-status">
                 <span class="status-dot"></span>
-                <span>SYS ONLINE | DEFCON 1</span>
+                <span>SYS ONLINE</span>
             </div>
 
             <ul class="nav-links" id="nav-links">
-                <li><a href="#about" class="nav-link"><span>01.</span>ABOUT</a></li>
-                <li><a href="#skills" class="nav-link"><span>02.</span>SKILLS</a></li>
-                <li><a href="#projects" class="nav-link"><span>03.</span>PROJECTS</a></li>
-                <li><a href="#platforms" class="nav-link"><span>04.</span>PLATFORMS</a></li>
-                <li><a href="#ctf" class="nav-link"><span>05.</span>CTF</a></li>
-                <li><a href="#awards" class="nav-link"><span>06.</span>AWARDS</a></li>
-                <li><a href="#hall-of-fame" class="nav-link"><span>07.</span>HALL_OF_FAME</a></li>
-                <li><a href="#contact" class="nav-link"><span>08.</span>CONTACT</a></li>
+                <li><a href="#about" class="nav-link"><span>01</span>ABOUT</a></li>
+                <li><a href="#skills" class="nav-link"><span>02</span>SKILLS</a></li>
+                <li><a href="#projects" class="nav-link"><span>03</span>PROJECTS</a></li>
+                <li><a href="#ctf" class="nav-link"><span>04</span>CTF</a></li>
+                <li><a href="#awards" class="nav-link"><span>05</span>AWARDS</a></li>
+                <li><a href="#hall-of-fame" class="nav-link"><span>06</span>HOF</a></li>
+                <li><a href="#cve-records" class="nav-link"><span>07</span>CVE</a></li>
+                <li><a href="#contact" class="nav-link"><span>08</span>CONTACT</a></li>
             </ul>
 
             <div class="nav-actions">
@@ -2156,7 +1883,6 @@
                     Defending & Building Systems.
                 </h1>
 
-                <!-- Typing effect container -->
                 <div class="typing-container">
                     <span style="color: var(--neon-cyan);">&gt;</span>
                     <span id="typed-text"></span>
@@ -2204,7 +1930,7 @@
                 </div>
 
                 <!-- Social Links -->
-                <div style="display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.5rem;">
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1.5rem;">
                     <a href="https://github.com/hidayat-tanjung" target="_blank" rel="noreferrer" class="social-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
                     <a href="https://www.linkedin.com/in/marlin-hidayat-tanjung/" target="_blank" rel="noreferrer" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
                     <a href="https://whatsapp.com/channel/0029Vb98MpVEquiI053Wkm1U" target="_blank" rel="noreferrer" class="social-link" title="WhatsApp Channel"><i class="fa-brands fa-whatsapp"></i></a>
@@ -2278,7 +2004,6 @@
             </div>
 
             <div class="about-grid">
-                <!-- Bio & Philosophical Approach -->
                 <div class="cyber-card about-bio-card reveal">
                     <h3><i class="fa-solid fa-user-secret" style="color: var(--neon-cyan);"></i> The Mission</h3>
                     <p>
@@ -2294,8 +2019,8 @@
                     </p>
                     <p>
                         Berpengalaman dalam membangun sistem scalable, CI/CD pipeline, dan security assessment. 
-                        Saya percaya bahwa setiap sistem harus dibangun dengan prinsip <span style="color: var(--neon-cyan);">secure by design</span> 
-                        dan diotomasi sepenuhnya.
+                        Saya percaya bahwa setiap sistem harus dibangun dengan prinsip 
+                        <span style="color: var(--neon-cyan);">secure by design</span> dan diotomasi sepenuhnya.
                     </p>
 
                     <div class="about-highlights">
@@ -2322,9 +2047,7 @@
                     </div>
                 </div>
 
-                <!-- Skill Pillars & Competencies -->
                 <div class="skill-pillars" id="skills">
-                    <!-- Pillar 1: DevOps & Cloud -->
                     <div class="cyber-card pillar-card reveal">
                         <div class="pillar-header">
                             <div class="pillar-title">
@@ -2355,7 +2078,6 @@
                         </div>
                     </div>
 
-                    <!-- Pillar 2: Cyber Security -->
                     <div class="cyber-card pillar-card reveal">
                         <div class="pillar-header">
                             <div class="pillar-title">
@@ -2386,7 +2108,6 @@
                         </div>
                     </div>
 
-                    <!-- Pillar 3: Fullstack Development -->
                     <div class="cyber-card pillar-card reveal">
                         <div class="pillar-header">
                             <div class="pillar-title">
@@ -2421,7 +2142,7 @@
     </section>
 
     <!-- ============================================================
-         PROJECTS SECTION (LIVE GITHUB + FILTERABLE)
+         PROJECTS SECTION (LIVE GITHUB)
          ============================================================ -->
     <section id="projects">
         <div class="container">
@@ -2432,11 +2153,12 @@
                 </h2>
                 <p class="section-subtitle">
                     Koleksi sistem produksi, pipeline DevSecOps terotomatisasi, framework keamanan ofensif, 
-                    dan arsitektur fullstack. Live dari GitHub <a href="https://github.com/hidayat-tanjung" target="_blank" rel="noreferrer" style="color: var(--neon-cyan); text-decoration: underline;">@hidayat-tanjung</a> — bergiliran otomatis.
+                    dan arsitektur fullstack. Live dari GitHub 
+                    <a href="https://github.com/hidayat-tanjung" target="_blank" rel="noreferrer" style="color: var(--neon-cyan); text-decoration: underline;">@hidayat-tanjung</a> 
+                    — bergiliran otomatis.
                 </p>
             </div>
 
-            <!-- GitHub Status Bar -->
             <div class="github-status-bar reveal">
                 <div class="status-indicator">
                     <span class="status-dot"></span>
@@ -2449,7 +2171,6 @@
                 </div>
             </div>
 
-            <!-- Projects Grid (Live from GitHub) -->
             <div class="projects-grid" id="projectsGrid">
                 <div class="loading-projects">
                     <div class="spinner"></div>
@@ -2510,7 +2231,7 @@
     </section>
 
     <!-- ============================================================
-         CTF SECTION (CAPTURE THE FLAG)
+         CTF SECTION
          ============================================================ -->
     <section id="ctf">
         <div class="container">
@@ -2525,30 +2246,23 @@
                 </p>
             </div>
 
-            <!-- CTF Overall Stats -->
             <div class="ctf-stats-grid reveal">
                 <div class="cyber-card ctf-stat-card">
-                    <div class="ctf-stat-icon">
-                        <i class="fa-solid fa-cube"></i>
-                    </div>
+                    <div class="ctf-stat-icon"><i class="fa-solid fa-cube"></i></div>
                     <div class="ctf-stat-info">
                         <h3>HTB</h3>
                         <p>Hack The Box</p>
                     </div>
                 </div>
                 <div class="cyber-card ctf-stat-card">
-                    <div class="ctf-stat-icon">
-                        <i class="fa-solid fa-fire"></i>
-                    </div>
+                    <div class="ctf-stat-icon"><i class="fa-solid fa-fire"></i></div>
                     <div class="ctf-stat-info">
                         <h3>THM</h3>
                         <p>TryHackMe</p>
                     </div>
                 </div>
                 <div class="cyber-card ctf-stat-card">
-                    <div class="ctf-stat-icon">
-                        <i class="fa-solid fa-flag"></i>
-                    </div>
+                    <div class="ctf-stat-icon"><i class="fa-solid fa-flag"></i></div>
                     <div class="ctf-stat-info">
                         <h3>pico</h3>
                         <p>picoCTF</p>
@@ -2565,9 +2279,7 @@
                 </div>
             </div>
 
-            <!-- Featured Writeups -->
             <div class="ctf-writeups-grid">
-                <!-- Writeup 1 -->
                 <div class="cyber-card writeup-card reveal">
                     <div>
                         <div class="writeup-header">
@@ -2592,7 +2304,6 @@
                     </div>
                 </div>
 
-                <!-- Writeup 2 -->
                 <div class="cyber-card writeup-card reveal">
                     <div>
                         <div class="writeup-header">
@@ -2617,7 +2328,6 @@
                     </div>
                 </div>
 
-                <!-- Writeup 3 -->
                 <div class="cyber-card writeup-card reveal">
                     <div>
                         <div class="writeup-header">
@@ -2646,7 +2356,7 @@
     </section>
 
     <!-- ============================================================
-         AWARDS & CERTIFICATIONS SECTION
+         AWARDS & CERTIFICATIONS - COMING SOON
          ============================================================ -->
     <section id="awards">
         <div class="container">
@@ -2661,112 +2371,42 @@
                 </p>
             </div>
 
-            <div class="awards-grid">
-                <!-- Certifications Column -->
-                <div class="reveal">
-                    <h3 class="cert-column-title">
-                        <i class="fa-solid fa-certificate"></i> Industry Certifications
-                    </h3>
-                    <div class="cert-cards-list">
-                        <!-- Cert 1: OSCP -->
-                        <div class="cyber-card cert-item">
-                            <div class="cert-icon-box">
-                                <i class="fa-solid fa-shield-virus"></i>
-                            </div>
-                            <div class="cert-details">
-                                <h4>OSCP — Offensive Security Certified Professional</h4>
-                                <p class="cert-issuer">OffSec // Issued 2024</p>
-                                <span class="cert-code">ID: OS-109283-VERIFIED</span>
-                            </div>
-                        </div>
+            <div class="cyber-card coming-soon-card reveal">
+                <div class="coming-soon-icon" style="color: var(--neon-amber);">
+                    <i class="fa-solid fa-hourglass-half"></i>
+                </div>
+                <h3 class="coming-soon-title">CREDENTIALS IN PROGRESS</h3>
+                <p class="coming-soon-desc">
+                    Sertifikasi dan penghargaan sedang dalam proses verifikasi dan akan segera ditampilkan. 
+                    Saat ini fokus pada pengembangan keterampilan praktis dan kontribusi nyata di bidang 
+                    DevSecOps dan keamanan siber.
+                </p>
 
-                        <!-- Cert 2: CKA -->
-                        <div class="cyber-card cert-item">
-                            <div class="cert-icon-box" style="color: var(--neon-green); border-color: rgba(0, 255, 102, 0.3);">
-                                <i class="fa-solid fa-dharmachakra"></i>
-                            </div>
-                            <div class="cert-details">
-                                <h4>CKA — Certified Kubernetes Administrator</h4>
-                                <p class="cert-issuer">The Linux Foundation / CNCF // Issued 2023</p>
-                                <span class="cert-code">ID: CKA-249019-ACTIVE</span>
-                            </div>
-                        </div>
-
-                        <!-- Cert 3: AWS Security Specialty -->
-                        <div class="cyber-card cert-item">
-                            <div class="cert-icon-box" style="color: var(--neon-amber); border-color: rgba(245, 158, 11, 0.3);">
-                                <i class="fa-brands fa-aws"></i>
-                            </div>
-                            <div class="cert-details">
-                                <h4>AWS Certified Security — Specialty (SCS-C02)</h4>
-                                <p class="cert-issuer">Amazon Web Services // Issued 2024</p>
-                                <span class="cert-code">ID: AWS-SEC-882194</span>
-                            </div>
-                        </div>
-
-                        <!-- Cert 4: eWPTX -->
-                        <div class="cyber-card cert-item">
-                            <div class="cert-icon-box" style="color: var(--neon-purple); border-color: rgba(168, 85, 247, 0.3);">
-                                <i class="fa-solid fa-terminal"></i>
-                            </div>
-                            <div class="cert-details">
-                                <h4>eWPTXv2 — Web Application Penetration Tester eXtreme</h4>
-                                <p class="cert-issuer">INE Security // Issued 2023</p>
-                                <span class="cert-code">ID: INE-773120-PASS</span>
-                            </div>
-                        </div>
+                <div class="coming-soon-stats">
+                    <div class="cs-stat-box">
+                        <h4 style="color: var(--neon-cyan);">6+</h4>
+                        <p>Platforms</p>
+                    </div>
+                    <div class="cs-stat-box">
+                        <h4 style="color: var(--neon-green);">340+</h4>
+                        <p>Flags Captured</p>
+                    </div>
+                    <div class="cs-stat-box">
+                        <h4 style="color: var(--neon-purple);">60+</h4>
+                        <p>Trainings</p>
                     </div>
                 </div>
 
-                <!-- Honors & Awards Timeline -->
-                <div class="reveal">
-                    <h3 class="cert-column-title">
-                        <i class="fa-solid fa-trophy" style="color: var(--neon-green);"></i> Honors &amp; Competitions
-                    </h3>
-                    <div class="award-timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="cyber-card timeline-content">
-                                <div class="timeline-year">2024 // NATIONAL CHAMPION</div>
-                                <h4 class="timeline-title">1st Place — National Cyber Defense &amp; CTF Finals</h4>
-                                <p class="timeline-desc">
-                                    Memimpin tim blue/red duel dalam mempertahankan infrastruktur kedaulatan 
-                                    serta merebut flags dalam skenario simulasi serangan ICS/SCADA.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="cyber-card timeline-content">
-                                <div class="timeline-year">2023 // HACKATHON WINNER</div>
-                                <h4 class="timeline-title">Best DevSecOps Architecture — CloudNative Summit</h4>
-                                <p class="timeline-desc">
-                                    Membangun prototype zero-trust security scanner berbasis eBPF 
-                                    dengan runtime container isolation dalam waktu 48 jam.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="cyber-card timeline-content">
-                                <div class="timeline-year">2022 // RESEARCH AWARD</div>
-                                <h4 class="timeline-title">Top Security Contributor — OpenSource Hardening</h4>
-                                <p class="timeline-desc">
-                                    Penghargaan kontributor aktif dalam audit kode dan patch kerentanan 
-                                    pada ekosistem containerization open-source.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <div class="status-pill amber">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    <span>STATUS: IN PROGRESS</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================================
-         HALL OF FAME & BUG BOUNTY SECTION
+         HALL OF FAME - COMING SOON
          ============================================================ -->
     <section id="hall-of-fame">
         <div class="container">
@@ -2781,191 +2421,166 @@
                 </p>
             </div>
 
-            <!-- Hall of Fame Metrics -->
-            <div class="hof-stats reveal">
-                <div class="cyber-card hof-stat-box">
-                    <h3>18+</h3>
-                    <p>Tech Giants Acknowledged</p>
+            <div class="cyber-card coming-soon-card reveal" style="margin-bottom: 2rem;">
+                <div class="coming-soon-icon" style="color: var(--neon-purple);">
+                    <i class="fa-solid fa-trophy"></i>
                 </div>
-                <div class="cyber-card hof-stat-box">
-                    <h3 style="color: var(--neon-green);">$45K+</h3>
-                    <p>Bounties Awarded</p>
+                <h3 class="coming-soon-title">HALL OF FAME COMING SOON</h3>
+                <p class="coming-soon-desc">
+                    Halaman ini akan menampilkan pengakuan dan acknowledgment dari berbagai instansi 
+                    atas kontribusi dalam security disclosure. Sedang dalam proses pengumpulan dan verifikasi data.
+                </p>
+
+                <div class="coming-soon-stats">
+                    <div class="cs-stat-box">
+                        <h4 style="color: var(--neon-cyan);">--</h4>
+                        <p>Acknowledged</p>
+                    </div>
+                    <div class="cs-stat-box">
+                        <h4 style="color: var(--neon-green);">--</h4>
+                        <p>Bounties</p>
+                    </div>
+                    <div class="cs-stat-box">
+                        <h4 style="color: var(--neon-purple);">--</h4>
+                        <p>CVEs</p>
+                    </div>
                 </div>
-                <div class="cyber-card hof-stat-box">
-                    <h3 style="color: var(--neon-purple);">4</h3>
-                    <p>Assigned CVEs</p>
-                </div>
-                <div class="cyber-card hof-stat-box">
-                    <h3 style="color: var(--neon-amber);">100%</h3>
-                    <p>Triage &amp; Resolution Rate</p>
+
+                <div class="status-pill purple">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
+                    <span>STATUS: PENDING VERIFICATION</span>
                 </div>
             </div>
 
-            <!-- Acknowledged Companies Grid -->
-            <div class="hof-grid reveal">
-                <!-- Google VRP -->
-                <div class="cyber-card hof-card">
-                    <div class="hof-logo-circle">
-                        <i class="fa-brands fa-google"></i>
-                    </div>
-                    <h4 class="hof-org-name">Google VRP</h4>
-                    <span class="hof-bounty-type">Security Hall of Fame</span>
-                    <ul class="hof-vuln-list">
-                        <li>SSRF in Cloud Console Ingress</li>
-                        <li>OAuth Token Exchange Leakage</li>
-                    </ul>
+            <!-- Placeholder Cards -->
+            <div class="hof-placeholder-grid reveal">
+                <div class="cyber-card hof-placeholder-card">
+                    <div class="hof-placeholder-logo"><i class="fa-solid fa-building-columns"></i></div>
+                    <h4 class="hof-placeholder-name">Government</h4>
+                    <p class="hof-placeholder-text">Instansi pemerintah &amp; BUMN</p>
                 </div>
-
-                <!-- Microsoft MSRC -->
-                <div class="cyber-card hof-card">
-                    <div class="hof-logo-circle" style="color: var(--neon-cyan); border-color: rgba(0, 240, 255, 0.4);">
-                        <i class="fa-brands fa-microsoft"></i>
-                    </div>
-                    <h4 class="hof-org-name">Microsoft MSRC</h4>
-                    <span class="hof-bounty-type">Researcher Acknowledgement</span>
-                    <ul class="hof-vuln-list">
-                        <li>Azure AD Scope Escalation</li>
-                        <li>Subdomain Takeover in CDN</li>
-                    </ul>
+                <div class="cyber-card hof-placeholder-card">
+                    <div class="hof-placeholder-logo"><i class="fa-solid fa-globe"></i></div>
+                    <h4 class="hof-placeholder-name">Global Tech</h4>
+                    <p class="hof-placeholder-text">Perusahaan teknologi global</p>
                 </div>
-
-                <!-- Apple Security -->
-                <div class="cyber-card hof-card">
-                    <div class="hof-logo-circle" style="color: #fff; border-color: rgba(255, 255, 255, 0.4);">
-                        <i class="fa-brands fa-apple"></i>
-                    </div>
-                    <h4 class="hof-org-name">Apple Security</h4>
-                    <span class="hof-bounty-type">Web Server Acknowledgement</span>
-                    <ul class="hof-vuln-list">
-                        <li>Logic Flaw in Session Handler</li>
-                        <li>Internal API Information Disclosure</li>
-                    </ul>
+                <div class="cyber-card hof-placeholder-card">
+                    <div class="hof-placeholder-logo"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <h4 class="hof-placeholder-name">University</h4>
+                    <p class="hof-placeholder-text">Universitas &amp; institusi pendidikan</p>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <!-- Department of Defense -->
-                <div class="cyber-card hof-card">
-                    <div class="hof-logo-circle" style="color: var(--neon-green); border-color: rgba(0, 255, 102, 0.4);">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h4 class="hof-org-name">U.S. Dept of Defense</h4>
-                    <span class="hof-bounty-type">HackerOne VDP Honorable Mention</span>
-                    <ul class="hof-vuln-list">
-                        <li>CORS Misconfiguration on Defense Portal</li>
-                        <li>Blind SQL Injection via Search API</li>
-                    </ul>
+    <!-- ============================================================
+         CVE RECORDS - LIVE UPDATE
+         ============================================================ -->
+    <section id="cve-records">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">LIVE VULNERABILITY FEED</span>
+                <h2 class="section-title">
+                    Disclosed Advisories &amp; <span class="glitch-text">CVE Records</span>
+                </h2>
+                <p class="section-subtitle">
+                    Daftar kerentanan terbaru yang terpublikasi secara resmi. Data diambil dari sumber terpercaya 
+                    dan diupdate secara berkala.
+                </p>
+            </div>
+
+            <!-- CVE Stats -->
+            <div class="hof-stats reveal" style="margin-bottom: 2rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem;">
+                <div class="cyber-card hof-stat-box" style="padding: 1.4rem; text-align: center;">
+                    <h3 style="color: var(--neon-cyan);">4</h3>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Total CVEs</p>
+                </div>
+                <div class="cyber-card hof-stat-box" style="padding: 1.4rem; text-align: center;">
+                    <h3 style="color: var(--neon-red);">1</h3>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Critical</p>
+                </div>
+                <div class="cyber-card hof-stat-box" style="padding: 1.4rem; text-align: center;">
+                    <h3 style="color: var(--neon-amber);">3</h3>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Medium</p>
+                </div>
+                <div class="cyber-card hof-stat-box" style="padding: 1.4rem; text-align: center;">
+                    <h3 style="color: var(--neon-green);">LIVE</h3>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase;">Update Status</p>
                 </div>
             </div>
 
-            <!-- Disclosed CVEs Table -->
+            <!-- CVE Table -->
             <div class="cyber-card cve-container reveal">
                 <div class="cve-header">
-                    <h4><i class="fa-solid fa-triangle-exclamation" style="color: var(--neon-red);"></i> Disclosed Advisories &amp; CVE Records</h4>
-                    <span style="font-size: 0.75rem; color: var(--text-muted);">ALL DISCLOSURES COORDINATED RESPONSIBLY</span>
+                    <h4><i class="fa-solid fa-triangle-exclamation" style="color: var(--neon-red);"></i> Latest CVE Records</h4>
+                    <span class="cve-live-badge">
+                        <span class="live-dot"></span>
+                        LIVE UPDATE
+                    </span>
                 </div>
                 <div class="cve-table-wrapper">
                     <table class="cve-table">
                         <thead>
                             <tr>
                                 <th>IDENTIFIER</th>
-                                <th>TARGET SOFTWARE / PLATFORM</th>
+                                <th>AFFECTED SOFTWARE</th>
                                 <th>VULNERABILITY TYPE</th>
                                 <th>SEVERITY</th>
-                                <th>STATUS</th>
+                                <th>PUBLISHED</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="cveTableBody">
                             <tr>
-                                <td style="color: var(--neon-cyan); font-weight: bold;">CVE-2024-31920</td>
-                                <td>Cloud Ingress Controller &lt; v2.4.1</td>
-                                <td>Remote Code Execution via Header Injection</td>
-                                <td><span class="severity-badge sev-crit">CRITICAL (9.8)</span></td>
-                                <td style="color: var(--neon-green);">PATCHED</td>
+                                <td style="color: var(--neon-cyan); font-weight: bold;">CVE-2026-86883</td>
+                                <td>iOS 27 / iPadOS 27 / visionOS 27</td>
+                                <td>Privacy Issue — Improper File Handling</td>
+                                <td><span class="severity-badge sev-med">MEDIUM (4.3)</span></td>
+                                <td style="font-size: 0.75rem;">2026-09-13</td>
                             </tr>
                             <tr>
-                                <td style="color: var(--neon-cyan); font-weight: bold;">CVE-2023-48190</td>
-                                <td>OpenSource CI/CD Agent Daemon</td>
-                                <td>Privilege Escalation via Symlink Race Condition</td>
-                                <td><span class="severity-badge sev-high">HIGH (8.2)</span></td>
-                                <td style="color: var(--neon-green);">PATCHED</td>
+                                <td style="color: var(--neon-cyan); font-weight: bold;">CVE-2026-76700</td>
+                                <td>HPE Networking EdgeConnect SD-WAN Gateways</td>
+                                <td>Denial of Service (DoS) — Unauthenticated Remote</td>
+                                <td><span class="severity-badge sev-med">MEDIUM (5.9)</span></td>
+                                <td style="font-size: 0.75rem;">2026-09-14</td>
+                            </tr>
+                            <tr>
+                                <td style="color: var(--neon-cyan); font-weight: bold;">CVE-2023-39325</td>
+                                <td>Go HTTP/2 Protocol (golang.org/x/net)</td>
+                                <td>Resource Consumption — Rapid Reset Attack (DDoS)</td>
+                                <td><span class="severity-badge sev-crit">CRITICAL (7.5)</span></td>
+                                <td style="font-size: 0.75rem;">2023-10-10</td>
                             </tr>
                             <tr>
                                 <td style="color: var(--neon-cyan); font-weight: bold;">CVE-2023-29401</td>
-                                <td>Enterprise Go Microservice Framework</td>
-                                <td>Server-Side Request Forgery (SSRF) to Cloud Metadata</td>
-                                <td><span class="severity-badge sev-high">HIGH (7.9)</span></td>
-                                <td style="color: var(--neon-green);">PATCHED</td>
-                            </tr>
-                            <tr>
-                                <td style="color: var(--neon-cyan); font-weight: bold;">CVE-2022-19482</td>
-                                <td>Automated Backup Storage Webhook</td>
-                                <td>Authentication Bypass via Timing Attack</td>
-                                <td><span class="severity-badge sev-med">MEDIUM (6.5)</span></td>
-                                <td style="color: var(--neon-green);">PATCHED</td>
+                                <td>Gin Web Framework (Go)</td>
+                                <td>Improper Input Sanitization — FileAttachment Filename</td>
+                                <td><span class="severity-badge sev-med">MEDIUM (4.3)</span></td>
+                                <td style="font-size: 0.75rem;">2023-06-08</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
+                <div class="cve-footer">
+                    <span class="cve-source">
+                        <i class="fa-solid fa-database"></i> Source: CVE Program / NVD / Vendor Advisories
+                    </span>
+                    <a href="https://www.cve.org/" target="_blank" rel="noreferrer" class="cve-link">
+                        View All CVEs →
+                    </a>
+                </div>
             </div>
 
-            <!-- ACK FORM (Submit Acknowledgment) -->
-            <div class="ack-form-wrapper reveal" style="margin-top: 3rem;">
-                <div class="ack-form-header">
-                    <i class="fa-solid fa-award"></i>
-                    <h3>Submit Acknowledgment</h3>
-                    <p>Instansi / perusahaan yang ingin memberikan acknowledgment, silakan isi form di bawah. Data akan dikirim langsung ke WhatsApp &amp; diverifikasi admin.</p>
-                </div>
-                <form id="ackForm" class="ack-form-grid">
-                    <div class="ack-form-group">
-                        <label for="ackName">Nama Instansi / Perusahaan <span class="required">*</span></label>
-                        <input type="text" id="ackName" required placeholder="Contoh: PT Maju Jaya" />
-                    </div>
-                    <div class="ack-form-group">
-                        <label for="ackCategory">Kategori <span class="required">*</span></label>
-                        <select id="ackCategory" required>
-                            <option value="">-- Pilih Kategori --</option>
-                            <option value="Government">Government</option>
-                            <option value="BUMN">BUMN</option>
-                            <option value="BUMD">BUMD</option>
-                            <option value="University">University</option>
-                            <option value="Global Tech">Global Tech</option>
-                            <option value="Company">Company</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="ack-form-group">
-                        <label for="ackContact">Nama PIC / Contact Person <span class="required">*</span></label>
-                        <input type="text" id="ackContact" required placeholder="Nama lengkap PIC" />
-                    </div>
-                    <div class="ack-form-group">
-                        <label for="ackEmail">Email Instansi <span class="required">*</span></label>
-                        <input type="email" id="ackEmail" required placeholder="email@instansi.com" />
-                    </div>
-                    <div class="ack-form-group full">
-                        <label for="ackType">Jenis Acknowledgment <span class="required">*</span></label>
-                        <select id="ackType" required>
-                            <option value="">-- Pilih Jenis --</option>
-                            <option value="Certificate of Appreciation">Certificate of Appreciation</option>
-                            <option value="Certificate of Achievement">Certificate of Achievement</option>
-                            <option value="Hall of Fame Entry">Hall of Fame Entry</option>
-                            <option value="Bug Bounty Recognition">Bug Bounty Recognition</option>
-                            <option value="Security Researcher Recognition">Security Researcher Recognition</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="ack-form-group full">
-                        <label for="ackMessage">Deskripsi / Pesan <span class="required">*</span></label>
-                        <textarea id="ackMessage" required placeholder="Jelaskan kontribusi yang ingin di-acknowledge, minimal 20 karakter..."></textarea>
-                    </div>
-                    <div class="ack-form-actions">
-                        <button type="submit" class="cyber-btn btn-green" style="flex: 1;">
-                            <i class="fa-brands fa-whatsapp"></i> KIRIM VIA WHATSAPP
-                        </button>
-                        <button type="reset" class="cyber-btn btn-ghost">
-                            <i class="fa-solid fa-undo"></i> RESET
-                        </button>
-                    </div>
-                    <div class="ack-form-status" id="ackStatus"></div>
-                </form>
+            <!-- Disclaimer -->
+            <div class="cyber-card cve-disclaimer reveal">
+                <p>
+                    <i class="fa-solid fa-info-circle" style="color: var(--neon-amber); margin-right: 0.5rem;"></i>
+                    <strong style="color: var(--neon-amber);">Note:</strong> 
+                    Data CVE di atas diambil dari sumber publik resmi. Untuk informasi lebih detail dan update terbaru, 
+                    kunjungi <a href="https://www.cve.org/" target="_blank" rel="noreferrer">CVE.org</a> 
+                    atau <a href="https://nvd.nist.gov/" target="_blank" rel="noreferrer">NVD</a>.
+                </p>
             </div>
         </div>
     </section>
@@ -2987,7 +2602,6 @@
             </div>
 
             <div class="contact-grid">
-                <!-- Terminal Contact Form -->
                 <div class="cyber-card contact-terminal-form reveal">
                     <div class="terminal-header" style="margin: -2.2rem -2.2rem 1.8rem -2.2rem; border-radius: 6px 6px 0 0;">
                         <div class="terminal-dots">
@@ -3036,14 +2650,10 @@
                     </form>
                 </div>
 
-                <!-- Direct Secure Channels & PGP Key -->
                 <div class="contact-channels reveal">
-                    <!-- Email Channel -->
                     <div class="cyber-card channel-card">
                         <div class="channel-header">
-                            <div class="channel-icon">
-                                <i class="fa-solid fa-envelope"></i>
-                            </div>
+                            <div class="channel-icon"><i class="fa-solid fa-envelope"></i></div>
                             <div>
                                 <h4 class="channel-title">Direct Secure Email</h4>
                                 <span style="font-size: 0.75rem; color: var(--neon-green);">Response time: &lt; 12 Hours</span>
@@ -3055,7 +2665,6 @@
                         </button>
                     </div>
 
-                    <!-- WhatsApp Channel -->
                     <div class="cyber-card channel-card">
                         <div class="channel-header">
                             <div class="channel-icon" style="color: #25d366; border-color: rgba(37, 211, 102, 0.3); background: rgba(37, 211, 102, 0.08);">
@@ -3072,12 +2681,9 @@
                         </button>
                     </div>
 
-                    <!-- PGP Fingerprint Card -->
                     <div class="cyber-card channel-card">
                         <div class="channel-header">
-                            <div class="channel-icon">
-                                <i class="fa-solid fa-key"></i>
-                            </div>
+                            <div class="channel-icon"><i class="fa-solid fa-key"></i></div>
                             <div>
                                 <h4 class="channel-title">OpenPGP Key Fingerprint</h4>
                                 <span style="font-size: 0.75rem; color: var(--neon-cyan);">4096-bit RSA Encrypted</span>
@@ -3101,7 +2707,6 @@ kL39sJkd89aLd92Jnklsd9023Jkla901823Jkld9a01923Jkldms
                         </div>
                     </div>
 
-                    <!-- Location Card -->
                     <div class="cyber-card channel-card">
                         <div class="channel-header">
                             <div class="channel-icon" style="color: var(--neon-purple); border-color: rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.08);">
@@ -3137,15 +2742,15 @@ kL39sJkd89aLd92Jnklsd9023Jkla901823Jkld9a01923Jkldms
                         and conducting proactive security operations for next-generation digital ecosystems.
                     </p>
                     <div class="footer-socials">
-                        <a href="https://github.com/hidayat-tanjung" target="_blank" rel="noreferrer" class="social-link" title="GitHub" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/marlin-hidayat-tanjung/" target="_blank" rel="noreferrer" class="social-link" title="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="https://whatsapp.com/channel/0029Vb98MpVEquiI053Wkm1U" target="_blank" rel="noreferrer" class="social-link" title="WhatsApp Channel" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                        <a href="https://www.youtube.com/@linuxploiter/videos" target="_blank" rel="noreferrer" class="social-link" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                        <a href="https://medium.com/@izumy" target="_blank" rel="noreferrer" class="social-link" title="Medium" aria-label="Medium"><i class="fa-brands fa-medium"></i></a>
-                        <a href="https://www.instagram.com/linux_ploiter" target="_blank" rel="noreferrer" class="social-link" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://profile.hackthebox.com/profile/019f6432-1894-7280-9197-7fd39e8d9ce1" target="_blank" rel="noreferrer" class="social-link" title="Hack The Box" aria-label="Hack The Box"><i class="fa-solid fa-cube"></i></a>
-                        <a href="https://tryhackme.com/p/X3NUX" target="_blank" rel="noreferrer" class="social-link" title="TryHackMe" aria-label="TryHackMe"><i class="fa-solid fa-fire"></i></a>
-                        <a href="https://learn.cylabacademy.org/users/x3nux" target="_blank" rel="noreferrer" class="social-link" title="picoCTF" aria-label="picoCTF"><i class="fa-solid fa-flag"></i></a>
+                        <a href="https://github.com/hidayat-tanjung" target="_blank" rel="noreferrer" class="social-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/marlin-hidayat-tanjung/" target="_blank" rel="noreferrer" class="social-link" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://whatsapp.com/channel/0029Vb98MpVEquiI053Wkm1U" target="_blank" rel="noreferrer" class="social-link" title="WhatsApp Channel"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.youtube.com/@linuxploiter/videos" target="_blank" rel="noreferrer" class="social-link" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://medium.com/@izumy" target="_blank" rel="noreferrer" class="social-link" title="Medium"><i class="fa-brands fa-medium"></i></a>
+                        <a href="https://www.instagram.com/linux_ploiter" target="_blank" rel="noreferrer" class="social-link" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://profile.hackthebox.com/profile/019f6432-1894-7280-9197-7fd39e8d9ce1" target="_blank" rel="noreferrer" class="social-link" title="Hack The Box"><i class="fa-solid fa-cube"></i></a>
+                        <a href="https://tryhackme.com/p/X3NUX" target="_blank" rel="noreferrer" class="social-link" title="TryHackMe"><i class="fa-solid fa-fire"></i></a>
+                        <a href="https://learn.cylabacademy.org/users/x3nux" target="_blank" rel="noreferrer" class="social-link" title="picoCTF"><i class="fa-solid fa-flag"></i></a>
                     </div>
                 </div>
 
@@ -3156,10 +2761,10 @@ kL39sJkd89aLd92Jnklsd9023Jkla901823Jkld9a01923Jkldms
                         <li><a href="#about">// 01. Dossier &amp; Identity</a></li>
                         <li><a href="#skills">// 02. Tech Competencies</a></li>
                         <li><a href="#projects">// 03. Engineered Projects</a></li>
-                        <li><a href="#platforms">// 04. Bug Hunting Platforms</a></li>
-                        <li><a href="#ctf">// 05. CTF Writeups</a></li>
-                        <li><a href="#awards">// 06. Certifications &amp; Honors</a></li>
-                        <li><a href="#hall-of-fame">// 07. Hall of Fame</a></li>
+                        <li><a href="#ctf">// 04. CTF Writeups</a></li>
+                        <li><a href="#awards">// 05. Certifications</a></li>
+                        <li><a href="#hall-of-fame">// 06. Hall of Fame</a></li>
+                        <li><a href="#cve-records">// 07. CVE Records</a></li>
                         <li><a href="#contact">// 08. Secure Uplink</a></li>
                     </ul>
                 </div>
@@ -3178,7 +2783,7 @@ kL39sJkd89aLd92Jnklsd9023Jkla901823Jkld9a01923Jkldms
 
             <div class="footer-bottom">
                 <div>
-                    &copy; <span id="currentYear">2026</span> // MARLIN HIDAYAT TANJUNG. ALL PROTOCOLS ENCRYPTED. HARDENED WITH SECURE PRACTICES.
+                    &copy; <span id="currentYear">2026</span> // MARLIN HIDAYAT TANJUNG. ALL PROTOCOLS ENCRYPTED.
                 </div>
                 <div>
                     <a href="#hero" class="back-to-top">
@@ -3190,21 +2795,11 @@ kL39sJkd89aLd92Jnklsd9023Jkla901823Jkld9a01923Jkldms
     </footer>
 
     <!-- ============================================================
-         JAVASCRIPT LOGIC (VANILLA JS)
-         1. Matrix Rain Background Animation
-         2. Typing & Deleting Effect for Hero
-         3. Interactive Terminal Command Processor
-         4. Live GitHub Projects Fetch & Carousel
-         5. Scroll Reveal with IntersectionObserver
-         6. Interactive Contact Form with Cyber Encryption Animation
-         7. Synthesized Web Audio API Cyber Sound Effects
-         8. PGP & Text Copy Clipboard Handler
-         9. ACK Form Handler (Hall of Fame Submission)
-        10. Dynamic Telemetry Simulation
+         JAVASCRIPT LOGIC
          ============================================================ -->
     <script>
         /* ------------------------------------------------------------
-           1. MATRIX RAIN CANVAS ANIMATION
+           1. MATRIX RAIN CANVAS
            ------------------------------------------------------------ */
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
@@ -3272,7 +2867,7 @@ kL39sJkd89aLd92Jnklsd9023Jkla901823Jkld9a01923Jkldms
         drawMatrix();
 
         /* ------------------------------------------------------------
-           2. TYPING EFFECT (HERO SECTION)
+           2. TYPING EFFECT
            ------------------------------------------------------------ */
         const typedTextElement = document.getElementById('typed-text');
         const roles = [
@@ -3315,7 +2910,7 @@ kL39sJkd89aLd92Jnklsd9023Jkla901823Jkld9a01923Jkldms
         typeRoleEffect();
 
         /* ------------------------------------------------------------
-           3. SYNTHESIZED WEB AUDIO API (NO EXTERNAL ASSETS NEEDED)
+           3. WEB AUDIO API
            ------------------------------------------------------------ */
         let audioEnabled = false;
         let audioCtx = null;
@@ -3331,21 +2926,15 @@ kL39sJkd89aLd92Jnklsd9023Jkla901823Jkld9a01923Jkldms
             if (!audioEnabled) return;
             try {
                 initAudio();
-                if (audioCtx.state === 'suspended') {
-                    audioCtx.resume();
-                }
+                if (audioCtx.state === 'suspended') audioCtx.resume();
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
-
                 osc.type = type;
                 osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
                 gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
-
                 osc.start();
                 osc.stop(audioCtx.currentTime + duration);
             } catch (e) {}
@@ -3369,39 +2958,39 @@ kL39sJkd89aLd92Jnklsd9023Jkla901823Jkld9a01923Jkldms
             }
         });
 
-        document.querySelectorAll('.cyber-btn, .filter-btn, .nav-link, .copy-btn, .carousel-btn').forEach(el => {
+        document.querySelectorAll('.cyber-btn, .nav-link, .copy-btn, .carousel-btn').forEach(el => {
             el.addEventListener('mouseenter', () => playCyberBeep(440, 'sine', 0.04));
             el.addEventListener('click', () => playCyberBeep(880, 'triangle', 0.06));
         });
 
         /* ------------------------------------------------------------
-           4. INTERACTIVE TERMINAL SIMULATOR IN HERO
+           4. INTERACTIVE TERMINAL
            ------------------------------------------------------------ */
         const termInput = document.getElementById('term-input');
         const termHistory = document.getElementById('term-history');
         const termBody = document.getElementById('hero-term-body');
 
         const termCommands = {
-            help: () => `Available system commands:
-  <span style="color: var(--neon-cyan);">whoami</span>    - Print operator identity and clearance
-  <span style="color: var(--neon-cyan);">skills</span>    - List top engineering and security stacks
-  <span style="color: var(--neon-cyan);">projects</span>  - Jump to filtered projects repository
-  <span style="color: var(--neon-cyan);">ctf</span>       - Display CTF stats & recent machine pwns
-  <span style="color: var(--neon-cyan);">flag</span>      - Capture the hidden Easter Egg flag
-  <span style="color: var(--neon-cyan);">matrix</span>    - Toggle Matrix rain background animation
-  <span style="color: var(--neon-cyan);">contact</span>   - Quick navigation to transmission uplink
-  <span style="color: var(--neon-cyan);">sudo</span>      - Execute command with elevated permissions
-  <span style="color: var(--neon-cyan);">clear</span>     - Purge terminal screen buffer`,
+            help: () => `Available commands:
+  <span style="color: var(--neon-cyan);">whoami</span>    - Print operator identity
+  <span style="color: var(--neon-cyan);">skills</span>    - List engineering stacks
+  <span style="color: var(--neon-cyan);">projects</span>  - Jump to projects section
+  <span style="color: var(--neon-cyan);">ctf</span>       - Display CTF stats
+  <span style="color: var(--neon-cyan);">flag</span>      - Capture the Easter Egg flag
+  <span style="color: var(--neon-cyan);">matrix</span>    - Toggle Matrix rain
+  <span style="color: var(--neon-cyan);">contact</span>   - Jump to contact
+  <span style="color: var(--neon-cyan);">sudo</span>      - Elevated permissions
+  <span style="color: var(--neon-cyan);">clear</span>     - Clear terminal`,
 
             whoami: () => `User: <strong style="color: var(--neon-green);">Marlin Hidayat Tanjung</strong>
 Clearance: Level 5 Root Ops
-Specialization: DevSecOps | Offensive Security | Cloud Native Fullstack
+Specialization: DevSecOps | Offensive Security | Fullstack
 Location: Gunungsitoli, Indonesia
-Status: Available for security audits, consulting & engineering.`,
+Status: Available for security audits & consulting.`,
 
-            skills: () => `<span style="color: var(--neon-cyan);">[DevOps]</span> Docker, Kubernetes, Terraform, ArgoCD, Helm, AWS, Prometheus
-<span style="color: var(--neon-green);">[CyberSec]</span> Pentesting, Burp Suite, Nuclei, OWASP, Metasploit, Cryptography
-<span style="color: var(--neon-purple);">[Fullstack]</span> Golang, Python, Next.js, TypeScript, PostgreSQL, Redis, gRPC`,
+            skills: () => `<span style="color: var(--neon-cyan);">[DevOps]</span> Docker, Kubernetes, Terraform, ArgoCD, Helm, AWS
+<span style="color: var(--neon-green);">[CyberSec]</span> Pentesting, Burp Suite, Nuclei, OWASP, Metasploit
+<span style="color: var(--neon-purple);">[Fullstack]</span> Golang, Python, Next.js, TypeScript, PostgreSQL, Redis`,
 
             projects: () => {
                 document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
@@ -3410,8 +2999,7 @@ Status: Available for security audits, consulting & engineering.`,
 
             ctf: () => {
                 document.getElementById('ctf').scrollIntoView({ behavior: 'smooth' });
-                return `HackTheBox: Pro Hacker | TryHackMe: Top 1% Global | Flags: 340+
-Pwned Targets: Sovereign, ZeroDay Ingress, Quantum Vault`;
+                return `HackTheBox | TryHackMe | picoCTF | Flags: 340+`;
             },
 
             flag: () => `<span style="color: var(--neon-green); font-weight: bold; background: rgba(0, 255, 102, 0.1); padding: 2px 6px;">FLAG{cYb3r_d3v0p5_n1nj4_2026_x0F4}</span>
@@ -3434,7 +3022,7 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
                 return 'Routing encrypted channel to [CONTACT] section...';
             },
 
-            sudo: () => `<span style="color: var(--neon-red);">[ACCESS DENIED]</span> User guest is not in the sudoers file. This incident will be reported to /var/log/surveillance.`,
+            sudo: () => `<span style="color: var(--neon-red);">[ACCESS DENIED]</span> User guest is not in the sudoers file. This incident will be reported.`,
 
             clear: () => {
                 termHistory.innerHTML = '';
@@ -3467,7 +3055,7 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
                     } else {
                         const errDiv = document.createElement('div');
                         errDiv.className = 'term-output';
-                        errDiv.innerHTML = `<span style="color: var(--neon-red);">Command not recognized: "${escapeHTML(cmd)}". Type '<span style="color: var(--neon-cyan);">help</span>' for manual.</span>`;
+                        errDiv.innerHTML = `<span style="color: var(--neon-red);">Command not recognized: "${escapeHTML(cmd)}". Type '<span style="color: var(--neon-cyan);">help</span>'.</span>`;
                         termHistory.appendChild(errDiv);
                     }
 
@@ -3478,7 +3066,7 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
         }
 
         function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, 
+            return str.replace(/[&<>'"]/g,
                 tag => ({
                     '&': '&amp;',
                     '<': '&lt;',
@@ -3490,7 +3078,7 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
         }
 
         /* ------------------------------------------------------------
-           5. LIVE GITHUB PROJECTS FETCH & CAROUSEL
+           5. LIVE GITHUB PROJECTS
            ------------------------------------------------------------ */
         const GITHUB_USERNAME = 'hidayat-tanjung';
         const PROJECTS_PER_PAGE = 6;
@@ -3508,11 +3096,9 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
 
             try {
                 const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=100`);
-
                 if (!res.ok) throw new Error('GitHub API rate limit');
 
                 const repos = await res.json();
-
                 githubProjects = repos
                     .filter(r => !r.archived && !r.fork)
                     .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
@@ -3525,7 +3111,7 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
                 startAutoRotate();
 
                 if (statusText) {
-                    statusText.textContent = `✓ ${githubProjects.length} repositories loaded (auto-rotate every ${AUTO_ROTATE_INTERVAL/1000}s)`;
+                    statusText.textContent = `✓ ${githubProjects.length} repositories loaded (auto-rotate ${AUTO_ROTATE_INTERVAL/1000}s)`;
                 }
             } catch (e) {
                 console.error('GitHub fetch error:', e);
@@ -3538,7 +3124,7 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
                         </p>
                     </div>
                 `;
-                if (statusText) statusText.textContent = '⚠ Gagal fetch (rate limit) — buka GitHub langsung';
+                if (statusText) statusText.textContent = '⚠ Gagal fetch (rate limit)';
             }
         }
 
@@ -3654,7 +3240,7 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
         }
 
         /* ------------------------------------------------------------
-           6. SCROLL ANIMATION (INTERSECTION OBSERVER) & SKILL BARS
+           6. SCROLL REVEAL & SKILL BARS
            ------------------------------------------------------------ */
         const revealElements = document.querySelectorAll('.reveal');
 
@@ -3680,7 +3266,7 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
         revealElements.forEach(el => revealObserver.observe(el));
 
         /* ------------------------------------------------------------
-           7. MOBILE NAVIGATION TOGGLE
+           7. MOBILE NAV TOGGLE
            ------------------------------------------------------------ */
         const mobileToggle = document.getElementById('mobile-toggle');
         const navLinks = document.getElementById('nav-links');
@@ -3688,11 +3274,7 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
         mobileToggle.addEventListener('click', () => {
             navLinks.classList.toggle('open');
             const icon = mobileToggle.querySelector('i');
-            if (navLinks.classList.contains('open')) {
-                icon.className = 'fa-solid fa-xmark';
-            } else {
-                icon.className = 'fa-solid fa-bars';
-            }
+            icon.className = navLinks.classList.contains('open') ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
         });
 
         document.querySelectorAll('.nav-link').forEach(link => {
@@ -3703,7 +3285,7 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
         });
 
         /* ------------------------------------------------------------
-           8. ACTIVE NAV HIGHLIGHT ON SCROLL
+           8. ACTIVE NAV HIGHLIGHT
            ------------------------------------------------------------ */
         const sections = document.querySelectorAll('section[id]');
 
@@ -3727,7 +3309,7 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
         });
 
         /* ------------------------------------------------------------
-           9. SECURE CONTACT FORM HANDLING WITH SIMULATED ENCRYPTION
+           9. CONTACT FORM
            ------------------------------------------------------------ */
         const contactForm = document.getElementById('contact-form');
         const formLog = document.getElementById('form-log');
@@ -3755,13 +3337,12 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
             }, 1200);
 
             setTimeout(() => {
-                formLog.innerHTML += `<br><strong style="color: var(--neon-green);">&gt; [SUCCESS 200 OK] Transmission confirmed! Terima kasih, ${escapeHTML(name)}. Pesan Anda telah terenkripsi dan disimpan.</strong>`;
+                formLog.innerHTML += `<br><strong style="color: var(--neon-green);">&gt; [SUCCESS 200 OK] Transmission confirmed! Terima kasih, ${escapeHTML(name)}.</strong>`;
                 playCyberBeep(1046, 'triangle', 0.2);
                 showToast('Encrypted payload dispatched successfully!');
 
-                // Also open WhatsApp with the message
                 const waNumber = '6285119062492';
-                const waText = 
+                const waText =
                     `*📩 New Message from Portfolio*%0A%0A` +
                     `*👤 Nama:* ${encodeURIComponent(name)}%0A` +
                     `*📧 Email:* ${encodeURIComponent(email)}%0A` +
@@ -3774,80 +3355,79 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
         });
 
         /* ------------------------------------------------------------
-           10. ACK FORM HANDLER (HALL OF FAME SUBMISSION)
+           10. CVE LIVE UPDATE (Fetch dari CVE API alternatif)
            ------------------------------------------------------------ */
-        function initAckForm() {
-            const form = document.getElementById('ackForm');
-            if (!form) return;
-            const status = document.getElementById('ackStatus');
+        async function fetchLatestCVEs() {
+            const tbody = document.getElementById('cveTableBody');
+            if (!tbody) return;
 
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
+            try {
+                // Gunakan NVD API 2.0 (public, no key required dengan rate limit)
+                const res = await fetch('https://services.nvd.nist.gov/rest/json/cves/2.0?resultsPerPage=6&startIndex=0');
+                if (!res.ok) throw new Error('NVD API failed');
 
-                const name = document.getElementById('ackName').value.trim();
-                const category = document.getElementById('ackCategory').value;
-                const contact = document.getElementById('ackContact').value.trim();
-                const email = document.getElementById('ackEmail').value.trim();
-                const type = document.getElementById('ackType').value;
-                const message = document.getElementById('ackMessage').value.trim();
+                const data = await res.json();
+                const vulnerabilities = data.vulnerabilities || [];
 
-                if (name.length < 3) { status.textContent = '⚠️ Nama instansi minimal 3 karakter'; status.style.color = 'var(--neon-red)'; return; }
-                if (!category) { status.textContent = '⚠️ Pilih kategori'; status.style.color = 'var(--neon-red)'; return; }
-                if (contact.length < 3) { status.textContent = '⚠️ Nama PIC minimal 3 karakter'; status.style.color = 'var(--neon-red)'; return; }
-                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { status.textContent = '⚠️ Email tidak valid'; status.style.color = 'var(--neon-red)'; return; }
-                if (!type) { status.textContent = '⚠️ Pilih jenis acknowledgment'; status.style.color = 'var(--neon-red)'; return; }
-                if (message.length < 20) { status.textContent = '⚠️ Deskripsi minimal 20 karakter'; status.style.color = 'var(--neon-red)'; return; }
+                if (vulnerabilities.length === 0) throw new Error('No CVE data');
 
-                const waNumber = '6285119062492';
-                const waText =
-                    `*🏆 Submit Acknowledgment*%0A%0A` +
-                    `*🏢 Instansi:* ${encodeURIComponent(name)}%0A` +
-                    `*📂 Kategori:* ${encodeURIComponent(category)}%0A` +
-                    `*👤 PIC:* ${encodeURIComponent(contact)}%0A` +
-                    `*📧 Email:* ${encodeURIComponent(email)}%0A` +
-                    `*🎖️ Jenis:* ${encodeURIComponent(type)}%0A%0A` +
-                    `*📝 Deskripsi:*%0A${encodeURIComponent(message)}%0A%0A` +
-                    `_Mohon verifikasi & tambahkan ke Hall of Fame._`;
+                const severityClass = (score) => {
+                    if (score >= 9.0) return 'sev-crit';
+                    if (score >= 7.0) return 'sev-high';
+                    if (score >= 4.0) return 'sev-med';
+                    return 'sev-low';
+                };
 
-                window.open(`https://wa.me/${waNumber}?text=${waText}`, '_blank');
-                status.textContent = '✅ Membuka WhatsApp... Data akan diverifikasi admin.';
-                status.style.color = 'var(--neon-green)';
+                const severityLabel = (score) => {
+                    if (score >= 9.0) return 'CRITICAL';
+                    if (score >= 7.0) return 'HIGH';
+                    if (score >= 4.0) return 'MEDIUM';
+                    return 'LOW';
+                };
 
-                const currentCount = parseInt(localStorage.getItem('hallOfFameCount') || '60');
-                localStorage.setItem('hallOfFameCount', currentCount + 1);
-                updateHallCounter();
+                const rows = vulnerabilities.map(v => {
+                    const cve = v.cve;
+                    const id = cve.id;
+                    const desc = (cve.descriptions || []).find(d => d.lang === 'en')?.value || 'No description available.';
+                    const shortDesc = desc.length > 80 ? desc.substring(0, 77) + '...' : desc;
 
-                setTimeout(() => { form.reset(); status.textContent = ''; }, 5000);
-            });
+                    let score = 0;
+                    let severity = 'UNKNOWN';
+                    const metrics = cve.metrics || {};
+                    const cvssV3 = metrics.cvssMetricV31?.[0] || metrics.cvssMetricV30?.[0];
+                    if (cvssV3) {
+                        score = cvssV3.cvssData.baseScore;
+                        severity = cvssV3.cvssData.baseSeverity;
+                    }
+
+                    const published = new Date(cve.published).toLocaleDateString('id-ID', {
+                        day: 'numeric', month: 'short', year: 'numeric'
+                    });
+
+                    // Extract affected product from description (first ~40 chars)
+                    const affected = desc.substring(0, 50).replace(/[^\w\s\/.-]/g, '') + '...';
+
+                    return `
+                        <tr>
+                            <td style="color: var(--neon-cyan); font-weight: bold;">${id}</td>
+                            <td>${escapeHtml(affected)}</td>
+                            <td>${escapeHtml(shortDesc)}</td>
+                            <td><span class="severity-badge ${severityClass(score)}">${severity} (${score.toFixed(1)})</span></td>
+                            <td style="font-size: 0.75rem;">${published}</td>
+                        </tr>
+                    `;
+                }).join('');
+
+                tbody.innerHTML = rows;
+
+            } catch (e) {
+                console.warn('CVE live fetch failed, using static fallback:', e);
+                // Fallback: static data sudah ada di HTML
+            }
         }
 
         /* ------------------------------------------------------------
-           11. HALL OF FAME COUNTER & PROJECTS COUNTER
-           ------------------------------------------------------------ */
-        function updateHallCounter() {
-            const count = parseInt(localStorage.getItem('hallOfFameCount') || '60');
-            const el = document.getElementById('hallCounter');
-            if (el) el.textContent = count + '+';
-        }
-
-        function updateProjectsCounter() {
-            fetch('https://api.github.com/users/hidayat-tanjung')
-                .then(res => res.json())
-                .then(data => {
-                    const count = data.public_repos || 15;
-                    const el = document.getElementById('projectsCounter');
-                    if (el) el.textContent = count + '+';
-                    localStorage.setItem('projectsCount', count);
-                })
-                .catch(() => {
-                    const saved = localStorage.getItem('projectsCount') || '15';
-                    const el = document.getElementById('projectsCounter');
-                    if (el) el.textContent = saved + '+';
-                });
-        }
-
-        /* ------------------------------------------------------------
-           12. CLIPBOARD COPY UTILITY & TOAST NOTIFICATION
+           11. CLIPBOARD & TOAST
            ------------------------------------------------------------ */
         function copyText(text, successMsg = 'Copied to clipboard!') {
             navigator.clipboard.writeText(text).then(() => {
@@ -3878,7 +3458,7 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
         }
 
         /* ------------------------------------------------------------
-           13. DYNAMIC TELEMETRY SIMULATION & AUTO YEAR
+           12. TELEMETRY & YEAR
            ------------------------------------------------------------ */
         setInterval(() => {
             const pingEl = document.getElementById('telemetry-ping');
@@ -3900,32 +3480,28 @@ Congratulations, Operator! You have captured the secret interactive flag.`,
                 .catch(() => {});
         } catch (e) {}
 
-        function initYear() {
-            const yearEl = document.getElementById('currentYear');
-            if (yearEl) yearEl.textContent = new Date().getFullYear();
-        }
+        const yearEl = document.getElementById('currentYear');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
 
         /* ------------------------------------------------------------
-           14. INITIALIZATION
+           13. INIT
            ------------------------------------------------------------ */
         document.addEventListener('DOMContentLoaded', () => {
             fetchGitHubProjects();
             initProjectsCarousel();
-            initAckForm();
-            updateHallCounter();
-            updateProjectsCounter();
-            initYear();
+            fetchLatestCVEs(); // Live CVE update
         });
 
         console.log(`%c
-   _______  ______   _______  _______  _______ 
+   _______  ______   _______  _______  _______
   (  ____ \\(  ___ \\ (  ____ \\(  ___  )(  ____ )
   | (    \\/| (   ) )| (    \\/| (   ) || (    )|
   | (__    | (__/ / | (_____ | |   | || (____)|
   |  __)   |  __ (  (_____  )| |   | ||  _____)
-  | (      | (  \\ \\       ) || |   | || (      
-  | (____/\\| )___) )/\\____) || (___) || )      
-  (_______/|/ \\___/ \\_______)(_______)|/       
+  | (      | (  \\ \\       ) || |   | || (
+  | (____/\\| )___) )/\\____) || (___) || )
+  (_______/|/ \\___/ \\_______)(_______)|/
+
         [ SYSTEM ROOT ACCESS GRANTED ]
   Marlin Hidayat Tanjung - Full Stack Developer | DevOps | Bug Hunter
   Interested in working together? Check out the contact section!
