@@ -265,11 +265,13 @@
             font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700;
             margin-bottom: 20px; font-family: 'JetBrains Mono', monospace;
             position: relative; z-index: 1;
+            text-align: center;
         }
         .section-title::before { content: '// '; color: var(--primary); opacity: 0.5; }
         .section-subtitle {
             color: var(--text-secondary); font-size: 0.95rem;
             margin-bottom: 40px; max-width: 700px; position: relative; z-index: 1;
+            text-align: center; margin-left: auto; margin-right: auto;
         }
         .reveal {
             opacity: 0; transform: translateY(40px);
@@ -443,6 +445,12 @@
             animation: spin 1s linear infinite;
         }
         @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* View All button centered */
+        .view-all-wrapper {
+            text-align: center;
+            margin-top: 32px;
+        }
 
         /* HALL OF FAME */
         .hall-grid {
@@ -601,8 +609,13 @@
             transform: scale(1.15);
         }
 
-        /* EXPERIENCE */
-        .timeline { position: relative; padding-left: 40px; max-width: 900px; }
+        /* EXPERIENCE - CENTERED */
+        .timeline { 
+            position: relative; 
+            padding-left: 40px; 
+            max-width: 900px; 
+            margin: 0 auto;
+        }
         .timeline::before {
             content: ''; position: absolute; left: 12px; top: 0; bottom: 0;
             width: 2px; background: var(--gradient);
@@ -669,10 +682,16 @@
             text-align: center; color: var(--text-secondary);
             max-width: 700px; margin: 0 auto 50px; font-size: 1rem; line-height: 1.7;
         }
-        .contact-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; }
+        .contact-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 24px; 
+            align-items: stretch;
+        }
         .contact-form {
             background: var(--bg-card); border: 1px solid var(--border);
             border-radius: 16px; padding: 32px; backdrop-filter: blur(10px);
+            display: flex; flex-direction: column;
         }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500; }
@@ -686,7 +705,13 @@
         .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); }
         .error-msg { display: block; color: var(--accent); font-size: 0.75rem; margin-top: 6px; min-height: 1em; }
         .form-status { margin-top: 16px; text-align: center; font-size: 0.85rem; min-height: 1em; }
-        .contact-info { display: flex; flex-direction: column; gap: 16px; }
+        
+        .contact-info { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 16px;
+            height: 100%;
+        }
         .contact-card {
             background: var(--bg-card); border: 1px solid var(--border);
             border-radius: 14px; padding: 20px; display: flex;
@@ -702,22 +727,25 @@
         }
         .contact-card h4 { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
         .contact-card p { color: var(--text-primary); font-size: 0.9rem; font-weight: 500; word-break: break-word; }
-        .map-container { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 8px; overflow: hidden; }
-        .map-container iframe { filter: invert(90%) hue-rotate(180deg) contrast(90%); display: block; }
+        
+        .map-container { 
+            background: var(--bg-card); 
+            border: 1px solid var(--border); 
+            border-radius: 14px; 
+            padding: 8px; 
+            overflow: hidden;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .map-container iframe { 
+            filter: invert(90%) hue-rotate(180deg) contrast(90%); 
+            display: block;
+            flex-grow: 1;
+            min-height: 200px;
+            border-radius: 8px;
+        }
         .map-coords { text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--primary); padding: 12px 0 4px; }
-        .contact-socials {
-            display: flex; justify-content: center; gap: 12px;
-            padding: 16px; background: var(--bg-card);
-            border: 1px solid var(--border); border-radius: 14px; flex-wrap: wrap;
-        }
-        .contact-socials a {
-            width: 44px; height: 44px; border-radius: 12px;
-            border: 1px solid var(--border);
-            display: flex; align-items: center; justify-content: center;
-            color: var(--text-secondary); font-size: 1.1rem;
-            transition: all 0.3s var(--transition); background: var(--bg-tertiary);
-        }
-        .contact-socials a:hover { color: var(--primary); border-color: var(--primary); transform: translateY(-3px); box-shadow: var(--glow); }
 
         /* FOOTER */
         .footer { background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 60px 0 20px; }
@@ -999,7 +1027,7 @@
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 32px;">
+            <div class="view-all-wrapper">
                 <a href="https://github.com/hidayat-tanjung?tab=repositories" target="_blank" class="btn btn-outline">
                     <i class="fab fa-github"></i> View All on GitHub
                 </a>
@@ -1183,7 +1211,7 @@
                 </div>
             </div>
             
-            <!-- TECH ICONS GRID - 25 icons -->
+            <!-- TECH ICONS GRID - 24 icons (Wireshark removed) -->
             <div class="tech-icons reveal">
                 <!-- Core Languages & Frameworks -->
                 <div class="tech-icon" title="HTML5"><i class="fab fa-html5" style="color: #e34f26;"></i></div>
@@ -1208,7 +1236,6 @@
                 <div class="tech-icon" title="httpx"><i class="fas fa-network-wired" style="color: #00d4ff;"></i></div>
                 <div class="tech-icon" title="Nmap"><i class="fas fa-search-location" style="color: #0e83cd;"></i></div>
                 <div class="tech-icon" title="Metasploit"><i class="fas fa-skull" style="color: #004c97;"></i></div>
-                <div class="tech-icon" title="Wireshark"><i class="fas fa-water" style="color: #1679a7;"></i></div>
                 <div class="tech-icon" title="Subfinder"><i class="fas fa-sitemap" style="color: #a78bfa;"></i></div>
                 <div class="tech-icon" title="ffuf"><i class="fas fa-fist-raised" style="color: #ff2e63;"></i></div>
                 <div class="tech-icon" title="SQLMap"><i class="fas fa-database" style="color: #cc0000;"></i></div>
@@ -1219,7 +1246,7 @@
         </div>
     </section>
 
-    <!-- EXPERIENCE -->
+    <!-- EXPERIENCE (CENTERED) -->
     <section id="experience" class="section">
         <div class="section-number">07</div>
         <div class="container">
@@ -1392,19 +1419,8 @@
                         <div><h4>Location</h4><p>Gunungsitoli, Indonesia</p></div>
                     </div>
                     <div class="map-container">
-                        <iframe src="https://www.google.com/maps?q=Gunungsitoli,Indonesia&output=embed" width="100%" height="200" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"></iframe>
+                        <iframe src="https://www.google.com/maps?q=Gunungsitoli,Indonesia&output=embed" width="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                         <div class="map-coords"><i class="fas fa-map-pin"></i> 1.2800° N, 97.6000° E</div>
-                    </div>
-                    <div class="contact-socials">
-                        <a href="https://github.com/hidayat-tanjung" target="_blank" aria-label="GitHub" title="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/marlin-hidayat-tanjung/" target="_blank" aria-label="LinkedIn" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://whatsapp.com/channel/0029Vb98MpVEquiI053Wkm1U" target="_blank" aria-label="WhatsApp Channel" title="WhatsApp Channel"><i class="fab fa-whatsapp"></i></a>
-                        <a href="https://www.youtube.com/@linuxploiter/videos" target="_blank" aria-label="YouTube" title="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="https://medium.com/@izumy" target="_blank" aria-label="Medium" title="Medium"><i class="fab fa-medium"></i></a>
-                        <a href="https://www.instagram.com/linux_ploiter" target="_blank" aria-label="Instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://profile.hackthebox.com/profile/019f6432-1894-7280-9197-7fd39e8d9ce1" target="_blank" aria-label="Hack The Box" title="Hack The Box"><i class="fas fa-cube" style="color: #9fef00;"></i></a>
-                        <a href="https://tryhackme.com/p/X3NUX" target="_blank" aria-label="TryHackMe" title="TryHackMe"><i class="fas fa-shield-alt" style="color: #ff4d4d;"></i></a>
-                        <a href="https://learn.cylabacademy.org/users/x3nux" target="_blank" aria-label="picoCTF" title="picoCTF"><i class="fas fa-flag" style="color: #00d4ff;"></i></a>
                     </div>
                 </div>
             </div>
