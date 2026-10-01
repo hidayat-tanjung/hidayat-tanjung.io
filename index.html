@@ -11,7 +11,7 @@
     <meta property="og:description" content="IT Support | Sysadmin | Educator | Web & AI Builder" />
     <meta property="og:type" content="website" />
 
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>??</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💻</text></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -121,9 +121,7 @@
             margin-top: 0.75rem;
         }
 
-        /* ============================================================
-           TECH CARD — Dengan Efek Melayang & Hover Interaktif
-           ============================================================ */
+        /* TECH CARD */
         .tech-card {
             background: var(--bg-card);
             border: 1px solid var(--border-subtle);
@@ -154,13 +152,9 @@
                 0 0 30px rgba(45, 212, 191, 0.15);
         }
 
-        .tech-card:hover::before {
-            left: 100%;
-        }
+        .tech-card:hover::before { left: 100%; }
 
-        /* ============================================================
-           NAVBAR
-           ============================================================ */
+        /* NAVBAR */
         .tech-nav {
             position: fixed;
             top: 0; left: 0;
@@ -195,7 +189,6 @@
             flex-shrink: 0;
         }
 
-        /* Logo MH Bulat & Sempurna di Tengah */
         .mh-logo {
             width: 40px;
             height: 40px;
@@ -213,10 +206,8 @@
             border: 2px solid rgba(45, 212, 191, 0.4);
             box-shadow: 0 0 15px rgba(45, 212, 191, 0.3);
             transition: var(--transition);
-            /* Memastikan teks MH benar-benar center visual */
             text-align: center;
-            line-height: 40px;
-            padding-left: 1px; 
+            line-height: 1;
         }
 
         .nav-logo:hover .mh-logo {
@@ -426,12 +417,115 @@
 
         .hero-photo-wrap { position: relative; width: 100%; max-width: 380px; z-index: 2; aspect-ratio: 1 / 1; }
 
-        .photo-tux { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150%; height: 150%; z-index: 0; opacity: 0.08; pointer-events: none; animation: tuxFloat 6s ease-in-out infinite; filter: drop-shadow(0 0 30px rgba(45, 212, 191, 0.4)); }
-        @keyframes tuxFloat { 0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); } 50% { transform: translate(-50%, -50%) scale(1.05) rotate(3deg); } }
+        .photo-tux {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150%; height: 150%;
+            z-index: 0;
+            opacity: 0.08;
+            pointer-events: none;
+            animation: tuxFloat 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 30px rgba(45, 212, 191, 0.4));
+        }
 
-        .photo-distro { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 140%; height: 140%; z-index: 0; opacity: 0.06; pointer-events: none; animation: distroSpin 40s linear infinite; }
-        @keyframes distroSpin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes tuxFloat {
+            0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+            50% { transform: translate(-50%, -50%) scale(1.05) rotate(3deg); }
+        }
 
+        /* ============================================================
+           ORBIT DEVOPS + AI (Luar — searah jarum jam) — 8 icon
+           ============================================================ */
+        .devops-orbit {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 175%; height: 175%;
+            z-index: 0;
+            pointer-events: none;
+            animation: orbitSpin 32s linear infinite;
+        }
+
+        @keyframes orbitSpin {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to   { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .devops-icon {
+            position: absolute;
+            width: 38px;
+            height: 38px;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 8px rgba(45, 212, 191, 0.55));
+            animation: counterSpin 32s linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes counterSpin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(-360deg); }
+        }
+
+        /* Posisi 8 icon melingkar (45° per icon) */
+        .di-1 { top: 0;       left: 50%;  margin-left: -19px; }  /* Docker */
+        .di-2 { top: 15%;     right: 8%; }                        /* Jenkins */
+        .di-3 { top: 50%;     right: 0;   margin-top: -19px; }    /* GitHub */
+        .di-4 { bottom: 15%;  right: 8%; }                        /* Kubernetes */
+        .di-5 { bottom: 0;    left: 50%;  margin-left: -19px; }  /* Nginx */
+        .di-6 { bottom: 15%;  left: 8%; }                         /* Terraform */
+        .di-7 { top: 50%;     left: 0;    margin-top: -19px; }    /* TensorFlow */
+        .di-8 { top: 15%;     left: 8%; }                         /* PyTorch */
+
+        /* Highlight AI icon dengan glow ungu */
+        .di-7, .di-8 {
+            filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.85)) !important;
+            opacity: 0.75 !important;
+        }
+
+        /* ============================================================
+           ORBIT PENTEST (Dalam — berlawanan arah) — 6 icon
+           ============================================================ */
+        .pentest-orbit {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 130%; height: 130%;
+            z-index: 0;
+            pointer-events: none;
+            animation: orbitSpinReverse 22s linear infinite;
+            opacity: 0.85;
+        }
+
+        @keyframes orbitSpinReverse {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to   { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
+
+        .pentest-icon {
+            position: absolute;
+            width: 32px;
+            height: 32px;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 65, 0.7));
+            animation: counterSpinReverse 22s linear infinite;
+            will-change: transform;
+        }
+
+        @keyframes counterSpinReverse {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        /* Posisi 6 icon melingkar (60° per icon) */
+        .pi-1 { top: 0;    left: 50%; margin-left: -16px; }  /* Kali Linux */
+        .pi-2 { top: 25%;  right: 0; }                        /* Wireshark */
+        .pi-3 { top: 75%;  right: 0; }                        /* Nmap */
+        .pi-4 { bottom: 0; left: 50%; margin-left: -16px; }  /* OWASP ZAP */
+        .pi-5 { top: 75%;  left: 0; }                         /* Snort */
+        .pi-6 { top: 25%;  left: 0; }                         /* Python (Nmap alt) */
+
+        /* TERMINAL SCROLL */
         .photo-terminal {
             position: absolute;
             inset: -25%;
@@ -467,7 +561,11 @@
             z-index: 1;
             animation: glowPulse 4s ease-in-out infinite;
         }
-        @keyframes glowPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; } 50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; } }
+
+        @keyframes glowPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+        }
 
         .photo-ring {
             position: absolute;
@@ -483,7 +581,11 @@
             animation: rotateRing 8s linear infinite;
             opacity: 0.85;
         }
-        @keyframes rotateRing { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+        @keyframes rotateRing {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to   { transform: translate(-50%, -50%) rotate(360deg); }
+        }
 
         .hero-photo {
             width: 100%; height: 100%;
@@ -529,7 +631,10 @@
         .fb-3 i { color: var(--amber); }
         .fb-4 i { color: var(--emerald); }
 
-        @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes floaty {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
 
         /* ABOUT */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start; }
@@ -569,9 +674,17 @@
 
         .service-list { list-style: none; font-size: 0.82rem; color: var(--text-muted); }
         .service-list li { padding: 0.25rem 0; display: flex; align-items: center; gap: 0.5rem; }
-        .service-list li::before { content: "?"; color: var(--teal); font-weight: 700; }
+        .service-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            color: var(--teal);
+            font-size: 0.7rem;
+        }
 
-        /* COMMUNITY */
+        /* ============================================================
+           COMMUNITY — Logo Putih Full + Digeser ke Bawah
+           ============================================================ */
         .community-card {
             padding: 3rem;
             background: linear-gradient(135deg, rgba(0, 255, 65, 0.04) 0%, rgba(45, 212, 191, 0.06) 50%, rgba(129, 140, 248, 0.04) 100%);
@@ -595,7 +708,8 @@
             display: grid;
             grid-template-columns: 280px 1fr;
             gap: 3rem;
-            align-items: center;
+            align-items: start;
+            padding-top: 1rem;
             position: relative;
             z-index: 1;
         }
@@ -608,7 +722,9 @@
             width: 100%;
             aspect-ratio: 1 / 1;
             max-width: 280px;
-            margin: 0 auto;
+            margin: 2rem auto 0;
+            top: 20px;
+            padding-top: 1rem;
         }
 
         .community-logo-wrap::before {
@@ -616,25 +732,41 @@
             position: absolute;
             inset: -10%;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0, 255, 65, 0.3) 0%, transparent 70%);
-            filter: blur(25px);
+            background: radial-gradient(circle, rgba(0, 255, 65, 0.35) 0%, transparent 70%);
+            filter: blur(30px);
             animation: glowPulse 5s ease-in-out infinite;
             z-index: 0;
+        }
+
+        .community-logo-wrap::after {
+            content: "";
+            position: absolute;
+            inset: -8%;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            pointer-events: none;
+            animation: glowPulse 4s ease-in-out infinite;
         }
 
         .community-logo-inner {
             position: relative;
             width: 100%;
             height: 100%;
-            border-radius: 24px;
+            border-radius: 50%;
             overflow: hidden;
-            border: 2px solid rgba(0, 255, 65, 0.4);
-            background: #000;
+            border: 3px solid rgba(0, 255, 65, 0.6);
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             box-shadow:
-                0 0 30px rgba(0, 255, 65, 0.3),
-                inset 0 0 20px rgba(0, 255, 65, 0.1);
+                0 0 40px rgba(0, 255, 65, 0.5),
+                0 0 80px rgba(0, 255, 65, 0.25),
+                0 15px 40px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(0, 255, 65, 0.15);
             z-index: 1;
             animation: tuxFloat 6s ease-in-out infinite;
+            padding: 12%;
         }
 
         .community-logo {
@@ -643,7 +775,7 @@
             object-fit: contain;
             object-position: center;
             display: block;
-            padding: 8%;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
         }
 
         .community-content h3 { font-size: 1.6rem; color: #fff; margin-bottom: 0.75rem; font-weight: 700; letter-spacing: -0.02em; }
@@ -717,7 +849,8 @@
         .cert-info h4 { font-size: 0.95rem; color: #fff; margin-bottom: 0.2rem; font-weight: 600; }
         .cert-info p { font-size: 0.78rem; color: var(--text-muted); }
 
-        .cert-status { font-size: 0.7rem; color: var(--amber); font-weight: 600; margin-top: 0.25rem; }
+        .cert-status { font-size: 0.7rem; color: var(--amber); font-weight: 600; margin-top: 0.25rem; display: flex; align-items: center; gap: 0.35rem; }
+        .cert-status i { font-size: 0.65rem; }
 
         /* TESTIMONIALS */
         .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
@@ -935,8 +1068,20 @@
             .hero-stats { grid-template-columns: repeat(2, 1fr); }
 
             .community-grid { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
-            .community-logo-wrap { max-width: 200px; }
+            .community-logo-wrap { max-width: 200px; top: 10px; margin-top: 1.5rem; }
+            .community-logo-inner { padding: 10%; }
             .community-cta { justify-content: center; }
+
+            /* Orbit DevOps responsive */
+            .devops-orbit { width: 165%; height: 165%; }
+            .devops-icon { width: 30px; height: 30px; }
+            .di-1, .di-5 { margin-left: -15px; }
+            .di-3, .di-7 { margin-top: -15px; }
+
+            /* Orbit Pentest responsive */
+            .pentest-orbit { width: 125%; height: 125%; }
+            .pentest-icon { width: 26px; height: 26px; }
+            .pi-1, .pi-4 { margin-left: -13px; }
         }
 
         @media (max-width: 640px) {
@@ -960,10 +1105,22 @@
             .fb-3 { bottom: 12%; right: -2%; }
             .fb-4 { bottom: -4%; left: -2%; }
 
+            /* Orbit DevOps responsive mobile */
+            .devops-orbit { width: 160%; height: 160%; }
+            .devops-icon { width: 24px; height: 24px; }
+            .di-1, .di-5 { margin-left: -12px; }
+            .di-3, .di-7 { margin-top: -12px; }
+
+            /* Orbit Pentest responsive mobile */
+            .pentest-orbit { width: 120%; height: 120%; }
+            .pentest-icon { width: 22px; height: 22px; }
+            .pi-1, .pi-4 { margin-left: -11px; }
+
             .community-card { padding: 2rem 1.5rem; }
             .community-content h3 { font-size: 1.3rem; }
             .community-stats { grid-template-columns: 1fr; gap: 0.75rem; }
-            .community-logo-wrap { max-width: 180px; }
+            .community-logo-wrap { max-width: 180px; top: 5px; margin-top: 1rem; }
+            .community-logo-inner { padding: 8%; }
         }
     </style>
 </head>
@@ -1033,7 +1190,7 @@
                 </div>
 
                 <p class="hero-description">
-                    Selain melayani IT support dan sysadmin, saya membuka **jasa pembuatan Web App, Web Dashboard, dan Web Aplikasi Sekolah / Kebutuhan UMKM** secara profesional, cepat, dan fungsional sesuai kebutuhan Anda.
+                    Selain melayani IT support dan sysadmin, saya membuka <strong>jasa pembuatan Web App, Web Dashboard, dan Web Aplikasi Sekolah / Kebutuhan UMKM</strong> secara profesional, cepat, dan fungsional sesuai kebutuhan Anda.
                 </p>
 
                 <div class="hero-cta">
@@ -1068,17 +1225,38 @@
             <div class="hero-visual reveal">
                 <div class="hero-photo-wrap">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Tux Linux" class="photo-tux">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Arch_Linux_logo.svg" alt="Arch Linux" class="photo-distro">
+
+                    <!-- Orbit DevOps + AI (Luar) — 8 icon -->
+                    <div class="devops-orbit">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="devops-icon di-1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt="Jenkins" class="devops-icon di-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="devops-icon di-3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" class="devops-icon di-4">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" alt="Nginx" class="devops-icon di-5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" alt="Terraform" class="devops-icon di-6">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" class="devops-icon di-7">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" class="devops-icon di-8">
+                    </div>
+
+                    <!-- Orbit Pentest (Dalam) — 6 icon -->
+                    <div class="pentest-orbit">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Kali Linux" class="pentest-icon pi-1">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Wireshark" class="pentest-icon pi-2">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/debian/debian-original.svg" alt="Nmap" class="pentest-icon pi-3">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ubuntu/ubuntu-plain.svg" alt="OWASP ZAP" class="pentest-icon pi-4">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redhat/redhat-original.svg" alt="Snort" class="pentest-icon pi-5">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python Security" class="pentest-icon pi-6">
+                    </div>
 
                     <div class="photo-terminal">
-                        <span>$ sudo apt update && apt upgrade -y</span>
+                        <span>$ sudo apt update &amp;&amp; apt upgrade -y</span>
                         <span>$ docker-compose up -d</span>
                         <span>$ systemctl status nginx</span>
                         <span>$ tail -f /var/log/syslog</span>
                         <span>$ kubectl get pods -A</span>
                         <span>$ ufw status verbose</span>
                         <span>$ git push origin main</span>
-                        <span>$ chmod +x deploy.sh && ./deploy.sh</span>
+                        <span>$ chmod +x deploy.sh &amp;&amp; ./deploy.sh</span>
                     </div>
 
                     <div class="photo-glow"></div>
@@ -1137,7 +1315,7 @@
                 <div class="tech-card about-card reveal">
                     <h3><i class="fa-solid fa-user" style="color: var(--teal);"></i> Misi & Jasa Profesional</h3>
                     <p>Saya <strong>Marlin Hidayat Tanjung</strong>, praktisi IT yang percaya bahwa teknologi harus mempermudah pekerjaan dan mendongkrak efisiensi bisnis.</p>
-                    <p>Selain keseharian dalam <strong>troubleshooting perangkat</strong>, <strong>maintenance server</strong>, dan edukasi keamanan digital, saya aktif menerima **jasa pembuatan aplikasi web kustom untuk UMKM, sekolah, dan perusahaan**.</p>
+                    <p>Selain keseharian dalam <strong>troubleshooting perangkat</strong>, <strong>maintenance server</strong>, dan edukasi keamanan digital, saya aktif menerima <strong>jasa pembuatan aplikasi web kustom untuk UMKM, sekolah, dan perusahaan</strong>.</p>
                     <p>Saya juga founder komunitas <strong>LinuxPloiter</strong> — tempat belajar Linux, sysadmin, dan security secara legal & etis.</p>
 
                     <div class="about-highlights">
@@ -1209,7 +1387,7 @@
         </div>
     </section>
 
-    <!-- SERVICES (PROMOSI JASA) -->
+    <!-- SERVICES -->
     <section id="services">
         <div class="container">
             <div class="section-header reveal">
@@ -1219,7 +1397,6 @@
             </div>
 
             <div class="services-grid">
-                <!-- PROMOSI UTAMA JASA WEB -->
                 <div class="tech-card service-card reveal" style="border-color: var(--teal);">
                     <div class="service-icon teal"><i class="fa-solid fa-laptop-code"></i></div>
                     <h3>Jasa Pembuatan Web App & UMKM</h3>
@@ -1331,7 +1508,7 @@
         </div>
     </section>
 
-    <!-- PROJECTS (6 ITEM REAL SESUAI REPO GW) -->
+    <!-- PROJECTS -->
     <section id="projects">
         <div class="container">
             <div class="section-header reveal">
@@ -1341,7 +1518,6 @@
             </div>
 
             <div class="projects-grid">
-                <!-- Item 1 -->
                 <div class="tech-card project-card reveal">
                     <div>
                         <div class="project-meta">
@@ -1360,7 +1536,6 @@
                     </div>
                 </div>
 
-                <!-- Item 2 -->
                 <div class="tech-card project-card reveal">
                     <div>
                         <div class="project-meta">
@@ -1380,7 +1555,6 @@
                     </div>
                 </div>
 
-                <!-- Item 3 -->
                 <div class="tech-card project-card reveal">
                     <div>
                         <div class="project-meta">
@@ -1400,7 +1574,6 @@
                     </div>
                 </div>
 
-                <!-- Item 4 -->
                 <div class="tech-card project-card reveal">
                     <div>
                         <div class="project-meta">
@@ -1419,7 +1592,6 @@
                     </div>
                 </div>
 
-                <!-- Item 5 -->
                 <div class="tech-card project-card reveal">
                     <div>
                         <div class="project-meta">
@@ -1438,7 +1610,6 @@
                     </div>
                 </div>
 
-                <!-- Item 6 -->
                 <div class="tech-card project-card reveal">
                     <div>
                         <div class="project-meta">
@@ -1566,7 +1737,7 @@
                     <div class="cert-info">
                         <h4>Linux & Sysadmin</h4>
                         <p>Setup, maintenance, troubleshooting</p>
-                        <div class="cert-status">? Aktif Dipelajari</div>
+                        <div class="cert-status"><i class="fa-solid fa-circle-check"></i> Aktif Dipelajari</div>
                     </div>
                 </div>
 
@@ -1575,7 +1746,7 @@
                     <div class="cert-info">
                         <h4>Web & App Development</h4>
                         <p>Laravel, Next.js, Dashboard, UMKM</p>
-                        <div class="cert-status">? Aktif / Jasa Layanan</div>
+                        <div class="cert-status"><i class="fa-solid fa-circle-check"></i> Aktif / Jasa Layanan</div>
                     </div>
                 </div>
 
@@ -1584,7 +1755,7 @@
                     <div class="cert-info">
                         <h4>AI & Automation</h4>
                         <p>Python, LLM API, tools otomasi</p>
-                        <div class="cert-status">? Aktif Dipelajari</div>
+                        <div class="cert-status"><i class="fa-solid fa-circle-check"></i> Aktif Dipelajari</div>
                     </div>
                 </div>
 
@@ -1593,7 +1764,7 @@
                     <div class="cert-info">
                         <h4>Cyber Security</h4>
                         <p>Edukasi, lab legal, defensive</p>
-                        <div class="cert-status">? Aktif Dipelajari</div>
+                        <div class="cert-status"><i class="fa-solid fa-circle-check"></i> Aktif Dipelajari</div>
                     </div>
                 </div>
 
@@ -1602,7 +1773,7 @@
                     <div class="cert-info">
                         <h4>Community Building</h4>
                         <p>LinuxPloiter, diskusi, mentoring</p>
-                        <div class="cert-status">? Aktif</div>
+                        <div class="cert-status"><i class="fa-solid fa-circle-check"></i> Aktif</div>
                     </div>
                 </div>
 
@@ -1611,7 +1782,7 @@
                     <div class="cert-info">
                         <h4>Dokumentasi & Sharing</h4>
                         <p>Catatan belajar, tutorial, tools</p>
-                        <div class="cert-status">? Aktif</div>
+                        <div class="cert-status"><i class="fa-solid fa-circle-check"></i> Aktif</div>
                     </div>
                 </div>
             </div>
@@ -1814,7 +1985,7 @@
             <div class="footer-grid">
                 <div>
                     <div class="footer-logo">
-                        <span class="mh-logo" style="width: 34px; height: 34px; font-size: 0.75rem; line-height: 34px;">MH</span>
+                        <span class="mh-logo" style="width: 34px; height: 34px; font-size: 0.75rem;">MH</span>
                         <span>Marlin Hidayat Tanjung</span>
                     </div>
                     <p class="footer-desc">
@@ -1859,7 +2030,7 @@
 
             <div class="footer-bottom">
                 <div>&copy; <span id="year">2026</span> Marlin Hidayat Tanjung · LinuxPloiter. All rights reserved.</div>
-                <div>Dibuat dengan ?? di Gunungsitoli</div>
+                <div>Dibuat dengan <i class="fa-solid fa-heart" style="color: var(--rose);"></i> di Gunungsitoli</div>
             </div>
         </div>
     </footer>
@@ -1964,10 +2135,10 @@
             const message = document.getElementById('contact-message').value;
 
             formLog.style.display = 'block';
-            formLog.innerHTML = '<span style="color: var(--teal);">? Memproses pesan & mengarahkan ke WhatsApp...</span>';
+            formLog.innerHTML = '<span style="color: var(--teal);"><i class="fa-solid fa-spinner fa-spin"></i> Memproses pesan & mengarahkan ke WhatsApp...</span>';
 
             setTimeout(() => {
-                formLog.innerHTML = `<span style="color: var(--emerald);">? Pesan siap dikirim! Terima kasih, ${escapeHtml(name)}.</span>`;
+                formLog.innerHTML = `<span style="color: var(--emerald);"><i class="fa-solid fa-circle-check"></i> Pesan siap dikirim! Terima kasih, ${escapeHtml(name)}.</span>`;
                 showToast('Mengarahkan ke WhatsApp...');
 
                 const waNum = '6285119062492';
