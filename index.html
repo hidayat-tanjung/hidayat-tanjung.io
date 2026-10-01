@@ -36,6 +36,7 @@
             --emerald: #34d399;
             --emerald-soft: rgba(52, 211, 153, 0.12);
             --rose: #fb7185;
+            --rose-soft: rgba(251, 113, 133, 0.12);
             --purple: #a855f7;
             --purple-soft: rgba(168, 85, 247, 0.12);
             --matrix-green: #00ff41;
@@ -335,11 +336,12 @@
             font-weight: 500;
         }
 
+        /* HERO TITLE — Nama di baris 1, tagline di baris 2 */
         .hero-title {
             font-family: var(--font-sans);
-            font-size: 3rem;
+            font-size: 2.6rem;
             font-weight: 800;
-            line-height: 1.15;
+            line-height: 1.25;
             color: #fff;
             margin-bottom: 1rem;
             letter-spacing: -0.03em;
@@ -349,6 +351,14 @@
             background: linear-gradient(135deg, var(--teal), var(--indigo));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+
+        .hero-title .tagline {
+            display: block;
+            font-size: 0.72em;
+            font-weight: 700;
+            color: #fff;
+            margin-top: 0.25rem;
         }
 
         .typing-container {
@@ -414,6 +424,9 @@
 
         .btn-emerald { background: transparent; color: var(--emerald); border-color: rgba(52, 211, 153, 0.4); }
         .btn-emerald:hover { background: var(--emerald-soft); border-color: var(--emerald); color: #6ee7b7; transform: translateY(-2px); }
+
+        .btn-rose { background: transparent; color: var(--rose); border-color: rgba(251, 113, 133, 0.4); }
+        .btn-rose:hover { background: var(--rose-soft); border-color: var(--rose); color: #fda4af; transform: translateY(-2px); }
 
         .hero-stats {
             display: grid;
@@ -665,10 +678,21 @@
         .skill-bar { width: 100%; height: 6px; background: rgba(148, 163, 184, 0.1); border-radius: 4px; overflow: hidden; }
         .skill-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--teal), var(--indigo)); width: 0; transition: width 1.2s ease-out; }
 
-        /* ============================================================
-           SERVICES
-           ============================================================ */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; }
+        /* SERVICES — 6 card, grid rapi 2×3 */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+        }
+
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 640px) {
+            .services-grid { grid-template-columns: 1fr; }
+        }
+
         .service-card { padding: 1.75rem; display: flex; flex-direction: column; }
 
         .service-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 1rem; transition: var(--transition); }
@@ -678,7 +702,7 @@
         .service-icon.amber { background: var(--amber-soft); color: var(--amber); }
         .service-icon.emerald { background: var(--emerald-soft); color: var(--emerald); }
         .service-icon.purple { background: var(--purple-soft); color: var(--purple); }
-        .service-icon.rose { background: rgba(251, 113, 133, 0.12); color: var(--rose); }
+        .service-icon.rose { background: var(--rose-soft); color: var(--rose); }
 
         .service-card h3 { font-size: 1.05rem; color: #fff; margin-bottom: 0.5rem; font-weight: 600; }
         .service-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: 0.75rem; }
@@ -695,7 +719,6 @@
             flex-shrink: 0;
         }
 
-        /* SERAGAM: CTA di setiap service card */
         .service-cta {
             margin-top: auto;
             padding-top: 1rem;
@@ -709,31 +732,49 @@
             padding: 0.6rem 1rem;
         }
 
-        /* AI & Bot — Border ungu */
+        .service-card.web-app {
+            border: 1.5px solid rgba(45, 212, 191, 0.35);
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.05) 0%, rgba(129, 140, 248, 0.04) 100%);
+        }
+        .service-card.web-app:hover {
+            border-color: var(--teal);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(45, 212, 191, 0.3);
+        }
+
+        .service-card.android-app {
+            border: 1.5px solid rgba(251, 113, 133, 0.35);
+            background: linear-gradient(135deg, rgba(251, 113, 133, 0.05) 0%, rgba(168, 85, 247, 0.04) 100%);
+        }
+        .service-card.android-app::before {
+            background: linear-gradient(90deg, transparent, rgba(251, 113, 133, 0.08), transparent);
+        }
+        .service-card.android-app:hover {
+            border-color: var(--rose);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(251, 113, 133, 0.3);
+        }
+        .service-card.android-app h3 { color: #ffc9d1; }
+        .service-card.android-app .service-list li::before { color: var(--rose); }
+        .service-card.android-app .service-cta { border-top-color: rgba(251, 113, 133, 0.25); }
+
         .service-card.ai-bot {
             border: 1.5px solid rgba(168, 85, 247, 0.35);
             background: linear-gradient(135deg, rgba(168, 85, 247, 0.06) 0%, rgba(45, 212, 191, 0.04) 100%);
         }
-
         .service-card.ai-bot::before {
             background: linear-gradient(90deg, transparent, rgba(168, 85, 247, 0.08), transparent);
         }
-
         .service-card.ai-bot:hover {
             border-color: var(--purple);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(168, 85, 247, 0.3);
         }
-
         .service-card.ai-bot h3 { color: #e9d5ff; }
         .service-card.ai-bot .service-list li::before { color: var(--purple); }
         .service-card.ai-bot .service-cta { border-top-color: rgba(168, 85, 247, 0.25); }
 
-        /* Downloader — Border teal */
         .service-card.downloader {
             border: 1.5px solid rgba(45, 212, 191, 0.35);
             background: linear-gradient(135deg, rgba(45, 212, 191, 0.05) 0%, rgba(52, 211, 153, 0.04) 100%);
         }
-
         .service-card.downloader:hover {
             border-color: var(--teal);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(45, 212, 191, 0.3);
@@ -753,7 +794,7 @@
             margin-bottom: 0.75rem;
         }
 
-        /* COMMUNITY — Logo Putih Full + Digeser ke Bawah */
+        /* COMMUNITY */
         .community-card {
             padding: 3rem;
             background: linear-gradient(135deg, rgba(0, 255, 65, 0.04) 0%, rgba(45, 212, 191, 0.06) 50%, rgba(129, 140, 248, 0.04) 100%);
@@ -886,7 +927,7 @@
         .badge-amber { background: var(--amber-soft); color: var(--amber); }
         .badge-emerald { background: var(--emerald-soft); color: var(--emerald); }
         .badge-purple { background: var(--purple-soft); color: var(--purple); }
-        .badge-rose { background: rgba(251, 113, 133, 0.12); color: var(--rose); }
+        .badge-rose { background: var(--rose-soft); color: var(--rose); }
 
         .project-title { font-size: 1.05rem; color: #fff; margin-bottom: 0.5rem; font-weight: 600; }
         .project-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem; flex-grow: 1; }
@@ -1125,6 +1166,7 @@
 
             .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
             .hero-visual { min-height: 500px; }
+            .hero-title { font-size: 2.2rem; }
             .float-badge { padding: 0.6rem 0.85rem; }
             .float-badge .fb-value { font-size: 0.75rem; }
             .float-badge .fb-label { font-size: 0.58rem; }
@@ -1154,7 +1196,8 @@
         }
 
         @media (max-width: 640px) {
-            .hero-title { font-size: 2rem; }
+            .hero-title { font-size: 1.8rem; }
+            .hero-title .tagline { font-size: 0.7em; }
             .section-title { font-size: 1.6rem; }
             .hero-stats { grid-template-columns: repeat(2, 1fr); }
             .hero-cta { flex-direction: column; }
@@ -1243,12 +1286,12 @@
             <div class="reveal">
                 <div class="hero-badge">
                     <i class="fa-solid fa-circle-check"></i>
-                    <span>Tersedia Jasa Pembuatan Web App, Dashboard & Sekolah UKM</span>
+                    <span>Tersedia Jasa Pembuatan Web App, Dashboard, Android & Sekolah UKM</span>
                 </div>
 
                 <h1 class="hero-title">
-                    Hi, saya <span class="name">Marlin Hidayat Tanjung</span>.<br>
-                    IT Support · Sysadmin · Trainer · Web & AI Builder.
+                    Hi, saya <span class="name">Marlin Hidayat Tanjung</span>.
+                    <span class="tagline">IT Support · Sysadmin · Trainer · Web & AI Builder.</span>
                 </h1>
 
                 <div class="typing-container">
@@ -1257,12 +1300,12 @@
                 </div>
 
                 <p class="hero-description">
-                    Selain melayani IT support dan sysadmin, saya membuka <strong>jasa pembuatan Web App, Web Dashboard, dan Web Aplikasi Sekolah / Kebutuhan UMKM</strong> secara profesional, cepat, dan fungsional sesuai kebutuhan Anda.
+                    Selain melayani IT support dan sysadmin, saya membuka <strong>jasa pembuatan Web App, Web Dashboard, Aplikasi Android, dan Web Aplikasi Sekolah / Kebutuhan UMKM</strong> secara profesional, cepat, dan fungsional sesuai kebutuhan Anda.
                 </p>
 
                 <div class="hero-cta">
                     <a href="#contact" class="btn btn-primary">
-                        <i class="fa-solid fa-paper-plane"></i> Pesan Jasa Web App
+                        <i class="fa-solid fa-paper-plane"></i> Pesan Jasa Sekarang
                     </a>
                     <a href="#services" class="btn btn-secondary">
                         <i class="fa-solid fa-laptop-code"></i> Lihat Layanan Jasa
@@ -1293,7 +1336,6 @@
                 <div class="hero-photo-wrap">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Tux Linux" class="photo-tux">
 
-                    <!-- Orbit DevOps + AI (Luar) — 8 icon -->
                     <div class="devops-orbit">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="devops-icon di-1">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" alt="Jenkins" class="devops-icon di-2">
@@ -1305,7 +1347,6 @@
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" class="devops-icon di-8">
                     </div>
 
-                    <!-- Orbit Pentest (Dalam) — 6 icon -->
                     <div class="pentest-orbit">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Kali Linux" class="pentest-icon pi-1">
                         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Wireshark" class="pentest-icon pi-2">
@@ -1342,10 +1383,10 @@
                     </div>
 
                     <div class="float-badge fb-2">
-                        <i class="fa-solid fa-server"></i>
+                        <i class="fa-solid fa-mobile-screen-button"></i>
                         <div class="fb-text">
-                            <span class="fb-label">Infrastructure</span>
-                            <span class="fb-value">Sysadmin</span>
+                            <span class="fb-label">Mobile</span>
+                            <span class="fb-value">Android App</span>
                         </div>
                     </div>
 
@@ -1382,7 +1423,7 @@
                 <div class="tech-card about-card reveal">
                     <h3><i class="fa-solid fa-user" style="color: var(--teal);"></i> Misi & Jasa Profesional</h3>
                     <p>Saya <strong>Marlin Hidayat Tanjung</strong>, praktisi IT yang percaya bahwa teknologi harus mempermudah pekerjaan dan mendongkrak efisiensi bisnis.</p>
-                    <p>Selain keseharian dalam <strong>troubleshooting perangkat</strong>, <strong>maintenance server</strong>, dan edukasi keamanan digital, saya aktif menerima <strong>jasa pembuatan aplikasi web kustom untuk UMKM, sekolah, dan perusahaan</strong>.</p>
+                    <p>Selain keseharian dalam <strong>troubleshooting perangkat</strong>, <strong>maintenance server</strong>, dan edukasi keamanan digital, saya aktif menerima <strong>jasa pembuatan aplikasi web & mobile kustom untuk UMKM, sekolah, dan perusahaan</strong>.</p>
                     <p>Saya juga founder komunitas <strong>LinuxPloiter</strong> — tempat belajar Linux, sysadmin, dan security secara legal & etis.</p>
 
                     <div class="about-highlights">
@@ -1392,9 +1433,9 @@
                             <p>Web app, dashboard & sistem sekolah</p>
                         </div>
                         <div class="highlight-item">
-                            <i class="fa-solid fa-server"></i>
-                            <h5>Sysadmin</h5>
-                            <p>Kelola server, backup & monitoring</p>
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                            <h5>Android App</h5>
+                            <p>Mobile app kustom untuk bisnis</p>
                         </div>
                         <div class="highlight-item">
                             <i class="fa-solid fa-chalkboard-user"></i>
@@ -1427,8 +1468,8 @@
                         <div class="skill-bar"><div class="skill-fill" data-progress="90%"></div></div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-head"><span>Edukasi & Training IT</span><span>88%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-progress="88%"></div></div>
+                        <div class="skill-head"><span>Mobile App (Android)</span><span>82%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" data-progress="82%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-head"><span>AI & Otomasi Integrasi</span><span>80%</span></div>
@@ -1440,8 +1481,10 @@
                         <div class="project-tech">
                             <span class="tech-tag">Laravel</span>
                             <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Kotlin</span>
                             <span class="tech-tag">PHP / JS</span>
-                            <span class="tech-tag">Bootstrap / Tailwind</span>
+                            <span class="tech-tag">Tailwind</span>
                             <span class="tech-tag">MySQL</span>
                             <span class="tech-tag">Linux</span>
                             <span class="tech-tag">Docker</span>
@@ -1454,62 +1497,43 @@
         </div>
     </section>
 
-    <!-- SERVICES -->
+    <!-- SERVICES — 6 card rapi 2×3 -->
     <section id="services">
         <div class="container">
             <div class="section-header reveal">
                 <span class="section-tag">LAYANAN & JASA</span>
-                <h2 class="section-title">Solusi Digital & <span class="highlight">Jasa Pembuatan Web</span></h2>
-                <p class="section-subtitle">Solusi profesional untuk kebutuhan IT harian, edukasi, serta jasa pembuatan aplikasi web kustom bagi UMKM dan sekolah.</p>
+                <h2 class="section-title">Solusi Digital & <span class="highlight">Jasa Pembuatan Aplikasi</span></h2>
+                <p class="section-subtitle">Solusi profesional untuk kebutuhan IT harian, edukasi, serta jasa pembuatan aplikasi web & mobile kustom bagi UMKM, sekolah, dan perusahaan.</p>
             </div>
 
             <div class="services-grid">
-                <!-- Card 1: Web App & UMKM -->
-                <div class="tech-card service-card reveal" style="border-color: var(--teal);">
+                <div class="tech-card service-card web-app reveal">
                     <div class="service-icon teal"><i class="fa-solid fa-laptop-code"></i></div>
-                    <h3>Jasa Pembuatan Web App & UMKM</h3>
-                    <p>Solusi digital lengkap untuk meningkatkan performa operasional bisnis atau toko online Anda.</p>
+                    <h3>Web App & Dashboard Kustom</h3>
+                    <p>Solusi digital lengkap: dari company profile, toko online, hingga dashboard monitoring & analitik bisnis.</p>
                     <ul class="service-list">
                         <li>Website Company Profile & Toko Online</li>
-                        <li>Web Aplikasi Kustom Sesuai Alur Bisnis</li>
-                        <li>Optimasi & Integrasi Sistem Pembayaran</li>
-                        <li>Desain Responsif & SEO-Friendly</li>
+                        <li>Dashboard Monitoring Inventaris & Kasir</li>
+                        <li>Manajemen Hak Akses Pengguna (Role Admin)</li>
+                        <li>Sistem Pelaporan Otomatis & Grafik Real-time</li>
+                        <li>Integrasi Pembayaran & SEO-Friendly</li>
                     </ul>
                     <div class="service-cta">
                         <a href="#contact" class="btn btn-primary">
-                            <i class="fa-solid fa-paper-plane"></i> Pesan Jasa Web App
+                            <i class="fa-solid fa-paper-plane"></i> Pesan Web App / Dashboard
                         </a>
                     </div>
                 </div>
 
-                <!-- Card 2: Web Dashboard -->
-                <div class="tech-card service-card reveal">
-                    <div class="service-icon indigo"><i class="fa-solid fa-chart-pie"></i></div>
-                    <h3>Web Dashboard Kustom</h3>
-                    <p>Bangun pusat kontrol data dan analitik bisnis yang rapi, cepat, dan mudah dioperasikan.</p>
-                    <ul class="service-list">
-                        <li>Dashboard monitoring inventaris & kasir</li>
-                        <li>Sistem pelaporan otomatis berbasis web</li>
-                        <li>Manajemen hak akses pengguna (Role Admin)</li>
-                        <li>Integrasi grafik analitik data real-time</li>
-                    </ul>
-                    <div class="service-cta">
-                        <a href="#contact" class="btn btn-indigo">
-                            <i class="fa-solid fa-chart-line"></i> Konsultasi Dashboard
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Card 3: Web Aplikasi Sekolah -->
                 <div class="tech-card service-card reveal">
                     <div class="service-icon amber"><i class="fa-solid fa-school"></i></div>
                     <h3>Web Aplikasi Sekolah</h3>
                     <p>Sistem manajemen sekolah modern untuk mempermudah administrasi akademik dan pelaporan.</p>
                     <ul class="service-list">
                         <li>Portal PPDB (Penerimaan Peserta Didik Baru)</li>
-                        <li>Sistem informasi nilai & absensi siswa</li>
-                        <li>Manajemen perpustakaan & keuangan sekolah</li>
-                        <li>Portal pengumuman & e-learning sederhana</li>
+                        <li>Sistem Informasi Nilai & Absensi Siswa</li>
+                        <li>Manajemen Perpustakaan & Keuangan Sekolah</li>
+                        <li>Portal Pengumuman & E-Learning Sederhana</li>
                     </ul>
                     <div class="service-cta">
                         <a href="#contact" class="btn btn-amber">
@@ -1518,25 +1542,23 @@
                     </div>
                 </div>
 
-                <!-- Card 4: IT Support & Sysadmin -->
-                <div class="tech-card service-card reveal">
-                    <div class="service-icon emerald"><i class="fa-solid fa-server"></i></div>
-                    <h3>IT Support & Sysadmin</h3>
-                    <p>Dukungan teknis harian, pemeliharaan server, dan jaringan kantor/instansi agar tetap stabil.</p>
+                <div class="tech-card service-card android-app reveal">
+                    <div class="service-icon rose"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    <h3>Aplikasi Android Kustom</h3>
+                    <p>Aplikasi mobile Android sesuai kebutuhan bisnis, sekolah, atau komunitas. Bisa standalone atau terintegrasi dengan web app.</p>
                     <ul class="service-list">
-                        <li>Troubleshooting hardware & software</li>
-                        <li>Setup & maintenance server Linux / Docker</li>
-                        <li>Backup otomatis & monitoring server</li>
-                        <li>Training keamanan digital staf / UMKM</li>
+                        <li>Android App Kustom (Flutter / Kotlin)</li>
+                        <li>Integrasi dengan Web App / Dashboard</li>
+                        <li>Fitur: Login, Dashboard Mobile, Push Notif</li>
+                        <li>Bisa Publish ke Google Play Store (opsional)</li>
                     </ul>
                     <div class="service-cta">
-                        <a href="#contact" class="btn btn-emerald">
-                            <i class="fa-solid fa-headset"></i> Butuh IT Support?
+                        <a href="#contact" class="btn btn-rose">
+                            <i class="fa-brands fa-android"></i> Konsultasi Android App
                         </a>
                     </div>
                 </div>
 
-                <!-- Card 5: AI & Bot Sesuai Kebutuhan -->
                 <div class="tech-card service-card ai-bot reveal">
                     <div class="service-icon purple"><i class="fa-solid fa-robot"></i></div>
                     <h3>AI & Bot Sesuai Kebutuhan</h3>
@@ -1545,7 +1567,7 @@
                         <li>Chatbot Customer Service 24/7</li>
                         <li>Bot Otomasi WhatsApp / Telegram</li>
                         <li>AI Assistant untuk Data Internal</li>
-                        <li>Integrasi LLM ke Web App Anda</li>
+                        <li>Integrasi LLM ke Web / Android App</li>
                         <li>Otomasi Laporan & Notifikasi</li>
                     </ul>
                     <div class="service-cta">
@@ -1555,16 +1577,15 @@
                     </div>
                 </div>
 
-                <!-- Card 6: Aplikasi Downloader -->
                 <div class="tech-card service-card downloader reveal">
                     <div class="service-icon teal"><i class="fa-solid fa-download"></i></div>
-                    <h3>Aplikasi Downloader Sesuai Kebutuhan</h3>
+                    <h3>Aplikasi Downloader Kustom</h3>
                     <p>Pembuatan aplikasi downloader kustom untuk kebutuhan arsip, riset, atau internal tools perusahaan.</p>
                     <ul class="service-list">
                         <li>Downloader Video / Audio (Public Content)</li>
                         <li>Downloader Dokumen dari URL / API</li>
                         <li>Batch Downloader untuk Arsip Internal</li>
-                        <li>Integrasi ke Web App / Desktop App</li>
+                        <li>Integrasi ke Web / Android App</li>
                         <li>Downloader dengan Antrian & Manajemen File</li>
                     </ul>
                     <div class="service-cta">
@@ -1573,6 +1594,23 @@
                         </span>
                         <a href="#contact" class="btn btn-primary">
                             <i class="fa-solid fa-download"></i> Pesan Downloader Custom
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tech-card service-card reveal">
+                    <div class="service-icon emerald"><i class="fa-solid fa-server"></i></div>
+                    <h3>IT Support & Sysadmin</h3>
+                    <p>Dukungan teknis harian, pemeliharaan server, dan jaringan kantor/instansi agar tetap stabil.</p>
+                    <ul class="service-list">
+                        <li>Troubleshooting Hardware & Software</li>
+                        <li>Setup & Maintenance Server Linux / Docker</li>
+                        <li>Backup Otomatis & Monitoring Server</li>
+                        <li>Training Keamanan Digital Staf / UMKM</li>
+                    </ul>
+                    <div class="service-cta">
+                        <a href="#contact" class="btn btn-emerald">
+                            <i class="fa-solid fa-headset"></i> Butuh IT Support?
                         </a>
                     </div>
                 </div>
@@ -1646,7 +1684,7 @@
             <div class="section-header reveal">
                 <span class="section-tag">GITHUB REPOSITORIES</span>
                 <h2 class="section-title">Repo & <span class="highlight">Eksperimen</span></h2>
-                <p class="section-subtitle">6 Item repository publik pilihan dari GitHub saya yang aktif dan relevan dengan pengembangan web & sistem.</p>
+                <p class="section-subtitle">6 Item repository publik pilihan dari GitHub saya yang aktif dan relevan dengan pengembangan web, mobile & sistem.</p>
             </div>
 
             <div class="projects-grid">
@@ -1883,6 +1921,15 @@
                 </div>
 
                 <div class="tech-card cert-card reveal">
+                    <div class="cert-icon" style="background: var(--rose-soft); color: var(--rose);"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                    <div class="cert-info">
+                        <h4>Mobile App Development</h4>
+                        <p>Flutter, Kotlin, Android App</p>
+                        <div class="cert-status"><i class="fa-solid fa-circle-check"></i> Aktif Dipelajari</div>
+                    </div>
+                </div>
+
+                <div class="tech-card cert-card reveal">
                     <div class="cert-icon" style="background: var(--amber-soft); color: var(--amber);"><i class="fa-solid fa-robot"></i></div>
                     <div class="cert-info">
                         <h4>AI & Automation</h4>
@@ -1901,19 +1948,10 @@
                 </div>
 
                 <div class="tech-card cert-card reveal">
-                    <div class="cert-icon" style="background: var(--teal-soft); color: var(--teal);"><i class="fa-solid fa-users"></i></div>
+                    <div class="cert-icon" style="background: var(--purple-soft); color: var(--purple);"><i class="fa-solid fa-users"></i></div>
                     <div class="cert-info">
                         <h4>Community Building</h4>
                         <p>LinuxPloiter, diskusi, mentoring</p>
-                        <div class="cert-status"><i class="fa-solid fa-circle-check"></i> Aktif</div>
-                    </div>
-                </div>
-
-                <div class="tech-card cert-card reveal">
-                    <div class="cert-icon" style="background: var(--indigo-soft); color: var(--indigo);"><i class="fa-solid fa-book"></i></div>
-                    <div class="cert-info">
-                        <h4>Dokumentasi & Sharing</h4>
-                        <p>Catatan belajar, tutorial, tools</p>
                         <div class="cert-status"><i class="fa-solid fa-circle-check"></i> Aktif</div>
                     </div>
                 </div>
@@ -1921,7 +1959,7 @@
         </div>
     </section>
 
-    <!-- TESTIMONIALS -->
+    <!-- TESTIMONIALS — "Hidayat" menggantikan "Marlin" -->
     <section id="testimonials">
         <div class="container">
             <div class="section-header reveal">
@@ -1935,7 +1973,7 @@
                     <div class="testimonial-stars">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="testimonial-text">"Marlin built a custom web dashboard for our UMKM store. The app is fast, user-friendly, and perfectly matches our inventory workflow. Highly recommended!"</p>
+                    <p class="testimonial-text">"Hidayat built a custom web dashboard for our UMKM store. The app is fast, user-friendly, and perfectly matches our inventory workflow. Highly recommended!"</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar-img">
                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=AryaRahman" alt="Arya Rahman">
@@ -1951,7 +1989,7 @@
                     <div class="testimonial-stars">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="testimonial-text">"We hired Marlin for a security awareness workshop. His materials were practical, the delivery was engaging, and the follow-up quiz helped reinforce the lessons."</p>
+                    <p class="testimonial-text">"We hired Hidayat for a security awareness workshop. His materials were practical, the delivery was engaging, and the follow-up quiz helped reinforce the lessons."</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar-img">
                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=SitiNurhaliza" alt="Siti Nurhaliza">
@@ -1967,7 +2005,7 @@
                     <div class="testimonial-stars">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="testimonial-text">"Needed a school portal system. Marlin delivered on time, with clean code and clear documentation. He even added a small AI feature that auto-summarizes weekly reports."</p>
+                    <p class="testimonial-text">"Needed a school portal system. Hidayat delivered on time, with clean code and clear documentation. He even added a small AI feature that auto-summarizes weekly reports."</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar-img">
                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=BudiWijaya" alt="Budi Wijaya">
@@ -1983,7 +2021,7 @@
                     <div class="testimonial-stars">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="testimonial-text">"I joined one of Marlin's community workshops on Linux basics. He has a rare talent for breaking down complex topics into something beginners can actually understand."</p>
+                    <p class="testimonial-text">"I joined one of Hidayat's community workshops on Linux basics. He has a rare talent for breaking down complex topics into something beginners can actually understand."</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar-img">
                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=DewiLestari" alt="Dewi Lestari">
@@ -1999,7 +2037,7 @@
                     <div class="testimonial-stars">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="testimonial-text">"Our small clinic was struggling with data backup and network stability. Marlin set up a simple monitoring system and automated backups. We haven't lost a single record since."</p>
+                    <p class="testimonial-text">"Our small clinic was struggling with data backup and network stability. Hidayat set up a simple monitoring system and automated backups. We haven't lost a single record since."</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar-img">
                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=RinaSari" alt="Dr. Rina Sari">
@@ -2015,7 +2053,7 @@
                     <div class="testimonial-stars">
                         <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                     </div>
-                    <p class="testimonial-text">"Marlin genuinely cares about teaching, not just fixing. He built us a documentation site and recorded short tutorial videos. Our onboarding time got cut in half."</p>
+                    <p class="testimonial-text">"Hidayat genuinely cares about teaching, not just fixing. He built us a documentation site and recorded short tutorial videos. Our onboarding time got cut in half."</p>
                     <div class="testimonial-author">
                         <div class="testimonial-avatar-img">
                             <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=AndiPratama" alt="Andi Pratama">
@@ -2036,7 +2074,7 @@
             <div class="section-header reveal">
                 <span class="section-tag">KONTAK</span>
                 <h2 class="section-title">Mari <span class="highlight">Berkolaborasi</span></h2>
-                <p class="section-subtitle">Butuh jasa pembuatan web app, web dashboard, aplikasi sekolah, atau bantuan IT? Kirim pesan saja.</p>
+                <p class="section-subtitle">Butuh jasa pembuatan web app, dashboard, aplikasi Android, atau bantuan IT? Kirim pesan saja.</p>
             </div>
 
             <div class="contact-grid">
@@ -2052,11 +2090,11 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="contact-subject">Kebutuhan / Layanan</label>
-                            <input type="text" id="contact-subject" class="form-control" placeholder="Jasa Web App / Web Dashboard / Aplikasi Sekolah / IT Support" required>
+                            <input type="text" id="contact-subject" class="form-control" placeholder="Web App / Android App / AI & Bot / Downloader / IT Support" required>
                         </div>
                         <div class="form-group">
                             <label class="form-label" for="contact-message">Pesan / Detail Proyek</label>
-                            <textarea id="contact-message" class="form-control" rows="4" placeholder="Ceritakan detail proyek web app atau kebutuhan sistem yang ingin Anda buat..." required></textarea>
+                            <textarea id="contact-message" class="form-control" rows="4" placeholder="Ceritakan detail proyek aplikasi atau kebutuhan sistem yang ingin Anda buat..." required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
                             <i class="fa-solid fa-paper-plane"></i> Kirim Pesan & Order via WhatsApp
@@ -2111,7 +2149,7 @@
                     </div>
                     <p class="footer-desc">
                         IT Support · Sysadmin · Cyber Security Educator · AI & Web App Builder.
-                        Menyediakan jasa pembuatan web app, dashboard, sistem sekolah UMKM, AI & bot kustom.
+                        Menyediakan jasa pembuatan web app, dashboard, aplikasi Android, AI & bot kustom.
                     </p>
                     <div class="footer-socials">
                         <a href="https://github.com/hidayat-tanjung" target="_blank" rel="noreferrer" class="social-link" title="GitHub"><i class="fa-brands fa-github"></i></a>
@@ -2140,12 +2178,12 @@
                 <div>
                     <h5 class="footer-heading">LAYANAN & JASA</h5>
                     <ul class="footer-links">
-                        <li><a href="#services">Jasa Web App & UMKM</a></li>
-                        <li><a href="#services">Web Dashboard Kustom</a></li>
+                        <li><a href="#services">Web App & Dashboard</a></li>
                         <li><a href="#services">Web Aplikasi Sekolah</a></li>
-                        <li><a href="#services">IT Support & Sysadmin</a></li>
+                        <li><a href="#services">Aplikasi Android</a></li>
                         <li><a href="#services">AI & Bot Kustom</a></li>
                         <li><a href="#services">Aplikasi Downloader</a></li>
+                        <li><a href="#services">IT Support & Sysadmin</a></li>
                         <li><a href="#community">LinuxPloiter</a></li>
                     </ul>
                 </div>
@@ -2163,10 +2201,10 @@
         const typedEl = document.getElementById('typed-text');
         const roles = [
             'Jasa Pembuatan Web App & UMKM',
-            'Web Dashboard Developer',
-            'Aplikasi Sekolah & Sistem Akademik',
-            'IT Support & Linux Sysadmin',
+            'Jasa Pembuatan Aplikasi Android',
+            'Web Aplikasi Sekolah & Sistem Akademik',
             'AI & Bot Sesuai Kebutuhan',
+            'IT Support & Linux Sysadmin',
             'Founder LinuxPloiter'
         ];
         let rIdx = 0, cIdx = 0, deleting = false;
