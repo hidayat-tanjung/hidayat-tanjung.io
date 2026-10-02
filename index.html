@@ -559,7 +559,8 @@
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 175%; height: 175%;
+            width: 135%; height: 135%;
+            --devops-diagonal-inset: 5.565px;
             z-index: 0;
             pointer-events: none;
             animation: orbitSpin 32s linear infinite;
@@ -595,14 +596,14 @@
             to   { transform: rotate(-360deg); }
         }
 
-        .di-1 { top: 0;       left: 50%;  margin-left: -19px; }
-        .di-2 { top: 15%;     right: 8%; }
-        .di-3 { top: 50%;     right: 0;   margin-top: -19px; }
-        .di-4 { bottom: 15%;  right: 8%; }
-        .di-5 { bottom: 0;    left: 50%;  margin-left: -19px; }
-        .di-6 { bottom: 15%;  left: 8%; }
-        .di-7 { top: 50%;     left: 0;    margin-top: -19px; }
-        .di-8 { top: 15%;     left: 8%; }
+        .di-1 { top: 0; left: 50%; margin-left: -19px; }
+        .di-2 { top: calc(14.6447% - var(--devops-diagonal-inset)); right: calc(14.6447% - var(--devops-diagonal-inset)); }
+        .di-3 { top: 50%; right: 0; margin-top: -19px; }
+        .di-4 { bottom: calc(14.6447% - var(--devops-diagonal-inset)); right: calc(14.6447% - var(--devops-diagonal-inset)); }
+        .di-5 { bottom: 0; left: 50%; margin-left: -19px; }
+        .di-6 { bottom: calc(14.6447% - var(--devops-diagonal-inset)); left: calc(14.6447% - var(--devops-diagonal-inset)); }
+        .di-7 { top: 50%; left: 0; margin-top: -19px; }
+        .di-8 { top: calc(14.6447% - var(--devops-diagonal-inset)); left: calc(14.6447% - var(--devops-diagonal-inset)); }
 
         .di-7, .di-8 {
             filter: drop-shadow(0 0 12px rgba(168, 85, 247, 0.85)) !important;
@@ -613,7 +614,9 @@
             position: absolute;
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            width: 130%; height: 130%;
+            width: 120%; height: 120%;
+            --pentest-vertical-inset: 8px;
+            --pentest-horizontal-inset: 2.144px;
             z-index: 0;
             pointer-events: none;
             animation: orbitSpinReverse 22s linear infinite;
@@ -639,12 +642,12 @@
             to   { transform: rotate(360deg); }
         }
 
-        .pi-1 { top: 0;    left: 50%; margin-left: -16px; }
-        .pi-2 { top: 25%;  right: 0; }
-        .pi-3 { top: 75%;  right: 0; }
+        .pi-1 { top: 0; left: 50%; margin-left: -16px; }
+        .pi-2 { top: calc(25% - var(--pentest-vertical-inset)); right: calc(6.6987% - var(--pentest-horizontal-inset)); }
+        .pi-3 { bottom: calc(25% - var(--pentest-vertical-inset)); right: calc(6.6987% - var(--pentest-horizontal-inset)); }
         .pi-4 { bottom: 0; left: 50%; margin-left: -16px; }
-        .pi-5 { top: 75%;  left: 0; }
-        .pi-6 { top: 25%;  left: 0; }
+        .pi-5 { bottom: calc(25% - var(--pentest-vertical-inset)); left: calc(6.6987% - var(--pentest-horizontal-inset)); }
+        .pi-6 { top: calc(25% - var(--pentest-vertical-inset)); left: calc(6.6987% - var(--pentest-horizontal-inset)); }
 
         .photo-terminal {
             position: absolute;
@@ -1477,7 +1480,7 @@
             .mobile-toggle:hover { background: var(--teal); color: #0b1220; }
 
             .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .hero-visual { min-height: 500px; }
+            .hero-visual { min-height: 560px; }
             .hero-title { font-size: 2.2rem; }
             .hero-tagline { font-size: 1.3rem; }
             .float-badge { padding: 0.6rem 0.85rem; }
@@ -1498,12 +1501,12 @@
             .community-logo-inner { padding: 10%; }
             .community-cta { justify-content: center; }
 
-            .devops-orbit { width: 165%; height: 165%; }
+            .devops-orbit { width: 135%; height: 135%; --devops-diagonal-inset: 4.3935px; }
             .devops-icon { width: 30px; height: 30px; }
             .di-1, .di-5 { margin-left: -15px; }
             .di-3, .di-7 { margin-top: -15px; }
 
-            .pentest-orbit { width: 125%; height: 125%; }
+            .pentest-orbit { width: 120%; height: 120%; --pentest-vertical-inset: 6.5px; --pentest-horizontal-inset: 1.742px; }
             .pentest-icon { width: 26px; height: 26px; }
             .pi-1, .pi-4 { margin-left: -13px; }
 
@@ -1529,8 +1532,13 @@
             .about-highlights { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; text-align: center; }
 
-            .hero-visual { min-height: 420px; padding: 1rem; }
-            .hero-photo-wrap { max-width: 280px; }
+            .hero-visual {
+                min-height: 420px;
+                width: calc(100% + 30px);
+                margin-left: -15px;
+                padding: 0;
+            }
+            .hero-photo-wrap { max-width: min(280px, calc(100vw - 80px)); }
             .photo-terminal { font-size: 0.55rem; inset: -30%; }
             .float-badge { padding: 0.5rem 0.7rem; gap: 0.5rem; border-radius: 10px; }
             .float-badge i { font-size: 0.85rem; }
@@ -1541,12 +1549,12 @@
             .fb-3 { bottom: 12%; right: -2%; }
             .fb-4 { bottom: -4%; left: -2%; }
 
-            .devops-orbit { width: 160%; height: 160%; }
+            .devops-orbit { width: calc(100% + 72px); height: calc(100% + 72px); --devops-diagonal-inset: 3.515px; }
             .devops-icon { width: 24px; height: 24px; }
             .di-1, .di-5 { margin-left: -12px; }
             .di-3, .di-7 { margin-top: -12px; }
 
-            .pentest-orbit { width: 120%; height: 120%; }
+            .pentest-orbit { width: calc(100% + 48px); height: calc(100% + 48px); --pentest-vertical-inset: 5.5px; --pentest-horizontal-inset: 1.474px; }
             .pentest-icon { width: 22px; height: 22px; }
             .pi-1, .pi-4 { margin-left: -11px; }
 
