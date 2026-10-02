@@ -336,14 +336,14 @@
             font-weight: 500;
         }
 
-        /* HERO TITLE — Nama di baris 1, tagline di baris 2 */
+        /* HERO TITLE */
         .hero-title {
             font-family: var(--font-sans);
             font-size: 2.6rem;
             font-weight: 800;
             line-height: 1.25;
             color: #fff;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             letter-spacing: -0.03em;
         }
 
@@ -353,12 +353,16 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-title .tagline {
-            display: block;
-            font-size: 0.72em;
+        /* HERO TAGLINE — dipisah dari h1 */
+        .hero-tagline {
+            font-family: var(--font-sans);
+            font-size: 1.5rem;
             font-weight: 700;
             color: #fff;
-            margin-top: 0.25rem;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            margin-bottom: 1.25rem;
+            max-width: 560px;
         }
 
         .typing-container {
@@ -461,7 +465,7 @@
             50% { transform: translate(-50%, -50%) scale(1.05) rotate(3deg); }
         }
 
-        /* ORBIT DEVOPS + AI (Luar) — 8 icon */
+        /* ORBIT DEVOPS + AI (Luar) */
         .devops-orbit {
             position: absolute;
             top: 50%; left: 50%;
@@ -506,7 +510,7 @@
             opacity: 0.75 !important;
         }
 
-        /* ORBIT PENTEST (Dalam) — 6 icon */
+        /* ORBIT PENTEST (Dalam) */
         .pentest-orbit {
             position: absolute;
             top: 50%; left: 50%;
@@ -678,7 +682,7 @@
         .skill-bar { width: 100%; height: 6px; background: rgba(148, 163, 184, 0.1); border-radius: 4px; overflow: hidden; }
         .skill-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--teal), var(--indigo)); width: 0; transition: width 1.2s ease-out; }
 
-        /* SERVICES — 6 card, grid rapi 2×3 */
+        /* SERVICES */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1167,6 +1171,7 @@
             .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
             .hero-visual { min-height: 500px; }
             .hero-title { font-size: 2.2rem; }
+            .hero-tagline { font-size: 1.3rem; }
             .float-badge { padding: 0.6rem 0.85rem; }
             .float-badge .fb-value { font-size: 0.75rem; }
             .float-badge .fb-label { font-size: 0.58rem; }
@@ -1197,7 +1202,7 @@
 
         @media (max-width: 640px) {
             .hero-title { font-size: 1.8rem; }
-            .hero-title .tagline { font-size: 0.7em; }
+            .hero-tagline { font-size: 1.05rem; }
             .section-title { font-size: 1.6rem; }
             .hero-stats { grid-template-columns: repeat(2, 1fr); }
             .hero-cta { flex-direction: column; }
@@ -1290,9 +1295,9 @@
                 </div>
 
                 <h1 class="hero-title">
-    Hi, saya <span class="name">Marlin Hidayat Tanjung</span>.
-</h1>
-<p class="hero-tagline">IT Support · Sysadmin · Trainer · Web & AI Builder.</p>
+                    Hi, saya <span class="name">Marlin Hidayat Tanjung</span>.
+                </h1>
+                <p class="hero-tagline">IT Support · Sysadmin · Trainer · Web & AI Builder.</p>
 
                 <div class="typing-container">
                     <span id="typed-text"></span>
@@ -1497,7 +1502,7 @@
         </div>
     </section>
 
-    <!-- SERVICES — 6 card rapi 2×3 -->
+    <!-- SERVICES -->
     <section id="services">
         <div class="container">
             <div class="section-header reveal">
