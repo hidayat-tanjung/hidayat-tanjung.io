@@ -261,7 +261,7 @@
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 0.25rem;
+            gap: 0.35rem;
             list-style: none;
             flex-grow: 1;
             justify-content: center;
@@ -271,9 +271,9 @@
         .nav-link {
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.82rem;
+            font-size: 0.94rem;
             font-weight: 500;
-            padding: 0.5rem 0.8rem;
+            padding: 0.55rem 0.75rem;
             border-radius: 6px;
             transition: var(--transition);
             white-space: nowrap;
@@ -282,6 +282,60 @@
         .nav-link:hover, .nav-link.active {
             color: var(--teal);
             background: var(--teal-soft);
+        }
+
+        .nav-more { position: relative; }
+
+        .nav-more-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            color: var(--text-secondary);
+            background: transparent;
+            border: 0;
+            border-radius: 6px;
+            padding: 0.55rem 0.75rem;
+            font: inherit;
+            font-size: 0.94rem;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-more-toggle:hover,
+        .nav-more-toggle[aria-expanded="true"] {
+            color: var(--teal);
+            background: var(--teal-soft);
+        }
+
+        .nav-submenu {
+            display: none;
+            position: absolute;
+            top: calc(100% + 0.45rem);
+            right: 0;
+            min-width: 220px;
+            padding: 0.4rem;
+            list-style: none;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .nav-more.open .nav-submenu {
+            display: block;
+        }
+
+        .nav-submenu .nav-link {
+            display: block;
+            padding: 0.7rem 0.8rem;
+        }
+
+        .nav-more-toggle:focus-visible,
+        .nav-link:focus-visible {
+            outline: 2px solid var(--teal);
+            outline-offset: 2px;
         }
 
         .nav-actions {
@@ -1317,10 +1371,32 @@
         }
 
         /* RESPONSIVE */
+        @media (min-width: 1025px) {
+            .nav-inner {
+                max-width: 1600px;
+                gap: clamp(0.5rem, 1vw, 1rem);
+            }
+
+            .nav-logo { flex-shrink: 0; }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1400px) {
+            .nav-status { display: none; }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1200px) {
+            .nav-socials { display: none; }
+        }
+
         @media (max-width: 1024px) {
             .nav-status, .nav-socials { display: none; }
 
             .nav-logo > span:last-child { display: none; } /* FIX Bug 4: nama panjang disembunyikan */
+
+            .nav-more,
+            .nav-submenu { display: contents; }
+
+            .nav-more-toggle { display: none; }
 
             .nav-links {
                 position: fixed;
@@ -1486,13 +1562,20 @@
             <ul class="nav-links" id="nav-links">
                 <li><a href="#about" class="nav-link">Tentang</a></li>
                 <li><a href="#services" class="nav-link">Layanan & Jasa</a></li>
-                <li><a href="#community" class="nav-link">Komunitas</a></li>
-                <li><a href="#partner" class="nav-link">Partner</a></li>
                 <li><a href="#projects" class="nav-link">Repo & Eksperimen</a></li>
-                <li><a href="#training" class="nav-link">Catatan</a></li>
-                <li><a href="#certs" class="nav-link">Fokus</a></li>
-                <li><a href="#testimonials" class="nav-link">Testimoni</a></li>
                 <li><a href="#contact" class="nav-link">Kontak</a></li>
+                <li class="nav-more">
+                    <button class="nav-more-toggle" type="button" aria-expanded="false" aria-controls="nav-submenu">
+                        Lainnya <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <ul class="nav-submenu" id="nav-submenu">
+                        <li><a href="#community" class="nav-link">Komunitas</a></li>
+                        <li><a href="#partner" class="nav-link">Partner</a></li>
+                        <li><a href="#training" class="nav-link">Catatan</a></li>
+                        <li><a href="#certs" class="nav-link">Fokus</a></li>
+                        <li><a href="#testimonials" class="nav-link">Testimoni</a></li>
+                    </ul>
+                </li>
             </ul>
 
             <div class="nav-actions">
@@ -2554,6 +2637,8 @@
         /* ============ MOBILE NAV ============ */
         const mobileToggle = document.getElementById('mobile-toggle');
         const navLinks = document.getElementById('nav-links');
+        const navMore = document.querySelector('.nav-more');
+        const navMoreToggle = document.querySelector('.nav-more-toggle');
 
         function closeMenu() {
             navLinks.classList.remove('open');
@@ -2571,6 +2656,12 @@
             document.body.style.touchAction = 'none';
         }
 
+        function closeMoreMenu() {
+            if (!navMore || !navMoreToggle) return;
+            navMore.classList.remove('open');
+            navMoreToggle.setAttribute('aria-expanded', 'false');
+        }
+
         if (mobileToggle && navLinks) {
             mobileToggle.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -2578,8 +2669,23 @@
                 else openMenu();
             });
 
+            if (navMore && navMoreToggle) {
+                navMoreToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = navMore.classList.toggle('open');
+                    navMoreToggle.setAttribute('aria-expanded', String(isOpen));
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!navMore.contains(e.target)) closeMoreMenu();
+                });
+            }
+
             document.querySelectorAll('.nav-link').forEach(link => {
-                link.addEventListener('click', closeMenu);
+                link.addEventListener('click', () => {
+                    closeMenu();
+                    closeMoreMenu();
+                });
             });
 
             // FIX Bug 11: tutup saat klik di luar area menu
@@ -2600,12 +2706,18 @@
                     if (window.innerWidth > 1024 && navLinks.classList.contains('open')) {
                         closeMenu();
                     }
+                    if (window.innerWidth <= 1024) closeMoreMenu();
                 }, 150);
             });
 
             // Tutup saat Escape
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && navLinks.classList.contains('open')) closeMenu();
+                if (e.key !== 'Escape') return;
+                if (navLinks.classList.contains('open')) closeMenu();
+                if (navMore && navMore.classList.contains('open')) {
+                    closeMoreMenu();
+                    navMoreToggle.focus();
+                }
             });
         }
 
@@ -2715,8 +2827,9 @@
                 const waUrl = 'https://wa.me/' + waNum + '?text=' + encodeURIComponent(waText);
 
                 // Buka langsung (user gesture context) — TIDAK pakai setTimeout
-                const win = window.open(waUrl, '_blank', 'noopener');
-                if (!win || win.closed || typeof win.closed === 'undefined') {
+                const win = window.open(waUrl, '_blank');
+                if (win) win.opener = null;
+                else {
                     // Fallback kalau popup diblokir
                     window.location.href = waUrl;
                 }
