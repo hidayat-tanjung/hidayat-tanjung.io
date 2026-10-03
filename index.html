@@ -45,7 +45,7 @@
             --matrix-green: #00ff41;
             --text-primary: #e8eef7;
             --text-secondary: #a3b1c6;
-            --text-muted: #8a99b0; /* FIX Bug 7: kontras WCAG AA */
+            --text-muted: #8a99b0;
             --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.25);
             --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.35);
             --font-sans: 'Inter', -apple-system, sans-serif;
@@ -87,7 +87,6 @@
             border-bottom: 1px solid var(--border-subtle);
         }
 
-        /* FIX Bug 13: section terakhir tanpa border */
         #contact { border-bottom: none; }
 
         .section-header { margin-bottom: 3rem; }
@@ -177,6 +176,21 @@
             display: flex;
             align-items: center;
             padding-top: env(safe-area-inset-top);
+            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.28s ease, box-shadow 0.28s ease;
+            will-change: transform;
+        }
+
+        .tech-nav.nav-hidden {
+            transform: translateY(-100%);
+        }
+
+        .tech-nav.nav-visible {
+            transform: translateY(0);
+        }
+
+        .tech-nav.scrolled {
+            background: rgba(11, 18, 32, 0.96);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
         }
 
         .nav-inner {
@@ -185,7 +199,7 @@
             justify-content: space-between;
             width: 100%;
             gap: 1rem;
-            min-width: 0; /* FIX Bug 4: cegah overflow */
+            min-width: 0;
         }
 
         .nav-logo {
@@ -199,7 +213,7 @@
             color: #fff;
             letter-spacing: -0.01em;
             flex-shrink: 1;
-            min-width: 0; /* FIX Bug 4 */
+            min-width: 0;
             overflow: hidden;
         }
 
@@ -354,7 +368,6 @@
             margin-right: 0.3rem;
         }
 
-        /* FIX Bug 6: touch target minimal 44px */
         .nav-social {
             width: 40px;
             height: 40px;
@@ -484,7 +497,7 @@
             font-size: 0.88rem;
             font-weight: 600;
             padding: 0.8rem 1.4rem;
-            min-height: 44px; /* FIX Bug 6: touch target */
+            min-height: 44px;
             border-radius: 8px;
             text-decoration: none;
             cursor: pointer;
@@ -532,7 +545,7 @@
             justify-content: center;
             min-height: 600px;
             padding: 2rem;
-            overflow: hidden; /* FIX: cegah orbit bocor */
+            overflow: hidden;
             contain: layout paint;
         }
 
@@ -571,7 +584,6 @@
             to   { transform: translate(-50%, -50%) rotate(360deg); }
         }
 
-        /* FIX Bug 14: anti-jank Android */
         .devops-icon,
         .pentest-icon,
         .float-badge,
@@ -1359,10 +1371,9 @@
         .toast.show {
             transform: translateY(0);
             opacity: 1;
-            pointer-events: auto; /* FIX: toast bisa di-tap saat show */
+            pointer-events: auto;
         }
 
-        /* FIX Bug 10: prefers-reduced-motion */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -1371,6 +1382,7 @@
                 scroll-behavior: auto !important;
             }
             .reveal { opacity: 1; transform: none; }
+            .tech-nav { transition: none !important; }
         }
 
         /* RESPONSIVE */
@@ -1428,7 +1440,7 @@
         @media (max-width: 1024px) {
             .nav-status, .nav-socials { display: none; }
 
-            .nav-logo > span:last-child { display: none; } /* FIX Bug 4: nama panjang disembunyikan */
+            .nav-logo > span:last-child { display: none; }
 
             .nav-more,
             .nav-submenu { display: contents; }
@@ -1440,8 +1452,8 @@
                 top: 68px; left: 0;
                 width: 100%;
                 height: calc(100vh - 68px);
-                height: calc(100svh - 68px); /* FIX Bug 3: small viewport */
-                height: calc(100dvh - 68px); /* FIX Bug 3: dynamic viewport */
+                height: calc(100svh - 68px);
+                height: calc(100dvh - 68px);
                 background: rgba(11, 18, 32, 0.98);
                 backdrop-filter: blur(20px);
                 -webkit-backdrop-filter: blur(20px);
@@ -1589,7 +1601,7 @@
     </div>
 
     <!-- NAVBAR -->
-    <nav class="tech-nav">
+    <nav class="tech-nav" id="tech-nav">
         <div class="container nav-inner">
             <a href="#hero" class="nav-logo" aria-label="Ke atas">
                 <span class="mh-logo">MH</span>
@@ -2659,7 +2671,6 @@
             }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
             reveals.forEach(el => observer.observe(el));
 
-            // FIX Bug 5: fallback kalau observer tidak trigger semua
             window.addEventListener('load', () => {
                 setTimeout(() => {
                     reveals.forEach(el => {
@@ -2681,6 +2692,7 @@
         const navLinks = document.getElementById('nav-links');
         const navMore = document.querySelector('.nav-more');
         const navMoreToggle = document.querySelector('.nav-more-toggle');
+        const techNav = document.getElementById('tech-nav');
 
         function closeMenu() {
             navLinks.classList.remove('open');
@@ -2696,6 +2708,11 @@
             mobileToggle.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden';
             document.body.style.touchAction = 'none';
+            // Pastikan navbar terlihat saat menu terbuka
+            if (techNav) {
+                techNav.classList.remove('nav-hidden');
+                techNav.classList.add('nav-visible');
+            }
         }
 
         function closeMoreMenu() {
@@ -2730,7 +2747,6 @@
                 });
             });
 
-            // FIX Bug 11: tutup saat klik di luar area menu
             document.addEventListener('click', (e) => {
                 if (window.innerWidth <= 1024 &&
                     navLinks.classList.contains('open') &&
@@ -2740,7 +2756,6 @@
                 }
             });
 
-            // Tutup saat resize ke desktop
             let resizeTimer;
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimer);
@@ -2752,7 +2767,6 @@
                 }, 150);
             });
 
-            // Tutup saat Escape
             document.addEventListener('keydown', (e) => {
                 if (e.key !== 'Escape') return;
                 if (navLinks.classList.contains('open')) closeMenu();
@@ -2761,6 +2775,60 @@
                     navMoreToggle.focus();
                 }
             });
+        }
+
+        /* ============ NAVBAR AUTO-HIDE ON SCROLL ============ */
+        let lastScrollY = window.pageYOffset;
+        let navTicking = false;
+
+        function handleNavbarScroll() {
+            if (!techNav) return;
+
+            // Jangan hide navbar kalau menu mobile sedang terbuka
+            if (navLinks && navLinks.classList.contains('open')) {
+                techNav.classList.remove('nav-hidden');
+                techNav.classList.add('nav-visible');
+                lastScrollY = window.pageYOffset;
+                navTicking = false;
+                return;
+            }
+
+            const currentScrollY = window.pageYOffset;
+            const scrollDelta = currentScrollY - lastScrollY;
+
+            // Di paling atas — selalu muncul
+            if (currentScrollY <= 10) {
+                techNav.classList.remove('nav-hidden');
+                techNav.classList.add('nav-visible');
+            }
+            // Scroll ke bawah — sembunyikan (minimal sudah 80px dari atas)
+            else if (scrollDelta > 5 && currentScrollY > 80) {
+                techNav.classList.add('nav-hidden');
+                techNav.classList.remove('nav-visible');
+            }
+            // Scroll ke atas — munculkan
+            else if (scrollDelta < -5) {
+                techNav.classList.remove('nav-hidden');
+                techNav.classList.add('nav-visible');
+            }
+
+            lastScrollY = currentScrollY;
+            navTicking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!navTicking) {
+                window.requestAnimationFrame(handleNavbarScroll);
+                navTicking = true;
+            }
+        }, { passive: true });
+
+        /* ============ NAVBAR SCROLLED EFFECT ============ */
+        if (techNav) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 20) techNav.classList.add('scrolled');
+                else techNav.classList.remove('scrolled');
+            }, { passive: true });
         }
 
         /* ============ ACTIVE NAV ON SCROLL ============ */
@@ -2789,7 +2857,7 @@
             }
         }, { passive: true });
 
-        /* ============ COPY TEXT (FIX Bug 2) ============ */
+        /* ============ COPY TEXT ============ */
         function copyText(text, msg) {
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(text)
@@ -2821,7 +2889,6 @@
             document.body.removeChild(ta);
         }
 
-        // Expose ke global biar onclick="copyText(...)" tetap jalan
         window.copyText = copyText;
 
         /* ============ TOAST ============ */
@@ -2837,7 +2904,7 @@
         }
         window.showToast = showToast;
 
-        /* ============ CONTACT FORM (FIX Bug 1: tidak pakai setTimeout) ============ */
+        /* ============ CONTACT FORM ============ */
         const form = document.getElementById('contact-form');
         const formLog = document.getElementById('form-log');
 
@@ -2868,11 +2935,9 @@
                     '*Detail Pesan:*\n' + message;
                 const waUrl = 'https://wa.me/' + waNum + '?text=' + encodeURIComponent(waText);
 
-                // Buka langsung (user gesture context) — TIDAK pakai setTimeout
                 const win = window.open(waUrl, '_blank');
                 if (win) win.opener = null;
                 else {
-                    // Fallback kalau popup diblokir
                     window.location.href = waUrl;
                 }
 
