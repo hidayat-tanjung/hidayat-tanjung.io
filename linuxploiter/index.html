@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1220">
+
+  <title>LinuxPloiter — Belajar Linux, Sysadmin & Security</title>
+  <meta name="description" content="Komunitas belajar Linux, Sysadmin, dan Security paling terbuka dan ramah pemula di Indonesia. 100% Gratis, legal, etis, dan praktis.">
+  <meta name="keywords" content="LinuxPloiter, Linux Indonesia, Komunitas Linux, Sysadmin, Cybersecurity, Keamanan Siber, Belajar Linux, Lab Security, Open Source">
+  <meta name="author" content="LinuxPloiter">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://hidayat-tanjungio.vercel.app/linuxploiter/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hidayat-tanjungio.vercel.app/linuxploiter/">
+  <meta property="og:title" content="LinuxPloiter — Belajar Linux, Sysadmin & Security">
+  <meta property="og:description" content="Komunitas belajar Linux, Sysadmin, dan Security paling terbuka dan ramah pemula di Indonesia. Legal, etis, dan praktis.">
+  <meta property="og:image" content="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/assets/linuxploiter.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="id_ID">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://hidayat-tanjungio.vercel.app/linuxploiter/">
+  <meta name="twitter:title" content="LinuxPloiter — Belajar Linux, Sysadmin & Security">
+  <meta name="twitter:description" content="Komunitas belajar Linux, Sysadmin, dan Security paling terbuka dan ramah pemula di Indonesia. Legal, etis, dan praktis.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/assets/linuxploiter.png">
+
+  <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/assets/linuxploiter.png">
+  <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/assets/linuxploiter.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+  <style>
+    :root {
+      --bg: #0b1220;
+      --surface: #111a2e;
+      --surface-2: #16223d;
+      --card-bg: rgba(17, 26, 46, 0.85);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-hover: rgba(45, 212, 191, 0.4);
+
+      --teal: #2dd4bf;
+      --teal-dim: rgba(45, 212, 191, 0.15);
+      --teal-glow: rgba(45, 212, 191, 0.35);
+
+      --indigo: #818cf8;
+      --indigo-dim: rgba(129, 140, 248, 0.15);
+
+      --amber: #fbbf24;
+      --amber-dim: rgba(251, 191, 36, 0.15);
+
+      --emerald: #34d399;
+      --emerald-dim: rgba(52, 211, 153, 0.15);
+
+      --rose: #fb7185;
+      --rose-dim: rgba(251, 113, 133, 0.15);
+
+      --purple: #a855f7;
+      --purple-dim: rgba(168, 85, 247, 0.15);
+
+      --text-main: #e8eef7;
+      --text-secondary: #a3b1c6;
+      --text-muted: #94a3b8;
+
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+      --nav-height: 72px;
+      --container-max: 1200px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 24px);
+      color-scheme: dark;
+    }
+
+    body {
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(circle at 10% 15%, rgba(45, 212, 191, 0.08), transparent 38%),
+        radial-gradient(circle at 90% 25%, rgba(129, 140, 248, 0.08), transparent 42%),
+        radial-gradient(circle at 50% 75%, rgba(45, 212, 191, 0.04), transparent 50%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+      background-position: 0 0, 0 0, 0 0, -1px -1px, -1px -1px;
+      background-attachment: fixed;
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    ::selection { background: var(--teal-dim); color: var(--teal); }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--surface-2); border-radius: 5px; border: 2px solid var(--bg); }
+    ::-webkit-scrollbar-thumb:hover { background: var(--teal); }
+
+    :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+    a { color: inherit; text-decoration: none; transition: var(--transition); }
+    img { max-width: 100%; height: auto; display: block; }
+    ul { list-style: none; }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section { padding: 96px 0; position: relative; }
+
+    .section-header {
+      text-align: center;
+      max-width: 740px;
+      margin: 0 auto 56px;
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--teal);
+      background: var(--teal-dim);
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      font-size: clamp(16px, 2vw, 18px);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .tech-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .tech-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(45, 212, 191, 0.4), transparent);
+      opacity: 0.5;
+      transition: opacity 0.3s ease;
+    }
+
+    .tech-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--card-border-hover);
+      box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.6), 0 0 25px -4px var(--teal-glow);
+    }
+
+    .tech-card:hover::before { opacity: 1; }
+
+    .text-teal { color: var(--teal) !important; }
+    .text-indigo { color: var(--indigo) !important; }
+    .text-amber { color: var(--amber) !important; }
+    .text-emerald { color: var(--emerald) !important; }
+    .text-rose { color: var(--rose) !important; }
+    .text-purple { color: var(--purple) !important; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 15px;
+      padding: 12px 24px;
+      min-height: 48px;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+      transition: var(--transition);
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:active { transform: translateY(1px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal) 0%, #14b8a6 100%);
+      color: #0b1220;
+      font-weight: 700;
+      box-shadow: 0 4px 20px var(--teal-glow);
+    }
+    .btn-primary:hover {
+      box-shadow: 0 6px 26px rgba(45, 212, 191, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--surface-2);
+      color: var(--text-main);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    .btn-secondary:hover {
+      background: rgba(22, 34, 61, 0.9);
+      border-color: var(--teal);
+      color: var(--teal);
+      transform: translateY(-2px);
+    }
+
+    .btn-discord {
+      background: linear-gradient(135deg, #5865f2 0%, #4752c4 100%);
+      color: #ffffff;
+      font-weight: 700;
+      box-shadow: 0 4px 18px rgba(88, 101, 242, 0.35);
+    }
+    .btn-discord:hover {
+      background: linear-gradient(135deg, #6774f4 0%, #5865f2 100%);
+      box-shadow: 0 6px 24px rgba(88, 101, 242, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-lg { padding: 15px 32px; font-size: 16px; border-radius: var(--radius-lg); }
+    .btn-sm { padding: 9px 18px; font-size: 13.5px; min-height: 40px; }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-height);
+      background: rgba(11, 18, 32, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      padding-top: env(safe-area-inset-top);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.28s ease, box-shadow 0.28s ease;
+      will-change: transform;
+    }
+
+    .navbar.scrolled {
+      background: rgba(11, 18, 32, 0.96);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar.nav-hidden {
+      transform: translateY(-100%);
+    }
+
+    .navbar.nav-visible {
+      transform: translateY(0);
+    }
+
+    .nav-inner {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 16px;
+      width: 100%;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      flex-shrink: 0;
+      min-height: 44px;
+    }
+
+    .brand-logo-img {
+      height: 44px;
+      width: auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .brand-logo-fallback {
+      font-size: 38px;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 2px 6px rgba(45, 212, 191, 0.4));
+    }
+
+    .brand-text {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-main);
+    }
+    .brand-text span { color: var(--teal); }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .nav-link {
+      padding: 8px 18px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-sm);
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
+      color: var(--teal);
+      font-weight: 600;
+      background: var(--teal-dim);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      justify-content: flex-end;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      min-height: 44px;
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      padding: 0;
+      transition: var(--transition);
+      z-index: 1002;
+      position: relative;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .hamburger:hover { border-color: var(--teal); background: var(--surface-2); }
+
+    .hamburger.open {
+      background: var(--teal-dim);
+      border-color: var(--teal);
+    }
+
+    .hamburger .bar {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background-color: var(--text-main);
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.2s ease;
+      pointer-events: none;
+    }
+
+    .hamburger.open .bar-1 { transform: translateY(8px) rotate(45deg); }
+    .hamburger.open .bar-2 { opacity: 0; }
+    .hamburger.open .bar-3 { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ===== MOBILE DRAWER ===== */
+    .mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      top: var(--nav-height);
+      background: rgba(11, 18, 32, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 998;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
+
+    .mobile-menu {
+      position: fixed;
+      top: var(--nav-height);
+      left: 0; right: 0;
+      width: 100%;
+      background: #111a2e;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 20px 24px calc(28px + env(safe-area-inset-bottom));
+      z-index: 999;
+      transform: translateY(-100%);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, visibility 0.3s ease;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: calc(100vh - var(--nav-height));
+      max-height: calc(100vh - var(--nav-height));
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      touch-action: pan-y;
+    }
+
+    .mobile-menu.active { transform: translateY(0); opacity: 1; visibility: visible; }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border-radius: var(--radius-md);
+      min-height: 52px;
+      transition: var(--transition);
+      border-left: 3px solid transparent;
+      -webkit-tap-highlight-color: transparent;
+      text-decoration: none;
+    }
+
+    .mobile-nav-link i { width: 22px; font-size: 17px; color: var(--teal); flex-shrink: 0; }
+
+    .mobile-nav-link:active { background: var(--surface-2); }
+
+    .mobile-nav-link.active {
+      background: var(--teal-dim);
+      color: var(--teal);
+      font-weight: 600;
+      border-left: 3px solid var(--teal);
+      padding-left: 20px;
+    }
+
+    .mobile-menu-divider { height: 1px; background: rgba(255, 255, 255, 0.08); margin: 8px 0; }
+
+    /* ===== HERO ===== */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: calc(var(--nav-height) + 60px);
+      padding-bottom: 60px;
+      position: relative;
+    }
+
+    .hero-content { text-align: center; max-width: 900px; margin: 0 auto; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      background: rgba(17, 26, 46, 0.8);
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--teal);
+      margin-bottom: 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-badge-pulse {
+      width: 8px; height: 8px;
+      background: var(--teal);
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .hero-badge-pulse::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: var(--teal);
+      opacity: 0.5;
+      animation: pulse 2s infinite ease-out;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(2.4); opacity: 0; }
+    }
+
+    .hero-title {
+      font-size: clamp(38px, 6vw, 68px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      color: var(--text-main);
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--indigo) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-tagline {
+      font-size: clamp(18px, 2.5vw, 22px);
+      font-weight: 500;
+      color: var(--text-secondary);
+      max-width: 720px;
+      margin: 0 auto 28px;
+      line-height: 1.5;
+    }
+
+    .typing-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: rgba(11, 18, 32, 0.85);
+      border: 1px solid rgba(45, 212, 191, 0.25);
+      border-radius: var(--radius-md);
+      padding: 10px 22px;
+      margin-bottom: 38px;
+      font-family: var(--font-mono);
+      font-size: clamp(14px, 2vw, 17px);
+      color: var(--teal);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+      max-width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .typing-prompt { color: var(--indigo); font-weight: 600; }
+
+    .typing-text { color: var(--text-main); font-weight: 500; min-width: 8px; }
+
+    .typing-cursor {
+      display: inline-block;
+      width: 9px; height: 18px;
+      background-color: var(--teal);
+      vertical-align: middle;
+      animation: cursorBlink 1s infinite;
+      margin-left: 2px;
+    }
+
+    @keyframes cursorBlink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .hero-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 22px 18px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(45, 212, 191, 0.35);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4), 0 0 15px rgba(45, 212, 191, 0.15);
+    }
+
+    .stat-value {
+      font-family: var(--font-mono);
+      font-size: clamp(26px, 3.2vw, 36px);
+      font-weight: 800;
+      color: var(--teal);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-story {
+      max-width: 860px;
+      margin: 0 auto 52px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-xl);
+      padding: 36px 40px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .about-lead {
+      font-size: 19px;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+    .about-lead strong { color: var(--teal); }
+
+    .about-text {
+      font-size: 16px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 16px;
+    }
+    .about-text:last-child { margin-bottom: 0; }
+
+    .visi-misi-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .card-icon-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+
+    .icon-badge {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .icon-badge.indigo { background: var(--indigo-dim); color: var(--indigo); border: 1px solid rgba(129, 140, 248, 0.3); }
+    .icon-badge.teal { background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(45, 212, 191, 0.3); }
+
+    .card-title-lg { font-size: 22px; font-weight: 700; color: var(--text-main); }
+
+    .visi-content {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      background: rgba(11, 18, 32, 0.6);
+      padding: 22px;
+      border-radius: var(--radius-md);
+      border-left: 3px solid var(--indigo);
+    }
+
+    .misi-list { display: flex; flex-direction: column; gap: 14px; }
+
+    .misi-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+    }
+
+    .misi-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--teal-dim);
+      color: var(--teal);
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .nilai-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+    .nilai-card { text-align: center; padding: 30px 20px; border-radius: var(--radius-lg); }
+
+    .nilai-icon {
+      width: 60px; height: 60px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      transition: var(--transition);
+    }
+
+    .nilai-card:hover .nilai-icon { transform: scale(1.1) rotate(5deg); }
+
+    .nilai-title { font-size: 19px; font-weight: 700; margin-bottom: 8px; color: var(--text-main); }
+    .nilai-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ===== KEGIATAN ===== */
+    .kegiatan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+    @media (min-width: 992px) {
+      .kegiatan-grid { grid-template-columns: repeat(6, 1fr); }
+      .kegiatan-grid > :nth-child(1),
+      .kegiatan-grid > :nth-child(2),
+      .kegiatan-grid > :nth-child(3) { grid-column: span 2; }
+      .kegiatan-grid > :nth-child(4) { grid-column: 2 / span 2; }
+      .kegiatan-grid > :nth-child(5) { grid-column: 4 / span 2; }
+    }
+
+    .kegiatan-card { display: flex; flex-direction: column; height: 100%; }
+
+    .kegiatan-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .kegiatan-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 9999px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--emerald-dim);
+      color: var(--emerald);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .status-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--emerald);
+      animation: statusBlink 1.8s infinite;
+    }
+
+    @keyframes statusBlink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .kegiatan-title { font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 12px; }
+    .kegiatan-desc { font-size: 14.5px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 20px; flex: 1; }
+
+    .kegiatan-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .kegiatan-tag {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: rgba(11, 18, 32, 0.6);
+      color: var(--text-muted);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    /* ===== MATERI ===== */
+    .materi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+
+    .materi-card { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+
+    .materi-top { margin-bottom: 24px; }
+
+    .materi-platform { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+
+    .platform-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+
+    .platform-name {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .materi-title { font-size: 19px; font-weight: 700; color: var(--text-main); margin-bottom: 10px; line-height: 1.4; }
+    .materi-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    .materi-btn { width: 100%; justify-content: space-between; padding: 12px 18px; font-size: 14px; }
+
+    /* ===== TESTIMONI ===== */
+    .testimoni-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+
+    .testimoni-card { display: flex; flex-direction: column; justify-content: space-between; }
+
+    .quote-icon { font-size: 28px; color: var(--teal); opacity: 0.4; margin-bottom: 16px; }
+
+    .testimoni-quote {
+      font-size: 15.5px;
+      color: var(--text-main);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .testimoni-author {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .author-avatar-img {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid transparent;
+      background: var(--surface-2);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .testimoni-card:hover .author-avatar-img {
+      border-color: var(--teal);
+      box-shadow: 0 0 14px var(--teal-glow);
+    }
+
+    .author-name { font-size: 16px; font-weight: 700; color: var(--text-main); line-height: 1.2; }
+    .author-role { font-size: 13px; color: var(--teal); font-weight: 500; margin-top: 3px; }
+
+    /* ===== BERGABUNG ===== */
+    .join-container { max-width: 960px; margin: 0 auto; }
+
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+
+    .step-card { position: relative; padding: 30px 24px; }
+
+    .step-number {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--teal);
+      opacity: 0.6;
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .step-title { font-size: 18px; font-weight: 700; color: var(--text-main); margin-bottom: 10px; }
+    .step-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    .join-cta-card {
+      background: linear-gradient(135deg, rgba(17, 26, 46, 0.95), rgba(22, 34, 61, 0.95));
+      border: 1px solid rgba(45, 212, 191, 0.3);
+      border-radius: var(--radius-xl);
+      padding: 48px 32px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(45, 212, 191, 0.15);
+      margin-bottom: 32px;
+    }
+
+    .join-cta-title { font-size: clamp(24px, 3.5vw, 32px); font-weight: 800; color: var(--text-main); margin-bottom: 12px; }
+
+    .join-cta-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 30px;
+      line-height: 1.6;
+    }
+
+    .terms-box {
+      background: rgba(11, 18, 32, 0.6);
+      border: 1px solid rgba(251, 191, 36, 0.3);
+      border-radius: var(--radius-md);
+      padding: 20px 24px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .terms-icon { font-size: 22px; color: var(--amber); margin-top: 2px; flex-shrink: 0; }
+
+    .terms-content h4 { font-size: 15px; font-weight: 700; color: var(--amber); margin-bottom: 4px; }
+    .terms-content p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* ===== KONTAK ===== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1060px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 30px 26px;
+      min-height: 280px;
+    }
+
+    .contact-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .contact-title { font-size: 20px; font-weight: 700; color: var(--text-main); margin-bottom: 10px; }
+    .contact-desc { font-size: 14.5px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 24px; flex: 1; }
+
+    .contact-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-actions .btn {
+      flex: 1;
+      min-width: 0;
+      justify-content: center;
+    }
+
+    /* ===== FOOTER ===== */
+    .site-footer {
+      background: var(--surface);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 70px 0 36px;
+      margin-top: auto;
+      position: relative;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.3fr;
+      gap: 48px;
+      margin-bottom: 50px;
+    }
+
+    .footer-brand .brand-logo { margin-bottom: 16px; }
+
+    .footer-desc {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 380px;
+      margin-bottom: 18px;
+    }
+
+    .footer-location {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .footer-heading {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-heading::before {
+      content: "";
+      width: 4px; height: 14px;
+      background: var(--teal);
+      border-radius: 2px;
+    }
+
+    .footer-links { display: flex; flex-direction: column; gap: 12px; }
+
+    .footer-link {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+    }
+
+    .footer-link:hover { color: var(--teal); transform: translateX(4px); }
+
+    .social-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+
+    .social-btn {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-md);
+      background: var(--surface-2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .social-btn:hover {
+      background: var(--teal-dim);
+      border-color: var(--teal);
+      color: var(--teal);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .copyright-text { font-size: 14px; color: var(--text-muted); }
+
+    .back-to-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      background: var(--surface-2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      min-height: 44px;
+    }
+
+    .back-to-top:hover { color: var(--teal); border-color: var(--teal); }
+
+    .floating-back-to-top {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid rgba(45, 212, 191, 0.4);
+      color: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 990;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(45, 212, 191, 0.25);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(16px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .floating-back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+
+    .floating-back-to-top:hover {
+      background: var(--teal);
+      color: #0b1220;
+      box-shadow: 0 8px 25px rgba(45, 212, 191, 0.6);
+      transform: translateY(-3px);
+    }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position: fixed;
+      bottom: 28px; right: 28px;
+      background: var(--surface-2);
+      border: 1px solid var(--teal);
+      color: var(--text-main);
+      padding: 14px 22px;
+      border-radius: var(--radius-md);
+      font-size: 14px;
+      font-weight: 500;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(45, 212, 191, 0.3);
+      transform: translateY(100px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+      max-width: calc(100vw - 48px);
+    }
+
+    .toast.show { transform: translateY(0); opacity: 1; visibility: visible; }
+
+    .toast i { color: var(--teal); font-size: 18px; flex-shrink: 0; }
+
+    /* ===== REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal.revealed { opacity: 1; transform: translateY(0); }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* ===== REDUCED MOTION ===== */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .typing-cursor { animation: none !important; opacity: 1 !important; }
+      .hero-badge-pulse::after { animation: none !important; }
+      .status-dot { animation: none !important; }
+      .navbar { transition: none !important; }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1024px) {
+      .visi-misi-grid { grid-template-columns: 1fr; }
+      .nilai-grid { grid-template-columns: repeat(2, 1fr); }
+      .materi-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+      .footer-brand { grid-column: span 2; }
+    }
+
+    @media (max-width: 900px) {
+      .nav-menu { gap: 6px; }
+      .nav-link { padding: 8px 12px; font-size: 14px; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --nav-height: 64px; }
+      .brand-logo-img { height: 38px; }
+      .brand-logo-fallback { font-size: 32px; }
+      .brand-text { font-size: 18px; }
+
+      .nav-menu { display: none; }
+      .nav-actions .btn-discord { display: none; }
+      .hamburger { display: flex; }
+
+      section { padding: 64px 0; }
+      .hero-section { padding-top: calc(var(--nav-height) + 40px); padding-bottom: 40px; }
+
+      .hero-cta { flex-direction: column; width: 100%; }
+      .hero-cta .btn { width: 100%; }
+
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .about-story { padding: 24px 20px; }
+
+      .kegiatan-grid { grid-template-columns: 1fr !important; }
+      .kegiatan-grid > * { grid-column: span 1 !important; }
+
+      .materi-grid { grid-template-columns: 1fr; }
+      .testimoni-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-brand { grid-column: span 1; }
+      .footer-bottom { flex-direction: column; text-align: center; gap: 14px; }
+    }
+
+    @media (max-width: 480px) {
+      .nilai-grid { grid-template-columns: 1fr; }
+      .terms-box { flex-direction: column; gap: 10px; }
+      .contact-actions { flex-direction: column; width: 100%; }
+      .contact-actions .btn { width: 100%; }
+      .toast { bottom: 16px; right: 16px; left: 16px; max-width: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+    <span id="toast-msg">Link tersalin!</span>
+  </div>
+
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="brand-logo" aria-label="Beranda LinuxPloiter">
+          <img src="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/assets/linuxploiter.png"
+               alt="Logo LinuxPloiter"
+               class="brand-logo-img"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+          <span class="brand-logo-fallback" style="display:none;" aria-hidden="true">🐧</span>
+          <span class="brand-text">Linux<span>Ploiter</span></span>
+        </a>
+
+        <nav class="nav-menu" aria-label="Navigasi Utama">
+          <a href="#tentang" class="nav-link">Tentang</a>
+          <a href="#kegiatan" class="nav-link">Kegiatan</a>
+          <a href="#materi" class="nav-link">Materi</a>
+          <a href="#bergabung" class="nav-link">Bergabung</a>
+          <a href="#kontak" class="nav-link">Kontak</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a href="https://discord.com/invite/aJvSAqDcQ" target="_blank" rel="noopener noreferrer" class="btn btn-discord" aria-label="Gabung server Discord LinuxPloiter">
+            <i class="fa-brands fa-discord" aria-hidden="true"></i>
+            <span>Join Discord</span>
+          </a>
+
+          <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileMenu">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-menu-overlay" id="menuOverlay" aria-hidden="true"></div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Navigasi Mobile">
+    <a href="#tentang" class="mobile-nav-link">
+      <i class="fa-solid fa-users" aria-hidden="true"></i>
+      <span>Tentang Kami</span>
+    </a>
+    <a href="#kegiatan" class="mobile-nav-link">
+      <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+      <span>Kegiatan</span>
+    </a>
+    <a href="#materi" class="mobile-nav-link">
+      <i class="fa-solid fa-book-bookmark" aria-hidden="true"></i>
+      <span>Materi & Resources</span>
+    </a>
+    <a href="#bergabung" class="mobile-nav-link">
+      <i class="fa-solid fa-right-to-bracket" aria-hidden="true"></i>
+      <span>Cara Bergabung</span>
+    </a>
+    <a href="#kontak" class="mobile-nav-link">
+      <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+      <span>Kontak</span>
+    </a>
+    <div class="mobile-menu-divider"></div>
+    <a href="https://discord.com/invite/aJvSAqDcQ" target="_blank" rel="noopener noreferrer" class="btn btn-discord" style="width: 100%;">
+      <i class="fa-brands fa-discord" aria-hidden="true"></i>
+      <span>Join Discord</span>
+    </a>
+  </nav>
+
+  <main>
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge reveal">
+            <span class="hero-badge-pulse"></span>
+            <span>root@linuxploiter:~# community --active</span>
+          </div>
+
+          <h1 class="hero-title reveal delay-1">
+            <span class="gradient-text">LinuxPloiter</span>
+          </h1>
+
+          <p class="hero-tagline reveal delay-2">
+            Belajar Linux, Sysadmin & Security — Legal, Etis, Praktis
+          </p>
+
+          <div class="typing-box reveal delay-2">
+            <span class="typing-prompt">$</span>
+            <span class="typing-text" id="typing-text">Belajar Linux dari Nol</span><span class="typing-cursor" aria-hidden="true"></span>
+          </div>
+
+          <div class="hero-cta reveal delay-3">
+            <a href="https://discord.com/invite/aJvSAqDcQ" target="_blank" rel="noopener noreferrer" class="btn btn-discord btn-lg">
+              <i class="fa-brands fa-discord" aria-hidden="true"></i>
+              <span>Join Discord</span>
+            </a>
+            <a href="#materi" class="btn btn-secondary btn-lg">
+              <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+              <span>Lihat Materi</span>
+            </a>
+          </div>
+
+          <div class="stats-grid reveal delay-4">
+            <div class="stat-card">
+              <div class="stat-value text-teal">2021</div>
+              <div class="stat-label">Berdiri</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value text-indigo">20+</div>
+              <div class="stat-label">Materi</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value text-amber">5</div>
+              <div class="stat-label">Kegiatan</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value text-emerald">100%</div>
+              <div class="stat-label">Gratis</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tentang">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">
+            <i class="fa-solid fa-circle-info" aria-hidden="true"></i> Tentang Kami
+          </span>
+          <h2 class="section-title">Membangun Ekosistem Belajar yang Aman & Terbuka</h2>
+          <p class="section-subtitle">
+            Ruang kolaboratif bagi siapa saja yang ingin menguasai sistem operasi Linux dan prinsip keamanan siber.
+          </p>
+        </div>
+
+        <div class="about-story reveal">
+          <p class="about-lead">
+            <strong>LinuxPloiter</strong> adalah komunitas yang dibentuk karena banyak pemula bingung mulai belajar Linux & security. Tujuan kami: jadi tempat belajar yang aman, gratis, dan legal. Cocok untuk pemula sampai praktisi.
+          </p>
+          <p class="about-text">
+            Kami menyadari besarnya tantangan saat pertama kali membuka terminal atau mempelajari konsep sistem jaringan tanpa bimbingan terarah. Oleh karena itu, kami menyusun materi praktis berbasis laboratorium nyata (hands-on) agar setiap member dapat memahami esensi administrasi sistem dan pertahanan siber secara komprehensif.
+          </p>
+          <p class="about-text">
+            Seluruh kegiatan di LinuxPloiter berfokus pada penguatan kapasitas teknis, pemecahan masalah bersama, dan penanaman integritas etika yang kokoh untuk mendukung kemajuan dunia teknologi informasi di tanah air.
+          </p>
+        </div>
+
+        <div class="visi-misi-grid">
+          <div class="tech-card reveal">
+            <div class="card-icon-header">
+              <div class="icon-badge indigo">
+                <i class="fa-solid fa-compass" aria-hidden="true"></i>
+              </div>
+              <h3 class="card-title-lg">Visi Komunitas</h3>
+            </div>
+            <div class="visi-content">
+              "Menjadi komunitas belajar Linux, sysadmin, dan security paling terbuka dan ramah pemula di Indonesia — tempat siapa saja bisa belajar tanpa takut, tanpa biaya, dan tanpa melanggar aturan."
+            </div>
+          </div>
+
+          <div class="tech-card reveal delay-1">
+            <div class="card-icon-header">
+              <div class="icon-badge teal">
+                <i class="fa-solid fa-bullseye" aria-hidden="true"></i>
+              </div>
+              <h3 class="card-title-lg">Misi Utama</h3>
+            </div>
+            <div class="misi-list">
+              <div class="misi-item">
+                <span class="misi-num">1</span>
+                <span><strong>Menyediakan ruang belajar yang aman</strong> — bebas dari judgment, bebas dari konten ilegal.</span>
+              </div>
+              <div class="misi-item">
+                <span class="misi-num">2</span>
+                <span><strong>Membagikan materi praktis & legal</strong> — dari Linux dasar sampai security defensive.</span>
+              </div>
+              <div class="misi-item">
+                <span class="misi-num">3</span>
+                <span><strong>Membangun lab bersama</strong> — tempat eksperimen nyata, bukan cuma teori.</span>
+              </div>
+              <div class="misi-item">
+                <span class="misi-num">4</span>
+                <span><strong>Mentoring pemula</strong> — bantu yang baru mulai supaya tidak tersesat.</span>
+              </div>
+              <div class="misi-item">
+                <span class="misi-num">5</span>
+                <span><strong>Menjaga etika & legalitas</strong> — semua kegiatan harus bertanggung jawab.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="nilai-grid">
+          <div class="tech-card nilai-card reveal">
+            <div class="nilai-icon" style="background: var(--emerald-dim); color: var(--emerald);">
+              <i class="fa-solid fa-scale-balanced" aria-hidden="true"></i>
+            </div>
+            <h4 class="nilai-title">Legal</h4>
+            <p class="nilai-desc">Semua kegiatan sesuai hukum dan regulasi yang berlaku.</p>
+          </div>
+
+          <div class="tech-card nilai-card reveal delay-1">
+            <div class="nilai-icon" style="background: var(--indigo-dim); color: var(--indigo);">
+              <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+            </div>
+            <h4 class="nilai-title">Etis</h4>
+            <p class="nilai-desc">Tidak ada konten black hat atau tindakan perusakan sistem.</p>
+          </div>
+
+          <div class="tech-card nilai-card reveal delay-2">
+            <div class="nilai-icon" style="background: var(--teal-dim); color: var(--teal);">
+              <i class="fa-solid fa-terminal" aria-hidden="true"></i>
+            </div>
+            <h4 class="nilai-title">Praktis</h4>
+            <p class="nilai-desc">Fokus ke skill teknis aplikatif yang bisa langsung dipakai.</p>
+          </div>
+
+          <div class="tech-card nilai-card reveal delay-3">
+            <div class="nilai-icon" style="background: var(--amber-dim); color: var(--amber);">
+              <i class="fa-solid fa-door-open" aria-hidden="true"></i>
+            </div>
+            <h4 class="nilai-title">Terbuka</h4>
+            <p class="nilai-desc">Gratis untuk siapa saja tanpa syarat latar belakang apapun.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kegiatan" style="background: rgba(17, 26, 46, 0.35);">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">
+            <i class="fa-solid fa-network-wired" aria-hidden="true"></i> Kegiatan Komunitas
+          </span>
+          <h2 class="section-title">Program & Aktivitas Rutin</h2>
+          <p class="section-subtitle">
+            Seluruh program pembelajaran aktif diselenggarakan secara berkala untuk mempertajam wawasan teknis.
+          </p>
+        </div>
+
+        <div class="kegiatan-grid">
+          <div class="tech-card kegiatan-card reveal">
+            <div class="kegiatan-header">
+              <div class="kegiatan-icon" style="background: var(--teal-dim); color: var(--teal);">
+                <i class="fa-brands fa-linux" aria-hidden="true"></i>
+              </div>
+              <span class="status-badge"><span class="status-dot"></span> Aktif</span>
+            </div>
+            <h3 class="kegiatan-title">Workshop Linux Dasar</h3>
+            <p class="kegiatan-desc">
+              Panduan langkah demi langkah pengenalan command line interface (CLI), manajemen berkas, permission pengguna, instalasi software, dan navigasi distro Linux bagi pemula.
+            </p>
+            <div class="kegiatan-tags">
+              <span class="kegiatan-tag">#LinuxCLI</span>
+              <span class="kegiatan-tag">#Debian</span>
+              <span class="kegiatan-tag">#Ubuntu</span>
+            </div>
+          </div>
+
+          <div class="tech-card kegiatan-card reveal delay-1">
+            <div class="kegiatan-header">
+              <div class="kegiatan-icon" style="background: var(--indigo-dim); color: var(--indigo);">
+                <i class="fa-solid fa-shield-virus" aria-hidden="true"></i>
+              </div>
+              <span class="status-badge"><span class="status-dot"></span> Aktif</span>
+            </div>
+            <h3 class="kegiatan-title">Lab Security (Legal)</h3>
+            <p class="kegiatan-desc">
+              Eksperimen hands-on simulasi attack & defense di lingkungan virtual terisolasi, pemahaman celah keamanan, konfigurasi firewall, hardening server, dan latihan CTF etis.
+            </p>
+            <div class="kegiatan-tags">
+              <span class="kegiatan-tag">#Defensive</span>
+              <span class="kegiatan-tag">#Hardening</span>
+              <span class="kegiatan-tag">#EthicalLab</span>
+            </div>
+          </div>
+
+          <div class="tech-card kegiatan-card reveal delay-2">
+            <div class="kegiatan-header">
+              <div class="kegiatan-icon" style="background: var(--purple-dim); color: var(--purple);">
+                <i class="fa-solid fa-server" aria-hidden="true"></i>
+              </div>
+              <span class="status-badge"><span class="status-dot"></span> Aktif</span>
+            </div>
+            <h3 class="kegiatan-title">Diskusi Sysadmin</h3>
+            <p class="kegiatan-desc">
+              Bedah arsitektur deployment server, web server (Nginx/Apache), automasi skrip Bash, konfigurasi DNS/SSH yang aman, dan dasar-dasar kontainerisasi Docker.
+            </p>
+            <div class="kegiatan-tags">
+              <span class="kegiatan-tag">#Sysadmin</span>
+              <span class="kegiatan-tag">#Docker</span>
+              <span class="kegiatan-tag">#Nginx</span>
+            </div>
+          </div>
+
+          <div class="tech-card kegiatan-card reveal delay-1">
+            <div class="kegiatan-header">
+              <div class="kegiatan-icon" style="background: var(--amber-dim); color: var(--amber);">
+                <i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>
+              </div>
+              <span class="status-badge"><span class="status-dot"></span> Aktif</span>
+            </div>
+            <h3 class="kegiatan-title">Sharing Session</h3>
+            <p class="kegiatan-desc">
+              Sesi temu daring santai mengundang praktisi dan member untuk menceritakan implementasi sistem di industri, review sertifikasi, dan tanya jawab seputar dunia kerja IT.
+            </p>
+            <div class="kegiatan-tags">
+              <span class="kegiatan-tag">#Webinar</span>
+              <span class="kegiatan-tag">#CareerTalk</span>
+              <span class="kegiatan-tag">#Insight</span>
+            </div>
+          </div>
+
+          <div class="tech-card kegiatan-card reveal delay-2">
+            <div class="kegiatan-header">
+              <div class="kegiatan-icon" style="background: var(--rose-dim); color: var(--rose);">
+                <i class="fa-solid fa-user-graduate" aria-hidden="true"></i>
+              </div>
+              <span class="status-badge"><span class="status-dot"></span> Aktif</span>
+            </div>
+            <h3 class="kegiatan-title">Mentoring Pemula</h3>
+            <p class="kegiatan-desc">
+              Bimbingan grup interaktif bagi anggota baru untuk memecahkan kendala instalasi dual boot/virtual machine, error debugging, dan arahan kurikulum belajar yang jelas.
+            </p>
+            <div class="kegiatan-tags">
+              <span class="kegiatan-tag">#Mentoring</span>
+              <span class="kegiatan-tag">#Roadmap</span>
+              <span class="kegiatan-tag">#Support</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="materi">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">
+            <i class="fa-solid fa-box-archive" aria-hidden="true"></i> Resource & Materi
+          </span>
+          <h2 class="section-title">Akses Pengetahuan Terbuka</h2>
+          <p class="section-subtitle">
+            Jelajahi repositori skrip, tulisan panduan sistem, tutorial video, serta dokumentasi terkurasi kami.
+          </p>
+        </div>
+
+        <div class="materi-grid">
+          <div class="tech-card materi-card reveal">
+            <div class="materi-top">
+              <div class="materi-platform">
+                <div class="platform-icon" style="background: rgba(255, 255, 255, 0.1); color: var(--text-main);">
+                  <i class="fa-brands fa-github" aria-hidden="true"></i>
+                </div>
+                <span class="platform-name">GitHub Repository</span>
+              </div>
+              <h3 class="materi-title">Hacking Resources</h3>
+              <p class="materi-desc">
+                Koleksi catatan praktis, cheatsheet perintah, template konfigurasi keamanan, dan kurikulum belajar mandiri.
+              </p>
+            </div>
+            <a href="https://github.com/hidayat-tanjung/hacking-resources-main" target="_blank" rel="noopener noreferrer" class="btn btn-secondary materi-btn" aria-label="Buka repositori GitHub Hacking Resources">
+              <span>Buka Repositori</span>
+              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="tech-card materi-card reveal delay-1">
+            <div class="materi-top">
+              <div class="materi-platform">
+                <div class="platform-icon" style="background: var(--emerald-dim); color: var(--emerald);">
+                  <i class="fa-brands fa-medium" aria-hidden="true"></i>
+                </div>
+                <span class="platform-name">Medium Publication</span>
+              </div>
+              <h3 class="materi-title">Artikel Teknis</h3>
+              <p class="materi-desc">
+                Tulisan mendalam mengenai eksplorasi administrasi Linux, panduan instalasi server, write-up lab, dan riset teknologi.
+              </p>
+            </div>
+            <a href="https://medium.com/@izumy" target="_blank" rel="noopener noreferrer" class="btn btn-secondary materi-btn" aria-label="Buka publikasi Medium">
+              <span>Baca di Medium</span>
+              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="tech-card materi-card reveal delay-2">
+            <div class="materi-top">
+              <div class="materi-platform">
+                <div class="platform-icon" style="background: var(--rose-dim); color: var(--rose);">
+                  <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+                </div>
+                <span class="platform-name">YouTube Channel</span>
+              </div>
+              <h3 class="materi-title">Tutorial Video</h3>
+              <p class="materi-desc">
+                Video demonstrasi interaktif konfigurasi Linux, setup server, pengenalan tools terminal, dan rekaman kegiatan.
+              </p>
+            </div>
+            <a href="https://www.youtube.com/@linuxploiter/videos" target="_blank" rel="noopener noreferrer" class="btn btn-secondary materi-btn" aria-label="Kunjungi channel YouTube LinuxPloiter">
+              <span>Tonton di YouTube</span>
+              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="tech-card materi-card reveal delay-3">
+            <div class="materi-top">
+              <div class="materi-platform">
+                <div class="platform-icon" style="background: var(--purple-dim); color: var(--purple);">
+                  <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                </div>
+                <span class="platform-name">Instagram Media</span>
+              </div>
+              <h3 class="materi-title">Update & Infografis</h3>
+              <p class="materi-desc">
+                Kuis mingguan, tips singkat seputar perintah Linux, infografis keamanan, dan pengumuman jadwal meetup komunitas.
+              </p>
+            </div>
+            <a href="https://www.instagram.com/linux_ploiter" target="_blank" rel="noopener noreferrer" class="btn btn-secondary materi-btn" aria-label="Follow Instagram LinuxPloiter">
+              <span>Follow Instagram</span>
+              <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimoni" style="background: rgba(17, 26, 46, 0.35);">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">
+            <i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Suara Komunitas
+          </span>
+          <h2 class="section-title">Kata Anggota Kami</h2>
+          <p class="section-subtitle">
+            Cerita pengalaman para member yang belajar dan berkembang bersama dalam lingkungan suportif.
+          </p>
+        </div>
+
+        <div class="testimoni-grid">
+          <div class="tech-card testimoni-card reveal">
+            <div>
+              <div class="quote-icon" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></div>
+              <p class="testimoni-quote">
+                "Awalnya saya buta terminal. Lewat mentoring LinuxPloiter, sekarang saya bisa setup server sendiri. Komunitasnya sabar banget ngajarin pemula."
+              </p>
+            </div>
+            <div class="testimoni-author">
+              <img src="https://api.dicebear.com/7.x/avataaars/png?seed=RizkyPratama&size=96" alt="Foto Rizky Pratama" class="author-avatar-img">
+              <div>
+                <div class="author-name">Rizky Pratama</div>
+                <div class="author-role">Mahasiswa Teknik Informatika</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tech-card testimoni-card reveal delay-1">
+            <div>
+              <div class="quote-icon" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></div>
+              <p class="testimoni-quote">
+                "Materi security-nya praktis dan legal. Saya jadi paham cara hardening server tanpa harus belajar hal-hal ilegal. Recommended untuk yang mau serius di IT."
+              </p>
+            </div>
+            <div class="testimoni-author">
+              <img src="https://api.dicebear.com/7.x/avataaars/png?seed=DewiAnggraini&size=96" alt="Foto Dewi Anggraini" class="author-avatar-img">
+              <div>
+                <div class="author-name">Dewi Anggraini</div>
+                <div class="author-role">IT Support</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tech-card testimoni-card reveal delay-2">
+            <div>
+              <div class="quote-icon" aria-hidden="true"><i class="fa-solid fa-quote-left"></i></div>
+              <p class="testimoni-quote">
+                "Diskusi sysadmin-nya berbobot. Saya dapat insight soal Docker dan Nginx yang langsung saya pakai di proyek klien. Komunitas yang tepat buat naik level."
+              </p>
+            </div>
+            <div class="testimoni-author">
+              <img src="https://api.dicebear.com/7.x/avataaars/png?seed=FajarRamadhan&size=96" alt="Foto Fajar Ramadhan" class="author-avatar-img">
+              <div>
+                <div class="author-name">Fajar Ramadhan</div>
+                <div class="author-role">Freelancer Sysadmin</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="bergabung">
+      <div class="container">
+        <div class="join-container">
+          <div class="section-header reveal">
+            <span class="section-badge">
+              <i class="fa-solid fa-user-plus" aria-hidden="true"></i> Gabung Sekarang
+            </span>
+            <h2 class="section-title">3 Langkah Mudah Bergabung</h2>
+            <p class="section-subtitle">
+              Tidak ada biaya pendaftaran ataupun seleksi rumit. Semua orang dipersilakan bergabung.
+            </p>
+          </div>
+
+          <div class="steps-grid">
+            <div class="tech-card step-card reveal">
+              <div class="step-number">01</div>
+              <h3 class="step-title">Klik Link Discord</h3>
+              <p class="step-desc">Gunakan tautan undangan resmi untuk langsung masuk ke server Discord LinuxPloiter.</p>
+            </div>
+
+            <div class="tech-card step-card reveal delay-1">
+              <div class="step-number">02</div>
+              <h3 class="step-title">Pahami Aturan</h3>
+              <p class="step-desc">Baca kanal tata tertib kami: jaga etika, hormati sesama member, dan hindari materi ilegal.</p>
+            </div>
+
+            <div class="tech-card step-card reveal delay-2">
+              <div class="step-number">03</div>
+              <h3 class="step-title">Mulai Belajar</h3>
+              <p class="step-desc">Sapa member lain di channel perkenalan, pilih topik materi, dan langsung ikut diskusi aktif.</p>
+            </div>
+          </div>
+
+          <div class="join-cta-card reveal">
+            <h3 class="join-cta-title">Siap Bertumbuh Bersama Komunitas?</h3>
+            <p class="join-cta-desc">
+              Dapatkan akses langsung ke lab diskusi, tanya jawab error, mentoring pemula, dan jaringan sesama pegiat Linux di seluruh Indonesia.
+            </p>
+            <a href="https://discord.com/invite/aJvSAqDcQ" target="_blank" rel="noopener noreferrer" class="btn btn-discord btn-lg" style="font-size: 17px; padding: 16px 36px;">
+              <i class="fa-brands fa-discord" aria-hidden="true" style="font-size: 22px;"></i>
+              <span>Join Discord LinuxPloiter</span>
+            </a>
+          </div>
+
+          <div class="terms-box reveal">
+            <div class="terms-icon" aria-hidden="true"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="terms-content">
+              <h4>Syarat & Komitmen Komunitas</h4>
+              <p>
+                Semua kegiatan di LinuxPloiter bersifat <strong>legal, etis, dan bertanggung jawab</strong>. Kami melarang keras segala bentuk aktivitas black hat, penyerangan tanpa izin, penyebaran malware, serta pembajakan sistem. Pelanggaran terhadap prinsip etika akan dikenakan sanksi tegas.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontak">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-badge">
+            <i class="fa-solid fa-headset" aria-hidden="true"></i> Hubungi Kami
+          </span>
+          <h2 class="section-title">Hubungi Kami</h2>
+          <p class="section-subtitle">
+            Terhubung langsung dengan tim dan komunitas LinuxPloiter melalui kanal resmi kami.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="tech-card contact-card reveal">
+            <div>
+              <div class="contact-icon" style="background: rgba(88, 101, 242, 0.15); color: #5865f2;">
+                <i class="fa-brands fa-discord" aria-hidden="true"></i>
+              </div>
+              <h3 class="contact-title">Discord Community</h3>
+              <p class="contact-desc">
+                Pusat diskusi harian, tanya jawab troubleshooting, dan koordinasi lab security serta sharing session.
+              </p>
+            </div>
+            <div class="contact-actions">
+              <a href="https://discord.com/invite/aJvSAqDcQ" target="_blank" rel="noopener noreferrer" class="btn btn-discord btn-sm" aria-label="Buka server Discord LinuxPloiter">
+                <span>Buka Discord</span>
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
+              <button class="btn btn-secondary btn-sm" id="copyDiscordBtn" data-clipboard="https://discord.com/invite/aJvSAqDcQ" aria-label="Salin link undangan Discord">
+                <i class="fa-solid fa-copy" aria-hidden="true"></i>
+                <span class="copy-text">Salin Link</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="tech-card contact-card reveal delay-1">
+            <div>
+              <div class="contact-icon" style="background: rgba(255, 255, 255, 0.1); color: var(--text-main);">
+                <i class="fa-brands fa-github" aria-hidden="true"></i>
+              </div>
+              <h3 class="contact-title">GitHub Repository</h3>
+              <p class="contact-desc">
+                Koleksi open source resources, catatan materi, referensi cheatsheet, serta berkas kurikulum mandiri.
+              </p>
+            </div>
+            <div class="contact-actions">
+              <a href="https://github.com/hidayat-tanjung/hacking-resources-main" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="width: 100%; justify-content: space-between;" aria-label="Kunjungi repositori GitHub LinuxPloiter">
+                <span>Lihat Repositori</span>
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="tech-card contact-card reveal delay-2">
+            <div>
+              <div class="contact-icon" style="background: var(--purple-dim); color: var(--purple);">
+                <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+              </div>
+              <h3 class="contact-title">Instagram DM</h3>
+              <p class="contact-desc">
+                Hubungi kami via Direct Message untuk kolaborasi event, pertanyaan seputar kegiatan, atau informasi umum.
+              </p>
+            </div>
+            <div class="contact-actions">
+              <a href="https://www.instagram.com/linux_ploiter" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="width: 100%; justify-content: space-between;" aria-label="Kunjungi Instagram LinuxPloiter">
+                <span>Kirim DM</span>
+                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="brand-logo" aria-label="Beranda LinuxPloiter">
+            <img src="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/assets/linuxploiter.png"
+                 alt="Logo LinuxPloiter"
+                 class="brand-logo-img"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-flex';">
+            <span class="brand-logo-fallback" style="display:none;" aria-hidden="true">🐧</span>
+            <span class="brand-text">Linux<span>Ploiter</span></span>
+          </a>
+          <p class="footer-desc">
+            Komunitas terbuka untuk belajar Linux, administrasi server, dan dasar keamanan sistem secara legal, etis, dan praktis. Tempat bertumbuh bagi pemula hingga praktisi.
+          </p>
+          <div class="footer-location">
+            <i class="fa-solid fa-location-dot text-teal" aria-hidden="true"></i>
+            <span>Gunungsitoli, Indonesia</span>
+          </div>
+        </div>
+
+        <div class="footer-nav">
+          <h4 class="footer-heading">Navigasi</h4>
+          <ul class="footer-links">
+            <li><a href="#tentang" class="footer-link"><i class="fa-solid fa-angle-right text-teal" aria-hidden="true"></i> Tentang Kami</a></li>
+            <li><a href="#kegiatan" class="footer-link"><i class="fa-solid fa-angle-right text-teal" aria-hidden="true"></i> Kegiatan Rutin</a></li>
+            <li><a href="#materi" class="footer-link"><i class="fa-solid fa-angle-right text-teal" aria-hidden="true"></i> Materi & Resources</a></li>
+            <li><a href="#testimoni" class="footer-link"><i class="fa-solid fa-angle-right text-teal" aria-hidden="true"></i> Testimoni Member</a></li>
+            <li><a href="#bergabung" class="footer-link"><i class="fa-solid fa-angle-right text-teal" aria-hidden="true"></i> Cara Bergabung</a></li>
+            <li><a href="#kontak" class="footer-link"><i class="fa-solid fa-angle-right text-teal" aria-hidden="true"></i> Kontak Kami</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4 class="footer-heading">Hubungi & Ikuti Kami</h4>
+          <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 14px;">
+            Terhubung dengan jejaring resmi kami di berbagai platform:
+          </p>
+          <div class="social-links">
+            <a href="https://github.com/hidayat-tanjung/hacking-resources-main" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub Repository LinuxPloiter">
+              <i class="fa-brands fa-github" aria-hidden="true"></i>
+            </a>
+            <a href="https://discord.com/invite/aJvSAqDcQ" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Discord Server LinuxPloiter">
+              <i class="fa-brands fa-discord" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.youtube.com/@linuxploiter/videos" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="YouTube LinuxPloiter">
+              <i class="fa-brands fa-youtube" aria-hidden="true"></i>
+            </a>
+            <a href="https://medium.com/@izumy" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Medium Publikasi LinuxPloiter">
+              <i class="fa-brands fa-medium" aria-hidden="true"></i>
+            </a>
+            <a href="https://www.instagram.com/linux_ploiter" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram LinuxPloiter">
+              <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="copyright-text">
+          &copy; <span id="currentYear"></span> LinuxPloiter &middot; Dibuat dengan ❤️ di Gunungsitoli
+        </div>
+        <a href="#hero" class="back-to-top" aria-label="Kembali ke atas halaman">
+          <span>Ke Atas</span>
+          <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <button id="floatingBackToTop" class="floating-back-to-top" aria-label="Kembali ke atas" title="Kembali ke atas">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Copyright Year
+      const yearEl = document.getElementById('currentYear');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // 2. Typing Effect
+      const phrases = [
+        "Belajar Linux dari Nol",
+        "Lab Security Legal",
+        "Sharing Knowledge",
+        "Komunitas Terbuka"
+      ];
+      let phraseIdx = 0;
+      let charIdx = 0;
+      let isDeleting = false;
+      const typeSpeed = 90;
+      const delSpeed = 45;
+      const pauseEnd = 2000;
+      const typingEl = document.getElementById('typing-text');
+
+      function handleTyping() {
+        if (!typingEl) return;
+        const currentPhrase = phrases[phraseIdx];
+
+        if (isDeleting) {
+          typingEl.textContent = currentPhrase.substring(0, charIdx - 1);
+          charIdx--;
+        } else {
+          typingEl.textContent = currentPhrase.substring(0, charIdx + 1);
+          charIdx++;
+        }
+
+        let delay = isDeleting ? delSpeed : typeSpeed;
+
+        if (!isDeleting && charIdx === currentPhrase.length) {
+          delay = pauseEnd;
+          isDeleting = true;
+        } else if (isDeleting && charIdx === 0) {
+          isDeleting = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          delay = 380;
+        }
+
+        setTimeout(handleTyping, delay);
+      }
+
+      typingEl.textContent = '';
+      setTimeout(handleTyping, 400);
+
+      // 3. Mobile Menu
+      const hamburgerBtn = document.getElementById('hamburgerBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const menuOverlay = document.getElementById('menuOverlay');
+      const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+      let isMenuOpen = false;
+
+      function openMenu() {
+        if (!hamburgerBtn || !mobileMenu || !menuOverlay) return;
+        isMenuOpen = true;
+        hamburgerBtn.classList.add('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'true');
+        hamburgerBtn.setAttribute('aria-label', 'Tutup menu navigasi');
+        mobileMenu.classList.add('active');
+        menuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+      }
+
+      function closeMenu() {
+        if (!hamburgerBtn || !mobileMenu || !menuOverlay) return;
+        isMenuOpen = false;
+        hamburgerBtn.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        hamburgerBtn.setAttribute('aria-label', 'Buka menu navigasi');
+        mobileMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+      }
+
+      if (hamburgerBtn && mobileMenu && menuOverlay) {
+        hamburgerBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (isMenuOpen) closeMenu();
+          else openMenu();
+        });
+
+        menuOverlay.addEventListener('click', closeMenu);
+
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', closeMenu);
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && isMenuOpen) closeMenu();
+        });
+
+        window.addEventListener('resize', () => {
+          if (window.innerWidth > 768 && isMenuOpen) closeMenu();
+        });
+
+        // Auto-close saat scroll (fix menu tidak hilang di Android)
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+          if (!isMenuOpen) return;
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            if (isMenuOpen) closeMenu();
+          }, 150);
+        }, { passive: true });
+      }
+
+      // 4. Reveal on Scroll
+      const reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+        reveals.forEach(el => revealObserver.observe(el));
+      } else {
+        reveals.forEach(el => el.classList.add('revealed'));
+      }
+
+      // 5. Active Nav
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      function updateActiveNav() {
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        const navHeight = document.getElementById('navbar') ? document.getElementById('navbar').offsetHeight : 72;
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - navHeight - 60;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.getAttribute('id');
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            navLinks.forEach(link => {
+              if (link.getAttribute('href') === `#${sectionId}`) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+              } else {
+                link.classList.remove('active');
+                link.removeAttribute('aria-current');
+              }
+            });
+
+            mobileLinks.forEach(link => {
+              if (link.getAttribute('href') === `#${sectionId}`) {
+                link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
+              } else {
+                link.classList.remove('active');
+                link.removeAttribute('aria-current');
+              }
+            });
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateActiveNav, { passive: true });
+      updateActiveNav();
+
+      // 6. Navbar Scrolled Effect
+      const navbar = document.getElementById('navbar');
+      if (navbar) {
+        window.addEventListener('scroll', () => {
+          if (window.pageYOffset > 20) navbar.classList.add('scrolled');
+          else navbar.classList.remove('scrolled');
+        }, { passive: true });
+      }
+
+      // 7. Navbar Auto-Hide on Scroll Down / Show on Scroll Up
+      let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      let navTicking = false;
+
+      function handleNavbarScroll() {
+        if (!navbar) return;
+
+        // Jangan hide navbar kalau menu mobile sedang terbuka
+        if (isMenuOpen) {
+          navbar.classList.remove('nav-hidden');
+          navbar.classList.add('nav-visible');
+          lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+          navTicking = false;
+          return;
+        }
+
+        const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollDelta = currentScrollY - lastScrollY;
+
+        // Di paling atas — selalu muncul
+        if (currentScrollY <= 10) {
+          navbar.classList.remove('nav-hidden');
+          navbar.classList.add('nav-visible');
+        }
+        // Scroll ke bawah — sembunyikan (minimal sudah 80px dari atas)
+        else if (scrollDelta > 5 && currentScrollY > 80) {
+          navbar.classList.add('nav-hidden');
+          navbar.classList.remove('nav-visible');
+        }
+        // Scroll ke atas — munculkan
+        else if (scrollDelta < -5) {
+          navbar.classList.remove('nav-hidden');
+          navbar.classList.add('nav-visible');
+        }
+
+        lastScrollY = currentScrollY;
+        navTicking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!navTicking) {
+          window.requestAnimationFrame(handleNavbarScroll);
+          navTicking = true;
+        }
+      }, { passive: true });
+
+      // 8. Floating Back to Top
+      const floatingBtn = document.getElementById('floatingBackToTop');
+      if (floatingBtn) {
+        window.addEventListener('scroll', () => {
+          if (window.pageYOffset > 500) floatingBtn.classList.add('visible');
+          else floatingBtn.classList.remove('visible');
+        }, { passive: true });
+
+        floatingBtn.addEventListener('click', () => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+
+      // 9. Toast
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-msg');
+      let toastTimer;
+      function showToast(msg) {
+        if (!toast || !toastMsg) return;
+        toastMsg.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+      }
+
+      // 10. Copy Discord
+      const copyDiscordBtn = document.getElementById('copyDiscordBtn');
+      if (copyDiscordBtn) {
+        copyDiscordBtn.addEventListener('click', async () => {
+          const textToCopy = copyDiscordBtn.getAttribute('data-clipboard') || 'https://discord.com/invite/aJvSAqDcQ';
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(textToCopy);
+            } else {
+              const tempInput = document.createElement('input');
+              tempInput.value = textToCopy;
+              document.body.appendChild(tempInput);
+              tempInput.select();
+              document.execCommand('copy');
+              document.body.removeChild(tempInput);
+            }
+            const copyText = copyDiscordBtn.querySelector('.copy-text');
+            const originalText = copyText.textContent;
+            copyText.textContent = 'Tersalin!';
+            setTimeout(() => { copyText.textContent = originalText; }, 2000);
+            showToast('Link Discord berhasil disalin!');
+          } catch (err) {
+            showToast('Gagal menyalin, salin manual ya.');
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
