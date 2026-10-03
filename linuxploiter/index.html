@@ -2,20 +2,18 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#0b1220">
 
-  <!-- SEO Meta Tags -->
   <title>LinuxPloiter — Belajar Linux, Sysadmin & Security</title>
   <meta name="description" content="Komunitas belajar Linux, Sysadmin, dan Security paling terbuka dan ramah pemula di Indonesia. 100% Gratis, legal, etis, dan praktis.">
   <meta name="keywords" content="LinuxPloiter, Linux Indonesia, Komunitas Linux, Sysadmin, Cybersecurity, Keamanan Siber, Belajar Linux, Lab Security, Open Source">
   <meta name="author" content="LinuxPloiter">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://linuxploiter.hidayat-tanjung.io/">
+  <link rel="canonical" href="https://hidayat-tanjungio.vercel.app/linuxploiter/">
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://linuxploiter.hidayat-tanjung.io/">
+  <meta property="og:url" content="https://hidayat-tanjungio.vercel.app/linuxploiter/">
   <meta property="og:title" content="LinuxPloiter — Belajar Linux, Sysadmin & Security">
   <meta property="og:description" content="Komunitas belajar Linux, Sysadmin, dan Security paling terbuka dan ramah pemula di Indonesia. Legal, etis, dan praktis.">
   <meta property="og:image" content="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/assets/linuxploiter.png">
@@ -23,23 +21,19 @@
   <meta property="og:image:height" content="630">
   <meta property="og:locale" content="id_ID">
 
-  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://linuxploiter.hidayat-tanjung.io/">
+  <meta name="twitter:url" content="https://hidayat-tanjungio.vercel.app/linuxploiter/">
   <meta name="twitter:title" content="LinuxPloiter — Belajar Linux, Sysadmin & Security">
   <meta name="twitter:description" content="Komunitas belajar Linux, Sysadmin, dan Security paling terbuka dan ramah pemula di Indonesia. Legal, etis, dan praktis.">
   <meta name="twitter:image" content="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/assets/linuxploiter.png">
 
-  <!-- Favicon & Apple Touch Icon -->
   <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/assets/linuxploiter.png">
   <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/hidayat-tanjung/hidayat-tanjung.io/refs/heads/main/assets/linuxploiter.png">
 
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer">
 
   <style>
@@ -232,6 +226,7 @@
       white-space: nowrap;
       transition: var(--transition);
       text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .btn:active { transform: translateY(1px); }
@@ -286,12 +281,22 @@
       z-index: 1000;
       display: flex;
       align-items: center;
-      transition: var(--transition);
+      padding-top: env(safe-area-inset-top);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.28s ease, box-shadow 0.28s ease;
+      will-change: transform;
     }
 
     .navbar.scrolled {
       background: rgba(11, 18, 32, 0.96);
       box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    }
+
+    .navbar.nav-hidden {
+      transform: translateY(-100%);
+    }
+
+    .navbar.nav-visible {
+      transform: translateY(0);
     }
 
     .nav-inner {
@@ -388,7 +393,9 @@
       cursor: pointer;
       padding: 0;
       transition: var(--transition);
-      z-index: 1001;
+      z-index: 1002;
+      position: relative;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .hamburger:hover { border-color: var(--teal); background: var(--surface-2); }
@@ -399,20 +406,24 @@
     }
 
     .hamburger .bar {
+      display: block;
       width: 22px;
       height: 2px;
       background-color: var(--text-main);
       border-radius: 2px;
       transition: transform 0.3s ease, opacity 0.2s ease;
+      pointer-events: none;
     }
 
     .hamburger.open .bar-1 { transform: translateY(8px) rotate(45deg); }
     .hamburger.open .bar-2 { opacity: 0; }
     .hamburger.open .bar-3 { transform: translateY(-8px) rotate(-45deg); }
 
+    /* ===== MOBILE DRAWER ===== */
     .mobile-menu-overlay {
       position: fixed;
       inset: 0;
+      top: var(--nav-height);
       background: rgba(11, 18, 32, 0.85);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -420,7 +431,9 @@
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.3s ease, visibility 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
     }
+
     .mobile-menu-overlay.active { opacity: 1; visibility: visible; }
 
     .mobile-menu {
@@ -430,7 +443,7 @@
       width: 100%;
       background: #111a2e;
       border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 20px 24px 28px;
+      padding: 20px 24px calc(28px + env(safe-area-inset-bottom));
       z-index: 999;
       transform: translateY(-100%);
       opacity: 0;
@@ -443,26 +456,32 @@
       min-height: calc(100vh - var(--nav-height));
       max-height: calc(100vh - var(--nav-height));
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior: contain;
+      touch-action: pan-y;
     }
+
     .mobile-menu.active { transform: translateY(0); opacity: 1; visibility: visible; }
 
     .mobile-nav-link {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 12px 16px;
+      padding: 14px 16px;
       font-size: 16px;
       font-weight: 500;
       color: var(--text-secondary);
       border-radius: var(--radius-md);
-      min-height: 48px;
+      min-height: 52px;
       transition: var(--transition);
       border-left: 3px solid transparent;
+      -webkit-tap-highlight-color: transparent;
+      text-decoration: none;
     }
 
-    .mobile-nav-link i { width: 22px; font-size: 17px; color: var(--teal); }
+    .mobile-nav-link i { width: 22px; font-size: 17px; color: var(--teal); flex-shrink: 0; }
 
-    .mobile-nav-link:hover { background: var(--surface-2); color: var(--teal); }
+    .mobile-nav-link:active { background: var(--surface-2); }
 
     .mobile-nav-link.active {
       background: var(--teal-dim);
@@ -562,6 +581,8 @@
       font-size: clamp(14px, 2vw, 17px);
       color: var(--teal);
       box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.4);
+      max-width: 100%;
+      flex-wrap: wrap;
     }
 
     .typing-prompt { color: var(--indigo); font-weight: 600; }
@@ -1178,6 +1199,7 @@
       .typing-cursor { animation: none !important; opacity: 1 !important; }
       .hero-badge-pulse::after { animation: none !important; }
       .status-dot { animation: none !important; }
+      .navbar { transition: none !important; }
     }
 
     /* ===== RESPONSIVE ===== */
@@ -1237,13 +1259,11 @@
 </head>
 <body>
 
-  <!-- Toast -->
   <div id="toast" class="toast" role="status" aria-live="polite">
     <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
     <span id="toast-msg">Link tersalin!</span>
   </div>
 
-  <!-- ===== NAVBAR ===== -->
   <header class="navbar" id="navbar">
     <div class="container">
       <div class="nav-inner">
@@ -1270,7 +1290,7 @@
             <span>Join Discord</span>
           </a>
 
-          <button class="hamburger" id="hamburgerBtn" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileMenu">
+          <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="mobileMenu">
             <span class="bar bar-1"></span>
             <span class="bar bar-2"></span>
             <span class="bar bar-3"></span>
@@ -1280,7 +1300,6 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer -->
   <div class="mobile-menu-overlay" id="menuOverlay" aria-hidden="true"></div>
   <nav class="mobile-menu" id="mobileMenu" aria-label="Navigasi Mobile">
     <a href="#tentang" class="mobile-nav-link">
@@ -1311,7 +1330,6 @@
   </nav>
 
   <main>
-    <!-- ===== HERO ===== -->
     <section class="hero-section" id="hero">
       <div class="container">
         <div class="hero-content">
@@ -1366,7 +1384,6 @@
       </div>
     </section>
 
-    <!-- ===== TENTANG ===== -->
     <section id="tentang">
       <div class="container">
         <div class="section-header reveal">
@@ -1472,7 +1489,6 @@
       </div>
     </section>
 
-    <!-- ===== KEGIATAN ===== -->
     <section id="kegiatan" style="background: rgba(17, 26, 46, 0.35);">
       <div class="container">
         <div class="section-header reveal">
@@ -1579,7 +1595,6 @@
       </div>
     </section>
 
-    <!-- ===== MATERI ===== -->
     <section id="materi">
       <div class="container">
         <div class="section-header reveal">
@@ -1672,7 +1687,6 @@
       </div>
     </section>
 
-    <!-- ===== TESTIMONI ===== -->
     <section id="testimoni" style="background: rgba(17, 26, 46, 0.35);">
       <div class="container">
         <div class="section-header reveal">
@@ -1737,7 +1751,6 @@
       </div>
     </section>
 
-    <!-- ===== BERGABUNG ===== -->
     <section id="bergabung">
       <div class="container">
         <div class="join-container">
@@ -1795,7 +1808,6 @@
       </div>
     </section>
 
-    <!-- ===== KONTAK ===== -->
     <section id="kontak">
       <div class="container">
         <div class="section-header reveal">
@@ -1842,7 +1854,7 @@
               </p>
             </div>
             <div class="contact-actions">
-              <a href="https://github.com/hidayat-tanjung/hacking-resources-main" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" aria-label="Kunjungi repositori GitHub LinuxPloiter">
+              <a href="https://github.com/hidayat-tanjung/hacking-resources-main" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="width: 100%; justify-content: space-between;" aria-label="Kunjungi repositori GitHub LinuxPloiter">
                 <span>Lihat Repositori</span>
                 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
               </a>
@@ -1860,7 +1872,7 @@
               </p>
             </div>
             <div class="contact-actions">
-              <a href="https://www.instagram.com/linux_ploiter" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" aria-label="Kunjungi Instagram LinuxPloiter">
+              <a href="https://www.instagram.com/linux_ploiter" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="width: 100%; justify-content: space-between;" aria-label="Kunjungi Instagram LinuxPloiter">
                 <span>Kirim DM</span>
                 <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
               </a>
@@ -1871,7 +1883,6 @@
     </section>
   </main>
 
-  <!-- ===== FOOTER ===== -->
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
@@ -1952,7 +1963,7 @@
       const yearEl = document.getElementById('currentYear');
       if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-      // 2. Typing Effect (mulai dari kosong, bukan menghapus)
+      // 2. Typing Effect
       const phrases = [
         "Belajar Linux dari Nol",
         "Lab Security Legal",
@@ -1993,7 +2004,6 @@
         setTimeout(handleTyping, delay);
       }
 
-      // Mulai mengetik dari kosong
       typingEl.textContent = '';
       setTimeout(handleTyping, 400);
 
@@ -2003,40 +2013,65 @@
       const menuOverlay = document.getElementById('menuOverlay');
       const mobileLinks = document.querySelectorAll('.mobile-nav-link');
 
+      let isMenuOpen = false;
+
       function openMenu() {
+        if (!hamburgerBtn || !mobileMenu || !menuOverlay) return;
+        isMenuOpen = true;
         hamburgerBtn.classList.add('open');
         hamburgerBtn.setAttribute('aria-expanded', 'true');
         hamburgerBtn.setAttribute('aria-label', 'Tutup menu navigasi');
         mobileMenu.classList.add('active');
         menuOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
       }
 
       function closeMenu() {
+        if (!hamburgerBtn || !mobileMenu || !menuOverlay) return;
+        isMenuOpen = false;
         hamburgerBtn.classList.remove('open');
         hamburgerBtn.setAttribute('aria-expanded', 'false');
         hamburgerBtn.setAttribute('aria-label', 'Buka menu navigasi');
         mobileMenu.classList.remove('active');
         menuOverlay.classList.remove('active');
         document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
       }
 
       if (hamburgerBtn && mobileMenu && menuOverlay) {
-        hamburgerBtn.addEventListener('click', () => {
-          if (hamburgerBtn.classList.contains('open')) closeMenu();
+        hamburgerBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (isMenuOpen) closeMenu();
           else openMenu();
         });
 
         menuOverlay.addEventListener('click', closeMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', closeMenu);
+        });
 
         document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && hamburgerBtn.classList.contains('open')) closeMenu();
+          if (e.key === 'Escape' && isMenuOpen) closeMenu();
         });
 
         window.addEventListener('resize', () => {
-          if (window.innerWidth > 768 && hamburgerBtn.classList.contains('open')) closeMenu();
+          if (window.innerWidth > 768 && isMenuOpen) closeMenu();
         });
+
+        // Auto-close saat scroll (fix menu tidak hilang di Android)
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+          if (!isMenuOpen) return;
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            if (isMenuOpen) closeMenu();
+          }, 150);
+        }, { passive: true });
       }
 
       // 4. Reveal on Scroll
@@ -2105,7 +2140,53 @@
         }, { passive: true });
       }
 
-      // 7. Floating Back to Top
+      // 7. Navbar Auto-Hide on Scroll Down / Show on Scroll Up
+      let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      let navTicking = false;
+
+      function handleNavbarScroll() {
+        if (!navbar) return;
+
+        // Jangan hide navbar kalau menu mobile sedang terbuka
+        if (isMenuOpen) {
+          navbar.classList.remove('nav-hidden');
+          navbar.classList.add('nav-visible');
+          lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+          navTicking = false;
+          return;
+        }
+
+        const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollDelta = currentScrollY - lastScrollY;
+
+        // Di paling atas — selalu muncul
+        if (currentScrollY <= 10) {
+          navbar.classList.remove('nav-hidden');
+          navbar.classList.add('nav-visible');
+        }
+        // Scroll ke bawah — sembunyikan (minimal sudah 80px dari atas)
+        else if (scrollDelta > 5 && currentScrollY > 80) {
+          navbar.classList.add('nav-hidden');
+          navbar.classList.remove('nav-visible');
+        }
+        // Scroll ke atas — munculkan
+        else if (scrollDelta < -5) {
+          navbar.classList.remove('nav-hidden');
+          navbar.classList.add('nav-visible');
+        }
+
+        lastScrollY = currentScrollY;
+        navTicking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!navTicking) {
+          window.requestAnimationFrame(handleNavbarScroll);
+          navTicking = true;
+        }
+      }, { passive: true });
+
+      // 8. Floating Back to Top
       const floatingBtn = document.getElementById('floatingBackToTop');
       if (floatingBtn) {
         window.addEventListener('scroll', () => {
@@ -2118,7 +2199,7 @@
         });
       }
 
-      // 8. Toast
+      // 9. Toast
       const toast = document.getElementById('toast');
       const toastMsg = document.getElementById('toast-msg');
       let toastTimer;
@@ -2130,7 +2211,7 @@
         toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
       }
 
-      // 9. Copy Discord Link
+      // 10. Copy Discord
       const copyDiscordBtn = document.getElementById('copyDiscordBtn');
       if (copyDiscordBtn) {
         copyDiscordBtn.addEventListener('click', async () => {
